@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('center', function (Blueprint $table) {
+        Schema::create('experience', function (Blueprint $table) {
             $table->id();
-            $table->string("name", 30);
-            $table->string("address", 200);
-            $table->integer("phone")->nullable();
             $table->timestamps();
+            $table->string("description", 255);
+            $table->unsignedBigInteger("user");
+
+            $table->foreign("user")->references("id")->on("user");
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('center');
+        Schema::dropIfExists('experience');
     }
 };
