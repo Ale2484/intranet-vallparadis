@@ -11,17 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tracking_issues_rrhh', function (Blueprint $table) {
+        Schema::create('docs_managements', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("issue");
-            $table->unsignedBigInteger("user");
-            $table->string("description");
-            $table->string("docs");
-
             $table->timestamps();
+            $table->unsignedBigInteger("center");
+            $table->string("type");
+            $table->string("description");
+            $table->unsignedBigInteger("user");
+            $table->string("doc");
 
-            $table->foreign("issue")->references("id")->on("rrhh_topic");
+
             $table->foreign("user")->references("id")->on("users");
+            $table->foreign("center")->references("id")->on("centers");
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tracking_issues_rrhh');
+        Schema::dropIfExists('docs_management');
     }
 };
