@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('tracking', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->unsignedBigInteger("register");
             $table->string("topic");
             $table->string("comments");
             $table->unsignedBigInteger("user");
-            $table->boolean('open');
-            $table->timestamps("origin");
-            $table->timestamps("end_link");
+            $table->boolean("open");
 
+            $table->timestamp("origin")->nullable();
+            $table->timestamp("end_link")->nullable();
 
-            $table->foreign("user")->references("id")->on("register");
-            $table->foreign("user")->references("id")->on("user");
-            
+            $table->timestamps();
+
+            $table->foreign("register")->references("id")->on("users");
+            $table->foreign("user")->references("id")->on("users");
         });
     }
 

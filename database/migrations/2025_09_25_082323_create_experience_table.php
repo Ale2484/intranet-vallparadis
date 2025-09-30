@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("description", 255);
             $table->unsignedBigInteger("user");
 
-            $table->foreign("user")->references("id")->on("user");
+            $table->foreign("user")->references("id")->on("users");
         });
     }
 

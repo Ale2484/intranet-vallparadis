@@ -15,12 +15,15 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("center");
             $table->string("type");
-            $table->timestamps("start");
+            $table->timestamp("start")->nullable();
             $table->unsignedBigInteger("external_contact");
             $table->string("observations");
             $table->string("doc");
+
+            // created_at y updated_at
             $table->timestamps();
 
+            // Claves foráneas (ajusta nombres de tabla según tu proyecto real)
             $table->foreign("center")->references("id")->on("center");
             $table->foreign("external_contact")->references("id")->on("external_contact");
         });

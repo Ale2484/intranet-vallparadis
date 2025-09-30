@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("doc");
 
             $table->foreign("center")->references("id")->on("center");
-            $table->foreign("user")->references("id")->on("user");
+            $table->foreign("user")->references("id")->on("users");
         });
     }
 
