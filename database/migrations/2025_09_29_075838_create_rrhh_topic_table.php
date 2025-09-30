@@ -14,17 +14,18 @@ return new class extends Migration
         Schema::create('rrhh_topic', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("center");
-            $table->timestamps("opening");
+            $table->timestamp("opening")->nullable();
             $table->unsignedBigInteger("user_affected");
             $table->string("description", 255);
             $table->unsignedBigInteger("user_register");
             $table->string("derivative", 255);
             $table->string("docs", 255);
+
             $table->timestamps();
 
             $table->foreign("center")->references("id")->on("center");
-            $table->foreign("user")->references("id")->on("user_affected");
-            $table->foreign("user")->references("id")->on("user_register");
+            $table->foreign("user_affected")->references("id")->on("users");
+            $table->foreign("user_register")->references("id")->on("users");
         });
     }
 

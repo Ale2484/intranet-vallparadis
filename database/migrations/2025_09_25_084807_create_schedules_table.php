@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("center");
-            // $table->string('forcem', 255); // esto no se lo que es
+            $table->unsignedBigInteger('center');
             $table->integer('hours');
-            $table->string('type', 255);
-            $table->string('in person', 255);
-            $table->string('name', 255);
-            $table->string('assistant', 255);
-            $table->timestamps("start");
-            $table->timestamps("end");
-            table->bolean("certificate");
-            $table->unsignedBigInteger("course");
+            $table->string('type');
+            $table->string('in_person'); 
+            $table->string('name');
+            $table->string('assistant');
+            $table->timestamp('start')->nullable(); 
+            $table->timestamp('end')->nullable();   
+            $table->boolean('certificate');
+            $table->unsignedBigInteger('course');
+            $table->timestamps();
 
-            $table->foreign("courses")->references("id")->on("course");
+            $table->foreign("course")->references("id")->on("courses");
             $table->foreign("center")->references("id")->on("center");
         });
     }

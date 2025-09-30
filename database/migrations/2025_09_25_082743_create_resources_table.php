@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('shoe', 3, 2);
             $table->timestamps();
 
-            $table->foreign("user")->references("id")->on("user");
+            $table->foreign("user")->references("id")->on("users");
         });
     }
 

@@ -15,15 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("center");
             $table->string("name");
-            $table->timestamps("start");
+            $table->timestamp("start")->nullable();
             $table->unsignedBigInteger("user");
             $table->string("description", 255);
             $table->string("observations", 255);
             $table->string("docs", 255);
             $table->string("type", 255);
+
             $table->timestamps();
-            
-            $table->foreign("user")->references("id")->on("user");
+
+            $table->foreign("user")->references("id")->on("users");
             $table->foreign("center")->references("id")->on("center");            
         });
     }

@@ -14,16 +14,17 @@ return new class extends Migration
         Schema::create('accidentality', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("low");
-            $table->timestamps("start");
-            $table->timestamps("end");
+            $table->timestamp("start")->nullable();
+            $table->timestamp("end")->nullable();
             $table->string("context", 255);
             $table->string("description", 255);
             $table->unsignedBigInteger("evaluate");
             $table->string("type", 255);
+
             $table->timestamps();
 
-            $table->foreign("user")->references("id")->on("low");
-            $table->foreign("user")->references("id")->on("evaluate");
+            $table->foreign("low")->references("id")->on("users");
+            $table->foreign("evaluate")->references("id")->on("users");
         });
     }
 

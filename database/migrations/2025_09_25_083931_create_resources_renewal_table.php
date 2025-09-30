@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger("resources");
 
 
-            $table->foreign("user")->references("id")->on("userDelivery");
-            $table->foreign("user")->references("id")->on("user");
+            $table->foreign("userDelivery")->references("id")->on("users");
+            $table->foreign("user")->references("id")->on("users");
             $table->foreign("resources")->references("id")->on("resources");
         });
     }
