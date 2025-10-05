@@ -9,3 +9,30 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+
+.vallparadis-background{
+    background-color: #FFF9F6;
+}
+.vallparadis-text-color {
+    color: #012F4A;
+}
+
+.primary-btn{
+    background-color: #FF7E13;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.primary-btn:hover{
+    background-color: #ff6518;
+    border: 1px solid black;
+    transition: all 0.2s ease-in-out;
+
+}
