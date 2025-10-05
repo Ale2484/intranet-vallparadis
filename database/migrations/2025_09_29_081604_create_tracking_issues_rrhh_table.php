@@ -11,21 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('tracking_issues_rrhh', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("center");
-            $table->string("name");
-            $table->timestamp("start")->nullable();
+            $table->unsignedBigInteger("issue");
             $table->unsignedBigInteger("user");
-            $table->string("description", 255);
-            $table->string("observations", 255);
-            $table->string("docs", 255);
-            $table->string("type", 255);
+            $table->string("description");
+            $table->string("docs");
 
             $table->timestamps();
 
+            $table->foreign("issue")->references("id")->on("rrhh_topics");
             $table->foreign("user")->references("id")->on("users");
-            $table->foreign("center")->references("id")->on("centers");            
         });
     }
 
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('tracking_issues_rrhh');
     }
 };

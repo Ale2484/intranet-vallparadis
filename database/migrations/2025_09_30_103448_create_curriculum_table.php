@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resources', function (Blueprint $table) {
+        Schema::create('curriculum', function (Blueprint $table) {
             $table->id();
-            $table->integer("key");
+            $table->string("path");
+            $table->string("observations");
             $table->unsignedBigInteger("user");
-            $table->enum("shirt",["XS","S", "M", "L", "XL", "XXL"]);
-            $table->enum("pants",["XS","S", "M", "L", "XL", "XXL"]);
-            $table->decimal('shoe', 3, 2);
             $table->timestamps();
 
             $table->foreign("user")->references("id")->on("users");
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resources');
+        Schema::dropIfExists('curriculum');
     }
 };

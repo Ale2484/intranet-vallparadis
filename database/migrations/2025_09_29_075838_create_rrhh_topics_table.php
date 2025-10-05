@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rrhh_topic', function (Blueprint $table) {
+        Schema::create('rrhh_topics', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("center");
             $table->timestamp("opening")->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->foreign("center")->references("id")->on("center");
+            $table->foreign("center")->references("id")->on("centers");
             $table->foreign("user_affected")->references("id")->on("users");
             $table->foreign("user_register")->references("id")->on("users");
         });

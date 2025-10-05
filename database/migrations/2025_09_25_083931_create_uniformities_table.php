@@ -11,21 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tracking', function (Blueprint $table) {
+        Schema::create('uniformities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("register");
-            $table->string("topic");
-            $table->string("comments");
+            $table->unsignedBigInteger("user_delivery");
             $table->unsignedBigInteger("user");
-            $table->boolean("open");
 
-            $table->timestamp("origin")->nullable();
-            $table->timestamp("end_link")->nullable();
+            $table->enum("shirt",["XS","S", "M", "L", "XL", "XXL"]);
+            $table->enum("pants",["XS","S", "M", "L", "XL", "XXL"]);
+            $table->decimal('shoes', 3, 1);
 
-            $table->timestamps();
-
-            $table->foreign("register")->references("id")->on("users");
+            $table->foreign("user_delivery")->references("id")->on("users");
             $table->foreign("user")->references("id")->on("users");
+            
+            $table->timestamps();
         });
     }
 
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tracking');
+        Schema::dropIfExists('resources_renewal');
     }
 };

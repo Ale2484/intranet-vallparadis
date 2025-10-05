@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('accidentality', function (Blueprint $table) {
+        Schema::create('accidentabilites', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("low");
             $table->timestamp("start")->nullable();
