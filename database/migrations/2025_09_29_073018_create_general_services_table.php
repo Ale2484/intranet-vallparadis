@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string("grill");
             $table->timestamps();
 
-            $table->foreign("center")->references("id")->on("center");
-            $table->foreign("external_contact")->references("id")->on("external_contact");
+            $table->foreign("center")->references("id")->on("centers");
+            $table->foreign("external_contact")->references("id")->on("external_contacts");
         });
     }
 

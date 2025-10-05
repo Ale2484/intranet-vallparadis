@@ -11,18 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('docs_management', function (Blueprint $table) {
+        Schema::create('trackings', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->unsignedBigInteger("center");
-            $table->string("type");
-            $table->string("description");
+            $table->unsignedBigInteger("register");
+            $table->string("topic");
+            $table->string("comments");
             $table->unsignedBigInteger("user");
-            $table->string("doc");
+            $table->boolean("open");
 
+            $table->timestamp("origin")->nullable();
+            $table->timestamp("end_link")->nullable();
 
+            $table->timestamps();
+
+            $table->foreign("register")->references("id")->on("users");
             $table->foreign("user")->references("id")->on("users");
-            $table->foreign("center")->references("id")->on("center");
         });
     }
 
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('docs_management');
+        Schema::dropIfExists('tracking');
     }
 };

@@ -11,16 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('external_contact', function (Blueprint $table) {
+        Schema::create('projecte_documents', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("center");
             $table->string("name");
-            $table->integer("phone")->nullable();
-            $table->string("mail");
-            $table->string("observations");
+            $table->unsignedBigInteger("project");
+            $table->string("path");
             $table->timestamps();
 
-            $table->foreign("center")->references("id")->on("center");
+            $table->foreign("project")->references("id")->on("projects");
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('external_contact');
+        Schema::dropIfExists('documents');
     }
 };

@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monitoring__maintenance', function (Blueprint $table) {
+        Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("maintenance");
+            $table->unsignedBigInteger("center");
             $table->timestamps();
             $table->unsignedBigInteger("user");
-            $table->string("description", 255);
+            $table->string("description");
             $table->string("doc");
 
-            $table->foreign("maintenance")->references("id")->on("maintenance");
+            $table->foreign("center")->references("id")->on("centers");
             $table->foreign("user")->references("id")->on("users");
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('monitoring__maintenance');
+        Schema::dropIfExists('maintenance');
     }
 };

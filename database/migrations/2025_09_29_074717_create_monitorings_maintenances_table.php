@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resources_renewal', function (Blueprint $table) {
+        Schema::create('monitorings_maintenances', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("maintenance");
             $table->timestamps();
-            $table->unsignedBigInteger("userDelivery");
             $table->unsignedBigInteger("user");
-            $table->unsignedBigInteger("resources");
+            $table->string("description", 255);
+            $table->string("doc");
 
-
-            $table->foreign("userDelivery")->references("id")->on("users");
+            $table->foreign("maintenance")->references("id")->on("maintenances");
             $table->foreign("user")->references("id")->on("users");
-            $table->foreign("resources")->references("id")->on("resources");
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resources_renewal');
+        Schema::dropIfExists('monitoring__maintenance');
     }
 };

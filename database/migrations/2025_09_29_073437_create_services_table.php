@@ -24,8 +24,8 @@ return new class extends Migration
             $table->timestamps();
 
             // Claves foráneas (ajusta nombres de tabla según tu proyecto real)
-            $table->foreign("center")->references("id")->on("center");
-            $table->foreign("external_contact")->references("id")->on("external_contact");
+            $table->foreign("center")->references("id")->on("centers");
+            $table->foreign("external_contact")->references("id")->on("external_contacts");
         });
     }
 
