@@ -7,7 +7,7 @@
     <title>@yield("title")</title>
 </head>
 <body class="bg-[#FFF9F6]">
-    <header class="flex items-start">
+    <header class="flex items-start w-full fixed">
         <!-- Menu lateral -->
         <nav class="bg-white h-screen p-5 shadow-sm flex flex-col items-center z-0 ">
             <ul class="flex flex-col gap-10">
@@ -91,7 +91,7 @@
             </div>
         </div>
     </header>
-    <main>
+    <main class="px-24 pt-24">
         @yield("main")
     </main>
     <footer>
