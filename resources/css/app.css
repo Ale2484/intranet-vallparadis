@@ -9,3 +9,15 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+
+@font-face {
+  font-family: 'icons';
+  src: url('../../public/fonts/iconos.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon{
+    font-family: "icons";
+}
