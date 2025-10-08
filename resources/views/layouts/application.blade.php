@@ -7,9 +7,9 @@
     <title>@yield("title")</title>
 </head>
 <body class="bg-[#FFF9F6]">
-    <header class="flex items-start w-full fixed">
+    <header class="fixed top-0 left-0 flex items-start w-full h-auto z-10">
         <!-- Menu lateral -->
-        <nav class="bg-white h-screen p-5 shadow-sm flex flex-col items-center z-0 ">
+        <nav class="bg-white h-screen p-5 shadow-sm flex flex-col items-center fixed top-0 left-0 z-10">
             <ul class="flex flex-col gap-10">
                 <li class="mb-5 pt-1">
                     <a href="#OpenMenu">
@@ -51,7 +51,7 @@
         </nav>
 
         <!-- Menu superior -->
-        <div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm pl-12">
+        <div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm pl-28">
 
             <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10">
 
@@ -91,10 +91,10 @@
             </div>
         </div>
     </header>
-    <main class="px-24 pt-24">
+    <main class="pr-24 pl-36 pt-24">
         @yield("main")
     </main>
-    <footer>
+    <footer class="px-24">
         @yield("footer")
     </footer>
 </body>

@@ -19,19 +19,13 @@
 .principal-text-color{
     color: #012F4A;
 }
-.principal-button{
-    background-color: #FF7E13;
-    color: white;
-    font-weight: 500;
-
-    border-radius: 10px;
-    padding: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+/* .principal-button */
+.btn-primary{
+    @apply bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2;
 }
+.btn-primary:hover{
 
+}
 .card-title{
     font-size: 20px;
 }
