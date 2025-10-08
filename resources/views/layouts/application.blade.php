@@ -81,8 +81,8 @@
                 </div>
 
                 <div class="flex flex-row items-center gap-5 ">
-                    <a href="#Perfil" class="w-14 h-14 rounded-full bg-green-200">
-                        <img src="#FotoPerfil" alt="#Fotoperfil">
+                    <a href="#Perfil" class="w-14 h-14 rounded-full">
+                        <img src="#FotoPerfil" alt="#FotoPerfil">
                     </a>
     
                     <p class="font-bold">Juan Lopez</p>
