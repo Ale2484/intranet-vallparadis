@@ -9,3 +9,28 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+.simple-container{
+    border: 1px solid #AFAFAF;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.principal-text-color{
+    color: #012F4A;
+}
+/* .principal-button */
+.btn-primary{
+    @apply bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2;
+}
+.btn-primary:hover{
+
+}
+.card-title{
+    font-size: 20px;
+}
+
+
+@media(min-width: 768px) {
+    
+}
