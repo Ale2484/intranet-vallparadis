@@ -32,12 +32,15 @@
 
 
 .list-option{
-    @apply p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full
+    @apply p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center w-full cursor-pointer
 }
 .list-option:hover{
     @apply bg-[#fef5eb] text-[#FF7E13]
 }
 
+.menu-text{
+    @apply text-[#0F172A] ml-4
+}
 
 .card-title{
     font-size: 20px;
