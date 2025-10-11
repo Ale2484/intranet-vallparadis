@@ -1,7 +1,5 @@
 @extends("layouts.application")
 @section("main")
-@include('partial.icons')
-
 <div class="w-full flex flex-wrap flex-row justify-between items-center">
     <!-- Contenedor -->
     <div class="shadow-md simple-container w-96 mb-10">
