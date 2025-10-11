@@ -10,7 +10,9 @@ class Center extends Model
     protected $fillable = [
         "name",
         "address",
-        "phone"  
+        "phone",
+        "email",
+        "is_active"
     ];
     protected $table = "centers";
 

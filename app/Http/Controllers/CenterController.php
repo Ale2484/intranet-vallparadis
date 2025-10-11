@@ -21,7 +21,8 @@ class CenterController extends Controller
      */
     public function create()
     {
-        //
+        $center = new Center();
+        return view("centers.create", compact("center"));
     }
 
     /**
@@ -54,17 +55,32 @@ class CenterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Center $center)
     {
-        //
+        return view("centers.edit", compact("center"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Center $center)
     {
-        //
+        $validated = $request->validate([
+            "name" => "required|string|max:100",
+            "address" => "required|string|max:255",
+            "phone" => "nullable|string|max:15",
+            "email" => "nullable|email|max:255",
+            "is_active" => "required|boolean"
+
+        ]);
+        // Si el telefono o el email tiene valores falsos se quedan como null
+        $validated["phone"] = $validated["phone"] === "" ? null : $validated["phone"];
+        $validated["email"] = $validated["email"] === "" ? null : $validated["email"];
+
+        $center->update($validated);
+
+        return redirect()->route("centers.index")->with("success", "Se ha actualizado el centro correctamente");
+
     }
 
     /**
@@ -72,7 +88,7 @@ class CenterController extends Controller
      */
     public function destroy(Center $center)
     {
-        $center->delete();
+        //$center->delete();
 
         return redirect()->route("centers.index")->with("success", "Se ha eliminado el centro correctamente");
     }

@@ -5,8 +5,16 @@
     <p>{{ session("success") }}</p>
 @endif
 
+<div class="flex items-center justify-between">
+    <h1 class="title mb-7">Gestió de centres: </h1>
 
-<h1 class="title">Gestió de centres: </h1>
+    <a  href="{{ route("centers.create") }}" class="btn-primary">
+        <svg class="w-6 h-6 text-white">
+            <use xlink:href="#icon-plus"></use>
+        </svg>
+        Nou centre
+    </a>
+</div>
 <div class="w-full flex flex-wrap flex-row justify-between items-stretch">
     <!-- Contenedor -->
     <div class="shadow-md simple-container w-96 mb-10">
@@ -98,7 +106,7 @@
 <div class="w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
 @foreach ($centers as $center )
         <!-- Contenedor -->
-        <div class="shadow-md simple-container w-[32%] min-w-[400px] mb-5 flex flex-col gap-5">
+        <div class="shadow-md simple-container w-[32%] min-w-[350px] mb-5 flex flex-col gap-5">
             <div class="flex justify-between items-center">
                 <div class="flex flex-row items-center gap-5">
                     <div class="bg-[#ffe7de] rounded-lg p-2">
@@ -138,18 +146,24 @@
             
             <!-- Activar/Desactivar -->
             <div class="flex flex-row gap-5 justify-end">
-                <button class="flex gap-3 btn-secondary">
+                <a href="{{ route("centers.edit", $center->id) }}" class="flex gap-3 btn-secondary" 
+                        data-id="{{ $center->id }}"
+                        data-name="{{ $center->name }}" 
+                        data-address="{{ $center->address }}" 
+                        data-phone="{{ $center->phone }}" 
+                        data-email="{{ $center->email }}">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-square-pen"></use>
                     </svg>
                     Editar
-                </button>
+                </a>
+                
 
                 <form action="#" method="post">
                     @csrf
                     <button type="submit" class="flex justify-center gap-3 {{ $center->is_active ? "deactivate-button" : "activate-button" }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9" />
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-power"></use>
                         </svg>
                         {{ $center->is_active ? "Desactivar" : "Activar" }}
                     </button>
@@ -159,18 +173,4 @@
         </div>
 @endforeach
 </div>
-    
-
-
-
-
-<form action="{{ route("centers.store") }}" method="post">
-    @csrf
-    <input type="text" name="name" id="name" placeholder="Nombre">
-    <input type="text" name="address" id="address" placeholder="Direccion">
-    <input type="tel" name="phone" id="phone" placeholder="Telefono">
-    
-    <button type="submit" name="submit" id="submit">Eliminar</button>
-</form>
-
 @endsection
