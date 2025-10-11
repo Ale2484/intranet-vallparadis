@@ -43,6 +43,9 @@
     font-size: 20px;
 }
 
+.title{
+    @apply text-3xl font-bold text-[#011020] mb-7
+}
 
 @media(min-width: 768px) {
     
