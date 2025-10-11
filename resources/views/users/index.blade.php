@@ -4,57 +4,87 @@
 <div class="">
     <!-- Header -->
     <div class="w-full flex flex-row mb-8 justify-between">
-        <h1 class="text-3xl font-bold text-gray-900 ">Gestió de professionals</h1>
+        <h1 class="text-3xl font-bold title">Gestió de professionals</h1>
         <a href="{{ route('users.create') }}" 
-            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
+            class="btn-primary h-fit">
+            <svg class="w-6 h-6">
+                <use xlink:href="#icon-plus"></use>
+            </svg>
             Nou professional
         </a>
     </div>
     <!-- Statistics Cards -->
-    <div class="flex gap-6 mb-8">
+    <div class="w-full flex flex-wrap flex-row items-stretch justify-between">
         <!-- Professionals totals -->
-        <div class="bg-white rounded-lg shadow p-6 w-1/3">
-            <h2 class="text-lg font-semibold text-[#012F4A] mb-2">Professionals totals</h2>
+        <div class="shadow-md simple-container w-32/100 mb-10 min-w-fit">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-semibold principal-text-color mb-2 card-title">Professionals totals</h2>
+                <div class="bg-[#FF7E13] rounded-lg p-2">
+                    <svg class="w-6 h-6 text-white">
+                        <use xlink:href="#icon-center"></use>
+                    </svg>
+                </div>
+            </div>
             <p class="text-3xl font-bold">{{ $totalUsers }}</p>
             <p class="text-sm text-[#335C68]">Professionals registrats al centre</p>
         </div>
-
+        
         <!-- Professionals actius -->
-        <div class="bg-white rounded-lg shadow p-6 w-1/3">
-            <h2 class="text-lg font-semibold text-[#012F4A] mb-2">Professionals actius</h2>
+        <div class="shadow-md simple-container w-32/100 mb-10 min-w-fit">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-semibold principal-text-color mb-2 card-title">Professionals actius</h2>
+                <div class="bg-green-600 rounded-lg p-2">
+                    <svg class="w-6 h-6 text-white">
+                        <use xlink:href="#icon-check-circle"></use>
+                    </svg>
+                </div>
+            </div>
             <p class="text-3xl font-bold">{{ $activeUsers }}</p>
             <p class="text-sm text-[#335C68]">Professionals registrats al centre</p>
         </div>
-
+        
+        
         <!-- Professionals inactius -->
-        <div class="bg-white rounded-lg shadow p-6 w-1/3">
-            <h2 class="text-lg font-semibold text-[#012F4A] mb-2">Professionals inactius</h2>
+        <div class="shadow-md simple-container w-32/100 mb-10 min-w-fit">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-semibold principal-text-color mb-2 card-title">Professionals inactius</h2>
+                <div class="bg-red-600 rounded-lg p-2">
+                    <svg class="w-6 h-6 text-white">
+                        <use xlink:href="#icon-cross-circle"></use>
+                    </svg>
+                </div>
+            </div>
             <p class="text-3xl font-bold">{{ $inactiveUsers }}</p>
             <p class="text-sm text-[#335C68]">Professionals registrats al centre</p>
         </div>
     </div>
 
-    <!-- Search Bar -->
-    <div class=" p-4 mb-6">
-        <div class="w-full flex flex-row">
-            <input 
-                type="text" 
-                placeholder="Buscar professionals..." 
-                class=" bg-white shadow p-4 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-            <div class="flex space-x-2 ml-2">
-                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">Tots</button>
-                <button class="px-4 py-2 bg-gray-200 text-[#011020] rounded-lg hover:bg-gray-300">Actius</button>
-                <button class="px-4 py-2 bg-gray-200 text-[#011020] rounded-lg hover:bg-gray-300">Inactius</button>
-            </div>
+    <div class="flex flex-row gap-5">
+        <!-- Barra de busqueda -->
+        <form action="#" method="post" class="w-[90%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-white p-5">
+            @csrf
+            <button type="submit" class="cursor-pointer">
+                <svg class="w-6 h-6 text-[#AFAFAF]">
+                    <use xlink:href="#icon-lens"></use>
+                </svg>
+            </button>
+        
+            <input type="search" name="search" id="search" placeholder="Buscar professionals..." class=" pl-2 w-full h-10">
+        </form>
+
+        <!-- Filtros -->
+        <div class="flex flex-row justify-between gap-2">
+            <button class="btn-primary w-20">Tots</button>
+            <button class="btn-secondary w-20">Actius</button>
+            <button class="btn-secondary w-20">Inactius</button>
+        
         </div>
     </div>
 
     <!-- Active Professionals Section -->
-    <div class="mb-8">
-        <div class="space-y-4 flex">
-            @forelse($users as $user)
-            <div class="bg-white rounded-lg shadow p-6 w-1/3 m-5    ">
+        <div class="w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
+            @foreach($users as $user)
+            <div class="shadow-md simple-container w-32/100 min-w-fit mb-5 flex flex-col gap-5">
                     <div>
                         <div class="flex flex-row justify-between w-full">
                             <div class="flex flex-row justify-between gap-2">
@@ -79,19 +109,27 @@
                         
                         <div class="mt-3 space-y-2">
                             <div class="flex items-center text-[#011020]">
-                                <span class="font-medium">Rol:</span>
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-center"></use>
+                                </svg>
                                 <span class="ml-2">{{ $user->role_label }}</span>
                             </div>
                             <div class="flex items-center text-[#011020]">
-                                <span class="font-medium">Telèfon:</span>
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-phone"></use>
+                                </svg>
                                 <span class="ml-2">{{ $user->phone ?? '+34 000 000 000' }}</span>
                             </div>
                             <div class="flex items-center text-[#011020]">
-                                <span class="font-medium">Email:</span>
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-mail"></use>
+                                </svg>
                                 <span class="ml-2">{{ $user->email }}</span>
                             </div>
                             <div class="flex items-center text-[#011020]">
-                                <span class="font-medium">Inici:</span>
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-calendar"></use>
+                                </svg>
                                 <span class="ml-2">
                                     @if($user->created_at)
                                         {{ $user->created_at->format('d \\d\\e F \\d\\e Y') }}
@@ -101,9 +139,12 @@
                         </div>
                     </div>
                     
-                    <div class="flex space-x-2 mt-5">
+                    <div class="flex flex-row gap-5 justify-end">
                         <a href="{{ route('users.edit', $user) }}" 
-                           class="px-4 py-2 bg-white border-gray-600 border-1 rounded-2xl transition duration-200 w-1/2 text-center">
+                           class="flex gap-3 btn-secondary w-1/2">
+                            <svg class="w-6 h-6">
+                                <use xlink:href="#icon-square-pen"></use>
+                            </svg>
                             Editar
                         </a>
                         @if($user->is_active)
@@ -111,7 +152,7 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-200 w-full">
+                                        class="deactivate-button w-full">
                                     Desactivar
                                 </button>
                             </form>
@@ -120,7 +161,7 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200 w-full">
+                                        class="activate-button w-full">
                                     Activar
                                 </button>
                             </form>
@@ -129,6 +170,5 @@
             </div>
             @endforeach
         </div>
-    </div>
 </div>
 @endsection
