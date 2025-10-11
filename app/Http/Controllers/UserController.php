@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Center;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,6 @@ class UserController extends Controller
         $activeUsers = User::active()->count();
         $inactiveUsers = User::inactive()->count();
         
-        // Todos los profesionales mezclados, ordenados por creación
         $users = User::orderBy('created_at', 'desc')->get();
 
         return view("users.index", compact(
@@ -26,7 +25,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        $centers = Center::all(); // Obtener todos los centros
+        return view('users.create', compact('centers'));
     }
 
     public function store(Request $request)
@@ -58,7 +58,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $centers = Center::all(); // Obtener todos los centros
+        return view('users.edit', compact('user', 'centers'));
     }
 
     public function update(Request $request, User $user)

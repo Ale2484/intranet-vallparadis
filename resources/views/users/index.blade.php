@@ -91,9 +91,8 @@
                                 <div class="bg-gray-200 rounded-full p-7">
     
                                 </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold text-[#011020]">{{ $user->name }}</h3>
-                                    <p class="text-[#011020]">En que se especializa</p>
+                                <div class="flex items-center">
+                                    <a href="{{ route("users.show", $user->id) }}" class="principal-text-color font-bold card-title">{{ $user->name }}</a>
                                 </div>
                             </div>
                             @if($user->is_active)
@@ -152,7 +151,10 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="deactivate-button w-full">
+                                        class="deactivate-button w-full flex justify-center">
+                                    <svg class="w-6 h-6">
+                                        <use xlink:href="#icon-power"></use>
+                                    </svg>
                                     Desactivar
                                 </button>
                             </form>
@@ -161,7 +163,10 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="activate-button w-full">
+                                        class="activate-button w-full flex justify-center">
+                                    <svg class="w-6 h-6">
+                                        <use xlink:href="#icon-power"></use>
+                                    </svg>
                                     Activar
                                 </button>
                             </form>
