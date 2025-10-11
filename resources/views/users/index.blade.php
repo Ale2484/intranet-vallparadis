@@ -84,7 +84,7 @@
     <!-- Active Professionals Section -->
         <div class="w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
             @foreach($users as $user)
-            <div class="shadow-md simple-container w-32/100 min-w-fit mb-5 flex flex-col gap-5">
+            <div class="shadow-md simple-container w-32/100 min-w-[350px] mb-5 flex flex-col gap-5">
                     <div>
                         <div class="flex flex-row justify-between w-full">
                             <div class="flex flex-row justify-between gap-2">

@@ -4,13 +4,16 @@
 <div class="max-w-4xl mx-auto">
     <!-- Header -->
     <div class="w-full flex flex-row mb-8 justify-between items-center">
-        <h1 class="text-3xl font-bold title">Nou professional</h1>
-        <a href="{{ route('users.index') }}" class="btn-secondary h-fit">
-            <svg class="w-6 h-6">
-                <use xlink:href="#icon-arrow-left"></use>
-            </svg>
-            Tornar
-        </a>
+        <div class="w-fit">
+            <a href="{{ route('users.index') }}" class="text-[#AFAFAF] flex flex-row justify-between items-center">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-arrow-left"></use>
+                </svg>
+                Tornar a la gestió de professionals
+            </a>
+            <h1 class="text-3xl font-bold title mb-0!">Nou professional</h1>
+            <p class="text-[#AFAFAF]" >Afegeix un nou professional al sistema</p>
+        </div>
     </div>
 
     <!-- Form -->
@@ -26,7 +29,12 @@
 
                 <!-- Nombre -->
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nom complet *</label>
+                    <label for="name" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-user"></use>
+                        </svg>
+                        Nom complet *
+                    </label>
                     <input type="text" name="name" id="name" value="{{ old('name') }}" 
                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('name') border-red-500 @enderror"
                            required>
@@ -37,7 +45,12 @@
 
                 <!-- Email -->
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                    <label for="email" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-mail"></use>
+                        </svg>
+                        Email *
+                    </label>
                     <input type="email" name="email" id="email" value="{{ old('email') }}"
                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('email') border-red-500 @enderror"
                            required>
@@ -48,7 +61,12 @@
 
                 <!-- Teléfono -->
                 <div>
-                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Telèfon</label>
+                    <label for="phone" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-phone"></use>
+                        </svg>
+                        Telèfon
+                    </label>
                     <input type="text" name="phone" id="phone" value="{{ old('phone') }}" 
                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('phone') border-red-500 @enderror"
                            maxlength="9">
@@ -59,7 +77,12 @@
 
                 <!-- Contraseña -->
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Contrasenya *</label>
+                    <label for="password" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-key"></use>
+                        </svg>
+                        Contrasenya *
+                    </label>
                     <input type="password" name="password" id="password"
                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('password') border-red-500 @enderror"
                            required minlength="8">
@@ -73,27 +96,14 @@
                     <h2 class="text-xl font-semibold principal-text-color mb-4">Informació del centre</h2>
                 </div>
 
-                <!-- Centro -->
-                <div>
-                    <label for="center" class="block text-sm font-medium text-gray-700 mb-2">Centre *</label>
-                    <select name="center" id="center" 
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('center') border-red-500 @enderror"
-                            required>
-                        <option value="">Selecciona un centre</option>
-                        @foreach($centers as $center)
-                            <option value="{{ $center->id }}" {{ old('center') == $center->id ? 'selected' : '' }}>
-                                {{ $center->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('center')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-
                 <!-- Rol -->
                 <div>
-                    <label for="role" class="block text-sm font-medium text-gray-700 mb-2">Rol *</label>
+                    <label for="role" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-user-circle"></use>
+                        </svg>
+                        Rol *
+                    </label>
                     <select name="role" id="role" 
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('role') border-red-500 @enderror"
                             required>
@@ -110,14 +120,19 @@
 
                 <!-- Estado -->
                 <div>
-                    <label for="status" class="block text-sm font-medium text-gray-700 mb-2">Estat *</label>
+                    <label for="status" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-block"></use>
+                        </svg>
+                        Estat *
+                    </label>
                     <select name="status" id="status" 
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('status') border-red-500 @enderror"
                             required>
                         <option value="">Selecciona un estat</option>
                         <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Actiu</option>
                         <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactiu</option>
-                        <option value="substitute" {{ old('status') == 'substitute' ? 'selected' : '' }}>Substituït</option>
+                        <option value="substitute" {{ old('status') == 'substitute' ? 'selected' : '' }}>substitut</option>
                     </select>
                     @error('status')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -126,7 +141,12 @@
 
                 <!-- Taquilla -->
                 <div>
-                    <label for="ticket_office" class="block text-sm font-medium text-gray-700 mb-2">Taquilla *</label>
+                    <label for="ticket_office" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-wallet"></use>
+                        </svg>
+                        Taquilla *
+                    </label>
                     <input type="number" name="ticket_office" id="ticket_office" value="{{ old('ticket_office') }}"
                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('ticket_office') border-red-500 @enderror"
                            required>
@@ -137,7 +157,12 @@
 
                 <!-- Contraseña de taquilla -->
                 <div>
-                    <label for="locker_password" class="block text-sm font-medium text-gray-700 mb-2">Contrasenya taquilla *</label>
+                    <label for="locker_password" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-key"></use>
+                        </svg>
+                        Contrasenya taquilla *
+                    </label>
                     <input type="text" name="locker_password" id="locker_password" value="{{ old('locker_password') }}"
                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('locker_password') border-red-500 @enderror"
                            required>
@@ -153,9 +178,6 @@
                     Cancel·lar
                 </a>
                 <button type="submit" class="btn-primary">
-                    <svg class="w-6 h-6">
-                        <use xlink:href="#icon-check"></use>
-                    </svg>
                     Crear professional
                 </button>
             </div>

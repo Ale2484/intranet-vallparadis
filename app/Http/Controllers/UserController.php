@@ -36,12 +36,12 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'phone' => 'nullable|string|max:9',
             'role' => 'required|in:technical_team,management_team,administration,professional',
-            'center' => 'required|exists:centers,id',
             'status' => 'required|in:active,inactive,substitute',
             'ticket_office' => 'required|integer',
             'locker_password' => 'required|string',
             'password' => 'required|min:8',
         ]);
+        $validated["center"]=1;
 
         $validated['password'] = bcrypt($validated['password']);
         $validated['is_active'] = true;
@@ -69,10 +69,10 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $user->id,
             'phone' => 'nullable|string|max:9',
             'role' => 'required|in:technical_team,management_team,administration,professional',
-            'center' => 'required|exists:centers,id',
             'status' => 'required|in:active,inactive,substitute',
             'ticket_office' => 'required|integer',
             'locker_password' => 'required|string',
+            'password' => 'required|min:8',
         ]);
 
         $user->update($validated);
