@@ -7,6 +7,7 @@
     <title>@yield("title")</title>
 </head>
 <body class="bg-[#FFF9F6]">
+    @include('partial.icons')
     <header class="fixed top-0 left-0 flex items-start w-full h-auto z-10">
         <!-- Menu lateral -->
         <nav class="bg-white h-screen p-5 shadow-sm flex flex-col items-center fixed top-0 left-0 z-10">
