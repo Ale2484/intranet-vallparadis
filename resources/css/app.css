@@ -29,6 +29,9 @@
     @apply bg-[#FE712B] transition-all
 }
 
+.btn-secondary{
+    @apply bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF];
+}
 
 
 .list-option{
