@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('centers', function (Blueprint $table) {
             $table->id();
-            $table->string("name", 30);
-            $table->string("address", 200);
-            $table->string("phone", 9)->nullable();
+            $table->string("name", 100);
+            $table->string("address", 255);
+            $table->string("phone", 15)->nullable();
+            $table->string("email", 255)->nullable();
+            $table->boolean("is_active", 9)->default(true);
+
+
             $table->timestamps();
         });
     }
