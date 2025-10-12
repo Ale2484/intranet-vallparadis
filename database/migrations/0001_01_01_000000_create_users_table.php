@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum("status", ["active", "inactive", "substitute"]);
             //$table->string("cv", 255);
             
-            $table->integer("ticket_office");
+            $table->integer("locker");
             $table->string("locker_password");
 
             $table->timestamp('email_verified_at')->nullable();
@@ -32,6 +32,7 @@ return new class extends Migration
 
             // FK
             $table->foreign("center")->references("id")->on("centers");
+            $table->boolean("is_active", 9)->default(true);
 
         });
 
