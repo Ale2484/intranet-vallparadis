@@ -5,16 +5,24 @@
     <p>{{ session("success") }}</p>
 @endif
 
+<div class="flex items-center justify-between">
+    <h1 class="title mb-7">Gestió de centres: </h1>
 
-<h1 class="title">Gestió de centres: </h1>
+    <a  href="{{ route("centers.create") }}" class="btn-primary">
+        <svg class="w-6 h-6 text-white">
+            <use xlink:href="#icon-plus"></use>
+        </svg>
+        Nou centre
+    </a>
+</div>
 <div class="w-full flex flex-wrap flex-row justify-between items-stretch">
     <!-- Contenedor -->
     <div class="shadow-md simple-container w-96 mb-10">
         <div class="flex justify-between items-center">
             <p class="principal-text-color font-bold card-title">Centres</p>
             <div class="bg-[#FF7E13] rounded-lg p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" class="size-8">mlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#012F4A" class="size-8">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" />ath stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                <svg class="w-8 h-8 text-white">
+                    <use xlink:href="#icon-center"></use>
                 </svg>
             </div>
         </div>
@@ -28,8 +36,8 @@
         <div class="flex justify-between items-center">
             <p class="principal-text-color font-bold card-title">Centres nous</p>
             <div class="bg-[#FF7E13] rounded-lg p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" class="size-8">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                <svg class="w-8 h-8 text-white">
+                    <use xlink:href="#icon-plus"></use>
                 </svg>
             </div>
 
@@ -43,8 +51,8 @@
         <div class="flex justify-between items-center">
             <p class="principal-text-color font-bold card-title">Centres actius</p>
             <div class="bg-green-600 rounded-lg p-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" class="size-8">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                <svg class="w-8 h-8 text-white">
+                    <use xlink:href="#icon-check-circle"></use>
                 </svg>
             </div>
 
@@ -61,8 +69,8 @@
         <div class="flex justify-between items-center">
             <p class="principal-text-color font-bold card-title">Centres inactius</p>
             <div class="bg-red-600 p-2 rounded-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FFFFFF" class="size-8">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                <svg class="w-8 h-8 text-white">
+                    <use xlink:href="#icon-cross-circle"></use>
                 </svg>
             </div>
 
@@ -98,7 +106,7 @@
 <div class="w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
 @foreach ($centers as $center )
         <!-- Contenedor -->
-        <div class="shadow-md simple-container w-[32%] min-w-[400px] mb-5 flex flex-col gap-5">
+        <div class="shadow-md simple-container w-[32%] min-w-[350px] mb-5 flex flex-col gap-5">
             <div class="flex justify-between items-center">
                 <div class="flex flex-row items-center gap-5">
                     <div class="bg-[#ffe7de] rounded-lg p-2">
@@ -138,18 +146,20 @@
             
             <!-- Activar/Desactivar -->
             <div class="flex flex-row gap-5 justify-end">
-                <button class="flex gap-3 btn-secondary">
+                <a href="{{ route("centers.edit", $center->id) }}" class="flex gap-3 btn-secondary">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-square-pen"></use>
                     </svg>
                     Editar
-                </button>
+                </a>
+                
 
-                <form action="#" method="post">
+                <form action="{{ $center->is_active ? route("centers.disable", $center->id) : route("centers.enable", $center->id) }}" method="post">
                     @csrf
+                    @method("PATCH")
                     <button type="submit" class="flex justify-center gap-3 {{ $center->is_active ? "deactivate-button" : "activate-button" }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9" />
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-power"></use>
                         </svg>
                         {{ $center->is_active ? "Desactivar" : "Activar" }}
                     </button>
@@ -159,18 +169,4 @@
         </div>
 @endforeach
 </div>
-    
-
-
-
-
-<form action="{{ route("centers.store") }}" method="post">
-    @csrf
-    <input type="text" name="name" id="name" placeholder="Nombre">
-    <input type="text" name="address" id="address" placeholder="Direccion">
-    <input type="tel" name="phone" id="phone" placeholder="Telefono">
-    
-    <button type="submit" name="submit" id="submit">Eliminar</button>
-</form>
-
 @endsection

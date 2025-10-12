@@ -11,7 +11,12 @@ Route::get('/', function () {
 
 
 Route::resource("centers", CenterController::class);
+// Centros
+Route::resource("centers", CenterController::class)->except("destroy");
+Route::patch("/centers/{center}/disable", [CenterController::class, "disable"])->name("centers.disable");
+Route::patch("/centers/{center}/enable", [CenterController::class, "enable"])->name("centers.enable");
 
+// proyectos
 Route::resource('projects', ProjectController::class);
 Route::patch('/projects/{project}/deactivate', [ProjectController::class, 'deactivate'])->name('projects.deactivate');
 Route::patch('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');

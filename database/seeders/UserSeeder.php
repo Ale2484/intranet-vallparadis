@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 "center" => "1",
                 "status" => "active",
                 "password" => Hash::make("123456"),
-                'ticket_office' => 0,
+                'locker' => 0,
                 'locker_password' => '1234' 
             ],
             [
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
                 "center" => "1",
                 "status" => "active",
                 "password" => Hash::make("123456"),
-                'ticket_office' => 0,
+                'locker' => 0,
                 'locker_password' => '1234'
             ]
 
