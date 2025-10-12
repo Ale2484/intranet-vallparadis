@@ -100,7 +100,7 @@
                 <div>
                     <label for="role" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
                         <svg class="w-6 h-6">
-                            <use xlink:href="#icon-user-circle"></use>
+                            <use xlink:href="#icon-role"></use>
                         </svg>
                         Rol *
                     </label>
@@ -141,16 +141,16 @@
 
                 <!-- Taquilla -->
                 <div>
-                    <label for="ticket_office" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                    <label for="locker" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-wallet"></use>
                         </svg>
                         Taquilla *
                     </label>
-                    <input type="number" name="ticket_office" id="ticket_office" value="{{ old('ticket_office') }}"
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('ticket_office') border-red-500 @enderror"
+                    <input type="number" name="locker" id="locker" value="{{ old('locker') }}"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('locker') border-red-500 @enderror"
                            required>
-                    @error('ticket_office')
+                    @error('locker')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>

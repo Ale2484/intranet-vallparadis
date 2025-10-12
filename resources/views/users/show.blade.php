@@ -1,250 +1,191 @@
 @extends('layouts.application')
 
 @section('main')
-<div class="max-w-4xl mx-auto">
+<div class="min-w-fit w-2/3 mx-auto">
     <!-- Header -->
     <div class="w-full flex flex-row mb-8 justify-between items-center">
-        <div class="w-fit">
-            <a href="{{ route('users.index') }}" class="text-[#AFAFAF] flex flex-row justify-between items-center">
-                <svg class="w-6 h-6">
-                    <use xlink:href="#icon-arrow-left"></use>
-                </svg>
-                Tornar a la gestió de professionals
-            </a>
-            <h1 class="text-3xl font-bold title mb-0!">Detall del professional</h1>
-            <p class="text-[#AFAFAF]" >Informació completa del profesional</p>
-        </div>
+        <h1 class="text-3xl font-bold title">Detalls del professional</h1>
+        <a href="{{ route('users.index') }}" class="btn-secondary h-fit">
+            <svg class="w-6 h-6">
+                <use xlink:href="#icon-arrow-left"></use>
+            </svg>
+            Tornar
+        </a>
     </div>
 
-    <div class="flex gap-6">
-        <!-- Columna izquierda - Información principal -->
-        <div class="lg:col-span-2 space-y-6">
-            <!-- Tarjeta de información básica -->
-            <div class="shadow-md simple-container">
-                <h2 class="text-xl font-semibold principal-text-color mb-4">Informació bàsica</h2>
-                
-                <div class="flex flex-col md:flex-row gap-6">
-                    <!-- Avatar/Placeholder -->
-                    <div class="flex-shrink-0">
-                        <div class="bg-gray-200 rounded-full p-12 w-32 h-32 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-gray-400">
-                                <use xlink:href="#icon-user"></use>
-                            </svg>
-                        </div>
+    <div class="flex justify-between">
+
+        <!-- Información del Profesional -->
+        <div class="shadow-md simple-container flex flex-col gap-3 w-5/7">
+            <!-- Información principal -->
+            <div class="border-b-1 border-b-gray-600">
+                <div class="flex items-center gap-4 mb-6">
+                    <!-- Avatar -->
+                    <div class="bg-gray-200 rounded-full p-8 w-20 h-20 flex items-center justify-center">
+                        <svg class="w-10 h-10 text-gray-400">
+                            <use xlink:href="#icon-user"></use>
+                        </svg>
                     </div>
                     
-                    <!-- Información del usuario -->
-                    <div class="space-y-4 flex-1">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between ">
-                            <h3 class="text-2xl font-bold principal-text-color">{{ $user->name }}</h3>
-                            @if($user->is_active)
-                                <div class="p-2 bg-green-200 text-green-600 border-green-600 border-1 rounded-2xl h-fit w-fit text-center text-sm font-medium mt-2 sm:mt-0">
-                                    Actiu
-                                </div>
-                            @else
-                                <div class="p-2 bg-red-200 text-red-600 border-red-600 border-1 rounded-2xl h-fit w-fit text-center text-sm font-medium mt-2 sm:mt-0">
-                                    Inactiu
-                                </div>
-                            @endif
+                    <div class="w-fit">
+                        <!-- Nombre y rol -->
+                        <div>
+                            <h2 class="text-2xl font-bold principal-text-color">{{ $user->name }}</h2>
+                            <p class="text-lg text-gray-600">{{ $user->role_label }}</p>
                         </div>
-                        
-                        <div class="flex gap-4">
-                            <div class="flex items-center text-[#011020]">
-                                <svg class="w-5 h-5 flex-shrink-0">
-                                    <use xlink:href="#icon-mail"></use>
-                                </svg>
-                                <span class="ml-2 break-all">{{ $user->email }}</span>
-                            </div>
-                            
-                            <div class="flex items-center text-[#011020]">
-                                <svg class="w-5 h-5 flex-shrink-0">
-                                    <use xlink:href="#icon-phone"></use>
-                                </svg>
-                                <span class="ml-2">{{ $user->phone ?? 'No especificat' }}</span>
-                            </div>
-                            
-                            <div class="flex items-center text-[#011020]">
-                                <svg class="w-5 h-5 flex-shrink-0">
-                                    <use xlink:href="#icon-center"></use>
-                                </svg>
-                                <span class="ml-2">{{ $user->role_label }}</span>
-                            </div>
-                            
-                            <div class="flex items-center text-[#011020]">
-                                <svg class="w-5 h-5 flex-shrink-0">
-                                    <use xlink:href="#icon-calendar"></use>
-                                </svg>
-                                <span class="ml-2">
-                                    @if($user->created_at)
-                                        {{ $user->created_at->format('d/m/Y') }}
-                                    @else
-                                        Data no disponible
-                                    @endif
-                                </span>
-                            </div>
+                        <!-- Fecha de inicio -->
+                        <div class="flex items-center">
+                            <svg class="w-10 h-10 text-gray-400">
+                                <use xlink:href="#icon-calendar"></use>
+                            </svg>
+                            <span class="text-gray-700">Inici:</span>
+                            <span class="text-gray-900 font-medium ml-2">
+                                @if($user->created_at)
+                                    {{ $user->created_at->format('d \\d\\e F \\d\\e Y') }}
+                                @else
+                                    No disponible
+                                @endif
+                            </span>
                         </div>
                     </div>
                 </div>
+    
             </div>
-
-            <!-- Tarjeta de información del centro -->
-            <div class="shadow-md simple-container">
-                <h2 class="text-xl font-semibold principal-text-color mb-4">Informació del centre</h2>
-                
-                <div class="flex gap-6">
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-500 mb-1">Centre</label>
-                            <p class="text-[#011020] font-medium">
-                                @if($user->centerRelation)
-                                    {{ $user->centerRelation->name }}
-                                @else
-                                    No assignat
-                                @endif
-                            </p>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-500 mb-1">Estat</label>
-                            <p class="text-[#011020] font-medium">
-                                @php
-                                    $statusLabels = [
-                                        'active' => 'Actiu',
-                                        'inactive' => 'Inactiu',
-                                        'substitute' => 'substitut'
-                                    ];
-                                @endphp
-                                {{ $statusLabels[$user->status] ?? $user->status }}
-                            </p>
+    
+            <!-- Información de contacto -->
+            <h3 class="text-xl font-semibold principal-text-color mb-6">Informació de contacte</h3>
+            
+            <div class="space-y-4">
+                <!-- Email -->
+                <div class="flex items-start gap-4 shadow-md simple-container">
+                    <div class="w-5 h-5 flex items-center justify-center mt-1">
+                        <div class="p-2 bg-[#FF7033]/17 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-[#FF7033]">
+                                <use xlink:href="#icon-mail"></use>
+                            </svg>
                         </div>
                     </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-500 mb-1">Taquilla</label>
-                            <p class="text-[#011020] font-medium">{{ $user->ticket_office }}</p>
+                    <div class="flex-1">
+                        <p class="text-gray-600 mb-1">Correu electrònic</p>
+                        <p class="text-gray-900 font-semibold">{{ $user->email }}</p>
+                    </div>
+                </div>
+    
+                <!-- Teléfono -->
+                <div class="flex items-start gap-4 shadow-md simple-container">
+                    <div class="w-5 h-5 flex items-center justify-center mt-1">
+                        <div class="p-2 bg-[#FF7033]/17 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-[#FF7033]">
+                                <use xlink:href="#icon-phone"></use>
+                            </svg>
                         </div>
-                        
-                        <div>
-                            <label class="block text-sm font-medium text-gray-500 mb-1">Contrasenya taquilla</label>
-                            <p class="text-[#011020] font-medium">{{ $user->locker_password }}</p>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-gray-600 mb-1">Telèfon</p>
+                        <p class="text-gray-900 font-semibold">{{ $user->phone ?? '+34 000 000 000' }}</p>
+                    </div>
+                </div>
+    
+                <!-- Rol -->
+                <div class="flex items-start gap-4 shadow-md simple-container">
+                    <div class="w-5 h-5 flex items-center justify-center mt-1">
+                        <div class="p-2 bg-[#FF7033]/17 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-[#FF7033]">
+                                <use xlink:href="#icon-role"></use>
+                            </svg>
                         </div>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-gray-600 mb-1">Rol</p>
+                        <p class="text-gray-900 font-semibold">{{ $user->role_label }}</p>
+                    </div>
+                </div>
+    
+                <!-- Centro -->
+                <div class="flex items-start gap-4 shadow-md simple-container">
+                    <div class="w-5 h-5 flex items-center justify-center mt-1">
+                        <div class="p-2 bg-[#FF7033]/17 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-[#FF7033]">
+                                <use xlink:href="#icon-center"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-gray-600 mb-1">Centre</p>
+                        <p class="text-gray-900 font-semibold">
+                            @if($user->centerRelation)
+                                {{ $user->centerRelation->name }}
+                            @else
+                                Centre valiparadis
+                            @endif
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Columna derecha - Acciones e información adicional -->
-        <div class="space-y-6">
-            <!-- Tarjeta de acciones -->
-            <div class="shadow-md simple-container">
-                <h2 class="text-xl font-semibold principal-text-color mb-4">Accions</h2>
-                
-                <div class="space-y-3">
-                    <a href="{{ route('users.edit', $user) }}" 
-                       class="w-full flex items-center justify-center gap-2 btn-secondary">
-                        <svg class="w-5 h-5">
-                            <use xlink:href="#icon-square-pen"></use>
-                        </svg>
-                        Editar professional
-                    </a>
-                    
-                    @if($user->is_active)
-                        <form action="{{ route('users.deactivate', $user) }}" method="POST" class="w-full">
-                            @csrf
-                            @method('PATCH')
-                            <button type="submit" 
-                                    class="w-full flex items-center justify-center gap-2 deactivate-button">
-                                <svg class="w-5 h-5">
-                                    <use xlink:href="#icon-power"></use>
-                                </svg>
-                                Desactivar
-                            </button>
-                        </form>
-                    @else
-                        <form action="{{ route('users.activate', $user) }}" method="POST" class="w-full">
-                            @csrf
-                            @method('PATCH')
-                            <button type="submit" 
-                                    class="w-full flex items-center justify-center gap-2 activate-button">
-                                <svg class="w-5 h-5">
-                                    <use xlink:href="#icon-power"></use>
-                                </svg>
-                                Activar
-                            </button>
-                        </form>
-                    @endif
+        <div class="w-1/4">
+            <!-- Seguridad y acceso -->
+            <div class="shadow-md simple-container flex flex-col gap-3">
+                <div class="text-xl font-semibold principal-text-color flex items-center gap-2">
+                    <svg class="w-10 h-10 text-[#FF7033]">
+                        <use xlink:href="#icon-shield"></use>
+                    </svg>
+                    Seguretat i accés
                 </div>
-            </div>
-
-            <!-- Tarjeta de información de cuenta -->
-            <div class="shadow-md simple-container">
-                <h2 class="text-xl font-semibold principal-text-color mb-4">Informació del compte</h2>
                 
-                <div class="space-y-3">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-600">Data de creació:</span>
-                        <span class="font-medium">
-                            @if($user->created_at)
-                                {{ $user->created_at->format('d/m/Y H:i') }}
-                            @else
-                                -
-                            @endif
-                        </span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-600">Última actualització:</span>
-                        <span class="font-medium">
-                            @if($user->updated_at)
-                                {{ $user->updated_at->format('d/m/Y H:i') }}
-                            @else
-                                -
-                            @endif
-                        </span>
-                    </div>
-                    
-                    
-                </div>
-            </div>
-
-            <!-- Tarjeta de estado del sistema -->
-            <div class="shadow-md simple-container">
-                <h2 class="text-xl font-semibold principal-text-color mb-4">Estat del sistema</h2>
-                
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between p-3 rounded-lg 
-                        @if($user->is_active) bg-green-200 border border-green-600 @else bg-red-200 border border-red-600 @endif">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 @if($user->is_active) text-green-600 @else text-red-600 @endif">
-                                <use xlink:href="#icon-power"></use>
+                <div class="border-b-1 border-b-gray-600 pb-6">
+                    <!-- Taquilla -->
+                    <div class="flex flex-col gap-3 border-[#FF7033] text-[#FF7033] bg-[#FF7033]/17 rounded-lg p-5">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-10 h-10 text-[#FF7033]">
+                                <use xlink:href="#icon-key"></use>
                             </svg>
-                            <span class="ml-2 font-medium @if($user->is_active) text-green-600 @else text-red-600 @endif">
-                                Compte {{ $user->is_active ? 'actiu' : 'inactiu' }}
-                            </span>
+                            <p class="text-gray-600 mb-3 font-bold">Taquilla</h2>
+                        </div>
+                        <div class="flex-1">
+                            
+                            <!-- Número de taquilla -->
+                            <div class="mb-4">
+                                <p class="text-gray-600 mb-1">Número de taquilla</p>
+                                <p class="text-gray-900 font-semibold">T-{{ $user->locker }}</p>
+                            </div>
+                            
+                            <!-- Contraseña -->
+                            <div>
+                                <p class="text-gray-600 mb-1">Contrasenya</p>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-900 font-semibold tracking-widest">{{ $user->locker_password }}</span>
+                                    <svg class="w-6 h-6 text-gray-600">
+                                        <use xlink:href="#icon-eye"></use>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="flex items-center justify-between p-3 rounded-lg bg-blue-200 border border-blue-600">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-blue-600">
-                                <use xlink:href="#icon-center"></use>
-                            </svg>
-                            <span class="ml-2 font-medium text-blue-600">
-                                {{ $user->role_label }}
-                            </span>
-                        </div>
+                </div>
+        
+                <h3 class="text-xl font-semibold principal-text-color">Estat del compte</h3>
+                <div class="flex items-start gap-3">
+                    <div class="flex-1">
+                        @if($user->is_active)
+                            <div class="flex items-center gap-2 mt-2 text-green-600">
+                                <svg class="w-10 h-10">
+                                    <use xlink:href="#icon-check-circle"></use>
+                                </svg>
+                                <p class="mb-1">Compte {{ $user->is_active ? 'actiu' : 'inactiu' }}</p>
+                            </div>
+                        @else
+                            <div class="flex items-center gap-2 mt-2 text-red-600">
+                                <svg class="w-10 h-10">
+                                    <use xlink:href="#icon-cross-circle"></use>
+                                </svg>
+                                <p class="mb-1">Compte {{ $user->is_active ? 'actiu' : 'inactiu' }}</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Estilos adicionales -->
-<style>
-.break-all {
-    word-break: break-all;
-}
-</style>
 @endsection

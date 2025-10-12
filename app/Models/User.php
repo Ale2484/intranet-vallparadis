@@ -17,7 +17,7 @@ class User extends Authenticatable
         'role',
         'center',
         'status',
-        'ticket_office',
+        'locker',
         'locker_password',
         'password',
         'is_active'
