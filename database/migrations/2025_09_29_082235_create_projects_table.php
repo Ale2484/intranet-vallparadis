@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger("user");
             $table->string("description", 255);
             $table->string("observations", 255);
-            $table->string("docs", 255);
+            $table->boolean("is_active", 9)->default(true);
             $table->string("type", 255);
 
             $table->timestamps();
