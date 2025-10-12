@@ -306,7 +306,6 @@
 @endsection
 
 @section("footer")
-Funciona
 @endsection
 
 </body>
