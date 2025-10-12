@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Center;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -113,9 +115,9 @@ class UserController extends Controller
         ]);
 
         if(Auth::attempt(["email" => $request->email, "password" => $request->password])){
-            return redirect()->route("/");
+            return redirect()->route("dashboard");
         } else{
-            dd("Login fallido");
+            return redirect()->route("login")->withErrors(["email" => "Las credenciales son incorrectas"]);
         }
     }
 }

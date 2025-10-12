@@ -93,7 +93,7 @@
                         <img src="#FotoPerfil" alt="#FotoPerfil">
                     </a>
     
-                    <p class="font-bold">Juan Lopez</p>
+                    <p class="font-bold">{{ auth()->user()->name }}</p>
                 </div>
 
             </div>
