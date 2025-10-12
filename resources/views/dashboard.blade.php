@@ -302,7 +302,6 @@
 @endsection
 
 @section("footer")
-Funciona
 @endsection
 
     <!-- fin -->

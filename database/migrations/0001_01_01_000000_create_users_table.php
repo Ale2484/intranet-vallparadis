@@ -32,6 +32,7 @@ return new class extends Migration
 
             // FK
             $table->foreign("center")->references("id")->on("centers");
+            $table->boolean("is_active", 9)->default(true);
 
         });
 
