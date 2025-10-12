@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Center;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -96,5 +98,26 @@ class UserController extends Controller
     {
         $user->update(['is_active' => true]);
         return redirect()->route('users.index')->with('success', 'Professional activat correctament.');
+    }
+
+    public function showLoginForm()
+    {
+        $centers = Center::all();
+        return view("auth.login", compact("centers"));
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            "center" => "required|exists:centers,id",
+            "email" => "required",
+            "password" => "required"
+        ]);
+
+        if(Auth::attempt(["email" => $request->email, "password" => $request->password])){
+            return redirect()->route("dashboard");
+        } else{
+            return redirect()->route("login")->withErrors(["email" => "Las credenciales son incorrectas"]);
+        }
     }
 }

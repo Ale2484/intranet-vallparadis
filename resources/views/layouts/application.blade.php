@@ -21,7 +21,7 @@
                     </button>
                 </li>
                 <li>
-                    <a href="/" class="menu-option">
+                    <a href="{{ route("dashboard") }}" class="menu-option">
                         <svg class="w-7 h-7">
                             <use xlink:href="#icon-house"></use>
                         </svg>
@@ -59,7 +59,7 @@
         <!-- Menu superior -->
         <div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm pl-28">
 
-            <a href="/">
+            <a href="{{ route("dashboard") }}">
                 <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10">
             </a>
 
@@ -93,7 +93,7 @@
                         <img src="#FotoPerfil" alt="#FotoPerfil">
                     </a>
     
-                    <p class="font-bold">Juan Lopez</p>
+                    <p class="font-bold">{{ auth()->user()->name }}</p>
                 </div>
 
             </div>
