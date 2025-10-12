@@ -1,10 +1,10 @@
 @extends('layouts.application')
 
 @section('main')
-<div class="">
+<div>
     <!-- Header -->
-    <div class="w-full flex flex-row mb-8 justify-between">
-        <h1 class="text-3xl font-bold title">Gestió de projectes i comissions</h1>
+    <div class="flex mb-7 items-center justify-between">
+        <h1 class="title">Gestió de projectes i comissions:</h1>
         <a href="{{ route('projects.create') }}" 
             class="btn-primary h-fit">
             <svg class="w-6 h-6">
@@ -18,57 +18,59 @@
         <!-- Totals -->
         <div class="shadow-md simple-container w-23/100 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="text-lg font-semibold principal-text-color mb-2 card-title">Projectes/Comissions totals</h2>
+                <h2 class="principal-text-color font-bold card-title">Projectes/Comissions totals</h2>
                 <div class="bg-[#FF7E13] rounded-lg p-2">
-                    <svg class="w-6 h-6 text-white">
+                    <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-center"></use>
                     </svg>
                 </div>
             </div>
-            <p class="text-3xl font-bold">{{ $totalProjects }}</p>
-            <p class="text-sm text-[#335C68]">Projectes i comissions registrats al centre</p>
+            <p class="text-3xl text-left font-bold py-5">{{ $totalProjects }}</p>
+            <p class="font-bold text-[#335C68] text-md text-left">Projectes i comissions registrats al centre</p>
         </div>
 
         <!-- ultimo mes -->
         <div class="shadow-md simple-container w-23/100 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="text-lg font-semibold principal-text-color mb-2 card-title">Projectes/Comissions nous</h2>
+                <h2 class="principal-text-color font-bold card-title">Projectes/Comissions nous</h2>
                 <div class="bg-[#FF7E13] rounded-lg p-2">
-                    <svg class="w-6 h-6 text-white">
+                    <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-plus"></use>
                     </svg>
                 </div>
             </div>
-            <p class="text-3xl font-bold">{{ $totalProjects }}</p>
-            <p class="text-sm text-[#335C68]">Afegits durant l'últim mes</p>
+            <p class="text-3xl text-left font-bold py-5">{{ $totalProjects }}</p>
+            <p class="font-bold text-[#335C68] text-md text-left">Afegits durant l'últim mes</p>
         </div>
         
         <!-- Actius -->
         <div class="shadow-md simple-container w-23/100 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="text-lg font-semibold principal-text-color mb-2 card-title">Projectes/Comissions actius</h2>
+                <h2 class="principal-text-color font-bold card-title">Projectes/Comissions actius</h2>
                 <div class="bg-green-600 rounded-lg p-2">
-                    <svg class="w-6 h-6 text-white">
+                    <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-check-circle"></use>
                     </svg>
                 </div>
             </div>
-            <p class="text-3xl font-bold">{{ $activeProjects }}</p>
-            <p class="text-sm text-[#335C68]">Registrats al centre</p>
+            <p class="text-3xl text-left font-bold py-5">{{ $activeProjects }}</p>
+            <p class="font-bold text-[#335C68] text-md text-left">Registrats al centre</p>
+            <p>Barra de progreso</p>
         </div>
         
         <!-- Inactius -->
         <div class="shadow-md simple-container w-23/100 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="text-lg font-semibold principal-text-color mb-2 card-title">Projectes/Comissions inactius</h2>
+                <h2 class="principal-text-color font-bold card-title">Projectes/Comissions inactius</h2>
                 <div class="bg-red-600 rounded-lg p-2">
-                    <svg class="w-6 h-6 text-white">
+                    <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-cross-circle"></use>
                     </svg>
                 </div>
             </div>
-            <p class="text-3xl font-bold">{{ $inactiveProjects }}</p>
-            <p class="text-sm text-[#335C68]">Registrats al centre</p>
+            <p class="text-3xl text-left font-bold py-5">{{ $inactiveProjects }}</p>
+            <p class="font-bold text-[#335C68] text-md text-left">Registrats al centre</p>
+            <p>Barra de progreso</p>
         </div>
     </div>
 
@@ -98,7 +100,7 @@
         @foreach($projects as $project)
         <div class="shadow-md simple-container w-48/100 min-w-fit mb-5 flex flex-col gap-5">
             <div class="border-b-gray-600 border-b-1 pb-5">
-                <div class="flex flex-row justify-between w-full mb-2">
+                <div class="flex flex-row justify-between items-center w-full mb-2">
                     <div class="flex flex-row justify-between gap-2">
                         @if($project->type_label == "Projecte")
                             <div class="bg-green-200 border-green-600 border-1 rounded-full p-4 flex items-center justify-center">
@@ -113,62 +115,62 @@
                                 </svg>
                             </div>
                         @endif
-                        <div class="flex items-center">
+                        <div class="flex flex-col items-start gap-2">
                             <a href="{{ route('projects.show', $project->id) }}" class="principal-text-color font-bold card-title">{{ $project->name }}</a>
+                            <p class="p-1 text-white w-16 text-center rounded-lg {{ $project->is_active ? "bg-green-600" : "bg-red-600" }}"> {{ $project->is_active ? "Actiu" : "Inactiu" }}</p>
                         </div>
                     </div>
                     @if($project->type_label == "Projecte")
-                        <div class="p-2 bg-green-200 text-green-600 border-green-600 border-1 rounded-2xl h-fit w-1/6 min-w-fit text-center text-sm">
+                        <div class="is-active-button w-24">
                             Projecte
                         </div>
                     @elseif($project->type_label == "Comissió")
-                        <div class="p-2 bg-[#FF7033]/17 border-1 border-[#FF7033] text-[#FF7033] rounded-2xl h-fit w-1/6 min-w-fit text-center text-sm">
+                        <div class="is-commission-button w-24">
                             Comissió
                         </div>
                     @endif
                 </div>
                 
-                <div class="mt-3 space-y-2">
-                    <div class="flex items-center text-[#011020]">
-                        <svg class="w-6 h-6">
-                            <use xlink:href="#icon-user"></use>
+                <div class="mt-3 ml-5 space-y-5 text-[#011020]">
+                    <div class="flex items-center">
+                        <svg class="w-7 h-7">
+                            <use xlink:href="#icon-folder"></use>
                         </svg>
                         <span class="ml-2">{{ $project->userRelation->name ?? 'Usuari no assignat' }}</span>
                     </div>
-                    <div class="flex items-center text-[#011020]">
-                        <svg class="w-6 h-6">
+                    <div class="flex items-center">
+                        <svg class="w-7 h-7">
                             <use xlink:href="#icon-user"></use>
                         </svg>
                         <span class="ml-2">{{ $project->userRelation->email ?? 'Usuari no assignat' }}</span>
                     </div>
-                    <div class="flex items-center text-[#011020]">
-                        <svg class="w-6 h-6">
+                    <div class="flex items-center">
+                        <svg class="w-7 h-7">
                             <use xlink:href="#icon-calendar"></use>
                         </svg>
-                        <p class="ml-2 text-sm line-clamp-2">{{ $project->description }}</p>
+                        <p class="ml-2 text-sm">{{ $project->description }}</p>
                     </div>
-                    <div class="flex items-center text-[#011020]">
-                        <svg class="w-6 h-6">
+                    <div class="flex items-center">
+                        <svg class="w-7 h-7">
                             <use xlink:href="#icon-eye"></use>
                         </svg>
-                        <p class="ml-2 text-sm line-clamp-2">{{ $project->observations }}</p>
+                        <p class="ml-2 text-sm">{{ $project->observations }}</p>
                     </div>
-                    <div class="flex items-center text-[#011020]">
-                        <svg class="w-6 h-6">
+                    <div class="flex items-center">
+                        <svg class="w-7 h-7">
                             <use xlink:href="#icon-document"></use>
                         </svg>
-                        <p class="ml-2 text-sm line-clamp-2">{{ $project->documents_count }} Documents adjunts</p>
+                        <p class="ml-2 text-sm">{{ $project->documents_count }} Documents adjunts</p>
                     </div>
                 </div>
             </div>
             
             <div class="flex flex-row gap-5 justify-between">
                 <div class="flex flex-col">
-                    <p>
-                        Creat: {{ $project->created_at }}
-                    </p>
-                    <p>
-                        Actualizat: {{ $project->updated_at }}
+                    <p class="text-sm">
+                        Creat: {{ $project->created_at->format("d/m/Y") }}
+                    <p class="text-sm">
+                        Actualizat: {{ $project->updated_at->format("d/m/Y") }}
                     </p>
                 </div>
                 <div class="flex w-2/3 justify-end gap-3">
@@ -210,13 +212,4 @@
         @endforeach
     </div>
 </div>
-
-<style>
-.line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-</style>
 @endsection

@@ -1,25 +1,25 @@
 @extends('layouts.application')
 
 @section('main')
-<div class="max-w-full mx-auto">
+<div class="max-w-full mx-auto mb-10">
     <!-- Header -->
     <div class="w-full flex flex-row mb-8 justify-between items-center">
-        <div class="w-fit">
+        <div class="w-fit flex flex-col gap-5">
             <a href="{{ route('projects.index') }}" class="text-[#AFAFAF] flex flex-row gap-3 items-center mb-2">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
                 Tornar a la gestió de projectes/comissions
             </a>
-            <h1 class="text-3xl font-bold title mb-2">Informació completa del projecte <strong>{{ $project->name }}</strong></h1>
+            <h1 class="text-3xl font-bold title mb-2">Informació completa {{ $project->type_label == "del projecte" ? "projecte" : "de la comissió" }}  {{ $project->name }}</h1>
             <div class="flex gap-2 items-center">
                 <p>Informació completa del projecte/comissio</p>
                 @if($project->type_label == "Projecte")
-                    <div class="p-2 bg-green-200 text-green-600 border-green-600 border-1 rounded-2xl h-fit w-1/6 min-w-fit text-center text-sm">
+                    <div class="is-active-button w-20">
                         Projecte
                     </div>
                 @elseif($project->type_label == "Comissió")
-                    <div class="p-2 bg-[#FF7033]/17 border-1 border-[#FF7033] text-[#FF7033] rounded-2xl h-fit w-1/6 min-w-fit text-center text-sm">
+                    <div class="is-commission-button w-20">
                         Comissió
                     </div>
                 @endif
@@ -27,21 +27,21 @@
         </div>
     </div>
 
-    <div class="flex flex-col gap-3 w-full">
-        <div class="flex justify-around">
+    <div class="flex flex-col gap-5 w-full">
+        <div class="w-full flex justify-beetwen gap-10">
             <!-- Tarjeta de información básica -->
-            <div class="shadow-md simple-container w-27/100">
-                <div class="">
+            <div class="shadow-md simple-container flex-1">
+                <div>
                     <!-- Usuario asignado -->
-                    <div>
-                        <h2 class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
+                    <div class="flex flex-col gap-3 mb-5">
+                        <div class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
                             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-user"></use>
                                 </svg>
                             </div>
-                            Usuari assignat
-                        </h2>
+                            <p class="font-bold text-lg">Usuari assignat</p>
+                        </div>
                         <div class="flex items-center">
                             <div class="bg-gray-200 rounded-full p-7 w-10">
         
@@ -54,36 +54,36 @@
                     </div>
                 </div>
             </div>
-            <div class="shadow-md simple-container w-32/100">
+            <div class="shadow-md simple-container flex-1">
                 <div class="">
                     <!-- Fecha inicio -->
-                    <div>
-                        <h2 class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
+                    <div class="flex flex-col gap-3 mb-5">
+                        <div class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
                             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-calendar"></use>
                                 </svg>
                             </div>
-                            Data inici
-                        </h2>
-                        <p class="text-xl font-bold text-[#011020] mb-1">{{ $project->formatted_start }}</p>
+                            <p class="font-bold text-lg">Data inici</p>
+                        </div>
+                        <p class="text-3xl font-bold text-[#011020] mb-1">{{ $project->formatted_start }}</p>
                         <p class="text-[#AFAFAF] text-sm">Actualitat: {{ now()->format('j/n/Y') }}</p>
                     </div>
                 </div>
             </div>
-            <div class="shadow-md simple-container w-32/100">
+            <div class="shadow-md simple-container flex-1">
                 <div class="">
                     <!-- Documentos adjuntos -->
-                    <div>
-                        <h2 class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
+                    <div class="flex flex-col gap-3 mb-3">
+                        <div class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
                             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-document"></use>
                                 </svg>
                             </div>
-                            Documents adjunts
-                        </h2>
-                        <p class="text-xl font-bold text-[#011020] mb-1">{{ $project->documents_count }}</p>
+                            <p class="font-bold text-lg">Documents adjunts</p>
+                        </div>
+                        <p class="text-3xl font-bold text-[#011020] mb-1">{{ $project->documents_count }}</p>
                         <p class="text-[#AFAFAF] text-sm">Fitxers disponibles</p>
                     </div>
                 </div>
@@ -92,41 +92,41 @@
 
         <!-- Descripción -->
         <div class="shadow-md simple-container">
-            <h2 class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
                 <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-desc"></use>
                     </svg>
                 </div>
-                Descripció
-            </h2>
+                <p class="font-bold text-lg">Descripció</p>
+            </div>
             <p class="text-[#011020] whitespace-pre-wrap">{{ $project->description }}</p>
         </div>
 
         <!-- Observaciones -->
         <div class="shadow-md simple-container">
-            <h2 class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
                 <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-eye"></use>
                     </svg>
                 </div>
-                Observacions
-            </h2>
+                <p class="font-bold text-lg">Observacions</p>
+            </div>
             <p class="text-[#011020] whitespace-pre-wrap">{{ $project->observations }}</p>
         </div>
 
         <!-- Documentos adjuntos -->
         @if($project->documents_count > 0)
         <div class="shadow-md simple-container">
-            <h2 class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
                 <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-folder"></use>
                     </svg>
                 </div>
-                Documents adjunts
-            </h2>
+                <p class="font-bold text-lg">Documents adjunts</p>
+            </div>
             
             <div class="space-y-4">
                 @foreach($project->documents as $document)
@@ -160,12 +160,12 @@
         </div>
         @else
         <div class="shadow-md simple-container">
-            <h2 class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-document"></use>
                 </svg>
-                Documents adjunts
-            </h2>
+                <p>Documents adjunts</p>
+            </div>
             <div class="text-center py-8">
                 <svg class="w-16 h-16 text-gray-400 mx-auto mb-3">
                     <use xlink:href="#icon-document"></use>
@@ -180,7 +180,8 @@
             </a>
             <a href="{{ route('projects.edit', $project) }}" 
                 class="w-fit flex items-center justify-center gap-2 btn-primary py-3">
-                Editar el projecte
+                
+                {{ $project->type_label == "Comissió" ? "Editar la comissió" : "Editar el projecte" }}
             </a>
         </div>
     </div>
