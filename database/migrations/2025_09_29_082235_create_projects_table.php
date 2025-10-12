@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("name");
             $table->date("start")->nullable();
             $table->unsignedBigInteger("user");
+
             $table->string("description", 255);
             $table->string("observations", 255);
             $table->boolean("is_active", 9)->default(true);

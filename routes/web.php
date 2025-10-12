@@ -16,6 +16,7 @@ Route::resource("centers", CenterController::class)->except("destroy");
 Route::patch("/centers/{center}/disable", [CenterController::class, "disable"])->name("centers.disable");
 Route::patch("/centers/{center}/enable", [CenterController::class, "enable"])->name("centers.enable");
 
+// proyectos  
 // proyectos
 Route::resource('projects', ProjectController::class);
 Route::patch('/projects/{project}/deactivate', [ProjectController::class, 'deactivate'])->name('projects.deactivate');
