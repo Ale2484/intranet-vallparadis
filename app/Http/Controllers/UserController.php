@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function exportAllLockers()
     {
-        $users = User::all()->select("name","ticket_office");
+        $users = User::all()->select("name","locker");
 
         return Excel::download(new UsersExport($users), 'usuarios.xlsx');
         
@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function exportLocker(Request $request)
     {
-        $users = User::select("name","ticket_office")->where('id', request("id"))->get();
+        $users = User::select("name","locker")->where('id', request("id"))->get();
 
         if (!($users == "[]")){
             return Excel::download(new UsersExport($users), 'usuaro.xlsx');

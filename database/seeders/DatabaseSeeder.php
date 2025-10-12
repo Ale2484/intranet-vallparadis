@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CenterSeeder::class,
             UserSeeder::class,
-            UniformitySeeder::class
+            UniformitySeeder::class,
+            UniformityRenovationSeeder::class
 
         ]);
         // User::factory(10)->create();

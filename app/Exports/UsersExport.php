@@ -26,7 +26,7 @@ class UsersExport implements FromCollection, WithHeadings, WithStyles
     {
         return [
             'Nombre',       // Corresponde a 'name'
-            'Taquilla',     // Corresponde a 'ticket_office'
+            'Taquilla',     // Corresponde a 'locker'
         ];
     }
 
