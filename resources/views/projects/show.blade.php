@@ -1,0 +1,189 @@
+@extends('layouts.application')
+
+@section('main')
+<div class="max-w-full mx-auto mb-10">
+    <!-- Header -->
+    <div class="w-full flex flex-row mb-8 justify-between items-center">
+        <div class="w-fit flex flex-col gap-5">
+            <a href="{{ route('projects.index') }}" class="text-[#AFAFAF] flex flex-row gap-3 items-center mb-2">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-arrow-left"></use>
+                </svg>
+                Tornar a la gestió de projectes/comissions
+            </a>
+            <h1 class="text-3xl font-bold title mb-2">Informació completa {{ $project->type_label == "del projecte" ? "projecte" : "de la comissió" }}  {{ $project->name }}</h1>
+            <div class="flex gap-2 items-center">
+                <p>Informació completa del projecte/comissio</p>
+                @if($project->type_label == "Projecte")
+                    <div class="is-active-button w-20">
+                        Projecte
+                    </div>
+                @elseif($project->type_label == "Comissió")
+                    <div class="is-commission-button w-20">
+                        Comissió
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-5 w-full">
+        <div class="w-full flex justify-beetwen gap-10">
+            <!-- Tarjeta de información básica -->
+            <div class="shadow-md simple-container flex-1">
+                <div>
+                    <!-- Usuario asignado -->
+                    <div class="flex flex-col gap-3 mb-5">
+                        <div class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
+                            <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-user"></use>
+                                </svg>
+                            </div>
+                            <p class="font-bold text-lg">Usuari assignat</p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-gray-200 rounded-full p-7 w-10">
+        
+                            </div>
+                            <div class="ml-2">
+                                <p class="text-xl font-bold text-[#011020] mb-1">{{ $project->userRelation->name ?? 'No assignat' }}</p>
+                                <p class="text-[#AFAFAF] text-sm">{{ $project->userRelation->email ?? '' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow-md simple-container flex-1">
+                <div class="">
+                    <!-- Fecha inicio -->
+                    <div class="flex flex-col gap-3 mb-5">
+                        <div class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
+                            <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-calendar"></use>
+                                </svg>
+                            </div>
+                            <p class="font-bold text-lg">Data inici</p>
+                        </div>
+                        <p class="text-3xl font-bold text-[#011020] mb-1">{{ $project->formatted_start }}</p>
+                        <p class="text-[#AFAFAF] text-sm">Actualitat: {{ now()->format('j/n/Y') }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow-md simple-container flex-1">
+                <div class="">
+                    <!-- Documentos adjuntos -->
+                    <div class="flex flex-col gap-3 mb-3">
+                        <div class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
+                            <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-document"></use>
+                                </svg>
+                            </div>
+                            <p class="font-bold text-lg">Documents adjunts</p>
+                        </div>
+                        <p class="text-3xl font-bold text-[#011020] mb-1">{{ $project->documents_count }}</p>
+                        <p class="text-[#AFAFAF] text-sm">Fitxers disponibles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="shadow-md simple-container">
+            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+                <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-desc"></use>
+                    </svg>
+                </div>
+                <p class="font-bold text-lg">Descripció</p>
+            </div>
+            <p class="text-[#011020] whitespace-pre-wrap">{{ $project->description }}</p>
+        </div>
+
+        <!-- Observaciones -->
+        <div class="shadow-md simple-container">
+            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+                <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-eye"></use>
+                    </svg>
+                </div>
+                <p class="font-bold text-lg">Observacions</p>
+            </div>
+            <p class="text-[#011020] whitespace-pre-wrap">{{ $project->observations }}</p>
+        </div>
+
+        <!-- Documentos adjuntos -->
+        @if($project->documents_count > 0)
+        <div class="shadow-md simple-container">
+            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+                <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-folder"></use>
+                    </svg>
+                </div>
+                <p class="font-bold text-lg">Documents adjunts</p>
+            </div>
+            
+            <div class="space-y-4">
+                @foreach($project->documents as $document)
+                <div class="flex items-center justify-between p-4 shadow-md simple-container">
+                    <div class="flex items-center gap-4 flex-1">
+                        <div class="flex items-center justify-center w-12 h-12 rounded-lg">
+                            <svg class="w-6 h-6 text-gray-600">
+                                <use xlink:href="#icon-document"></use>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-medium text-[#011020] text-lg">{{ $document->name }}</p>
+                            <p class="text-sm text-[#AFAFAF]">
+                                {{ $document->formatted_size }} • 
+                                Pujat el {{ $document->created_at->format('j/n/Y') }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <a href="{{ $document->document_url }}" 
+                            target="_blank" 
+                            class="text-sm py-2 px-4 flex items-center gap-2">
+                            <svg class="w-8 h-8">
+                                <use xlink:href="#icon-download"></use>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        @else
+        <div class="shadow-md simple-container">
+            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-document"></use>
+                </svg>
+                <p>Documents adjunts</p>
+            </div>
+            <div class="text-center py-8">
+                <svg class="w-16 h-16 text-gray-400 mx-auto mb-3">
+                    <use xlink:href="#icon-document"></use>
+                </svg>
+                <p class="text-gray-500">Encara no hi ha documents associats a aquest projecte.</p>
+            </div>
+        </div>
+        @endif
+        <div class="w-full flex justify-end gap-3">
+            <a href="{{ route('projects.index') }}" class="btn-secondary">
+                Cancel·lar
+            </a>
+            <a href="{{ route('projects.edit', $project) }}" 
+                class="w-fit flex items-center justify-center gap-2 btn-primary py-3">
+                
+                {{ $project->type_label == "Comissió" ? "Editar la comissió" : "Editar el projecte" }}
+            </a>
+        </div>
+    </div>
+</div>
+@endsection

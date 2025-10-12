@@ -5,8 +5,8 @@
     <p>{{ session("success") }}</p>
 @endif
 
-<div class="flex items-center justify-between">
-    <h1 class="title mb-7">Gestió de centres: </h1>
+<div class="flex items-center justify-between mb-7">
+    <h1 class="title">Gestió de centres: </h1>
 
     <a  href="{{ route("centers.create") }}" class="btn-primary">
         <svg class="w-6 h-6 text-white">

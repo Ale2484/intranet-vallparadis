@@ -4,7 +4,7 @@
 <div class="w-full flex flex-col items-center justify-center">
     
     <!-- Apartado superior -->
-    <div class="w-[60%] flex flex-col gap-3">
+    <div class="w-[60%] flex flex-col gap-5">
 
         <a href="{{ route("centers.index") }}" class="flex gap-3 text-[#AFAFAF]">
             <svg class="w-6 h-6 ">

@@ -56,6 +56,10 @@
 .is-inactive-button{
     @apply border-1 bg-red-200 text-red-600 border-red-600 rounded-lg p-1 text-center;
 }
+.is-commission-button{
+    @apply border-1 bg-[#FF7033]/17 text-[#FF7033] border-[#FF7033] rounded-lg p-1 text-center;
+
+}
 
 .deactivate-button{
     @apply  text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer;

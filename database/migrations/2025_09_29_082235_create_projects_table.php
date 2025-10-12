@@ -17,9 +17,11 @@ return new class extends Migration
             $table->string("name");
             $table->date("start")->nullable();
             $table->unsignedBigInteger("user");
-            $table->text("description");
-            $table->text("observations");
-            $table->string("docs", 255);
+
+            $table->string("description", 255);
+            $table->string("observations", 255);
+            $table->boolean("is_active", 9)->default(true);
+
             $table->string("type", 255);
 
             $table->timestamps();
