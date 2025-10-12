@@ -13,9 +13,9 @@
             Tornar a la gestió de centres
         </a>
 
-        <h1 class="title">Crear un nou centre</h1>
+        <h1 class="title">Nou centre</h1>
 
-        <p class="text-[#AFAFAF] mb-7">Crea un nou centre al sistema</p>
+        <p class="text-[#AFAFAF] mb-7">Afegeix un nou centre al sistema</p>
     </div>
     <!-- Formulario -->
     <div class="simple-container w-[60%] text-[#0F172A]">

@@ -39,7 +39,7 @@ class CenterController extends Controller
 
         Center::create($validated);
         
-        return redirect()->route("centers.index")->with("success", "Centro creado correctamente");
+        return redirect()->route("centers.index")->with("success", "Centre creat correctament");
     }
 
     /**
@@ -79,17 +79,21 @@ class CenterController extends Controller
 
         $center->update($validated);
 
-        return redirect()->route("centers.index")->with("success", "Se ha actualizado el centro correctamente");
+        return redirect()->route("centers.index")->with("success", "S'ha actualitzat el centre correctament");
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Center $center)
+    public function disable(Center $center)
     {
-        //$center->delete();
+        $center->update(["is_active" => false]);
 
-        return redirect()->route("centers.index")->with("success", "Se ha eliminado el centro correctamente");
+        return redirect()->route("centers.index")->with("success", "Centre deshabilitat correctament");
+    }
+
+    public function enable(Center $center)
+    {
+        $center->update(["is_active" => true]);
+
+        return redirect()->route("centers.index")->with("success", "Centre deshabilitat correctament");
     }
 }

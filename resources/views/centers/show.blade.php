@@ -13,9 +13,9 @@
             Tornar a la gestió de centres
         </a>
 
-        <h1 class="title">Editar el centre</h1>
+        <h1 class="title">Detalls del centre</h1>
 
-        <p class="text-[#AFAFAF] mb-7">Edita el centre del sistema</p>
+        <p class="text-[#AFAFAF] mb-7">Informació completa del centre</p>
     </div>
     <!-- Contenedor principal -->
     <div class="simple-container w-[60%] text-[#0F172A] mb-10">
