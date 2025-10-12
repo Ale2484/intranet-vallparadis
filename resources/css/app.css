@@ -9,3 +9,72 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+.simple-container{
+    @apply border border-[#AFAFAF] bg-white rounded-[15px] p-5;
+}
+
+.principal-text-color{
+    color: #012F4A;
+}
+
+
+
+
+
+.list-option{
+    @apply p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full;
+}
+.list-option:hover{
+    @apply bg-[#fef5eb] text-[#FF7E13];
+}
+
+
+.card-title{
+    font-size: 20px;
+}
+
+.title{
+    @apply text-3xl font-bold text-[#011020];
+}
+
+/* Buttons */
+.btn-primary{
+    @apply bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2;
+}
+
+.btn-primary:hover{
+    @apply bg-[#FE712B] transition-all
+}
+
+.btn-secondary{
+    @apply bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF];
+}
+.is-active-button{
+    @apply border-1 bg-green-200 text-green-600 border-green-600 rounded-lg p-1 text-center;
+}
+
+.is-inactive-button{
+    @apply border-1 bg-red-200 text-red-600 border-red-600 rounded-lg p-1 text-center;
+}
+
+.deactivate-button{
+    @apply  text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer;
+}
+.deactivate-button:hover{
+    @apply bg-red-800 transition-all;
+}
+.activate-button{
+    @apply  text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer;
+}
+
+.activate-button:hover{
+    @apply bg-green-700 transition-all;
+}
+
+.input-field{
+    @apply border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF];
+} 
+
+@media(min-width: 768px) {
+    
+}

@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Center extends Model
 {
+    protected $fillable = [
+        "name",
+        "address",
+        "phone",
+        "email",
+        "is_active"
+    ];
     protected $table = "centers";
 
     public function user() : HasMany {
