@@ -3,8 +3,8 @@
 @section('main')
 <div class="">
     <!-- Header -->
-    <div class="w-full flex flex-row mb-8 justify-between">
-        <h1 class="text-3xl font-bold title">Gestió de professionals</h1>
+    <div class="w-full flex flex-row mb-7 items-center justify-between">
+        <h1 class="text-3xl font-bold title">Gestió de professionals:</h1>
         <a href="{{ route('users.create') }}" 
             class="btn-primary h-fit">
             <svg class="w-6 h-6">
@@ -14,48 +14,64 @@
         </a>
     </div>
     <!-- Statistics Cards -->
-    <div class="w-full flex flex-wrap flex-row items-stretch justify-between">
+    <div class="w-full flex flex-wrap flex-row items-stretch justify-between gap-5">
         <!-- Professionals totals -->
-        <div class="shadow-md simple-container w-32/100 mb-10 min-w-fit">
+        <div class="shadow-md simple-container w-96 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="text-lg font-semibold principal-text-color mb-2 card-title">Professionals totals</h2>
+                <h2 class="principal-text-color font-bold card-title">Professionals totals</h2>
                 <div class="bg-[#FF7E13] rounded-lg p-2">
-                    <svg class="w-6 h-6 text-white">
+                    <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-center"></use>
                     </svg>
                 </div>
             </div>
-            <p class="text-3xl font-bold">{{ $totalUsers }}</p>
-            <p class="text-sm text-[#335C68]">Professionals registrats al centre</p>
+            <p class="text-3xl text-left font-bold py-5">{{ $totalUsers }}</p>
+            <p class="font-bold text-[#335C68] text-md text-left">Professionals registrats al centre</p>
+        </div>
+
+        <!-- Professionals totals -->
+        <div class="shadow-md simple-container w-96 mb-10 min-w-fit">
+            <div class="flex justify-between items-center">
+                <h2 class="principal-text-color font-bold card-title">Professionals nous</h2>
+                <div class="bg-[#FF7E13] rounded-lg p-2">
+                    <svg class="w-8 h-8 text-white">
+                        <use xlink:href="#icon-plus"></use>
+                    </svg>
+                </div>
+            </div>
+            <p class="text-3xl text-left font-bold py-5">{{ $totalUsers }}</p>
+            <p class="font-bold text-[#335C68] text-md text-left">Professionals afegits durant l'últim mes</p>
         </div>
         
         <!-- Professionals actius -->
-        <div class="shadow-md simple-container w-32/100 mb-10 min-w-fit">
+        <div class="shadow-md simple-container w-96 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="text-lg font-semibold principal-text-color mb-2 card-title">Professionals actius</h2>
+                <h2 class="principal-text-color font-bold card-title">Professionals actius</h2>
                 <div class="bg-green-600 rounded-lg p-2">
-                    <svg class="w-6 h-6 text-white">
+                    <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-check-circle"></use>
                     </svg>
                 </div>
             </div>
-            <p class="text-3xl font-bold">{{ $activeUsers }}</p>
-            <p class="text-sm text-[#335C68]">Professionals registrats al centre</p>
+            <p class="text-3xl text-left font-bold py-5">{{ $activeUsers }}</p>
+            <p class="font-bold text-[#335C68] text-md text-left">Professionals registrats al centre</p>
+            <p>Barra de porcentaje</p>
         </div>
         
         
         <!-- Professionals inactius -->
-        <div class="shadow-md simple-container w-32/100 mb-10 min-w-fit">
+        <div class="shadow-md simple-container w-96 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="text-lg font-semibold principal-text-color mb-2 card-title">Professionals inactius</h2>
+                <h2 class="principal-text-color font-bold card-title">Professionals inactius</h2>
                 <div class="bg-red-600 rounded-lg p-2">
-                    <svg class="w-6 h-6 text-white">
+                    <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-cross-circle"></use>
                     </svg>
                 </div>
             </div>
-            <p class="text-3xl font-bold">{{ $inactiveUsers }}</p>
-            <p class="text-sm text-[#335C68]">Professionals registrats al centre</p>
+            <p class="text-3xl text-left font-bold py-5">{{ $inactiveUsers }}</p>
+            <p class="font-bold text-[#335C68] text-md text-left">Professionals registrats al centre</p>
+            <p>Barra de porcentaje</p>
         </div>
     </div>
 
@@ -86,7 +102,7 @@
             @foreach($users as $user)
             <div class="shadow-md simple-container w-32/100 min-w-[350px] mb-5 flex flex-col gap-5">
                     <div>
-                        <div class="flex flex-row justify-between w-full">
+                        <div class="flex flex-row justify-between items-center w-full">
                             <div class="flex flex-row justify-between gap-2">
                                 <div class="bg-gray-200 rounded-full p-7">
     
@@ -96,17 +112,17 @@
                                 </div>
                             </div>
                             @if($user->is_active)
-                                <div class="p-2 bg-green-200 text-green-600 border-green-600 border-1 rounded-2xl h-fit w-1/5 text-center">
-                                    actiu
+                                <div class="w-16 text-center is-active-button">
+                                    Actiu
                                 </div>
                             @else
-                                <div class="p-2 bg-red-200 text-red-600 border-red-600 border-1 rounded-2xl h-fit w-1/5 text-center">
-                                    inactiu
+                                <div class="w-16 text-center is-inactive-button">
+                                    Inactiu
                                 </div>
                             @endif
                         </div>
                         
-                        <div class="mt-3 space-y-2">
+                        <div class="mt-3 ml-5 space-y-5 ">
                             <div class="flex items-center text-[#011020]">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-center"></use>
