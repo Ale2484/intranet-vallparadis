@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("center");
             $table->string("name");
-            $table->timestamp("start")->nullable();
+            $table->date("start")->nullable();
             $table->unsignedBigInteger("user");
-            $table->string("description", 255);
-            $table->string("observations", 255);
+            $table->text("description");
+            $table->text("observations");
             $table->string("docs", 255);
             $table->string("type", 255);
 

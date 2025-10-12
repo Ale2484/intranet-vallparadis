@@ -10,10 +10,7 @@
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
 .simple-container{
-    border: 1px solid #AFAFAF;
-    background-color: white;
-    border-radius: 20px;
-    padding: 20px;
+    @apply border border-[#AFAFAF] bg-white rounded-[15px] p-5;
 }
 
 .principal-text-color{
@@ -37,7 +34,7 @@
 }
 
 .title{
-    @apply text-3xl font-bold text-[#011020] mb-7;
+    @apply text-3xl font-bold text-[#011020];
 }
 
 /* Buttons */
@@ -53,21 +50,30 @@
     @apply bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF];
 }
 .is-active-button{
-    @apply border-1 bg-green-200 text-green-600 border-green-600 rounded-lg p-2;
+    @apply border-1 bg-green-200 text-green-600 border-green-600 rounded-lg p-1 text-center;
 }
 
 .is-inactive-button{
-    @apply border-1 bg-red-200 text-red-600 border-red-600 rounded-lg p-2;
+    @apply border-1 bg-red-200 text-red-600 border-red-600 rounded-lg p-1 text-center;
 }
 
 .deactivate-button{
-    @apply  text-white bg-red-600 rounded-lg p-2 cursor-pointer;
+    @apply  text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer;
 }
-
+.deactivate-button:hover{
+    @apply bg-red-800 transition-all;
+}
 .activate-button{
-    @apply  text-white bg-green-600 rounded-lg p-2 cursor-pointer;
+    @apply  text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer;
 }
 
+.activate-button:hover{
+    @apply bg-green-700 transition-all;
+}
+
+.input-field{
+    @apply border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF];
+} 
 
 @media(min-width: 768px) {
     
