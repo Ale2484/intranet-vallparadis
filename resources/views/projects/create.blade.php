@@ -139,12 +139,12 @@
 
                 <!-- Documentos -->
                 <div class="md:col-span-2 mt-4 document-upload-container">
-                    <h2 class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+                    <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-document"></use>
                         </svg>
                         Documents
-                    </h2>
+                    </div>
                     
                     <div class="document-drop-zone border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-colors cursor-pointer">
                         <svg class="w-16 h-16 text-gray-400 mx-auto mb-4">
