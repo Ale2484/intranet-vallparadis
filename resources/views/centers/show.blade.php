@@ -8,7 +8,7 @@
 
         <a href="{{ route("centers.index") }}" class="flex gap-3 text-[#AFAFAF]">
             <svg class="w-6 h-6 ">
-                <use xlink:href="#icon-no-line-arrow"></use>
+                <use xlink:href="#icon-arrow-left"></use>
             </svg>
             Tornar a la gestió de centres
         </a>
