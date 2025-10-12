@@ -37,8 +37,8 @@
             
             <a href="{{ route("centers.index") }}" class="btn-primary w-full sm:w-32 text-sm shadow-md">
                 Accedir
-                <svg class="w-8 h-8 text-[#012F4A]">
-                    <use xlink:href="#icon-centers"></use>
+                <svg class="w-4 h-4">
+                    <use xlink:href="#icon-up-right-arrow"></use>
                 </svg>
             </a>
 
@@ -59,8 +59,8 @@
             <p class="font-bold text-[#335C68] text-md text-left">3 urgents</p>
             <button type="button" class="btn-primary w-full sm:w-32 text-sm shadow-md">
                 Accedir
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                <svg class="w-4 h-4">
+                    <use xlink:href="#icon-up-right-arrow"></use>
                 </svg>
             </button>
         </div>
@@ -80,8 +80,8 @@
             <p class="font-bold text-[#335C68] text-md text-left">3 urgents</p>
             <button type="button" class="btn-primary w-full sm:w-32 text-sm shadow-md">
                 Accedir
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                <svg class="w-4 h-4">
+                    <use xlink:href="#icon-up-right-arrow"></use>
                 </svg>
             </button>
         </div>
