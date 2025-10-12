@@ -39,6 +39,12 @@ class Project extends Model
         return $this->belongsTo(User::class, 'user');
     }
 
+    // Relación con los documentos
+    public function documents()
+    {
+        return $this->hasMany(ProjectDocument::class, 'project');
+    }
+
     // Scope para proyectos activos
     public function scopeActive($query)
     {
@@ -78,5 +84,17 @@ class Project extends Model
     public function getFormattedStartAttribute()
     {
         return $this->start ? $this->start->format('d/m/Y') : 'No especificada';
+    }
+
+    // Método para contar documentos
+    public function getDocumentsCountAttribute()
+    {
+        return $this->documents()->count();
+    }
+
+    // Método para obtener documentos recientes
+    public function getRecentDocumentsAttribute()
+    {
+        return $this->documents()->orderBy('created_at', 'desc')->take(5)->get();
     }
 }
