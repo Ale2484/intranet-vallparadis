@@ -36,12 +36,12 @@
         <div class="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center">
             <p class="font-bold text-[#335C68] text-md text-left">5 centres inactius</p>
             
-            <button type="button" class="btn-primary w-full sm:w-32 text-sm shadow-md">
+            <a href="{{ route("centers.index") }}" class="btn-primary w-full sm:w-32 text-sm shadow-md">
                 Accedir
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
                 </svg>
-            </button>
+            </a>
 
         </div>
     </div>
@@ -150,31 +150,31 @@
         <!-- Opciones -->
         <ul class="my-5 w-full">
             <li>
-                <a href="google.com" class="list-option justify-between">
-                    Nou professional
+                <a href="{{ route("centers.create") }}" class="list-option justify-between">
+                    Alta d'un centre nou
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
                 </a>
             </li>
             <li>
-                <a href="google.com" class="list-option justify-between">
-                    Nou professional
+                <a href="#centresActius" class="list-option justify-between">
+                    Centres actius
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
                 </a>
             </li>
             <li>
-                <a href="google.com" class="list-option justify-between">
-                    Nou professional
+                <a href="#centresInActius" class="list-option justify-between">
+                    Centres inactius
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
                 </a>
             </li>
         </ul>
-        <a href="#test" class="btn-primary w-full p-3 font-bold">Accedir al apartat</a>
+        <a href="{{ route("centers.index") }}" class="btn-primary w-full p-3 font-bold">Accedir al apartat</a>
     </div>
     <!-- Container -->
     <div class="simple-container shadow-lg flex flex-col items-start w-80">
@@ -309,6 +309,5 @@
 Funciona
 @endsection
 
-    <!-- fin -->
 </body>
 </html>
