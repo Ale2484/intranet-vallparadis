@@ -25,7 +25,7 @@
                         <svg class="w-7 h-7">
                             <use xlink:href="#icon-house"></use>
                         </svg>
-                        <span class="menu-text hidden">Dashboard</span>
+                        <span class="menu-text hidden ">Dashboard</span>
                     </a>
                 </li>
                 <li>
@@ -49,7 +49,7 @@
                     <svg class="w-7 h-7">
                         <use xlink:href="#icon-folder"></use>
                     </svg>
-                        <span class="menu-text hidden">Projectes/Comissions</span>
+                        <span class="menu-text hidden text-nowrap">Projectes/Comissions</span>
                     </a>
                 </li>
 

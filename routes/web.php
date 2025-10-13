@@ -25,9 +25,7 @@ Route::get("/exportAllUniformityRenovation", [UniformityRenovationController::cl
 Route::get("/exportUniformityRenovations/{userId}", [UniformityRenovationController::class, "exportUniformityRenovation"])->name("exportUniformityRenovation");
 
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name("dashboard");
+
 
 // Al login solo se puede acceder si el usuario no ha iniciado session
 Route::middleware("guest")->group(function () {
@@ -36,6 +34,9 @@ Route::middleware("guest")->group(function () {
 });
 
 Route::middleware("auth")->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name("dashboard");
     //Usuarios
     Route::resource("users", UserController::class);
     Route::patch('/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate');
