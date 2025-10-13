@@ -13,7 +13,17 @@ class CenterController extends Controller
     public function index()
     {
         $centers = Center::all();
-        return view("centers.index", compact("centers"));
+        $inactiveCenters = $centers->where("is_active", false)->count();
+        $activeCenters = $centers->count() - $inactiveCenters;
+
+        $activePercentage = ($activeCenters / $centers->count()) * 100; 
+        $inactivePercentage = ($inactiveCenters / $centers->count()) * 100;
+       
+        $activePercentage = round($activePercentage, 1);
+        $inactivePercentage = round($inactivePercentage, 1);
+        
+
+        return view("centers.index", compact("centers", "inactiveCenters", "activeCenters", "activePercentage", "inactivePercentage"));
     }
 
     /**
