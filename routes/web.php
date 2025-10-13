@@ -5,9 +5,7 @@ use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name("dashboard");
+
 
 // Al login solo se puede acceder si el usuario no ha iniciado session
 Route::middleware("guest")->group(function () {
@@ -16,6 +14,9 @@ Route::middleware("guest")->group(function () {
 });
 
 Route::middleware("auth")->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name("dashboard");
     //Usuarios
     Route::resource("users", UserController::class);
     Route::patch('/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate');
