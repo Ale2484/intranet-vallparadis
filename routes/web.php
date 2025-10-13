@@ -22,7 +22,7 @@ Route::get("/exportUniformity/{userId}", [UniformityController::class, "exportUn
 
 // Exportacion de uniformes
 Route::get("/exportAllUniformityRenovation", [UniformityRenovationController::class, "exportAllUniformityRenovation"])->name("exportAllUniformityRenovation");
-Route::get("/exportUniformityRenovations/{userId}", [UniformityRenovationController::class, "exportUniformityRenovation"])->name("exportUniformityRenovation");
+Route::get("/exportUniformityRenovation/{userId}", [UniformityRenovationController::class, "exportUniformityRenovation"])->name("exportUniformityRenovation");
 
 
 
