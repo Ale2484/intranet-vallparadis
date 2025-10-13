@@ -19,12 +19,17 @@
 
 
 
-
-
 .list-option{
     @apply p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full;
 }
 .list-option:hover{
+    @apply bg-[#fef5eb] text-[#FF7E13];
+}
+
+.menu-option{
+    @apply p-2 rounded-lg mb-2 text-[#0F172A] flex flex-row items-center justify-start w-full;
+}
+.menu-option:hover{
     @apply bg-[#fef5eb] text-[#FF7E13];
 }
 
@@ -46,9 +51,25 @@
     @apply bg-[#FE712B] transition-all
 }
 
+
+
+.list-option{
+    @apply p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center w-full cursor-pointer;
+}
+
+.menu-text{
+    @apply text-[#0F172A] ml-4;
+}
+
+.menu-option:hover .menu-text{
+    @apply bg-[#fef5eb] text-[#FF7E13];
+
+}
+
 .btn-secondary{
     @apply bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF];
 }
+
 .is-active-button{
     @apply border-1 bg-green-200 text-green-600 border-green-600 rounded-lg p-1 text-center;
 }
@@ -56,6 +77,11 @@
 .is-inactive-button{
     @apply border-1 bg-red-200 text-red-600 border-red-600 rounded-lg p-1 text-center;
 }
+
+.is-commission-button{
+    @apply border-1 bg-[#FF7033]/17 text-[#FF7033] border-[#FF7033] rounded-lg p-1 text-center;
+}
+
 
 .deactivate-button{
     @apply  text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer;
