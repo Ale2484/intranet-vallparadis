@@ -13,15 +13,15 @@ Route::get("/", function () {
 });
 
 // Exportacion de taquillas
-Route::get("/exportAllLockers", [UserController::class, "exportAllLockers"]);
-Route::post("/exportLocker", [UserController::class, "exportLocker"])->name("exportLocker");
+Route::get("/exportAllLockers", [UserController::class, "exportAllLockers"])->name("exportAllLockers");
+Route::get("/exportLocker/{userId}", [UserController::class, "exportLocker"])->name("exportLocker");
 
 // Exportacion de uniformes
-Route::get("/exportAllUniformity", [UniformityController::class, "exportAllUniformity"]);
-Route::post("/exportUniformity", [UniformityController::class, "exportUniformity"])->name("exportUniformity");
+Route::get("/exportAllUniformity", [UniformityController::class, "exportAllUniformity"])->name("exportAllUniformity");
+Route::get("/exportUniformity/{userId}", [UniformityController::class, "exportUniformity"])->name("exportUniformity");
 
 // Exportacion de uniformes
-Route::get("/exportAllUniformityRenovation", [UniformityRenovationController::class, "exportAllUniformityRenovation"]);
+Route::get("/exportAllUniformityRenovation", [UniformityRenovationController::class, "exportAllUniformityRenovation"])->name("exportAllUniformityRenovation");
 Route::get("/exportUniformityRenovations/{userId}", [UniformityRenovationController::class, "exportUniformityRenovation"])->name("exportUniformityRenovation");
 
 

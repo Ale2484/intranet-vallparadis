@@ -25,9 +25,9 @@ class UniformityController extends Controller
         
     }
 
-    public function exportUniformity(Request $request)
+    public function exportUniformity($userId)
     {
-        $uniformities = Uniformity::select("user","shirt","pants","shoes")->where('user', request("id"))->get();
+        $uniformities = Uniformity::select("user","shirt","pants","shoes")->where('user', $userId)->get();
         
         $user = User::select("name")->where('id', $uniformities[0] -> user)->get();
 

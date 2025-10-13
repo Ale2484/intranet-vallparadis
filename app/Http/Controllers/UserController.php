@@ -131,9 +131,9 @@ class UserController extends Controller
         
     }
 
-    public function exportLocker(Request $request)
+    public function exportLocker($userId)
     {
-        $users = User::select("name","locker")->where('id', request("id"))->get();
+        $users = User::select("name","locker")->where('id', $userId)->get();
 
         if (!($users == "[]")){
             return Excel::download(new UsersExport($users), 'usuaro.xlsx');
