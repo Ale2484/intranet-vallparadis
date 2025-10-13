@@ -9,7 +9,12 @@ class Uniformity extends Model
 {
     protected $table = "uniformities";
 
-    public function user(): BelongsTo {
-        return $this->belongsTo(User::class);
+    public function userAssigned(): BelongsTo {
+        return $this->belongsTo(User::class, "user");
     }
+
+    public function userDelivery(): BelongsTo {
+        return $this->belongsTo(User::class, "user_delivery");
+    }
+
 }
