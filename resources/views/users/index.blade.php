@@ -191,7 +191,7 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="deactivate-button w-full flex justify-center">
+                                        class="deactivate-button w-full flex justify-center gap-3">
                                     <svg class="w-6 h-6">
                                         <use xlink:href="#icon-power"></use>
                                     </svg>
@@ -203,7 +203,7 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="activate-button w-full flex justify-center">
+                                        class="activate-button w-full flex justify-center gap-3">
                                     <svg class="w-6 h-6">
                                         <use xlink:href="#icon-power"></use>
                                     </svg>
