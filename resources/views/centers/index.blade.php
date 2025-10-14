@@ -26,7 +26,7 @@
                 </svg>
             </div>
         </div>
-        <p class="text-3xl text-left font-bold py-5">3</p>
+        <p class="text-3xl text-left font-bold py-5">{{ $centers->count() }}</p>
         
         <p class="font-bold text-[#335C68] text-md text-left">Centres registrats al sistema</p>
     </div>
@@ -57,11 +57,14 @@
             </div>
 
         </div>
-        <p class="text-3xl text-left font-bold py-5">2</p>
+        <p class="text-3xl text-left font-bold py-5">{{ $activeCenters }}</p>
         <p class="font-bold text-[#335C68] text-md text-left">Centres registrats al sistema</p>
-        <div>
-            <p>Barra de progreso</p>
-        </div>        
+        <div class="w-full h-5 mt-3 flex justify-between">
+            <div class="w-[87%] h-5 bg-[#D9D9D9] rounded-full">
+                <p style="width:{{ $activePercentage }}%;" class="h-5 bg-[#00A63E] rounded-full">&nbsp;</p>
+            </div>
+            <p class="text-sm text-green-600 font-bold">{{$activePercentage }}%</p>
+        </div>
     </div>
 
     <!-- Contenedor -->
@@ -75,9 +78,14 @@
             </div>
 
         </div>
-        <p class="text-3xl text-left font-bold py-5">1</p>        
+        <p class="text-3xl text-left font-bold py-5">{{ $inactiveCenters }}</p>        
         <p class="font-bold text-[#335C68] text-md text-left">Centres registrats al sistema</p>
-        <p>Barra de progreso</p>
+        <div class="w-full h-5 mt-3 flex justify-between">
+            <div class="w-[87%] h-5 bg-[#D9D9D9] rounded-full">
+                <p style="width:{{ $inactivePercentage }}%;" class="h-5 bg-red-600 rounded-full">&nbsp;</p>
+            </div>
+            <p class="text-sm text-red-600 font-bold">{{$inactivePercentage }}%</p>
+        </div>
     </div>
 </div>
 

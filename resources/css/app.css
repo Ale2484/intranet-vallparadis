@@ -51,6 +51,9 @@
     @apply bg-[#FE712B] transition-all
 }
 
+.btn-important{
+    @apply bg-red-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2;
+}
 
 
 .list-option{

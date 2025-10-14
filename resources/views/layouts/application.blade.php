@@ -11,7 +11,7 @@
     @include('partial.icons')
     <header class="fixed top-0 left-0 flex items-start w-full h-auto z-10">
         <!-- Menu lateral -->
-        <nav id="sidebar" class="bg-white h-screen p-5 shadow-sm flex flex-col items-start fixed top-0 left-0 z-10 w-20 transition-all duration-300">
+        <nav id="sidebar" class="bg-white h-screen p-5 shadow-sm flex flex-col items-start fixed top-0 left-0 z-10 w-20 transition-[width] duration-300">
             <ul class="flex flex-col gap-3 ">
                 <li class="mb-5 pt-1 flex items-end justify-end">
                     <button id="toggleMenu" class="p-2 group cursor-pointer">
@@ -89,11 +89,11 @@
                 </div>
 
                 <div class="flex flex-row items-center gap-5 ">
-                    <a href="#Perfil" class="w-14 h-14 rounded-full">
-                        <img src="#FotoPerfil" alt="#FotoPerfil">
+                    <a href="{{ route("users.show", auth()->user()->id) }}" class="flex items-center gap-5">
+                        <img src="#FotoPerfil" alt="#FotoPerfil" class="w-14 h-14 rounded-full">
+                        <p class="font-bold">{{ auth()->user()->name }}</p>
                     </a>
     
-                    <p class="font-bold">{{ auth()->user()->name }}</p>
                 </div>
 
             </div>

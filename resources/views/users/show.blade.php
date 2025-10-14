@@ -44,7 +44,7 @@
                         </div>
                         <!-- Fecha de inicio -->
                         <div class="flex items-center">
-                            <svg class="w-10 h-10 text-gray-400">
+                            <svg class="w-6 h-6 text-gray-400 mr-2">
                                 <use xlink:href="#icon-calendar"></use>
                             </svg>
                             <span class="text-gray-700">Inici:</span>
@@ -131,13 +131,28 @@
                     </div>
                 </div>
             </div>
-            <a href="{{ route('users.edit', $user) }}" 
-                class="flex gap-3 btn-primary w-1/4 self-end mt-5">
-                <svg class="w-6 h-6">
-                    <use xlink:href="#icon-square-pen"></use>
-                </svg>
-                Editar
-            </a>
+            <div class="flex items-center justify-end gap-5">
+                <a href="{{ route('users.edit', $user) }}" 
+                    class="flex gap-3 btn-primary w-44">
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-square-pen"></use>
+                    </svg>
+                    Editar
+                </a>
+
+                @if ($user->id == auth()->user()->id)
+                <form action="{{ route("users.logout") }}" method="post" class="w-auto">
+                    @csrf
+                    <button type="submit" class="btn-important w-44">
+                            <svg class="w-6 h-6">
+                                <use xlink:href="#icon-square-pen"></use>
+                            </svg>
+                            Tanca sessió
+                    </button>
+                </form>
+                @endif
+
+            </div>
         </div>
         <div class="w-1/4 flex flex-col justify-between">
             <!-- Seguridad y acceso -->
