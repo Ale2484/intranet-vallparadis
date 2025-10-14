@@ -5,13 +5,21 @@
     <!-- Header -->
     <div class="w-full flex flex-row mb-7 items-center justify-between">
         <h1 class="text-3xl font-bold title">Gestió de professionals:</h1>
-        <a href="{{ route('users.create') }}" 
-            class="btn-primary h-fit">
-            <svg class="w-6 h-6">
-                <use xlink:href="#icon-plus"></use>
-            </svg>
-            Nou professional
-        </a>
+        <div class="flex gap-3">
+            <select id="redirectSelect" class="bg-green-600 text-white rounded-lg p-2 font-bold" >
+                <option value="">Exportar dades a Excel</option>
+                <option value="{{ route('exportAllLockers') }}">Exportar taquillas</option>
+                <option value="{{ route('exportAllUniformity') }}">Exportar uniformitat</option>
+                <option value="{{ route('exportAllUniformityRenovation') }}">Exportar renovacio uniformitat</option>
+            </select>
+            <a href="{{ route('users.create') }}" 
+                class="btn-primary h-fit">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-plus"></use>
+                </svg>
+                Nou professional
+            </a>
+        </div>
     </div>
     <!-- Statistics Cards -->
     <div class="w-full flex flex-wrap flex-row items-stretch justify-between gap-5">
@@ -192,4 +200,5 @@
             @endforeach
         </div>
 </div>
+<script src="{{ asset('js/excel.js') }}"></script>
 @endsection

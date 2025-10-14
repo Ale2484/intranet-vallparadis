@@ -1,16 +1,25 @@
 @extends('layouts.application')
 
 @section('main')
-<div class="min-w-fit w-2/3 mx-auto">
+<div class="min-w-fit w-2/3 mx-auto flex flex-col mb-7">
     <!-- Header -->
     <div class="w-full flex flex-row mb-8 justify-between items-center">
-        <h1 class="text-3xl font-bold title">Detalls del professional</h1>
-        <a href="{{ route('users.index') }}" class="btn-secondary h-fit">
-            <svg class="w-6 h-6">
-                <use xlink:href="#icon-arrow-left"></use>
-            </svg>
-            Tornar
-        </a>
+        <div class="w-fit flex flex-col gap-5">
+            <a href="{{ route('users.index') }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-arrow-left"></use>
+                </svg>
+                Tornar a la gestió de professionals
+            </a>
+            <h1 class="text-3xl font-bold title mb-0!">Detalls del professional</h1>
+            <p class="text-[#AFAFAF]" >Informació completa del professional</p>
+        </div>
+        <select id="redirectSelect" class="bg-green-600 text-white rounded-lg p-2 font-bold" >
+            <option value="">Exportar dades a Excel</option>
+            <option value="{{ route('exportLocker', $user->id) }}">Exportar taquillas</option>
+            <option value="{{ route('exportUniformity', $user->id) }}">Exportar uniformitat</option>
+            <option value="{{ route('exportUniformityRenovation', $user->id) }}">Exportar renovacio uniformitat</option>
+        </select>
     </div>
 
     <div class="flex justify-between">
@@ -122,8 +131,15 @@
                     </div>
                 </div>
             </div>
+            <a href="{{ route('users.edit', $user) }}" 
+                class="flex gap-3 btn-primary w-1/4 self-end mt-5">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-square-pen"></use>
+                </svg>
+                Editar
+            </a>
         </div>
-        <div class="w-1/4">
+        <div class="w-1/4 flex flex-col justify-between">
             <!-- Seguridad y acceso -->
             <div class="shadow-md simple-container flex flex-col gap-3">
                 <div class="text-xl font-semibold principal-text-color flex items-center gap-2">
@@ -188,4 +204,5 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/excel.js') }}"></script>
 @endsection

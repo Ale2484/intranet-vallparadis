@@ -4,10 +4,28 @@ use App\Http\Controllers\CenterController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UniformityController;
+use App\Http\Controllers\UniformityRenovationController;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->name("dashboard");
+
+Route::get("/", function () {
+    return view("dashboard");
+});
+
+// Exportacion de taquillas
+Route::get("/exportAllLockers", [UserController::class, "exportAllLockers"])->name("exportAllLockers");
+Route::get("/exportLocker/{userId}", [UserController::class, "exportLocker"])->name("exportLocker");
+
+// Exportacion de uniformes
+Route::get("/exportAllUniformity", [UniformityController::class, "exportAllUniformity"])->name("exportAllUniformity");
+Route::get("/exportUniformity/{userId}", [UniformityController::class, "exportUniformity"])->name("exportUniformity");
+
+// Exportacion de uniformes
+Route::get("/exportAllUniformityRenovation", [UniformityRenovationController::class, "exportAllUniformityRenovation"])->name("exportAllUniformityRenovation");
+Route::get("/exportUniformityRenovation/{userId}", [UniformityRenovationController::class, "exportUniformityRenovation"])->name("exportUniformityRenovation");
+
+
+
 
 // Al login solo se puede acceder si el usuario no ha iniciado session
 Route::middleware("guest")->group(function () {
@@ -16,6 +34,9 @@ Route::middleware("guest")->group(function () {
 });
 
 Route::middleware("auth")->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name("dashboard");
     //Usuarios
     Route::resource("users", UserController::class);
     Route::patch('/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate');
