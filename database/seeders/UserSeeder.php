@@ -50,6 +50,30 @@ class UserSeeder extends Seeder
                 "password" => Hash::make("123456"),
                 'locker' => "T-123456",
                 'locker_password' => '1234'
+            ],
+            [
+                "id" => 4,
+                'name' => 'Test3',
+                'email' => 'd@gmail.com',
+                "phone" => "000000000",
+                "role" => "professional",
+                "center" => "1",
+                "status" => "active",
+                "password" => Hash::make("123456"),
+                'locker' => "T-123456",
+                'locker_password' => '1234'
+            ],
+            [
+                "id" => 5,
+                'name' => 'Test3',
+                'email' => 'e@gmail.com',
+                "phone" => "000000000",
+                "role" => "professional",
+                "center" => "1",
+                "status" => "active",
+                "password" => Hash::make("123456"),
+                'locker' => "T-123456",
+                'locker_password' => '1234'
             ]
 
         ]);
