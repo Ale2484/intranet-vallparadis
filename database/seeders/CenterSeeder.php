@@ -18,7 +18,7 @@ class CenterSeeder extends Seeder
                 [
                     "id" => 1,
                     "name" => "Centro1",
-                    "email" => "e",
+                    "email" => "e@gmail.com",
                     "address" => "Calle 1",
                     "phone" => "000000000",
                     "created_at" => now(),
@@ -27,7 +27,7 @@ class CenterSeeder extends Seeder
                 [
                     "id" => 2,
                     "name" => "Centro2",
-                    "email" => "a",
+                    "email" => "a@gmail.com",
                     "address" => "Calle 1",
                     "phone" => "000000000",
                     "created_at" => now(),
@@ -36,7 +36,7 @@ class CenterSeeder extends Seeder
                 [
                     "id" => 3,
                     "name" => "Centro3",
-                    "email" => "b",
+                    "email" => "b@gmail.com",
                     "address" => "Calle 1",
                     "phone" => "000000000",
                     "created_at" => now(),
@@ -45,7 +45,7 @@ class CenterSeeder extends Seeder
                 [
                     "id" => 4,
                     "name" => "Centro4",
-                    "email" => "c",
+                    "email" => "c@gmail.com",
                     "address" => "Calle 1",
                     "phone" => "000000000",
                     "created_at" => now(),
@@ -54,7 +54,7 @@ class CenterSeeder extends Seeder
                 [
                     "id" => 5,
                     "name" => "Centro5",
-                    "email" => "d",
+                    "email" => "d@gmail.com",
                     "address" => "Calle 1",
                     "phone" => "000000000",
                     "created_at" => now(),

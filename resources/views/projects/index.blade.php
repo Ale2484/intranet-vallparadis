@@ -117,7 +117,7 @@
                         @endif
                         <div class="flex flex-col items-start gap-2">
                             <a href="{{ route('projects.show', $project->id) }}" class="principal-text-color font-bold card-title">{{ $project->name }}</a>
-                            <p class="p-1 text-white w-16 text-center rounded-lg {{ $project->is_active ? "bg-green-600" : "bg-red-600" }}"> {{ $project->is_active ? "Actiu" : "Inactiu" }}</p>
+                            <p class="p-1 text-white w-16 text-center rounded-lg {{ $project->is_active ? 'bg-green-600' : 'bg-red-600' }}"> {{ $project->is_active ? "Actiu" : "Inactiu" }}</p>
                         </div>
                     </div>
                     @if($project->type_label == "Projecte")
@@ -136,31 +136,31 @@
                         <svg class="w-7 h-7">
                             <use xlink:href="#icon-folder"></use>
                         </svg>
-                        <span class="ml-2">{{ $project->userRelation->name ?? 'Usuari no assignat' }}</span>
+                        <span class="ml-2 w-[600px]">{{ $project->userRelation->name ?? 'Usuari no assignat' }}</span>
                     </div>
                     <div class="flex items-center">
                         <svg class="w-7 h-7">
                             <use xlink:href="#icon-user"></use>
                         </svg>
-                        <span class="ml-2">{{ $project->userRelation->email ?? 'Usuari no assignat' }}</span>
+                        <span class="ml-2 w-[600px]">{{ $project->userRelation->email ?? 'Usuari no assignat' }}</span>
                     </div>
                     <div class="flex items-center">
                         <svg class="w-7 h-7">
                             <use xlink:href="#icon-calendar"></use>
                         </svg>
-                        <p class="ml-2 text-sm">{{ $project->description }}</p>
+                        <p class="ml-2 w-[600px] text-sm">{{ $project->description }}</p>
                     </div>
                     <div class="flex items-center">
                         <svg class="w-7 h-7">
                             <use xlink:href="#icon-eye"></use>
                         </svg>
-                        <p class="ml-2 text-sm">{{ $project->observations }}</p>
+                        <p class="ml-2 w-[600px] text-sm">{{ $project->observations }}</p>
                     </div>
                     <div class="flex items-center">
                         <svg class="w-7 h-7">
                             <use xlink:href="#icon-document"></use>
                         </svg>
-                        <p class="ml-2 text-sm">{{ $project->documents_count }} Documents adjunts</p>
+                        <p class="ml-2 w-[600px] text-sm">{{ $project->documents_count }} Documents adjunts</p>
                     </div>
                 </div>
             </div>
