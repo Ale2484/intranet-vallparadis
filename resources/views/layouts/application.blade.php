@@ -89,11 +89,11 @@
                 </div>
 
                 <div class="flex flex-row items-center gap-5 ">
-                    <a href="#Perfil" class="w-14 h-14 rounded-full">
-                        <img src="#FotoPerfil" alt="#FotoPerfil">
+                    <a href="{{ route("users.show", auth()->user()->id) }}" class="flex items-center gap-5">
+                        <img src="#FotoPerfil" alt="#FotoPerfil" class="w-14 h-14 rounded-full">
+                        <p class="font-bold">{{ auth()->user()->name }}</p>
                     </a>
     
-                    <p class="font-bold">{{ auth()->user()->name }}</p>
                 </div>
 
             </div>

@@ -141,4 +141,11 @@ class UserController extends Controller
             Log::error('no se ha encontrado la taquilla');
         }
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        return redirect()->route("login");
+    }
 }
