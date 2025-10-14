@@ -57,7 +57,6 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        Log::info($user->centerRelation->name);
         return view("users.show", compact("user"));
     }
 
@@ -128,7 +127,7 @@ class UserController extends Controller
     {
         $users = User::all()->select("name","locker");
 
-        return Excel::download(new UsersExport($users), 'usuarios.xlsx');
+        return Excel::download(new UsersExport($users), 'taquillas.xlsx');
         
     }
 
@@ -137,7 +136,7 @@ class UserController extends Controller
         $users = User::select("name","locker")->where('id', $userId)->get();
 
         if (!($users == "[]")){
-            return Excel::download(new UsersExport($users), 'usuaro.xlsx');
+            return Excel::download(new UsersExport($users), 'taquilla.xlsx');
         } else {
             Log::error('no se ha encontrado la taquilla');
         }
