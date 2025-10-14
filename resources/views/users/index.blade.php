@@ -135,6 +135,12 @@
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-center"></use>
                                 </svg>
+                                <span class="ml-2">{{ $user->centerRelation->name }}</span>
+                            </div>
+                            <div class="flex items-center text-[#011020]">
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-role"></use>
+                                </svg>
                                 <span class="ml-2">{{ $user->role_label }}</span>
                             </div>
                             <div class="flex items-center text-[#011020]">

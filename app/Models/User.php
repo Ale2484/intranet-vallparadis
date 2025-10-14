@@ -39,7 +39,7 @@ class User extends Authenticatable
     }
 
     // Relación con center
-    public function center()
+    public function centerRelation()
     {
         return $this->belongsTo(Center::class, 'center');
     }

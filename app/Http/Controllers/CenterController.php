@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Center;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CenterController extends Controller
 {
@@ -44,7 +45,9 @@ class CenterController extends Controller
         $validated = $request->validate([
             "name" => "required|string",
             "address" => "required|string",
-            "phone"=> "required|max:9"
+            "phone"=> "required|max:9",
+            "email" => "nullable|email|max:255",
+            "is_active" => "required|boolean"
         ]);
 
         Center::create($validated);

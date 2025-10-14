@@ -145,7 +145,7 @@
                     @csrf
                     <button type="submit" class="btn-important w-44">
                             <svg class="w-6 h-6">
-                                <use xlink:href="#icon-square-pen"></use>
+                                <use xlink:href="#icon-logout"></use>
                             </svg>
                             Tanca sessió
                     </button>
