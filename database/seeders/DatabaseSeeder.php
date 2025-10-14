@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             CenterSeeder::class,
             UserSeeder::class,
             UniformitySeeder::class,
+            ProjectSeeder::class,
             UniformityRenovationSeeder::class
 
         ]);

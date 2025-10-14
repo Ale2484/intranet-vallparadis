@@ -15,14 +15,52 @@ class CenterSeeder extends Seeder
     public function run(): void
     {
         DB::table("centers")->insert([
-            [
-                "id" => 1,
-                "name" => "Centro1",
-                "address" => "Calle 1",
-                "phone" => "000000000",
-                "created_at" => now(),
-                "updated_at" => now()
+                [
+                    "id" => 1,
+                    "name" => "Centro1",
+                    "email" => "e@gmail.com",
+                    "address" => "Calle 1",
+                    "phone" => "000000000",
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 2,
+                    "name" => "Centro2",
+                    "email" => "a@gmail.com",
+                    "address" => "Calle 1",
+                    "phone" => "000000000",
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 3,
+                    "name" => "Centro3",
+                    "email" => "b@gmail.com",
+                    "address" => "Calle 1",
+                    "phone" => "000000000",
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 4,
+                    "name" => "Centro4",
+                    "email" => "c@gmail.com",
+                    "address" => "Calle 1",
+                    "phone" => "000000000",
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 5,
+                    "name" => "Centro5",
+                    "email" => "d@gmail.com",
+                    "address" => "Calle 1",
+                    "phone" => "000000000",
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
             ]
-            ]);
+        );
     }
 }

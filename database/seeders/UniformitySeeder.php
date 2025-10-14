@@ -24,7 +24,48 @@ class UniformitySeeder extends Seeder
                 "created_at" => now(),
                 "updated_at" => now()
 
-            ]
+            ],
+            [
+                "user_delivery" => 3,
+                "user" => 2,
+                "shirt" => "L",
+                "pants" => "XL",
+                "shoes" => 40.2,
+                "created_at" => now(),
+                "updated_at" => now()
+
+            ],
+            [
+                "user_delivery" => 4,
+                "user" => 3,
+                "shirt" => "L",
+                "pants" => "XL",
+                "shoes" => 40.2,
+                "created_at" => now(),
+                "updated_at" => now()
+
+            ],
+            [
+                "user_delivery" => 5,
+                "user" => 4,
+                "shirt" => "L",
+                "pants" => "XL",
+                "shoes" => 40.2,
+                "created_at" => now(),
+                "updated_at" => now()
+
+            ],
+            [
+                "user_delivery" => 1,
+                "user" => 5,
+                "shirt" => "L",
+                "pants" => "XL",
+                "shoes" => 40.2,
+                "created_at" => now(),
+                "updated_at" => now()
+
+            ],            
+
             ]);
     }
 }
