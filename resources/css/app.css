@@ -104,6 +104,24 @@
     @apply border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF];
 } 
 
+/* Notifications */
+.notification {
+    @apply fixed top-20 right-5 p-4 rounded-lg text-[16px] shadow-lg opacity-0 transform translate-x-full transition-all duration-500;
+}
+
+.notification.success {
+    @apply bg-green-100 text-green-600;
+}
+
+.notification.error {
+    @apply bg-red-600 text-white;
+}
+
+
+.notification.show {
+    @apply flex items-center opacity-100 transform translate-x-0;
+}
+
 @media(min-width: 768px) {
     
 }
