@@ -25,7 +25,8 @@ class UserSeeder extends Seeder
                 "status" => "active",
                 "password" => Hash::make("123456"),
                 'locker' => "T-123458",
-                'locker_password' => '1234' 
+                'locker_password' => '1234',
+                'created_at' => now(),
             ],
             [
                 "id" => 2,
@@ -37,7 +38,8 @@ class UserSeeder extends Seeder
                 "status" => "active",
                 "password" => Hash::make("123456"),
                 'locker' => "T-123457",
-                'locker_password' => '1234'
+                'locker_password' => '1234',
+                'created_at' => now(),
             ],
             [
                 "id" => 3,
@@ -49,7 +51,8 @@ class UserSeeder extends Seeder
                 "status" => "active",
                 "password" => Hash::make("123456"),
                 'locker' => "T-123456",
-                'locker_password' => '1234'
+                'locker_password' => '1234',
+                'created_at' => now(),
             ],
             [
                 "id" => 4,
@@ -61,7 +64,8 @@ class UserSeeder extends Seeder
                 "status" => "active",
                 "password" => Hash::make("123456"),
                 'locker' => "T-123456",
-                'locker_password' => '1234'
+                'locker_password' => '1234',
+                'created_at' => now(),
             ],
             [
                 "id" => 5,
@@ -73,7 +77,8 @@ class UserSeeder extends Seeder
                 "status" => "active",
                 "password" => Hash::make("123456"),
                 'locker' => "T-123456",
-                'locker_password' => '1234'
+                'locker_password' => '1234',
+                'created_at' => now(),
             ]
 
         ]);

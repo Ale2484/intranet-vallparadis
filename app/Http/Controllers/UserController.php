@@ -57,6 +57,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
+        Log::info($user->centerRelation->name);
         return view("users.show", compact("user"));
     }
 
