@@ -31,7 +31,7 @@
           <select name="center" id="center" class="input-field" required>
             <option value="" selected hidden>Selecciona un centre</option>
             @foreach ($centers as $center)
-              <option value="{{ $center->id }}">{{ $center->name }}</option>
+              <option value="{{ $center->id }}" {{ old("center") == $center->id ? "selected" : "" }}>{{ $center->name }}</option>
             @endforeach
           </select>
   
@@ -46,7 +46,7 @@
               <p class="font-bold principal-text-color">Correu electronic * </p>
             </div>
   
-            <input type="email" name="email" id="email" placeholder="Elteucorreu@gmail.com" required class="input-field">
+            <input type="email" name="email" id="email" placeholder="Elteucorreu@gmail.com" required value="{{ old("email") }}" class="input-field">
           </div>
   
           <div class="flex flex-col gap-3">

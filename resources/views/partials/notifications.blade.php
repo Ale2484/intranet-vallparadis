@@ -1,4 +1,4 @@
-<div id="notification" class="items-center gap-5 notification hidden"
+<div id="notification" class="flex items-center gap-5 notification hidden"
     data-message="{{ session('success') ?? session('error') }}"
     data-type="{{ session('success') ? 'success' : (session('error') ? 'error' : '') }}">
 
