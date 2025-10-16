@@ -21,7 +21,7 @@
                     </button>
                 </li>
                 <li>
-                    <a href="{{ route("dashboard") }}" class="menu-option">
+                    <a href="{{ route("dashboard") }}" class="{{ request()->routeIs('dashboard') ? "menu-option-selected" : "menu-option" }}">
                         <svg class="w-7 h-7">
                             <use xlink:href="#icon-house"></use>
                         </svg>
@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("centers.index") }}" class="menu-option">
+                    <a href="{{ route("centers.index") }}" class="{{ request()->is('centers*') ? "menu-option-selected" : "menu-option" }}">
                         <svg class="w-7 h-7">
                             <use xlink:href="#icon-center"></use>
                         </svg>
@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("users.index") }}" class="menu-option">
+                    <a href="{{ route("users.index") }}" class="{{ request()->is('users*') ? "menu-option-selected" : "menu-option" }}">
                         <svg class="w-7 h-7">
                             <use xlink:href="#icon-users"></use>
                         </svg>
@@ -45,7 +45,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("projects.index") }}" class="menu-option">
+                    <a href="{{ route("projects.index") }}" class="{{ request()->is('projects*') ? "menu-option-selected" : "menu-option" }}">
                     <svg class="w-7 h-7">
                         <use xlink:href="#icon-folder"></use>
                     </svg>
