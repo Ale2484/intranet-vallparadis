@@ -55,7 +55,12 @@
             </div>
             <p class="text-3xl text-left font-bold py-5">{{ $activeProjects }}</p>
             <p class="font-bold text-[#335C68] text-md text-left">Registrats al centre</p>
-            <p>Barra de progreso</p>
+            <div class="w-full h-5 mt-3 flex justify-between">
+                <div class="w-[87%] h-5 bg-[#D9D9D9] rounded-full">
+                    <p style="width:{{ ($activeProjects/$totalProjects)*100 }}%;" class="h-5 bg-[#00A63E] rounded-full">&nbsp;</p>
+                </div>
+                <p class="text-sm text-green-600 font-bold">{{($activeProjects/$totalProjects)*100 }}%</p>
+            </div>
         </div>
         
         <!-- Inactius -->
@@ -70,7 +75,12 @@
             </div>
             <p class="text-3xl text-left font-bold py-5">{{ $inactiveProjects }}</p>
             <p class="font-bold text-[#335C68] text-md text-left">Registrats al centre</p>
-            <p>Barra de progreso</p>
+            <div class="w-full h-5 mt-3 flex justify-between">
+                <div class="w-[87%] h-5 bg-[#D9D9D9] rounded-full">
+                    <p style="width:{{ ($inactiveProjects/$totalProjects)*100 }}%;" class="h-5 bg-red-600 rounded-full">&nbsp;</p>
+                </div>
+                <p class="text-sm text-red-600 font-bold">{{($inactiveProjects/$totalProjects)*100 }}%</p>
+            </div>
         </div>
     </div>
 
@@ -186,7 +196,7 @@
                             @csrf
                             @method('PATCH')
                             <button type="submit" 
-                                    class="deactivate-button w-full flex justify-center h-full items-center">
+                                    class="deactivate-button w-full flex justify-center h-full items-center gap-3">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-power"></use>
                                 </svg>
@@ -198,7 +208,7 @@
                             @csrf
                             @method('PATCH')
                             <button type="submit" 
-                                    class="activate-button w-full flex justify-center h-full items-center">
+                                    class="activate-button w-full flex justify-center h-full items-center gap-3">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-power"></use>
                                 </svg>

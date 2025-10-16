@@ -63,7 +63,12 @@
             </div>
             <p class="text-3xl text-left font-bold py-5">{{ $activeUsers }}</p>
             <p class="font-bold text-[#335C68] text-md text-left">Professionals registrats al centre</p>
-            <p>Barra de porcentaje</p>
+            <div class="w-full h-5 mt-3 flex justify-between">
+                <div class="w-[87%] h-5 bg-[#D9D9D9] rounded-full">
+                    <p style="width:{{ ($activeUsers/$totalUsers)*100 }}%;" class="h-5 bg-[#00A63E] rounded-full">&nbsp;</p>
+                </div>
+                <p class="text-sm text-green-600 font-bold">{{($activeUsers/$totalUsers)*100 }}%</p>
+            </div>
         </div>
         
         
@@ -79,7 +84,12 @@
             </div>
             <p class="text-3xl text-left font-bold py-5">{{ $inactiveUsers }}</p>
             <p class="font-bold text-[#335C68] text-md text-left">Professionals registrats al centre</p>
-            <p>Barra de porcentaje</p>
+            <div class="w-full h-5 mt-3 flex justify-between">
+                <div class="w-[87%] h-5 bg-[#D9D9D9] rounded-full">
+                    <p style="width:{{ ($inactiveUsers/$totalUsers)*100 }}%;" class="h-5 bg-red-600 rounded-full">&nbsp;</p>
+                </div>
+                <p class="text-sm text-red-600 font-bold">{{($inactiveUsers/$totalUsers)*100 }}%</p>
+            </div>
         </div>
     </div>
 
@@ -135,6 +145,12 @@
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-center"></use>
                                 </svg>
+                                <span class="ml-2">{{ $user->centerRelation->name }}</span>
+                            </div>
+                            <div class="flex items-center text-[#011020]">
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-role"></use>
+                                </svg>
                                 <span class="ml-2">{{ $user->role_label }}</span>
                             </div>
                             <div class="flex items-center text-[#011020]">
@@ -175,7 +191,7 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="deactivate-button w-full flex justify-center">
+                                        class="deactivate-button w-full flex justify-center gap-3">
                                     <svg class="w-6 h-6">
                                         <use xlink:href="#icon-power"></use>
                                     </svg>
@@ -187,7 +203,7 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="activate-button w-full flex justify-center">
+                                        class="activate-button w-full flex justify-center gap-3">
                                     <svg class="w-6 h-6">
                                         <use xlink:href="#icon-power"></use>
                                     </svg>

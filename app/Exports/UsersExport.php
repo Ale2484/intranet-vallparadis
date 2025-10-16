@@ -29,19 +29,4 @@ class UsersExport implements FromCollection, WithHeadings, WithStyles
             'Taquilla',     // Corresponde a 'locker'
         ];
     }
-
-    // Estilos
-    public function styles(Worksheet $sheet)
-    {
-        return [
-            // Aplica estilo a la primera fila (fila 1)
-            1 => [
-                'font' => ['bold' => true, 'color' => ['argb' => 'FFF6E3']], // Letras blancas
-                'fill' => [
-                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
-                    'startColor' => ['argb' => 'FF7E13'], // color fondo
-                ],
-            ],
-        ];
-    }
 }
