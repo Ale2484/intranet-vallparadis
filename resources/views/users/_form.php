@@ -1,6 +1,8 @@
-<form action="{{ route('users.update', $user) }}" method="POST">
+<form action="{{ $action }}" method="POST">
     @csrf
-    @method('PUT')
+    @isset($method)
+        @method($method)
+    @endisset
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Información Básica -->
@@ -159,7 +161,7 @@
             Cancel·lar
         </a>
         <button type="submit" class="btn-primary">
-            Actualitzar professional
+            {{ $submitText }}
         </button>
     </div>
 </form>
