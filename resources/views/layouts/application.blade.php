@@ -8,15 +8,15 @@
 </head>
 
 <body class="bg-[#FFF9F6]">
-    @include('partial.icons')
+    @include('partials.icons')
     <header class="fixed top-0 left-0 flex items-start w-full h-auto z-10">
         <!-- Menu lateral -->
         <nav id="sidebar" class="bg-white h-screen p-5 shadow-sm flex flex-col items-start fixed top-0 left-0 z-10 w-20 transition-[width] duration-300">
             <ul class="flex flex-col gap-3 ">
                 <li class="mb-5 pt-1 flex items-end justify-end">
                     <button id="toggleMenu" class="p-2 group cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#0F172A" class="size-7 group-hover:stroke-[#FF7E13]">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                        <svg class="w-7 h-7 text-[#0F172A]">
+                            <use xlink:href="#icon-no-line-arrow"></use>
                         </svg>
                     </button>
                 </li>
@@ -99,6 +99,7 @@
             </div>
         </div>
     </header>
+    @include("partials.notifications")
     <main class="pr-24 pl-36 pt-24">
         @yield("main")
     </main>
@@ -107,5 +108,6 @@
     </footer>
 </body>
 @vite("resources/js/toggleMenu.js")
+@vite("resources/js/notifications.js")
 
 </html>

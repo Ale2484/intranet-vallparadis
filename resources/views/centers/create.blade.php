@@ -19,7 +19,7 @@
     </div>
     <!-- Formulario -->
     <div class="simple-container w-[60%] text-[#0F172A]">
-        @include('centers._form', [
+        @include('centers.form', [
             'action' => route('centers.store', $center),
             'method' => 'POST',
             'center' => $center,
