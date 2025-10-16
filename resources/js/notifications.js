@@ -1,9 +1,8 @@
-setTimeout(() => {
+document.addEventListener('DOMContentLoaded', () => {
     const notification = document.getElementById('notification');
     if (notification) {
         const message = notification.getAttribute('data-message');
         const type = notification.getAttribute('data-type');
-        console.log("El tipo es: " , type);
         if (message) {
             const messageElement = document.getElementById('notification-message');
             const iconUse = document.getElementById('notification-icon');
@@ -23,7 +22,7 @@ setTimeout(() => {
     
             setTimeout(() => {
                 notification.classList.add('show');
-            }, 10);
+            }, 20);
     
             setTimeout(() => {
                 notification.classList.remove('show');
@@ -34,4 +33,16 @@ setTimeout(() => {
         }
     }
 
-}, 0);
+    // Cerrar notificacion
+    const closeNotficacion = document.getElementById('notification-close');
+    
+    if(closeNotficacion){
+        closeNotficacion.addEventListener('click', () =>  {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, 500);
+        })
+    }
+
+});
