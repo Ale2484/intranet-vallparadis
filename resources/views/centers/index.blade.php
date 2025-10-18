@@ -1,10 +1,6 @@
 @extends("layouts.application")
 
 @section("main")
-@if (session("success"))
-    <p>{{ session("success") }}</p>
-@endif
-
 <div class="flex items-center justify-between mb-7">
     <h1 class="title">Gestió de centres: </h1>
 

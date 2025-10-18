@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  @vite('resources/css/app.css')
   <title>Login - Vallparadis</title>
 </head>
 <body class="bg-[#FFF9F6]">
-    @vite('resources/css/app.css')
-    @include('partial.icons')
+  @include('partials.icons')
+  @include('partials.notifications')
+
 
   <div class="flex flex-col items-center justify-center h-screen">
     <form action="{{ route("login") }}" method="post" class="bg-white rounded-3xl border-1 border-[#AFAFAF] p-10 shadow-2xl w-[30%] min-w-[300px] max-w-[500px]">
@@ -29,7 +31,7 @@
           <select name="center" id="center" class="input-field" required>
             <option value="" selected hidden>Selecciona un centre</option>
             @foreach ($centers as $center)
-              <option value="{{ $center->id }}">{{ $center->name }}</option>
+              <option value="{{ $center->id }}" {{ old("center") == $center->id ? "selected" : "" }}>{{ $center->name }}</option>
             @endforeach
           </select>
   
@@ -44,7 +46,7 @@
               <p class="font-bold principal-text-color">Correu electronic * </p>
             </div>
   
-            <input type="email" name="email" id="email" placeholder="Elteucorreu@gmail.com" required class="input-field">
+            <input type="email" name="email" id="email" placeholder="Elteucorreu@gmail.com" required value="{{ old("email") }}" class="input-field">
           </div>
   
           <div class="flex flex-col gap-3">
@@ -71,4 +73,6 @@
     </form>
   </div>
 </body>
+@vite("resources/js/notifications.js")
+
 </html>

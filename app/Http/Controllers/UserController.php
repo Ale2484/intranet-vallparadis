@@ -118,9 +118,9 @@ class UserController extends Controller
         ]);
 
         if(Auth::attempt(["email" => $request->email, "password" => $request->password])){
-            return redirect()->route("dashboard");
+            return redirect()->route("dashboard")->with('success', 'Sessió iniciada correctament');
         } else{
-            return redirect()->route("login")->withErrors(["email" => "Las credenciales son incorrectas"]);
+            return back()->with("error", "Usuari o contrasenya incorrectes")->withInput();
         }
     }
 

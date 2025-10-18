@@ -1,7 +1,7 @@
 @extends('layouts.application')
 
 @section('main')
-<div class="">
+<div>
     <!-- Header -->
     <div class="w-full flex flex-row mb-7 items-center justify-between">
         <h1 class="text-3xl font-bold title">Gestió de professionals:</h1>
