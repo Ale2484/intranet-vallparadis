@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -29,8 +30,8 @@ class UserController extends Controller
 
     public function create()
     {
-        $centers = Center::all(); // Obtener todos los centros
-        return view('users.create', compact('centers'));
+        $user = new User();
+        return view('users.create', compact('user'));
     }
 
     public function store(Request $request)
@@ -47,7 +48,7 @@ class UserController extends Controller
         ]);
         $validated["center"]=1;
 
-        $validated['password'] = bcrypt($validated['password']);
+        $validated['password'] = Hash::make($validated['password']);
         $validated['is_active'] = true;
 
         User::create($validated);
