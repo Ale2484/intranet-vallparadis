@@ -18,7 +18,7 @@
 
     <!-- Form -->
     <div class="shadow-md simple-container">
-        @include('users._form', [
+        @include('users.form', [
             'action' => route('users.update', $user),
             'method' => 'PATCH',
             'user' => $user,

@@ -31,10 +31,11 @@ class ProjectController extends Controller
 
     public function create()
     {
+        $project = new Project();
         $centers = Center::all();
         // $users = User::active()->get();
         $users = User::where("id",1)->get();
-        return view('projects.create', compact('centers', 'users'));
+        return view('projects.create', compact('centers', 'users', 'project'));
     }
 
     public function store(Request $request)
