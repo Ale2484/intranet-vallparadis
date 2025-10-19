@@ -1,5 +1,5 @@
-@extends('layouts.application')
-
+@extends('layouts.app')
+@section("title", "Nou usuari")
 @section('main')
 <div class="max-w-4xl mx-auto">
     <!-- Header -->

@@ -1,4 +1,5 @@
-@extends('layouts.application')
+@extends('layouts.app')
+@section("title", "Edita l'usuari")
 
 @section('main')
 <div class="max-w-4xl mx-auto">

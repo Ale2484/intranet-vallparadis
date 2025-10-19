@@ -1,4 +1,4 @@
-@extends("layouts.application")
+@extends("layouts.app")
 @section("main")
 <div class="w-full flex flex-wrap flex-row justify-between items-center">
     <!-- Contenedor -->

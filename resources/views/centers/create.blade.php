@@ -1,5 +1,5 @@
-@extends("layouts.application")
-
+@extends("layouts.app")
+@section("title", "Nou centre")
 @section("main")
 <div class="w-full flex flex-col items-center justify-center">
     
