@@ -1,5 +1,5 @@
-@extends('layouts.application')
-
+@extends('layouts.app')
+@section("title", "Veure els projectes/comisions")
 @section('main')
 <div>
     <!-- Header -->

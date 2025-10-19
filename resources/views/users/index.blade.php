@@ -1,5 +1,5 @@
-@extends('layouts.application')
-
+@extends('layouts.app')
+@section("title", "Veure els usuaris")
 @section('main')
 <div>
     <!-- Header -->

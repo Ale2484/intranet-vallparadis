@@ -1,5 +1,5 @@
-@extends('layouts.application')
-
+@extends('layouts.app')
+@section("title", "Mostrar l'usuari")
 @section('main')
 <div class="min-w-fit w-2/3 mx-auto flex flex-col mb-7">
     <!-- Header -->
