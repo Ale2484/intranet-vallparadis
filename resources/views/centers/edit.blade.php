@@ -13,12 +13,12 @@
             Tornar a la gestió de centres
         </a>
 
-        <h1 class="title">Editar el centre</h1>
+        <h1 class="text-3xl font-bold text-[#011020]">Editar el centre</h1>
 
         <p class="text-[#AFAFAF] mb-7">Edita el centre del sistema</p>
     </div>
     <!-- Formulario -->
-    <div class="simple-container w-[60%] text-[#0F172A]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] text-[#0F172A]">
         @include('centers.form', [
             'action' => route('centers.update', $center),
             'method' => 'PATCH',

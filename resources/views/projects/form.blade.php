@@ -7,7 +7,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Información Básica -->
         <div class="md:col-span-2">
-            <h2 class="text-xl font-semibold principal-text-color mb-4">Informació bàsica</h2>
+            <h2 class="text-xl font-semibold text-[#012F4A] mb-4">Informació bàsica</h2>
         </div>
 
         <!-- Nombre -->
@@ -119,7 +119,7 @@
 
     <!-- Nuevos Documentos -->
     <div class="md:col-span-2 mt-4 document-upload-container">
-        <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+        <div class="text-xl font-semibold text-[#012F4A] mb-4 flex items-center gap-2">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-document"></use>
             </svg>
@@ -174,10 +174,10 @@
 
     <!-- Botones -->
     <div class="flex flex-row gap-4 justify-end mt-8 pt-6 border-t border-gray-200">
-        <a href="{{ route('projects.index') }}" class="btn-secondary">
+        <a href="{{ route('projects.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
             Cancel·lar
         </a>
-        <button type="submit" class="btn-primary">
+        <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
             {{ $submitText }}
         </button>
     </div>

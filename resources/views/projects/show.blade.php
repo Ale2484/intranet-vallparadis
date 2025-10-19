@@ -11,15 +11,15 @@
                 </svg>
                 Tornar a la gestió de projectes/comissions
             </a>
-            <h1 class="text-3xl font-bold title mb-2">Informació completa {{ $project->type_label == "del projecte" ? "projecte" : "de la comissió" }}  {{ $project->name }}</h1>
+            <h1 class="text-3xl font-bold text-[#011020] mb-2">Informació completa {{ $project->type_label == "del projecte" ? "projecte" : "de la comissió" }}  {{ $project->name }}</h1>
             <div class="flex gap-2 items-center">
                 <p>Informació completa del projecte/comissio</p>
                 @if($project->type_label == "Projecte")
-                    <div class="is-active-button w-20">
+                    <div class="border-1 p-1 text-center bg-green-200 text-green-600 border-green-600 rounded-lg w-20">
                         Projecte
                     </div>
                 @elseif($project->type_label == "Comissió")
-                    <div class="is-commission-button w-20">
+                    <div class="border-1 bg-[#FF7033]/17 text-[#FF7033] border-[#FF7033] rounded-lg p-1 text-center w-20">
                         Comissió
                     </div>
                 @endif
@@ -30,11 +30,11 @@
     <div class="flex flex-col gap-5 w-full">
         <div class="w-full flex justify-beetwen gap-10">
             <!-- Tarjeta de información básica -->
-            <div class="shadow-md simple-container flex-1">
+            <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-1">
                 <div>
                     <!-- Usuario asignado -->
                     <div class="flex flex-col gap-3 mb-5">
-                        <div class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
+                        <div class="text-lg font-semibold text-[#012F4A] mb-3 flex items-center gap-2">
                             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-user"></use>
@@ -54,11 +54,11 @@
                     </div>
                 </div>
             </div>
-            <div class="shadow-md simple-container flex-1">
+            <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-1">
                 <div class="">
                     <!-- Fecha inicio -->
                     <div class="flex flex-col gap-3 mb-5">
-                        <div class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
+                        <div class="text-lg font-semibold text-[#012F4A] mb-3 flex items-center gap-2">
                             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-calendar"></use>
@@ -71,11 +71,11 @@
                     </div>
                 </div>
             </div>
-            <div class="shadow-md simple-container flex-1">
+            <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-1">
                 <div class="">
                     <!-- Documentos adjuntos -->
                     <div class="flex flex-col gap-3 mb-3">
-                        <div class="text-lg font-semibold principal-text-color mb-3 flex items-center gap-2">
+                        <div class="text-lg font-semibold text-[#012F4A] mb-3 flex items-center gap-2">
                             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-document"></use>
@@ -91,8 +91,8 @@
         </div>
 
         <!-- Descripción -->
-        <div class="shadow-md simple-container">
-            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+            <div class="text-xl font-semibold text-[#012F4A] mb-4 flex items-center gap-2">
                 <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-desc"></use>
@@ -104,8 +104,8 @@
         </div>
 
         <!-- Observaciones -->
-        <div class="shadow-md simple-container">
-            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+            <div class="text-xl font-semibold text-[#012F4A] mb-4 flex items-center gap-2">
                 <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-eye"></use>
@@ -118,8 +118,8 @@
 
         <!-- Documentos adjuntos -->
         @if($project->documents_count > 0)
-        <div class="shadow-md simple-container">
-            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+            <div class="text-xl font-semibold text-[#012F4A] mb-4 flex items-center gap-2">
                 <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-folder"></use>
@@ -130,7 +130,7 @@
             
             <div class="space-y-4">
                 @foreach($project->documents as $document)
-                <div class="flex items-center justify-between p-4 shadow-md simple-container">
+                <div class="flex items-center justify-between p-4 shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
                     <div class="flex items-center gap-4 flex-1">
                         <div class="flex items-center justify-center w-12 h-12 rounded-lg">
                             <svg class="w-6 h-6 text-gray-600">
@@ -159,8 +159,8 @@
             </div>
         </div>
         @else
-        <div class="shadow-md simple-container">
-            <div class="text-xl font-semibold principal-text-color mb-4 flex items-center gap-2">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+            <div class="text-xl font-semibold text-[#012F4A] mb-4 flex items-center gap-2">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-document"></use>
                 </svg>
@@ -175,11 +175,11 @@
         </div>
         @endif
         <div class="w-full flex justify-end gap-3">
-            <a href="{{ route('projects.index') }}" class="btn-secondary">
+            <a href="{{ route('projects.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
                 Cancel·lar
             </a>
             <a href="{{ route('projects.edit', $project) }}" 
-                class="w-fit flex items-center justify-center gap-2 btn-primary py-3">
+                class="w-fit  bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all py-3">
                 
                 {{ $project->type_label == "Comissió" ? "Editar la comissió" : "Editar el projecte" }}
             </a>

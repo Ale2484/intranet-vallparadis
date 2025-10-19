@@ -9,59 +9,14 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
-.simple-container{
-    @apply border border-[#AFAFAF] bg-white rounded-[15px] p-5;
-}
 
-.principal-text-color{
-    color: #012F4A;
-}
-
-
-
-.list-option{
-    @apply p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full;
-}
-.list-option:hover{
-    @apply bg-[#fef5eb] text-[#FF7E13];
-}
-
+/* Estilos del menu */
 .menu-option{
-    @apply p-2 rounded-lg mb-2 text-[#0F172A] flex flex-row items-center justify-start w-full;
-}
-.menu-option:hover{
-    @apply bg-[#fef5eb] text-[#FF7E13];
+    @apply p-2 rounded-lg mb-2 flex flex-row items-center justify-start w-full text-[#0F172A] hover:bg-[#fef5eb] hover:text-[#FF7E13];
 }
 
 .menu-option-selected{
-    @apply p-2 rounded-lg mb-2  flex flex-row items-center justify-start w-full bg-[#fef5eb] text-[#FF7E13];
-}
-
-
-.card-title{
-    font-size: 20px;
-}
-
-.title{
-    @apply text-3xl font-bold text-[#011020];
-}
-
-/* Buttons */
-.btn-primary{
-    @apply bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2;
-}
-
-.btn-primary:hover{
-    @apply bg-[#FE712B] transition-all
-}
-
-.btn-important{
-    @apply bg-red-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2;
-}
-
-
-.list-option{
-    @apply p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center w-full cursor-pointer;
+    @apply p-2 rounded-lg mb-2 flex flex-row items-center justify-start w-full bg-[#fef5eb] text-[#FF7E13];
 }
 
 .menu-text{
@@ -69,45 +24,9 @@
 }
 
 .menu-option:hover .menu-text{
-    @apply bg-[#fef5eb] text-[#FF7E13];
+    @apply ml-4 hover:bg-[#fef5eb] hover:text-[#FF7E13];
 
 }
-
-.btn-secondary{
-    @apply bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF];
-}
-
-.is-active-button{
-    @apply border-1 bg-green-200 text-green-600 border-green-600 rounded-lg p-1 text-center;
-}
-
-.is-inactive-button{
-    @apply border-1 bg-red-200 text-red-600 border-red-600 rounded-lg p-1 text-center;
-}
-
-.is-commission-button{
-    @apply border-1 bg-[#FF7033]/17 text-[#FF7033] border-[#FF7033] rounded-lg p-1 text-center;
-}
-
-
-.deactivate-button{
-    @apply  text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer;
-}
-.deactivate-button:hover{
-    @apply bg-red-800 transition-all;
-}
-.activate-button{
-    @apply  text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer;
-}
-
-.activate-button:hover{
-    @apply bg-green-700 transition-all;
-}
-
-.input-field{
-    @apply border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF];
-} 
-
 /* Notifications */
 .notification {
     @apply fixed top-20 right-5 p-4 rounded-lg text-[16px] shadow-lg opacity-0 transform translate-x-full transition-all duration-500;
@@ -125,6 +44,66 @@
 .notification.show {
     @apply flex items-center opacity-100 transform translate-x-0;
 }
+
+
+/* 
+.simple-container{
+    @apply border border-[#AFAFAF] bg-white rounded-[15px] p-5;
+}
+
+.principal-text-color{
+    @apply text-[#012F4A];
+}
+
+.list-option{
+    @apply p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13];
+}
+
+.card-title{
+    @apply text-[20px];
+}
+
+.title{
+    @apply text-3xl font-bold text-[#011020];
+}
+ */
+/* Buttons */
+/* .btn-primary{
+    @apply bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all;
+}
+.btn-important{
+    @apply bg-red-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2;
+}
+
+.btn-secondary{
+    @apply bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF];
+}
+
+.is-active-button{
+    @apply border-1 p-1 text-center bg-green-200 text-green-600 border-green-600 rounded-lg ;
+}
+
+.is-inactive-button{
+    @apply border-1 p-1 text-center bg-red-200 text-red-600 border-red-600 rounded-lg ;
+}
+
+.is-commission-button{
+    @apply border-1 bg-[#FF7033]/17 text-[#FF7033] border-[#FF7033] rounded-lg p-1 text-center;
+}
+
+
+.deactivate-button{
+    @apply  text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all;
+}
+.activate-button{
+    @apply  text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all;
+}
+
+.input-field{
+    @apply border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF];
+} 
+*/
+
 
 @media(min-width: 768px) {
     
