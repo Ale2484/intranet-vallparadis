@@ -10,7 +10,7 @@
         </svg>
         <label for="name">Nom del centre * </label>
     </div>
-    <input type="text" name="name" id="name" class="input-field w-full mb-5" value="{{ old("name", $center->name) }}" placeholder="Introdueix el nom del centre" required>
+    <input type="text" name="name" id="name" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" value="{{ old("name", $center->name) }}" placeholder="Introdueix el nom del centre" required>
 
     <div class="flex items-center gap-3 mb-3 font-semibold">
         <svg class="w-6 h-6">
@@ -18,7 +18,7 @@
         </svg>
         <label for="address">Adreça * </label>
     </div>
-    <input type="text" name="address" id="address" class="input-field w-full mb-5" value="{{ old("address", $center->address) }}" placeholder="Introdueix la adreça del centre" required>
+    <input type="text" name="address" id="address" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" value="{{ old("address", $center->address) }}" placeholder="Introdueix la adreça del centre" required>
 
     <div class="flex items-center gap-3 mb-3 font-semibold">
         <svg class="w-6 h-6">
@@ -26,7 +26,7 @@
         </svg>
         <label for="phone">Telefon</label>
     </div>
-    <input type="tel" name="phone" id="phone" class="input-field w-full mb-5" value="{{ old("phone", $center->phone) }}" placeholder="Introdueix el telefon del centre">
+    <input type="tel" name="phone" id="phone" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" value="{{ old("phone", $center->phone) }}" placeholder="Introdueix el telefon del centre">
 
     <div class="flex items-center gap-3 mb-3 font-semibold">
         <svg class="w-6 h-6">
@@ -34,7 +34,7 @@
         </svg>
         <label for="email">Email</label>
     </div>
-    <input type="email" name="email" id="email" class="input-field w-full mb-5" value="{{ old("email", $center->email) }}" placeholder="Introdueix l'email del centre">
+    <input type="email" name="email" id="email" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" value="{{ old("email", $center->email) }}" placeholder="Introdueix l'email del centre">
 
     <div class="flex items-center gap-3 mb-3 font-semibold">
         <svg class="w-6 h-6">
@@ -42,7 +42,7 @@
         </svg>
         <label for="is_active">Estat *</label>
     </div>
-    <select name="is_active" id="is_active" class="input-field w-full mb-10" required>
+    <select name="is_active" id="is_active" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-10" required>
         <option value="1" {{ old("is_active", $center->is_active) == 1 ? "selected" : "" }}>Actiu</option>
         <option value="0" {{ old("is_active", $center->is_active) == 0 ? "selected" : "" }}>Inactiu</option>
     </select>
@@ -50,8 +50,8 @@
     <hr class="text-[#AFAFAF]">
 
     <div class="flex justify-end gap-5 mt-5">
-        <a href="{{ route("centers.index") }}" class="btn-secondary">Cancel·lar</a>
-        <button type="submit" class="btn-primary">
+        <a href="{{ route("centers.index") }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">Cancel·lar</a>
+        <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
             {{ $submitText }}
         </button>
     </div>

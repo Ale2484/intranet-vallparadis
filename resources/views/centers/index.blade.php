@@ -2,9 +2,9 @@
 @section("title", "Veure el centres")
 @section("main")
 <div class="flex items-center justify-between mb-7">
-    <h1 class="title">Gestió de centres: </h1>
+    <h1 class="text-3xl font-bold text-[#011020]">Gestió de centres: </h1>
 
-    <a  href="{{ route("centers.create") }}" class="btn-primary">
+    <a  href="{{ route("centers.create") }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
         <svg class="w-6 h-6 text-white">
             <use xlink:href="#icon-plus"></use>
         </svg>
@@ -13,9 +13,9 @@
 </div>
 <div class="w-full flex flex-wrap flex-row justify-between items-stretch">
     <!-- Contenedor -->
-    <div class="shadow-md simple-container w-96 mb-10">
+    <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10">
         <div class="flex justify-between items-center">
-            <p class="principal-text-color font-bold card-title">Centres</p>
+            <p class="text-[#012F4A] font-bold text-[20px]">Centres</p>
             <div class="bg-[#FF7E13] rounded-lg p-2">
                 <svg class="w-8 h-8 text-white">
                     <use xlink:href="#icon-center"></use>
@@ -28,9 +28,9 @@
     </div>
     
     <!-- Contenedor -->
-    <div class="shadow-md simple-container w-96 mb-10">
+    <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10">
         <div class="flex justify-between items-center">
-            <p class="principal-text-color font-bold card-title">Centres nous</p>
+            <p class="text-[#012F4A] font-bold text-[20px]">Centres nous</p>
             <div class="bg-[#FF7E13] rounded-lg p-2">
                 <svg class="w-8 h-8 text-white">
                     <use xlink:href="#icon-plus"></use>
@@ -43,9 +43,9 @@
     </div>
 
     <!-- Contenedor -->
-    <div class="shadow-md simple-container w-96 mb-10">
+    <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10">
         <div class="flex justify-between items-center">
-            <p class="principal-text-color font-bold card-title">Centres actius</p>
+            <p class="text-[#012F4A] font-bold text-[20px]">Centres actius</p>
             <div class="bg-green-600 rounded-lg p-2">
                 <svg class="w-8 h-8 text-white">
                     <use xlink:href="#icon-check-circle"></use>
@@ -64,9 +64,9 @@
     </div>
 
     <!-- Contenedor -->
-    <div class="shadow-md simple-container w-96 mb-10">
+    <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10">
         <div class="flex justify-between items-center">
-            <p class="principal-text-color font-bold card-title">Centres inactius</p>
+            <p class="text-[#012F4A] font-bold text-[20px]">Centres inactius</p>
             <div class="bg-red-600 p-2 rounded-lg">
                 <svg class="w-8 h-8 text-white">
                     <use xlink:href="#icon-cross-circle"></use>
@@ -100,9 +100,9 @@
 
     <!-- Filtros -->
     <div class="flex flex-row justify-between gap-2">
-        <button class="btn-primary w-20">Tots</button>
-        <button class="btn-secondary w-20">Actius</button>
-        <button class="btn-secondary w-20">Inactius</button>
+        <button class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-20">Tots</button>
+        <button class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-20">Actius</button>
+        <button class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-20">Inactius</button>
     
     </div>
 </div>
@@ -110,7 +110,7 @@
 <div class="w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
 @foreach ($centers as $center )
         <!-- Contenedor -->
-        <div class="shadow-md simple-container w-[32%] min-w-[350px] mb-5 flex flex-col gap-5">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[32%] min-w-[350px] mb-5 flex flex-col gap-5">
             <div class="flex justify-between items-center">
                 <div class="flex flex-row items-center gap-5">
                     <div class="bg-[#ffe7de] rounded-lg p-2">
@@ -118,10 +118,10 @@
                         <use xlink:href="#icon-maps"></use>
                     </svg>
                     </div>
-                    <a href="{{ route("centers.show", $center->id) }}" class="principal-text-color font-bold card-title">{{ $center->name }}</a>
+                    <a href="{{ route("centers.show", $center->id) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $center->name }}</a>
                 </div>
 
-                <p class="text-center w-20 {{ $center->is_active ? "is-active-button" : "is-inactive-button" }}">{{$center->is_active ? "Actiu" : "Inactiu"}}</p>
+                <p class="w-20 border-1 p-1 text-center {{ $center->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$center->is_active ? "Actiu" : "Inactiu"}}</p>
             </div>
             <!-- Especificaciones -->
             <div class="flex flex-col gap-3 text-[#0F172A]">
@@ -150,7 +150,7 @@
             
             <!-- Activar/Desactivar -->
             <div class="flex flex-row gap-5 justify-end">
-                <a href="{{ route("centers.edit", $center->id) }}" class="flex gap-3 btn-secondary">
+                <a href="{{ route("centers.edit", $center->id) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-square-pen"></use>
                     </svg>
@@ -161,7 +161,7 @@
                 <form action="{{ $center->is_active ? route("centers.disable", $center->id) : route("centers.enable", $center->id) }}" method="post">
                     @csrf
                     @method("PATCH")
-                    <button type="submit" class="flex justify-center gap-3 {{ $center->is_active ? "deactivate-button" : "activate-button" }}">
+                    <button type="submit" class="flex justify-center gap-3 {{ $center->is_active ? "text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all" : "text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all" }}">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-power"></use>
                         </svg>

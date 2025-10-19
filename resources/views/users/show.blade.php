@@ -11,7 +11,7 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold title mb-0!">Detalls del professional</h1>
+            <h1 class="text-3xl font-bold text-[#011020] mb-0!">Detalls del professional</h1>
             <p class="text-[#AFAFAF]" >Informació completa del professional</p>
         </div>
         <select id="redirectSelect" class="bg-green-600 text-white rounded-lg p-2 font-bold" >
@@ -25,7 +25,7 @@
     <div class="flex justify-between">
 
         <!-- Información del Profesional -->
-        <div class="shadow-md simple-container flex flex-col gap-3 w-5/7">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3 w-5/7">
             <!-- Información principal -->
             <div class="border-b-1 border-b-gray-600">
                 <div class="flex items-center gap-4 mb-6">
@@ -39,7 +39,7 @@
                     <div class="w-fit">
                         <!-- Nombre y rol -->
                         <div>
-                            <h2 class="text-2xl font-bold principal-text-color">{{ $user->name }}</h2>
+                            <h2 class="text-2xl font-bold text-[#012F4A]">{{ $user->name }}</h2>
                             <p class="text-lg text-gray-600">{{ $user->role_label }}</p>
                         </div>
                         <!-- Fecha de inicio -->
@@ -62,11 +62,11 @@
             </div>
     
             <!-- Información de contacto -->
-            <h3 class="text-xl font-semibold principal-text-color mb-6">Informació de contacte</h3>
+            <h3 class="text-xl font-semibold text-[#012F4A] mb-6">Informació de contacte</h3>
             
             <div class="space-y-4">
                 <!-- Email -->
-                <div class="flex items-start gap-4 shadow-md simple-container">
+                <div class="flex items-start gap-4 shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
                     <div class="w-5 h-5 flex items-center justify-center mt-1">
                         <div class="p-2 bg-[#FF7033]/17 rounded-lg flex items-center justify-center">
                             <svg class="w-6 h-6 text-[#FF7033]">
@@ -81,7 +81,7 @@
                 </div>
     
                 <!-- Teléfono -->
-                <div class="flex items-start gap-4 shadow-md simple-container">
+                <div class="flex items-start gap-4 shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
                     <div class="w-5 h-5 flex items-center justify-center mt-1">
                         <div class="p-2 bg-[#FF7033]/17 rounded-lg flex items-center justify-center">
                             <svg class="w-6 h-6 text-[#FF7033]">
@@ -96,7 +96,7 @@
                 </div>
     
                 <!-- Rol -->
-                <div class="flex items-start gap-4 shadow-md simple-container">
+                <div class="flex items-start gap-4 shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
                     <div class="w-5 h-5 flex items-center justify-center mt-1">
                         <div class="p-2 bg-[#FF7033]/17 rounded-lg flex items-center justify-center">
                             <svg class="w-6 h-6 text-[#FF7033]">
@@ -111,7 +111,7 @@
                 </div>
     
                 <!-- Centro -->
-                <div class="flex items-start gap-4 shadow-md simple-container">
+                <div class="flex items-start gap-4 shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
                     <div class="w-5 h-5 flex items-center justify-center mt-1">
                         <div class="p-2 bg-[#FF7033]/17 rounded-lg flex items-center justify-center">
                             <svg class="w-6 h-6 text-[#FF7033]">
@@ -133,7 +133,7 @@
             </div>
             <div class="flex items-center justify-end gap-5">
                 <a href="{{ route('users.edit', $user) }}" 
-                    class="flex gap-3 btn-primary w-44">
+                    class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-44">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-square-pen"></use>
                     </svg>
@@ -143,7 +143,7 @@
                 @if ($user->id == auth()->user()->id)
                 <form action="{{ route("users.logout") }}" method="post" class="w-auto">
                     @csrf
-                    <button type="submit" class="btn-important w-44">
+                    <button type="submit" class="bg-red-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 w-44">
                             <svg class="w-6 h-6">
                                 <use xlink:href="#icon-logout"></use>
                             </svg>
@@ -156,8 +156,8 @@
         </div>
         <div class="w-1/4 flex flex-col justify-between">
             <!-- Seguridad y acceso -->
-            <div class="shadow-md simple-container flex flex-col gap-3">
-                <div class="text-xl font-semibold principal-text-color flex items-center gap-2">
+            <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3">
+                <div class="text-xl font-semibold text-[#012F4A] flex items-center gap-2">
                     <svg class="w-10 h-10 text-[#FF7033]">
                         <use xlink:href="#icon-shield"></use>
                     </svg>
@@ -195,7 +195,7 @@
                     </div>
                 </div>
         
-                <h3 class="text-xl font-semibold principal-text-color">Estat del compte</h3>
+                <h3 class="text-xl font-semibold text-[#012F4A]">Estat del compte</h3>
                 <div class="flex items-start gap-3">
                     <div class="flex-1">
                         @if($user->is_active)

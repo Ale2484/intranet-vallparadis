@@ -4,7 +4,7 @@
 <div>
     <!-- Header -->
     <div class="w-full flex flex-row mb-7 items-center justify-between">
-        <h1 class="text-3xl font-bold title">Gestió de professionals:</h1>
+        <h1 class="text-3xl font-bold text-[#011020]">Gestió de professionals:</h1>
         <div class="flex gap-3">
             <select id="redirectSelect" class="bg-green-600 text-white rounded-lg p-2 font-bold" >
                 <option value="">Exportar dades a Excel</option>
@@ -13,7 +13,7 @@
                 <option value="{{ route('exportAllUniformityRenovation') }}">Exportar renovacio uniformitat</option>
             </select>
             <a href="{{ route('users.create') }}" 
-                class="btn-primary h-fit">
+                class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-plus"></use>
                 </svg>
@@ -24,9 +24,9 @@
     <!-- Statistics Cards -->
     <div class="w-full flex flex-wrap flex-row items-stretch justify-between gap-5">
         <!-- Professionals totals -->
-        <div class="shadow-md simple-container w-96 mb-10 min-w-fit">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="principal-text-color font-bold card-title">Professionals totals</h2>
+                <h2 class="text-[#012F4A] font-bold text-[20px]">Professionals totals</h2>
                 <div class="bg-[#FF7E13] rounded-lg p-2">
                     <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-center"></use>
@@ -38,9 +38,9 @@
         </div>
 
         <!-- Professionals totals -->
-        <div class="shadow-md simple-container w-96 mb-10 min-w-fit">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="principal-text-color font-bold card-title">Professionals nous</h2>
+                <h2 class="text-[#012F4A] font-bold text-[20px]">Professionals nous</h2>
                 <div class="bg-[#FF7E13] rounded-lg p-2">
                     <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-plus"></use>
@@ -52,9 +52,9 @@
         </div>
         
         <!-- Professionals actius -->
-        <div class="shadow-md simple-container w-96 mb-10 min-w-fit">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="principal-text-color font-bold card-title">Professionals actius</h2>
+                <h2 class="text-[#012F4A] font-bold text-[20px]">Professionals actius</h2>
                 <div class="bg-green-600 rounded-lg p-2">
                     <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-check-circle"></use>
@@ -73,9 +73,9 @@
         
         
         <!-- Professionals inactius -->
-        <div class="shadow-md simple-container w-96 mb-10 min-w-fit">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="principal-text-color font-bold card-title">Professionals inactius</h2>
+                <h2 class="text-[#012F4A] font-bold text-[20px]">Professionals inactius</h2>
                 <div class="bg-red-600 rounded-lg p-2">
                     <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-cross-circle"></use>
@@ -108,9 +108,9 @@
 
         <!-- Filtros -->
         <div class="flex flex-row justify-between gap-2">
-            <button class="btn-primary w-20">Tots</button>
-            <button class="btn-secondary w-20">Actius</button>
-            <button class="btn-secondary w-20">Inactius</button>
+            <button class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-20">Tots</button>
+            <button class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-20">Actius</button>
+            <button class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-20">Inactius</button>
         
         </div>
     </div>
@@ -118,7 +118,7 @@
     <!-- Active Professionals Section -->
         <div class="w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
             @foreach($users as $user)
-            <div class="shadow-md simple-container w-32/100 min-w-[350px] mb-5 flex flex-col gap-5">
+            <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-32/100 min-w-[350px] mb-5 flex flex-col gap-5">
                     <div>
                         <div class="flex flex-row justify-between items-center w-full">
                             <div class="flex flex-row justify-between gap-2">
@@ -126,15 +126,15 @@
     
                                 </div>
                                 <div class="flex items-center">
-                                    <a href="{{ route("users.show", $user->id) }}" class="principal-text-color font-bold card-title">{{ $user->name }}</a>
+                                    <a href="{{ route("users.show", $user->id) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $user->name }}</a>
                                 </div>
                             </div>
                             @if($user->is_active)
-                                <div class="w-16 text-center is-active-button">
+                                <div class="w-16 border-1 p-1 text-center bg-green-200 text-green-600 border-green-600 rounded-lg">
                                     Actiu
                                 </div>
                             @else
-                                <div class="w-16 text-center is-inactive-button">
+                                <div class="w-16 border-1 p-1 text-center bg-red-200 text-red-600 border-red-600 rounded-lg">
                                     Inactiu
                                 </div>
                             @endif
@@ -180,7 +180,7 @@
                     
                     <div class="flex flex-row gap-5 justify-end">
                         <a href="{{ route('users.edit', $user) }}" 
-                           class="flex gap-3 btn-secondary w-1/2">
+                           class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-1/2">
                             <svg class="w-6 h-6">
                                 <use xlink:href="#icon-square-pen"></use>
                             </svg>
@@ -191,7 +191,7 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="deactivate-button w-full flex justify-center gap-3">
+                                        class="text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all w-full flex justify-center gap-3">
                                     <svg class="w-6 h-6">
                                         <use xlink:href="#icon-power"></use>
                                     </svg>
@@ -203,7 +203,7 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="activate-button w-full flex justify-center gap-3">
+                                        class="text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all w-full flex justify-center gap-3">
                                     <svg class="w-6 h-6">
                                         <use xlink:href="#icon-power"></use>
                                     </svg>

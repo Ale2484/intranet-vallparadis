@@ -13,17 +13,17 @@
             Tornar a la gestió de centres
         </a>
 
-        <h1 class="title">Detalls del centre</h1>
+        <h1 class="text-3xl font-bold text-[#011020]">Detalls del centre</h1>
 
         <p class="text-[#AFAFAF] mb-7">Informació completa del centre</p>
     </div>
     <!-- Contenedor principal -->
-    <div class="simple-container w-[60%] text-[#0F172A] mb-10">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] text-[#0F172A] mb-10">
         <div class="flex justify-end">
-            <p class="w-20 {{ $center->is_active ? "is-active-button" : "is-inactive-button" }}">{{ $center->is_active ? "Actiu" : "Inactiu"}}</p>
+            <p class="w-20 border-1 p-1 text-center {{ $center->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{ $center->is_active ? "Actiu" : "Inactiu"}}</p>
         </div>
 
-        <p class="title">{{ $center->name }}</p>
+        <p class="text-3xl font-bold text-[#011020]">{{ $center->name }}</p>
         <div class="flex items-center gap-3 mt-5 font-semibold mb-5">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-maps"></use>
@@ -34,7 +34,7 @@
     <!-- Especificaciones -->
     <div class="w-[60%] flex flex-row gap-5 justify-center text-[#0F172A]">
 
-        <div class="simple-container w-[50%]">
+        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%]">
             <div class="flex items-center gap-5 mb-5">
                 <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                     <svg class="w-7 h-7 text-[#FF7E13]">
@@ -65,7 +65,7 @@
             </div>
         </div>
 
-        <div class="simple-container w-[50%]">
+        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%]">
             <div class="flex items-center gap-5 mb-5">
                 <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                     <svg class="w-7 h-7 text-[#FF7E13]">
@@ -104,9 +104,9 @@
         </div>
     </div>
     <div class="w-[60%] flex justify-end mt-5 gap-3">
-        <a href="{{ route("centers.index") }}" class="btn-secondary">Tornar</a>
+        <a href="{{ route("centers.index") }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">Tornar</a>
     
-        <a href="{{ route("centers.edit", $center->id) }}" class="btn-primary">Editar el centre</a>
+        <a href="{{ route("centers.edit", $center->id) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">Editar el centre</a>
     </div>
 </div>
 @endsection

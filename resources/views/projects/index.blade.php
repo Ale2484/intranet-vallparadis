@@ -4,9 +4,9 @@
 <div>
     <!-- Header -->
     <div class="flex mb-7 items-center justify-between">
-        <h1 class="title">Gestió de projectes i comissions:</h1>
+        <h1 class="text-3xl font-bold text-[#011020]">Gestió de projectes i comissions:</h1>
         <a href="{{ route('projects.create') }}" 
-            class="btn-primary h-fit">
+            class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-plus"></use>
             </svg>
@@ -16,9 +16,9 @@
     <!-- Statistics Cards -->
     <div class="w-full flex flex-wrap flex-row items-stretch justify-between">
         <!-- Totals -->
-        <div class="shadow-md simple-container w-23/100 mb-10 min-w-fit">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-23/100 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="principal-text-color font-bold card-title">Projectes/Comissions totals</h2>
+                <h2 class="text-[#012F4A] font-bold text-[20px]">Projectes/Comissions totals</h2>
                 <div class="bg-[#FF7E13] rounded-lg p-2">
                     <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-center"></use>
@@ -30,9 +30,9 @@
         </div>
 
         <!-- ultimo mes -->
-        <div class="shadow-md simple-container w-23/100 mb-10 min-w-fit">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-23/100 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="principal-text-color font-bold card-title">Projectes/Comissions nous</h2>
+                <h2 class="text-[#012F4A] font-bold text-[20px]">Projectes/Comissions nous</h2>
                 <div class="bg-[#FF7E13] rounded-lg p-2">
                     <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-plus"></use>
@@ -44,9 +44,9 @@
         </div>
         
         <!-- Actius -->
-        <div class="shadow-md simple-container w-23/100 mb-10 min-w-fit">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-23/100 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="principal-text-color font-bold card-title">Projectes/Comissions actius</h2>
+                <h2 class="text-[#012F4A] font-bold text-[20px]">Projectes/Comissions actius</h2>
                 <div class="bg-green-600 rounded-lg p-2">
                     <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-check-circle"></use>
@@ -66,9 +66,9 @@
         </div>
         
         <!-- Inactius -->
-        <div class="shadow-md simple-container w-23/100 mb-10 min-w-fit">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-23/100 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
-                <h2 class="principal-text-color font-bold card-title">Projectes/Comissions inactius</h2>
+                <h2 class="text-[#012F4A] font-bold text-[20px]">Projectes/Comissions inactius</h2>
                 <div class="bg-red-600 rounded-lg p-2">
                     <svg class="w-8 h-8 text-white">
                         <use xlink:href="#icon-cross-circle"></use>
@@ -103,16 +103,16 @@
 
         <!-- Filtros -->
         <div class="flex flex-row justify-between gap-2">
-            <button class="btn-primary w-20">Tots</button>
-            <button class="btn-secondary w-20">Actius</button>
-            <button class="btn-secondary w-20">Inactius</button>
+            <button class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-20">Tots</button>
+            <button class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-20">Actius</button>
+            <button class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-20">Inactius</button>
         </div>
     </div>
 
     <!-- Projects Section -->
     <div class="w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
         @foreach($projects as $project)
-        <div class="shadow-md simple-container w-48/100 min-w-fit mb-5 flex flex-col gap-5">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-48/100 min-w-fit mb-5 flex flex-col gap-5">
             <div class="border-b-gray-600 border-b-1 pb-5">
                 <div class="flex flex-row justify-between items-center w-full mb-2">
                     <div class="flex flex-row justify-between gap-2">
@@ -130,16 +130,16 @@
                             </div>
                         @endif
                         <div class="flex flex-col items-start gap-2">
-                            <a href="{{ route('projects.show', $project->id) }}" class="principal-text-color font-bold card-title">{{ $project->name }}</a>
+                            <a href="{{ route('projects.show', $project->id) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $project->name }}</a>
                             <p class="p-1 text-white w-16 text-center rounded-lg {{ $project->is_active ? 'bg-green-600' : 'bg-red-600' }}"> {{ $project->is_active ? "Actiu" : "Inactiu" }}</p>
                         </div>
                     </div>
                     @if($project->type_label == "Projecte")
-                        <div class="is-active-button w-24">
+                        <div class="border-1 p-1 text-center bg-green-200 text-green-600 border-green-600 rounded-lg w-24 ">
                             Projecte
                         </div>
                     @elseif($project->type_label == "Comissió")
-                        <div class="is-commission-button w-24">
+                        <div class="border-1 bg-[#FF7033]/17 text-[#FF7033] border-[#FF7033] rounded-lg p-1 text-center w-24">
                             Comissió
                         </div>
                     @endif
@@ -189,7 +189,7 @@
                 </div>
                 <div class="flex w-2/3 justify-end gap-3">
                     <a href="{{ route('projects.edit', $project) }}" 
-                       class="flex gap-3 btn-secondary w-1/4 min-w-fit">
+                       class=" bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-1/4 min-w-fit">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-square-pen"></use>
                         </svg>
@@ -200,7 +200,7 @@
                             @csrf
                             @method('PATCH')
                             <button type="submit" 
-                                    class="deactivate-button w-full flex justify-center h-full items-center gap-3">
+                                    class="text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all w-full flex justify-center h-full items-center gap-3">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-power"></use>
                                 </svg>
@@ -212,7 +212,7 @@
                             @csrf
                             @method('PATCH')
                             <button type="submit" 
-                                    class="activate-button w-full flex justify-center h-full items-center gap-3">
+                                    class="text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all w-full flex justify-center h-full items-center gap-3">
                                 <svg class="w-6 h-6">
                                     <use xlink:href="#icon-power"></use>
                                 </svg>
