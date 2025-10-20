@@ -11,7 +11,7 @@
                 </svg>
                 Tornar a la gestió de projectes/comissions
             </a>
-            <h1 class="text-3xl font-bold text-[#011020] mb-0!">Editar projecte/comissió</h1>
+            <h1 class="text-3xl font-bold text-[#011020] ">Editar projecte/comissió</h1>
             <p class="text-[#AFAFAF]">Modifica les dades del projecte/comissió</p>
         </div>
     </div>

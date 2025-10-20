@@ -12,7 +12,7 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020] mb-0!">Editar professional</h1>
+            <h1 class="text-3xl font-bold text-[#011020] ">Editar professional</h1>
             <p class="text-[#AFAFAF]" >Edita un professional al sistema</p>
         </div>
     </div>

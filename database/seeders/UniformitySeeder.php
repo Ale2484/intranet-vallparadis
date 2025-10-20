@@ -18,8 +18,8 @@ class UniformitySeeder extends Seeder
             [
                 "user_delivery" => 2,
                 "user" => 1,
-                "shirt" => "L",
-                "pants" => "XL",
+                "shirt" => "46",
+                "pants" => "40",
                 "shoes" => 40.2,
                 "created_at" => now(),
                 "updated_at" => now()

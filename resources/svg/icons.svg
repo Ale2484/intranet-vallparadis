@@ -186,5 +186,12 @@
   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
 </symbol>
 
+<symbol id="icon-sweater" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="0.1">
+<path fill="currentColor" d="M11.91 14.22H4.06l-.5-.5V7.06H2.15l-.48-.38L1 4l.33-.6L5.59 2l.64.32a2.7 2.7 0 0 0 .21.44q.107.155.24.29c.168.169.369.302.59.39a1.82 1.82 0 0 0 1.43 0a1.7 1.7 0 0 0 .59-.39q.135-.143.25-.3l.15-.29a1 1 0 0 0 .05-.14l.64-.32l4.26 1.42L15 4l-.66 2.66l-.49.38h-1.44v6.66zm-7.35-1h6.85V6.56l.5-.5h1.52l.46-1.83l-3.4-1.14a1 1 0 0 1-.12.21q-.165.242-.37.45a2.75 2.75 0 0 1-.91.61a2.85 2.85 0 0 1-2.22 0A2.9 2.9 0 0 1 6 3.75a2.2 2.2 0 0 1-.36-.44l-.13-.22l-3.43 1.14l.46 1.83h1.52l.5.5z"/>
+</symbol>
+
+<symbol id="icon-arrow-path" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+</symbol>
 
 </svg>
