@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class UniformityExport implements FromCollection, WithHeadings, WithStyles
+class UniformityExport implements FromCollection, WithHeadings
 {
     protected $uniformity;
 
