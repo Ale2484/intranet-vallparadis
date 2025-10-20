@@ -216,5 +216,4 @@
             @endforeach
         </div>
 </div>
-<script src="{{ asset('js/excel.js') }}"></script>
 @endsection
