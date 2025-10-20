@@ -26,5 +26,4 @@
         ])
     </div>
 </div>
-<script src="{{ asset('js/projects.js') }}"></script>
 @endsection

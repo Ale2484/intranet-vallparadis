@@ -130,7 +130,7 @@
             @endif
         </div>
         
-        <div class="document-drop-zone border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-colors cursor-pointer">
+        <!-- <div class="document-drop-zone border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-colors cursor-pointer">
             <svg class="w-16 h-16 text-gray-400 mx-auto mb-4">
                 <use xlink:href="#icon-upload"></use>
             </svg>
@@ -146,13 +146,12 @@
                 (PDF, DOC, DOCX, XLS, XLSX)<br>
                 Mida màxima: 10MB per document
             </p>
-        </div>
+        </div> -->
 
         <input type="file" 
                 name="documents[]" 
                 id="documents" 
                 multiple 
-                class="hidden"
                 accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
         
         <!-- Lista de documentos seleccionados -->
