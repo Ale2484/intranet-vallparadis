@@ -22,7 +22,7 @@
             </a>
         </div>
     </div>
-    <!-- Statistics Cards -->
+    {{-- <!-- Statistics Cards -->
     <div class="w-full flex flex-wrap flex-row items-stretch justify-between gap-5">
         <!-- Professionals totals -->
         <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10 min-w-fit">
@@ -92,7 +92,7 @@
                 <p class="text-sm text-red-600 font-bold">{{($inactiveUsers/$totalUsers)*100 }}%</p>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="flex flex-row gap-5">
         <!-- Barra de busqueda -->

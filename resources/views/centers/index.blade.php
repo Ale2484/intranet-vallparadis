@@ -11,7 +11,7 @@
         Nou centre
     </a>
 </div>
-<div class="w-full flex flex-wrap flex-row justify-between items-stretch">
+{{-- <div class="w-full flex flex-wrap flex-row justify-between items-stretch">
     <!-- Contenedor -->
     <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10">
         <div class="flex justify-between items-center">
@@ -83,7 +83,7 @@
             <p class="text-sm text-red-600 font-bold">{{$inactivePercentage }}%</p>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class="flex flex-row gap-5">
     <!-- Barra de busqueda -->

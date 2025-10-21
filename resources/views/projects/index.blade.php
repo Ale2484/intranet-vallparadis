@@ -14,7 +14,7 @@
         </a>
     </div>
     <!-- Statistics Cards -->
-    <div class="w-full flex flex-wrap flex-row items-stretch justify-between">
+    {{-- <div class="w-full flex flex-wrap flex-row items-stretch justify-between">
         <!-- Totals -->
         <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-23/100 mb-10 min-w-fit">
             <div class="flex justify-between items-center">
@@ -86,7 +86,7 @@
                 @endif
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="flex flex-row gap-5">
         <!-- Barra de busqueda -->
