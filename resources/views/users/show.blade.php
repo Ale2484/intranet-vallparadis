@@ -30,10 +30,11 @@
             <div class="border-b-1 border-b-gray-600">
                 <div class="flex items-center gap-4 mb-6">
                     <!-- Avatar -->
-                    <div class="bg-gray-200 rounded-full p-8 w-20 h-20 flex items-center justify-center">
-                        <svg class="w-10 h-10 text-gray-400">
-                            <use xlink:href="#icon-user"></use>
-                        </svg>
+                    <div class="bg-gray-200 w-20 h-20 rounded-full">
+                        {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
+                        {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
+                        <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+
                     </div>
                     
                     <div class="w-fit">

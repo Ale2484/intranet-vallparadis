@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             [
                 "id" => 1,
                 'name' => 'Test1',
-                'email' => 'a@gmail.com',
+                'email' => 'a1@gmail.com',
                 "phone" => "000000000",
                 "role" => "professional",
                 "center" => "1",

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section("title", "Veure els usuaris")
 @section('main')
+
 <div>
     <!-- Header -->
     <div class="w-full flex flex-row mb-7 items-center justify-between">
@@ -122,8 +123,10 @@
                     <div>
                         <div class="flex flex-row justify-between items-center w-full">
                             <div class="flex flex-row justify-between gap-2">
-                                <div class="bg-gray-200 rounded-full p-7">
-    
+                                <div class="bg-gray-200 rounded-full h-16 w-16">
+                                    <!-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> -->
+                                    <!-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> -->
+                                    <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
                                 </div>
                                 <div class="flex items-center">
                                     <a href="{{ route("users.show", $user->id) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $user->name }}</a>
