@@ -197,7 +197,7 @@
                             <!-- talla jersei -->
                             <div class="mb-4">
                                 <p class="text-gray-600 mb-1">Jersei</p>
-                                <p class="text-[#FF7033] font-semibold">T-{{ $user->locker }}</p>
+                                <p class="text-[#FF7033] font-semibold">{{ optional($user->uniformity)->shirt ?? '—' }}</p>
                             </div>
                         </div>
                         <div class="flex-1">
@@ -205,7 +205,7 @@
                             <!-- talla pantalon -->
                             <div class="mb-4">
                                 <p class="text-gray-600 mb-1">Pantalons</p>
-                                <p class="text-[#FF7033] font-semibold">T-{{ $user->locker }}</p>
+                                <p class="text-[#FF7033] font-semibold">{{ optional($user->uniformity)->pants ?? '—' }}</p>
                             </div>
                         </div>
                         <div class="flex-1">
@@ -213,7 +213,7 @@
                             <!-- talla zapatos -->
                             <div class="mb-4">
                                 <p class="text-gray-600 mb-1">Sabates</p>
-                                <p class="text-[#FF7033] font-semibold">T-{{ $user->locker }}</p>
+                                <p class="text-[#FF7033] font-semibold">{{ optional($user->uniformity)->shoes ?? '—' }}</p>
                             </div>
                         </div>
                     </div>

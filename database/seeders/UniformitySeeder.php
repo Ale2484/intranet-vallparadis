@@ -16,7 +16,6 @@ class UniformitySeeder extends Seeder
     {
         DB::table("uniformities")->insert([
             [
-                "user_delivery" => 2,
                 "user" => 1,
                 "shirt" => "46",
                 "pants" => "40",
@@ -26,7 +25,6 @@ class UniformitySeeder extends Seeder
 
             ],
             [
-                "user_delivery" => 3,
                 "user" => 2,
                 "shirt" => "L",
                 "pants" => "XL",
@@ -36,7 +34,6 @@ class UniformitySeeder extends Seeder
 
             ],
             [
-                "user_delivery" => 4,
                 "user" => 3,
                 "shirt" => "L",
                 "pants" => "XL",
@@ -46,7 +43,6 @@ class UniformitySeeder extends Seeder
 
             ],
             [
-                "user_delivery" => 5,
                 "user" => 4,
                 "shirt" => "L",
                 "pants" => "XL",
@@ -56,7 +52,6 @@ class UniformitySeeder extends Seeder
 
             ],
             [
-                "user_delivery" => 1,
                 "user" => 5,
                 "shirt" => "L",
                 "pants" => "XL",
