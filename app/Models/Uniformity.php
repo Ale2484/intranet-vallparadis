@@ -13,8 +13,4 @@ class Uniformity extends Model
         return $this->belongsTo(User::class, "user");
     }
 
-    public function userDelivery(): BelongsTo {
-        return $this->belongsTo(User::class, "user_delivery");
-    }
-
 }
