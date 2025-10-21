@@ -33,8 +33,6 @@ class UniformityController extends Controller
 
         $user->uniformity->update($validated);
 
-        $user->uniformity->uniformityRenovatio
-
         return redirect()->route("users.index")->with("success", "Uniforme renovat correctament");
     }
 
