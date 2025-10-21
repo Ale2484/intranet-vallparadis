@@ -11,7 +11,7 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020] mb-0!">Nou professional</h1>
+            <h1 class="text-3xl font-bold text-[#011020] ">Nou professional</h1>
             <p class="text-[#AFAFAF]" >Afegeix un nou professional al sistema</p>
         </div>
     </div>

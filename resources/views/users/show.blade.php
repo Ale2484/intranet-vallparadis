@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("title", "Mostrar l'usuari")
 @section('main')
-<div class="min-w-fit w-2/3 mx-auto flex flex-col mb-7">
+<div class="min-w-fit w-2/3 mx-auto flex flex-col mb-7 gap-5">
     <!-- Header -->
     <div class="w-full flex flex-row mb-8 justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
@@ -11,7 +11,7 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020] mb-0!">Detalls del professional</h1>
+            <h1 class="text-3xl font-bold text-[#011020]">Detalls del professional</h1>
             <p class="text-[#AFAFAF]" >Informació completa del professional</p>
         </div>
         <select id="redirectSelect" class="bg-green-600 text-white rounded-lg p-2 font-bold" >
@@ -22,7 +22,7 @@
         </select>
     </div>
 
-    <div class="flex justify-between">
+    <div class="flex justify-between gap-10">
 
         <!-- Información del Profesional -->
         <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3 w-5/7">
@@ -154,7 +154,8 @@
 
             </div>
         </div>
-        <div class="w-1/4 flex flex-col justify-between">
+
+        <div class="w-2/7 flex flex-col justify-between">
             <!-- Seguridad y acceso -->
             <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3">
                 <div class="text-xl font-semibold text-[#012F4A] flex items-center gap-2">
@@ -164,9 +165,9 @@
                     Seguretat i accés
                 </div>
                 
-                <div class="border-b-1 border-b-gray-600 pb-6">
+                <div class="border-b-1 border-b-gray-600 pb-6 flex flex-col gap-4">
                     <!-- Taquilla -->
-                    <div class="flex flex-col gap-3 border-[#FF7033] text-[#FF7033] bg-[#FF7033]/17 rounded-lg p-5">
+                    <div class="flex flex-col gap-5 border-[#FF7033] border-1 text-[#FF7033] bg-[#FF7033]/17 rounded-lg p-2 justify-start items-start">
                         <div class="flex items-center gap-2">
                             <svg class="w-10 h-10 text-[#FF7033]">
                                 <use xlink:href="#icon-key"></use>
@@ -178,18 +179,40 @@
                             <!-- Número de taquilla -->
                             <div class="mb-4">
                                 <p class="text-gray-600 mb-1">Número de taquilla</p>
-                                <p class="text-gray-900 font-semibold">T-{{ $user->locker }}</p>
+                                <p class="text-[#FF7033] font-semibold">T-{{ $user->locker }}</p>
                             </div>
+                        </div>
+                    </div>
+                    <!-- Tallas -->
+                    <div class="grid grid-cols-2 gap-5 border-[#FF7033] border-1 text-[#FF7033] bg-[#FF7033]/17 rounded-lg p-2 justify-start items-start">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-10 h-10 text-[#FF7033]">
+                                <use xlink:href="#icon-sweater"></use>
+                            </svg>
+                            <p class="text-gray-600 mb-3 font-bold">Tallas</h2>
+                        </div>
+                        <div class="flex-1">
                             
-                            <!-- Contraseña -->
-                            <div>
-                                <p class="text-gray-600 mb-1">Contrasenya</p>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-gray-900 font-semibold tracking-widest">{{ $user->locker_password }}</span>
-                                    <svg class="w-6 h-6 text-gray-600">
-                                        <use xlink:href="#icon-eye"></use>
-                                    </svg>
-                                </div>
+                            <!-- talla jersei -->
+                            <div class="mb-4">
+                                <p class="text-gray-600 mb-1">Jersei</p>
+                                <p class="text-[#FF7033] font-semibold">T-{{ $user->locker }}</p>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            
+                            <!-- talla pantalon -->
+                            <div class="mb-4">
+                                <p class="text-gray-600 mb-1">Pantalons</p>
+                                <p class="text-[#FF7033] font-semibold">T-{{ $user->locker }}</p>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            
+                            <!-- talla zapatos -->
+                            <div class="mb-4">
+                                <p class="text-gray-600 mb-1">Sabates</p>
+                                <p class="text-[#FF7033] font-semibold">T-{{ $user->locker }}</p>
                             </div>
                         </div>
                     </div>

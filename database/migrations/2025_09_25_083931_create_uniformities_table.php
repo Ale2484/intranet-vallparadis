@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger("user_delivery");
             $table->unsignedBigInteger("user");
 
-            $table->enum("shirt",["XS","S", "M", "L", "XL", "XXL"]);
-            $table->enum("pants",["XS","S", "M", "L", "XL", "XXL"]);
+            $table->enum("shirt",["S", "M", "L", "XL", "XXL", "3XL", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58"]);
+            $table->enum("pants",["S", "M", "L", "XL", "XXL", "3XL", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58"]);
             $table->decimal('shoes', 3, 1);
 
             $table->foreign("user_delivery")->references("id")->on("users");
