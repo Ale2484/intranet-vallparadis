@@ -11,6 +11,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class UniformityController extends Controller
 {
+
+    public function edit(User $user)
+    {
+        
+    }
     public function exportAllUniformity()
     {
         $uniformities = Uniformity::select("user","shirt","pants","shoes")->get();

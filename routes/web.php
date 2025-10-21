@@ -22,6 +22,11 @@ Route::middleware("auth")->group(function () {
     Route::get('/', function () {
         return view('dashboard');
     })->name("dashboard");
+
+    // Uniformes
+    Route::get("/users/{user}/uniformities/{uniformity}/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
+
+
     
     //Usuarios
     Route::resource("users", UserController::class);

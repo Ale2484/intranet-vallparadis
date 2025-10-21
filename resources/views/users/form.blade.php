@@ -160,6 +160,16 @@
         <a href="{{ route('users.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
             Cancel·lar
         </a>
+
+        <a href="" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+            <svg class="w-6 h-6">
+                <use xlink:href="#icon-square-pen"></use>
+            </svg>
+            Editar uniformes
+
+        </a>
+
+
         <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
             {{ $submitText }}
         </button>
