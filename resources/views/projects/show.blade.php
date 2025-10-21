@@ -146,7 +146,7 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <a href="{{ $document->document_url }}" 
+                        <a href="" 
                             target="_blank" 
                             class="text-sm py-2 px-4 flex items-center gap-2">
                             <svg class="w-8 h-8">
