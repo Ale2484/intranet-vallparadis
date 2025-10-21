@@ -24,7 +24,8 @@ Route::middleware("auth")->group(function () {
     })->name("dashboard");
 
     // Uniformes
-    Route::get("/users/{user}/uniformities/{uniformity}/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
+    Route::get("/users/{user}/uniformities/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
+    Route::patch("/users/{user}/uniformities/update", [UniformityController::class, "update"])->name('user.uniformity.update');
 
 
     

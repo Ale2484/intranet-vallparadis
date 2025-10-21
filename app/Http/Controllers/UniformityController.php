@@ -14,8 +14,30 @@ class UniformityController extends Controller
 
     public function edit(User $user)
     {
-        
+        $sizes = ["S", "M", "L", "XL", "XXL", "3XL", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58"];
+        $userEdit = $user;
+        $users = User::all();
+        $uniformity = $user->uniformity;
+
+        return view("uniformity.edit", compact("uniformity", "users", "sizes", "userEdit"));
     }
+    public function update(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            "pants" => "required",
+            "shirt" => "required",
+            "shoes" => "required",
+            "userRenewal" => "required"
+
+        ]);
+
+        $user->uniformity->update($validated);
+
+        $user->uniformity->uniformityRenovatio
+
+        return redirect()->route("users.index")->with("success", "Uniforme renovat correctament");
+    }
+
     public function exportAllUniformity()
     {
         $uniformities = Uniformity::select("user","shirt","pants","shoes")->get();
