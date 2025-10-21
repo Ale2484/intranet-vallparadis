@@ -34,7 +34,7 @@ class ProjectController extends Controller
         $project = new Project();
         $centers = Center::all();
         // $users = User::active()->get();
-        $users = User::where("id",1)->get();
+        $users = User::all();
         return view('projects.create', compact('centers', 'users', 'project'));
     }
 
@@ -77,7 +77,7 @@ class ProjectController extends Controller
     {
         $centers = Center::all();
         // $users = User::active()->get();
-        $users = User::where("id",1)->get();
+        $users = User::all();
         $project->load('documents');
         return view('projects.edit', compact('project', 'centers', 'users'));
     }

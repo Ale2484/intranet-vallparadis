@@ -52,13 +52,12 @@
             <select name="user" id="user" 
             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('user') border-red-500 @enderror"
             required>
-            <option value="">Selecciona un professional</option>
-            @foreach($users as $user)
-            <option value="{{ $user->id }}" {{ old('user', $project->user) == $user->id ? 'selected' : '' }}>
-                {{ $user->name }} ({{ $user->role_label }})
-            </option>
-            @endforeach
-        </select>
+                @foreach($users as $user)
+                    <option value="{{ $user->id }}" {{ old('user', $project->user) == $user->id ? 'selected' : '' }}>
+                        {{ $user->name }} ({{ $user->role_label }})
+                    </option>
+                @endforeach
+            </select>
         @error('user')
         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
         @enderror
