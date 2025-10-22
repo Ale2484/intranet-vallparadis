@@ -1,6 +1,6 @@
 @extends("layouts.app")
 @section("main")
-<div class="w-full flex flex-wrap flex-row justify-between items-center">
+{{-- <div class="w-full flex flex-wrap flex-row justify-between items-center">
     <!-- Contenedor -->
     <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-96 mb-10">
         <div class="flex justify-between items-center">
@@ -87,7 +87,7 @@
         </div>
     </div>
 
-</div>
+</div> --}}
 <h2 class="font-bold text-lg mb-5 text-[#011020]">APARTATS DEL SISTEMA</h2>
 
 
