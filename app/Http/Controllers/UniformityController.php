@@ -38,31 +38,15 @@ class UniformityController extends Controller
 
     public function exportAllUniformity()
     {
-        $uniformities = Uniformity::select("user","shirt","pants","shoes")->get();
-
-        foreach ($uniformities as $key => $value) {
-            $user = User::select("name")->where('id', $uniformities[$key] -> user)->get();
-
-            $uniformities[$key]->user = $user[0]-> name;
-        }
+        $uniformities = Uniformity::with(["userAssigned"])->get();
 
         return Excel::download(new UniformityExport($uniformities), 'uniformidades.xlsx');
-        
     }
 
     public function exportUniformity($userId)
     {
-        $uniformities = Uniformity::select("user","shirt","pants","shoes")->where('user', $userId)->get();
-        
-        $user = User::select("name")->where('id', $uniformities[0] -> user)->get();
+        $uniformities = Uniformity::with(["userAssigned"])->where('user', $userId)->get();
 
-        $uniformities[0] -> user = $user[0]-> name;
-
-        if (!($uniformities == "[]")){
-            return Excel::download(new UniformityExport($uniformities), 'uniformidad.xlsx');
-        } else {
-            Log::error('no se ha encontrado el uniforme');
-        }
-
+        return Excel::download(new UniformityExport($uniformities), 'uniformidad.xlsx');
     }
 }
