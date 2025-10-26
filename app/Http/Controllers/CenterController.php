@@ -96,17 +96,15 @@ class CenterController extends Controller
 
     }
 
-    public function disable(Center $center)
+    public function deactivate(Center $center)
     {
         $center->update(["is_active" => false]);
-
         return redirect()->route("centers.index")->with("success", "Centre deshabilitat correctament");
     }
 
-    public function enable(Center $center)
+    public function activate(Center $center)
     {
         $center->update(["is_active" => true]);
-
         return redirect()->route("centers.index")->with("success", "Centre deshabilitat correctament");
     }
 }

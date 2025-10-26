@@ -133,7 +133,7 @@
             </li>
         </ul>
 
-        <a href="{{ route("users.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-3 font-bold">Accedir al apartat</a>
+        <a href="{{ route("users.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
     </div>
     <!-- Container -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start w-80">
@@ -173,7 +173,7 @@
                 </a>
             </li>
         </ul>
-        <a href="{{ route("centers.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-3 font-bold">Accedir al apartat</a>
+        <a href="{{ route("centers.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
     </div>
     <!-- Container -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start w-80">
@@ -214,7 +214,7 @@
                 </a>
             </li>
         </ul>
-        <a href="{{ route("projects.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-3 font-bold">Accedir al apartat</a>
+        <a href="{{ route("projects.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
 
     </div>
     <!-- Container -->
@@ -255,7 +255,7 @@
                 </a>
             </li>
         </ul>
-        <a href="#test" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-3 font-bold">Accedir al apartat</a>
+        <a href="#test" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
     </div>
     <!-- Container -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start w-80">
@@ -296,7 +296,7 @@
                 </a>
             </li>
         </ul>
-        <a href="#test" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-3 font-bold">Accedir al apartat</a>
+        <a href="#test" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
 
     </div>
 </div>

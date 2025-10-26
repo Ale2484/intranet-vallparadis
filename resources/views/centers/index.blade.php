@@ -150,7 +150,7 @@
             
             <!-- Activar/Desactivar -->
             <div class="flex flex-row gap-5 justify-end">
-                <a href="{{ route("centers.edit", $center->id) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+                <a href="{{ route("centers.edit", $center->id) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF]">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-square-pen"></use>
                     </svg>
@@ -158,10 +158,12 @@
                 </a>
                 
 
-                <form action="{{ $center->is_active ? route("centers.disable", $center->id) : route("centers.enable", $center->id) }}" method="post">
+                <form action="{{ $center->is_active ? route("centers.deactivate", $center->id) : route("centers.activate", $center->id) }}" method="post">
                     @csrf
                     @method("PATCH")
-                    <button type="submit" class="flex justify-center gap-3 {{ $center->is_active ? "text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all" : "text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all" }}">
+                    <button type="submit"
+                        class="confirmable flex justify-center gap-3 {{ $center->is_active ? "text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all" : "text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all" }}"
+                        data-confirm-message="{{ $center->is_active ? "Estàs segur que vols desactivar aquest centre?" : "Estàs segur que vols activar aquest centre?" }}">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-power"></use>
                         </svg>
