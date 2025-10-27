@@ -206,7 +206,8 @@
                                 @csrf
                                 @method('PATCH')
                                 <button type="submit" 
-                                        class="text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all w-full flex justify-center gap-3">
+                                        class="confirmable text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all w-full flex justify-center gap-3"
+                                        data-confirm-message="{{ $user->is_active ? "Estàs segur que vols desactivar aquest usuari?" : "Estàs segur que vols activar aquest usuari?" }}">
                                     <svg class="w-6 h-6">
                                         <use xlink:href="#icon-power"></use>
                                     </svg>
