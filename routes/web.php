@@ -37,8 +37,8 @@ Route::middleware("auth")->group(function () {
     
     // Centros
     Route::resource("centers", CenterController::class)->except("destroy");
-    Route::patch("/centers/{center}/disable", [CenterController::class, "disable"])->name("centers.disable");
-    Route::patch("/centers/{center}/enable", [CenterController::class, "enable"])->name("centers.enable");
+    Route::patch("/centers/{center}/deactivate", [CenterController::class, "deactivate"])->name("centers.deactivate");
+    Route::patch("/centers/{center}/activate", [CenterController::class, "activate"])->name("centers.activate");
     
     // Proyectos  
     Route::resource('projects', ProjectController::class);

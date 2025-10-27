@@ -26,6 +26,7 @@
     <footer class="px-24">
         @include("components.footer")
     </footer>
+    @include("partials.confirmable_modal")
 </body>
 @vite("resources/js/app.js")
 
