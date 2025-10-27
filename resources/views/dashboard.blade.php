@@ -219,6 +219,48 @@
     </div>
     <!-- Container -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start w-80">
+        <div class="bg-teal-50 rounded-lg p-2 mb-3">
+            <svg class="w-8 h-8 text-teal-600">
+                <use xlink:href="#icon-folder"></use>
+            </svg>
+
+        </div>
+
+        <p class="text-[20px] font-bold text-[#011020]">Cursos</p>
+        <p class="text-[#013148] text-sm" >Control i seguiment dels cursos</p>
+
+        <!-- Opciones -->
+        <ul class="my-5 w-full">
+            <li>
+                <a href="{{ route("projects.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    Alta d'un nou curs
+                <svg class="w-6 h-6 text-[#012F4A]">
+                    <use xlink:href="#icon-no-line-arrow"></use>
+                </svg>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    Cursos actius
+                <svg class="w-6 h-6 text-[#012F4A]">
+                    <use xlink:href="#icon-no-line-arrow"></use>
+                </svg>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    Cursos inactius
+                <svg class="w-6 h-6 text-[#012F4A]">
+                    <use xlink:href="#icon-no-line-arrow"></use>
+                </svg>
+                </a>
+            </li>
+        </ul>
+        <a href="{{ route("projects.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
+
+    </div>
+    <!-- Container -->
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start w-80">
         <div class="bg-[#fee9d6] rounded-lg p-2 mb-3">
             <svg class="w-8 h-8 text-[#FF7E13]">
                 <use xlink:href="#icon-knife"></use>

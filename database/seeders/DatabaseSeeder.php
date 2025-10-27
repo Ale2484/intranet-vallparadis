@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             UniformitySeeder::class,
             ProjectSeeder::class,
-            UniformityRenovationSeeder::class
+            UniformityRenovationSeeder::class,
+            CourseSeeder::class,
+            CourseUserSeeder::class
 
         ]);
         // User::factory(10)->create();

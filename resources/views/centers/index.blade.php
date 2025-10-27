@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Veure el centres")
+@section("title", "Veure els centres")
 @section("main")
 <div class="flex items-center justify-between mb-7">
     <h1 class="text-3xl font-bold text-[#011020]">Gestió de centres: </h1>

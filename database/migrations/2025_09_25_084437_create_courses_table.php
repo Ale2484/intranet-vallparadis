@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("user");
-            $table->string('name');
-            $table->string("description", 255);
+            $table->unsignedBigInteger("center_id");
+            $table->string("codiForcem");
+            $table->decimal("hours", 3, 1);
+            $table->string("type");
+            $table->string("modality");
+            $table->string("name");
+            $table->boolean("is_active")->default(true);
+            
+            $table->date("start_date");
+            $table->date("end_date");
+
             $table->timestamps();
 
-            $table->foreign("user")->references("id")->on("users");
+            $table->foreign("center_id")->references("id")->on("centers");
         });
     }
 

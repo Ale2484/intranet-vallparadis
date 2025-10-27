@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CenterController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -23,10 +24,12 @@ Route::middleware("auth")->group(function () {
         return view('dashboard');
     })->name("dashboard");
 
+    // Cursos
+    Route::resource("courses", CourseController::class);
+
     // Uniformes
     Route::get("/users/{user}/uniformities/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
     Route::patch("/users/{user}/uniformities/update", [UniformityController::class, "update"])->name('user.uniformity.update');
-
 
     
     //Usuarios
