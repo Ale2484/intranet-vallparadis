@@ -17,14 +17,6 @@
             </a>
         </li>
         <li>
-            <a href="{{ route("centers.index") }}" class="{{ request()->is('centers*') ? "menu-option-selected" : "menu-option" }}">
-                <svg class="w-7 h-7">
-                    <use xlink:href="#icon-center"></use>
-                </svg>
-                <span class="menu-text hidden">Centers</span>
-            </a>
-        </li>
-        <li>
             <a href="{{ route("users.index") }}" class="{{ request()->is('users*') ? "menu-option-selected" : "menu-option" }}">
                 <svg class="w-7 h-7">
                     <use xlink:href="#icon-users"></use>
@@ -33,11 +25,27 @@
             </a>
         </li>
         <li>
+            <a href="{{ route("centers.index") }}" class="{{ request()->is('centers*') ? "menu-option-selected" : "menu-option" }}">
+                <svg class="w-7 h-7">
+                    <use xlink:href="#icon-center"></use>
+                </svg>
+                <span class="menu-text hidden">Centers</span>
+            </a>
+        </li>
+        <li>
             <a href="{{ route("projects.index") }}" class="{{ request()->is('projects*') ? "menu-option-selected" : "menu-option" }}">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-folder"></use>
             </svg>
                 <span class="menu-text hidden text-nowrap">Projectes/Comissions</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route("courses.index") }}" class="{{ request()->is('courses*') ? "menu-option-selected" : "menu-option" }}">
+            <svg class="w-7 h-7">
+                <use xlink:href="#icon-book"></use>
+            </svg>
+                <span class="menu-text hidden text-nowrap">Cursos</span>
             </a>
         </li>
 

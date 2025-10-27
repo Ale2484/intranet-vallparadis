@@ -36,9 +36,9 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Course $course)
     {
-        //
+        return view("courses.show", compact("course"));
     }
 
     /**
