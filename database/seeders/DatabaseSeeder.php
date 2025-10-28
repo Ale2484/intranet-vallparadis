@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CourseSchedule;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,7 +22,8 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             UniformityRenovationSeeder::class,
             CourseSeeder::class,
-            CourseUserSeeder::class
+            CourseUserSeeder::class,
+            CourseScheduleSeeder::class
 
         ]);
         // User::factory(10)->create();

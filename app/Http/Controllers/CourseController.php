@@ -38,7 +38,10 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return view("courses.show", compact("course"));
+        $usersPreview = $course->users()->limit(4)->get();
+        $totalUsers = $course->users;
+        $schedules = $course->schedule;
+        return view("courses.show", compact("course", "usersPreview", "totalUsers", "schedules"));
     }
 
     /**

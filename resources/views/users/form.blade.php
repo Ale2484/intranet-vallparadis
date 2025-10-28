@@ -155,7 +155,7 @@
         </div>
     </div>
     @if ($method == "PATCH")
-        <a href="{{ route('user.uniformity.edit', $user->id) }}" class="mt-5 bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+        <a href="{{ route('user.uniformity.edit', $user) }}" class="mt-5 bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
             Editar uniformes
 
         </a>

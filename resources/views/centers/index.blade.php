@@ -118,7 +118,7 @@
                         <use xlink:href="#icon-maps"></use>
                     </svg>
                     </div>
-                    <a href="{{ route("centers.show", $center->id) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $center->name }}</a>
+                    <a href="{{ route("centers.show", $center) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $center->name }}</a>
                 </div>
 
                 <p class="w-20 border-1 p-1 text-center {{ $center->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$center->is_active ? "Actiu" : "Inactiu"}}</p>
@@ -150,7 +150,7 @@
             
             <!-- Activar/Desactivar -->
             <div class="flex flex-row gap-5 justify-end">
-                <a href="{{ route("centers.edit", $center->id) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF]">
+                <a href="{{ route("centers.edit", $center) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF]">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-square-pen"></use>
                     </svg>
@@ -158,7 +158,7 @@
                 </a>
                 
 
-                <form action="{{ $center->is_active ? route("centers.deactivate", $center->id) : route("centers.activate", $center->id) }}" method="post">
+                <form action="{{ $center->is_active ? route("centers.deactivate", $center) : route("centers.activate", $center) }}" method="post">
                     @csrf
                     @method("PATCH")
                     <button type="submit"

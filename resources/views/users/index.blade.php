@@ -129,7 +129,7 @@
                                     <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
                                 </div>
                                 <div class="flex items-center">
-                                    <a href="{{ route("users.show", $user->id) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $user->name }}</a>
+                                    <a href="{{ route("users.show", $user) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $user->name }}</a>
                                 </div>
                             </div>
                             @if($user->is_active)

@@ -95,7 +95,7 @@
 <div class="w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[300px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-blue-50 rounded-lg p-2 mb-3">
             <svg class="w-8 h-8 text-blue-600">
                 <use xlink:href="#icon-users"></use>
@@ -136,7 +136,7 @@
         <a href="{{ route("users.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[300px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-green-50 rounded-lg p-2 mb-3">
             <svg class="w-8 h-8 text-green-600">
                 <use xlink:href="#icon-center"></use>
@@ -176,7 +176,7 @@
         <a href="{{ route("centers.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[300px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-teal-50 rounded-lg p-2 mb-3">
             <svg class="w-8 h-8 text-teal-600">
                 <use xlink:href="#icon-folder"></use>
@@ -218,7 +218,7 @@
 
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[300px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-violet-50 rounded-lg p-2 mb-3">
             <svg class="w-8 h-8 text-violet-600">
                 <use xlink:href="#icon-book"></use>
@@ -260,7 +260,7 @@
 
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[300px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-[#fee9d6] rounded-lg p-2 mb-3">
             <svg class="w-8 h-8 text-[#FF7E13]">
                 <use xlink:href="#icon-knife"></use>
@@ -300,7 +300,7 @@
         <a href="#test" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[300px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-red-50 rounded-lg p-2 mb-3">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-red-600">
                 <use xlink:href="#icon-group-user"></use>

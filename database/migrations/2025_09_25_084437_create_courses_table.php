@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("type");
             $table->string("modality");
             $table->string("name");
+            $table->text("description");
             $table->boolean("is_active")->default(true);
             
             $table->dateTime("start_date");

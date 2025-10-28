@@ -22,6 +22,7 @@ class CourseSeeder extends Seeder
                     "hours" => 20.2,
                     "type" => "Formació interna",
                     "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
                     "is_active" => true,
                     
                     "start_date" => now(),
@@ -37,6 +38,7 @@ class CourseSeeder extends Seeder
                     "hours" => 10,
                     "type" => "Formació externa",
                     "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
                     "is_active" => true,
                     
                     "start_date" => now(),
@@ -52,6 +54,7 @@ class CourseSeeder extends Seeder
                     "hours" => 32,
                     "type" => "Formació interna",
                     "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
                     "is_active" => true,
                     
                     "start_date" => now(),
@@ -67,6 +70,7 @@ class CourseSeeder extends Seeder
                     "hours" => 25,
                     "type" => "Formació externa",
                     "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
                     "is_active" => true,
                     
                     "start_date" => now(),
@@ -82,6 +86,7 @@ class CourseSeeder extends Seeder
                     "hours" => 23.3,
                     "type" => "Formació interna",
                     "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
                     "is_active" => true,
                     
                     "start_date" => now(),

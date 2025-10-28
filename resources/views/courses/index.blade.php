@@ -85,13 +85,13 @@
             <div class="flex items-center justify-end mt-2">
                 <!-- Activar/Desactivar -->
                 <div class="w-full sm:w-full md:w-auto lg:w-auto flex gap-5 justify-end flex-col sm:flex-col sm:justify-center md:flex-row">
-                    <a href="{{ route("centers.edit", $course->id) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF]">
+                    <a href="{{ route("centers.edit", $course) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF]">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-square-pen"></use>
                         </svg>
                         Editar
                     </a>    
-                    <form action="{{ $course->is_active ? route("centers.deactivate", $course->id) : route("centers.activate", $course->id) }}" method="post" class="w-full sm:w-full md:w-auto lg:w-auto">
+                    <form action="{{ $course->is_active ? route("centers.deactivate", $course) : route("centers.activate", $course) }}" method="post" class="w-full sm:w-full md:w-auto lg:w-auto">
                         @csrf
                         @method("PATCH")
                         <button type="submit"
