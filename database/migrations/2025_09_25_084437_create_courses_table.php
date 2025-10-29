@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("center_id");
-            $table->string("codiForcem");
+            $table->string("code");
             $table->decimal("hours", 3, 1);
             $table->string("type");
             $table->string("modality");
             $table->string("name");
-            $table->text("description");
+            $table->text("description")->nullable();
             $table->boolean("is_active")->default(true);
+            $table->unsignedBigInteger("assistant");
             
             $table->dateTime("start_date");
             $table->dateTime("end_date");
@@ -28,6 +29,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign("center_id")->references("id")->on("centers");
+            $table->foreign("assistant")->references("id")->on("users");
+            
         });
     }
 

@@ -7,7 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     protected $table = "courses";
-
+    protected $fillable = [
+        "center_id",
+        "code",
+        "hours",
+        "type",
+        "modality",
+        "name",
+        "description",
+        "assistant",
+        "is_active"
+    ];
     public function center()
     {
         return $this->belongsTo(Center::class);

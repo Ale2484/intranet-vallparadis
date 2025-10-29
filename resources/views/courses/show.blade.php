@@ -14,7 +14,7 @@
     
             <h1 class="text-3xl font-bold text-[#011020]">{{ $course->name }}</h1>
     
-            <h1 class="text-lg font-bold text-[#FF7E13]">Codi: {{ $course->codiForcem }}</h1>
+            <h1 class="text-lg font-bold text-[#FF7E13]">Codi: {{ $course->code ?? "Aquest curs no te codi" }}</h1>
             <p class="text-[#AFAFAF] mb-7">Informació completa del curs</p>
         </div>
         <!-- Contenedor principal -->

@@ -91,7 +91,7 @@
                         </svg>
                         Editar
                     </a>    
-                    <form action="{{ $course->is_active ? route("centers.deactivate", $course) : route("centers.activate", $course) }}" method="post" class="w-full sm:w-full md:w-auto lg:w-auto">
+                    <form action="{{ $course->is_active ? route("courses.deactivate", $course) : route("courses.activate", $course) }}" method="post" class="w-full sm:w-full md:w-auto lg:w-auto">
                         @csrf
                         @method("PATCH")
                         <button type="submit"
