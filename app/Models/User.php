@@ -75,4 +75,9 @@ class User extends Authenticatable
 
         return $roles[$this->role] ?? $this->role;
     }
+
+    // Relacion Seguimiento
+    public function tracking() : HasMany {
+        return $this->hasMany(Tracking::class);
+    }
 }
