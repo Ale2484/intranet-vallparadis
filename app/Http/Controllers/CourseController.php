@@ -27,7 +27,8 @@ class CourseController extends Controller
         $course = new Course();
         $centers = Center::all();
         $users = User::all();
-        return view("courses.create", compact("course", "centers", "users"));
+        $registeredUsers = [];
+        return view("courses.create", compact("course", "centers", "users", "registeredUsers"));
     }
 
     /**
@@ -67,9 +68,13 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Course $course)
     {
-        //
+        $centers = Center::all();
+        $users = User::all();
+        // Se obtienen todos los usuarios registrados en el curso
+        $registeredUsers = $course->users;
+        return view("courses.edit", compact("course", "centers", "users", "registeredUsers"));
     }
 
     /**

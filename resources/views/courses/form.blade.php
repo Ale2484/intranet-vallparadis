@@ -159,6 +159,59 @@
                 </select>
             </div>
         </div>
+        <div class="flex flex-row justify-between gap-5">
+            {{-- Se muestran los usuarios incritos --}}
+            <div class="w-1/2">
+                <p class="font-bold text-2xl mb-3">Usuaris inscrits:</p>
+                <input type="text" placeholder="Busca un usuari" class="searchUser w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
+                <div class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 max-h-[450px] overflow-y-auto">
+                    {{-- Si hay usuarios inscritos, se muestran --}}
+                    @if (count($registeredUsers) > 0)
+                        <div class="flex flex-col gap-3 w-full">
+                            @foreach ($registeredUsers as $user )
+                                <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2">
+                                    <div class="w-15 h-15 bg-gray-200 rounded-full">
+                                        <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                    </div>
+                                    <div>
+                                        <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
+                                        <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
+                                    </div>
+                                </div>
+
+                            @endforeach
+                        </div>
+                    @else
+                        <p>Aquest curs actualment no te usuaris inscrits</p>
+                    @endif
+                </div>
+            </div>
+            {{-- Se muestra el total de usuarios --}}
+            <div class="w-1/2">
+                <p class="font-bold text-2xl mb-3">Usuaris totals:</p>
+                <input type="text" placeholder="Busca un usuari" class="searchUser w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
+                <div class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 max-h-[450px] overflow-y-auto">
+                    {{-- Si hay usuarios inscritos, se muestran --}}
+                    @if (count($users) > 0)
+                        <div class="flex flex-col gap-3 w-full">
+                            @foreach ($users as $user )
+                                <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2">
+                                    <div class="w-15 h-15 bg-gray-200 rounded-full">
+                                        <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                    </div>
+                                    <div>
+                                        <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
+                                        <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p>Aquest curs actualment no te usuaris inscrits</p>
+                    @endif
+                </div>
+            </div>
+        </div>
         <div class="flex justify-end gap-5">
             <a href="{{ route("courses.index") }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">Cancel·lar</a>
             <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">

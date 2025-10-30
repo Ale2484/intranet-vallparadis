@@ -16,6 +16,8 @@ class Course extends Model
         "name",
         "description",
         "assistant",
+        "start_date",
+        "end_date",
         "is_active"
     ];
     public function center()
