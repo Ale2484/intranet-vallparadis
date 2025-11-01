@@ -165,16 +165,17 @@
                 <p class="font-bold text-2xl mb-3">Usuaris inscrits:</p>
                 <input type="text" placeholder="Busca un usuari" class="searchUser w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 max-h-[450px] overflow-y-auto">
+                    <p class="no-user-message hidden">No hi han usuaris que coincideixin amb la busqueda</p>
                     {{-- Si hay usuarios inscritos, se muestran --}}
                     @if (count($registeredUsers) > 0)
                         <div class="flex flex-col gap-3 w-full">
                             @foreach ($registeredUsers as $user )
-                                <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2">
+                                <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2" draggable="true">
                                     <div class="w-15 h-15 bg-gray-200 rounded-full">
                                         <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
                                     </div>
                                     <div>
-                                        <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
+                                        <p class="user-name font-semibold">{{$user->name ?? " - "}}</p>
                                         <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
                                     </div>
                                 </div>
@@ -182,7 +183,7 @@
                             @endforeach
                         </div>
                     @else
-                        <p>Aquest curs actualment no te usuaris inscrits</p>
+                        <p class="no-registered-users">Aquest curs actualment no te usuaris inscrits</p>
                     @endif
                 </div>
             </div>
@@ -190,24 +191,26 @@
             <div class="w-1/2">
                 <p class="font-bold text-2xl mb-3">Usuaris totals:</p>
                 <input type="text" placeholder="Busca un usuari" class="searchUser w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
-                <div class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 max-h-[450px] overflow-y-auto">
+                {{-- Zona de drop --}}
+                <div class="dropzone border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 max-h-[450px] overflow-y-auto">
+                    <p class="no-user-message hidden">No hi han usuaris que coincideixin amb la busqueda</p>
                     {{-- Si hay usuarios inscritos, se muestran --}}
                     @if (count($users) > 0)
                         <div class="flex flex-col gap-3 w-full">
                             @foreach ($users as $user )
-                                <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2">
+                                <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2" draggable="true">
                                     <div class="w-15 h-15 bg-gray-200 rounded-full">
                                         <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
                                     </div>
                                     <div>
-                                        <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
+                                        <p class="user-name font-semibold">{{$user->name ?? " - "}}</p>
                                         <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
                     @else
-                        <p>Aquest curs actualment no te usuaris inscrits</p>
+                        <p class="no-registered-users">No hi ha usuaris que es puguin inscriure al curs</p>
                     @endif
                 </div>
             </div>
