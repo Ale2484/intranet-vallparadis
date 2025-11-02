@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if(searchInputs) {
         searchInputs.forEach(searchInput => {
 
-            let userItems = searchInput.closest("div").querySelectorAll(".user-item");
             // Se escucha cuando se escribe, para poder buscar usuarios
             searchInput.addEventListener("input", () => {
+                let userItems = searchInput.closest("div").querySelectorAll(".user-item");
                 let inputValue = searchInput.value.toLowerCase();
                 // Por cada contenedor
                 userItems.forEach(userItem => {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Se obtiene el mensaje de usuarios no encontrados
                 let noUserMessage = searchInput.closest("div").querySelector(".no-user-message");
                 // Si no hay ningun resultado se muestra un mensaje
-                if (userItemsCount <= 0 && !searchInput.closest("div").querySelector(".no-registered-users")){
+                if (userItemsCount <= 0 && !searchInput.closest("div").querySelector(".no-registered-users:not(.hidden)")){
                     noUserMessage.classList.remove("hidden");
                 } else{
                     noUserMessage.classList.add("hidden");
