@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Center;
 use App\Models\Course;
+use App\Models\CourseUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -14,8 +16,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
-        $courses = Course::all();
+        $courses = Course::orderBy("created_at", "asc")->paginate(3);
         return view("courses.index", compact("courses"));
     }
 
@@ -27,7 +28,8 @@ class CourseController extends Controller
         $course = new Course();
         $centers = Center::all();
         $users = User::all();
-        $registeredUsers = [];
+        // Se pasa el registeredUsers a coleccion porque sino cuando se usan algunos metodos especificos da problemas
+        $registeredUsers = collect([]);
         return view("courses.create", compact("course", "centers", "users", "registeredUsers"));
     }
 
@@ -49,7 +51,24 @@ class CourseController extends Controller
             "assistant" => "required|exists:users,id",
             "is_active" => "required|boolean",
         ]);
-        Course::create($validate);
+        $newCourse = Course::create($validate);
+
+        if (!empty($request->userIds)) {
+            // Se crean los registros de los usuarios que se inscriben al curso
+            $userIds = explode(",", $request->userIds);
+            $registeredUsers = [];
+            foreach ($userIds as $userId) {
+                $registeredUsers[] = [
+                    "user_id" => $userId,
+                    "course_id" => $newCourse->id,
+                    "certificate" => "PENDENT",
+                ];
+            }
+            if (!empty($registeredUsers)) {
+                DB::table("course_users")->insert($registeredUsers);
+            }
+        }
+        
         return redirect()->route("courses.index")->with("success", "Curs creat correctament");
 
     }
@@ -80,9 +99,51 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Course $course)
     {
-        //
+        $validate = $request->validate([
+            "center_id" => "required|exists:centers,id",
+            "code" => "required|string",
+            "hours" => "required|numeric",
+            "type" => "required|string",
+            "modality" => "required|string",
+            "name" => "required|string",
+            "description" => "nullable",
+            "start_date" => "required|date",
+            "end_date" => "required|date",
+            "assistant" => "required|exists:users,id",
+            "is_active" => "required|boolean",
+        ]);
+        $course->update($validate);
+        
+        // Se obtienen los usuarios pasados en la request incluyendo los usuarios que ya estaban inscritos en el curso
+        $userIds = !empty($request->userIds) ? explode(",", $request->userIds) : "";
+        // Se obtienen los usuarios inscritos al curso
+        $registeredUsers = $course->users->pluck("id")->toArray();
+        
+        if (!empty($userIds)) {
+            // Se obtienen SOLO los nuevos usuarios que se han pasado en el formulario
+            $newRegisteredUsersId = array_diff($userIds, $registeredUsers);
+            if (!empty($newRegisteredUsersId)) {
+                $newRegisteredUsers = [];
+                foreach ($newRegisteredUsersId as $newUserId) {
+                    $newRegisteredUsers[] = [
+                        "user_id" => $newUserId,
+                        "course_id" => $course->id,
+                        "certificate" => "PENDENT",
+                    ];
+                } 
+                // Se insertan los registros de los nuevos usuarios
+                DB::table("course_users")->insert($newRegisteredUsers);
+            }
+        }
+
+        // Se obtienen los usuarios que no se han enviado en el formulario pero estaban inscritos al curso
+        $deletedRegisteredUsers = array_diff($registeredUsers, $userIds);
+        if (!empty($deletedRegisteredUsers)) {
+            CourseUser::where("course_id", $course->id)->whereIn("user_id", $deletedRegisteredUsers)->delete();
+        }
+        return redirect()->route("courses.index")->with("success", "Curs creat correctament");
     }
 
     /**

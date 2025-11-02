@@ -24,6 +24,10 @@ class Course extends Model
     {
         return $this->belongsTo(Center::class);
     }
+    public function assistantRelation()
+    {
+        return $this->belongsTo(User::class, "assistant");
+    }
 
     public function users()
     {
