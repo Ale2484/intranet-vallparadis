@@ -109,7 +109,7 @@
         <ul class="my-5 w-full">
             <li>
                 <a href="{{ route("users.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
-                    Alta d'un professional nou
+                    Nou professional
                 <svg class="w-6 h-6 text-[#012F4A]">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
@@ -191,7 +191,7 @@
         <ul class="my-5 w-full">
             <li>
                 <a href="{{ route("projects.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
-                    Alta d'un nou projecte/comissió
+                    Nou projecte/comissió
                 <svg class="w-6 h-6 text-[#012F4A]">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
@@ -227,7 +227,7 @@
         </div>
 
         <p class="text-[20px] font-bold text-[#011020]">Cursos</p>
-        <p class="text-[#013148] text-sm" >Control i seguiment dels cursos</p>
+        <p class="text-[#013148] text-sm" >Control gestió i seguiment dels cursos</p>
 
         <!-- Opciones -->
         <ul class="my-5 w-full">
@@ -343,9 +343,3 @@
     </div>
 </div>
 @endsection
-
-@section("footer")
-@endsection
-
-</body>
-</html>

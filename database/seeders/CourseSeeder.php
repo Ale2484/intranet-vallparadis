@@ -98,7 +98,7 @@ class CourseSeeder extends Seeder
                     "end_date" => now(),
                     "created_at" => now(),
                     "updated_at" => now()
-                ],
+                ]
             ]
         );
     }

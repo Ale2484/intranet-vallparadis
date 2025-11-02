@@ -143,7 +143,7 @@
                 {{-- Contenedor secundario --}}
                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col mb-5 min-w-[350px]">
                     <p class="text-[20px] font-bold text-[#011020] mb-3">Descripció:</p>
-                    <p class="text-[#5E6468]">{{ $course->description}}</p>
+                    <p class="text-[#5E6468]">{{ $course->description ?? "Aquest curs no té descripció"}}</p>
                 </div>
     
             </div>

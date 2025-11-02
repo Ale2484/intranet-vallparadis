@@ -39,7 +39,7 @@
 <div class="w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 @foreach ($courses as $course )
         <!-- Contenedor -->
-        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col {{ $course->is_active ? "" : "opacity-70" }}">
             <div class="flex justify-between items-center mb-5">
                 <div class="flex flex-row items-center gap-5">
                     <div class="bg-[#ffe7de] rounded-lg p-2">
@@ -106,9 +106,10 @@
                 </div>
 
             </div>
-            
-
         </div>
 @endforeach
+</div>
+{{ $courses->links('pagination::tailwind') }}
+
 </div>
 @endsection

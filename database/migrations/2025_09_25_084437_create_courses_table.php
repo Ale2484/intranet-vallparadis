@@ -23,8 +23,8 @@ return new class extends Migration
             $table->boolean("is_active")->default(true);
             $table->unsignedBigInteger("assistant");
             
-            $table->dateTime("start_date");
-            $table->dateTime("end_date");
+            $table->date("start_date");
+            $table->date("end_date");
 
             $table->timestamps();
 

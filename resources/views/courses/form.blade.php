@@ -1,7 +1,7 @@
 <form action="{{ $action }}" method="POST">
     @csrf
     @isset($method)
-        @method($method)        
+        @method($method)
     @endisset
     <div class="flex flex-col gap-5">
         {{-- Contenedor de 2 --}}
@@ -16,15 +16,16 @@
                     </div>
                 </div>
                 <select name="center_id" id="center_id" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('center_id') border-red-600 @enderror" required>
-                    <option value="" selected hidden>Selecciona un centre</option>
+                    <option value="" {{ old("center_id", $course->center_id) ? "" : "selected" }} hidden>Selecciona un centre</option>
                     @if (count($centers) > 0 )
                         @foreach ($centers as $center)
-                            <option value="{{ $center->id }}" {{ old("center_id") == $center->id ? "selected" : "" }} >{{ $center->name }}</option>
+                            <option value="{{ $center->id }}" {{ old("center_id", $course->center_id) == $center->id ? "selected" : "" }} >{{ $center->name }}</option>
                         @endforeach
                     @else
                         <option value="" disabled>No hi ha centres</option>
                     @endif
                 </select>
+
             </div>
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
@@ -138,13 +139,14 @@
                     <option value="" selected hidden>Selecciona un assistent</option>
                     @if (count($users) > 0)
                         @foreach ($users as $user)
-                            <option value="{{ $user->id }}" {{ old("assistant") == $user->id ? "selected" : "" }} >{{ $user->name }}</option>
+                            <option value="{{ $user->id }}" {{ old("assistant", $course->assistant) == $user->id ? "selected" : "" }} >{{ $user->name }}</option>
                         @endforeach
                     @else
                         <option value="" disabled>No hi ha usuaris disponibles</option>
                     @endif
                 </select>
-            </div>            <div class="w-1/2 flex flex-col gap-2">
+            </div>            
+            <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
                     <div class="flex flex-row items-center gap-2">
                         <svg class="w-6 h-6">
@@ -165,25 +167,24 @@
                 <p class="font-bold text-2xl mb-3">Usuaris inscrits:</p>
                 <input type="text" placeholder="Busca un usuari" class="searchUser w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
                 {{-- Zona de drop --}}
-                <div id="dropZone" class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 h-[450px] overflow-y-auto">
+                <div id="dropZoneLeft" class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 h-[450px] overflow-y-auto">
                     <p class="no-user-message hidden">No hi han usuaris que coincideixin amb la busqueda</p>
                     {{-- Si hay usuarios inscritos, se muestran --}}
-                    @if (count($registeredUsers) > 0)
-                        @foreach ($registeredUsers as $user )
-                            <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2 mb-3">
-                                <div class="w-15 h-15 bg-gray-200 rounded-full">
-                                    <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                    @if ($registeredUsers->isNotEmpty())
+                            @foreach ($registeredUsers as $user )
+                                <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2 mb-3" data-id="{{ $user->id ?? "" }}" draggable="true">
+                                    <div class="w-15 h-15 bg-gray-200 rounded-full">
+                                        <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                    </div>
+                                    <div>
+                                        <p class="user-name font-semibold">{{$user->name ?? " - "}}</p>
+                                        <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="user-name font-semibold">{{$user->name ?? " - "}}</p>
-                                    <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
-                                </div>
-                            </div>
-
-                        @endforeach
-                    @else
-                        <p class="no-registered-users">Aquest curs actualment no te usuaris inscrits</p>
+                            @endforeach
                     @endif
+                    
+                    <p class="no-registered-users {{ $registeredUsers->isNotEmpty() ? "hidden" : "" }}">No hi ha usuaris registrats</p>
                 </div>
             </div>
             {{-- Se muestra el total de usuarios --}}
@@ -191,14 +192,13 @@
                 <p class="font-bold text-2xl mb-3">Usuaris no inscrits:</p>
                 <input type="text" placeholder="Busca un usuari" class="searchUser w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
                 {{-- Zona de drop --}}
-                <div class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 h-[450px] overflow-y-auto">
+                <div id="dropZoneRight" class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 h-[450px] overflow-y-auto">
                     <p class="no-user-message hidden">No hi han usuaris que coincideixin amb la busqueda</p>
                     {{-- Si hay usuarios inscritos, se muestran --}}
                     @if ($users->isNotEmpty() &&  $users->diff($registeredUsers)->isNotEmpty())
-                        <div class="flex flex-col gap-3 w-full">
                             @foreach ($users as $user )
                                 @if (!$registeredUsers->contains($user))
-                                    <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2" draggable="true">
+                                    <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2 mb-3" data-id="{{ $user->id ?? "" }}" draggable="true">
                                         <div class="w-15 h-15 bg-gray-200 rounded-full">
                                             <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
                                         </div>
@@ -206,15 +206,15 @@
                                             <p class="user-name font-semibold">{{$user->name ?? " - "}}</p>
                                             <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 @endif
                             @endforeach
-                        </div>
                     @endif
                     <p class="no-registered-users {{ $users->isNotEmpty() &&  $users->diff($registeredUsers)->isNotEmpty() ? 'hidden' : '' }}">No hi ha usuaris que es puguin inscriure al curs</p>
                 </div>
             </div>
         </div>
+        <input type="hidden" name="userIds" id="userIds" value="{{ $registeredUsers->pluck("id")->implode(",") }}">
         <div class="flex justify-end gap-5">
             <a href="{{ route("courses.index") }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">Cancel·lar</a>
             <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
