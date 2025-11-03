@@ -25,7 +25,6 @@
                         <option value="" disabled>No hi ha centres</option>
                     @endif
                 </select>
-
             </div>
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">

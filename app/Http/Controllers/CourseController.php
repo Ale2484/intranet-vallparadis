@@ -73,7 +73,7 @@ class CourseController extends Controller
         // Se crea el horario
         if (!empty($request->schedules)) {
             foreach ($request->schedules as $day => $times) {
-                if ($times["start_time"] && $times["end_time"]) {
+                if (isset($times["start_time"]) && isset($times["end_time"])) {
                     CourseSchedule::create(["course_id" => $newCourse->id, "day_of_week" => $day, "start_time" => $times["start_time"], "end_time" => $times["end_time"]]);
                 }
             }
@@ -114,8 +114,6 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        $registeredSchedule = $course->schedule->all();
-        dd($registeredSchedule);
         $validate = $request->validate([
             "center_id" => "required|exists:centers,id",
             "code" => "required|string",
@@ -135,8 +133,6 @@ class CourseController extends Controller
         $userIds = !empty($request->userIds) ? explode(",", $request->userIds) : "";
         // Se obtienen los usuarios inscritos al curso
         $registeredUsers = $course->users->pluck("id")->toArray();
-        // 
-
         
         if (!empty($userIds)) {
             // Se obtienen SOLO los nuevos usuarios que se han pasado en el formulario
@@ -154,18 +150,23 @@ class CourseController extends Controller
                 DB::table("course_users")->insert($newRegisteredUsers);
             }
         }
-
         // Se obtienen los usuarios que no se han enviado en el formulario pero estaban inscritos al curso
         $deletedRegisteredUsers = array_diff($registeredUsers, $userIds);
         if (!empty($deletedRegisteredUsers)) {
             CourseUser::where("course_id", $course->id)->whereIn("user_id", $deletedRegisteredUsers)->delete();
         }
-
-        // Se crea el horario
+        
+        // Actualizacion de horario
         if (!empty($request->schedules)) {
             foreach ($request->schedules as $day => $times) {
-                if ($times["start_time"] && $times["end_time"]) {
-                    CourseSchedule::create(["course_id" => $newCourse->id, "day_of_week" => $day, "start_time" => $times["start_time"], "end_time" => $times["end_time"]]);
+                if (isset($times["start_time"]) && isset($times["end_time"])) {
+                    $editDay = CourseSchedule::where("course_id", $course->id)->where("day_of_week", $day)->first();
+                    // Si el registro existia previamente se modifica, sino se crea uno nuevo
+                    if (isset($editDay)) {
+                        $editDay->update(["start_time" => $times["start_time"], "end_time" => $times["end_time"]]);
+                    } else{
+                        CourseSchedule::create(["course_id" => $course->id, "day_of_week" => $day, "start_time" => $times["start_time"], "end_time" => $times["end_time"]]);
+                    }
                 }
             }
         }
