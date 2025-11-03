@@ -161,6 +161,23 @@
                 </select>
             </div>
         </div>
+        {{-- Horarios --}}
+        <p class="font-bold text-2xl">Horari:</p>
+        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+            @foreach ($daysOfWeek as $day)
+            <div class="flex items-center justify-between gap-2 px-5 py-2">
+                <p class="w-[50%]">{{ $day }}: </p>
+                <div class="w-[50%]">
+                    <p>Hora d'inici:</p>
+                    <input type="time" name="schedules[{{ $day }}][start_time]" id="schedules[{{ $day }}][start_time]" value="{{ old("schedules" . $day . "start_time", $schedules[$day]['start_time'] ?? '') }}" class="w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
+                </div>
+                <div class="w-[50%]">
+                    <p>Hora de finalitzacio:</p>
+                    <input type="time" name="schedules[{{ $day }}][end_time]" id="schedules[{{ $day }}][end_time]" value="{{ old("schedules" . $day . "end_time", $schedules[$day]['end_time'] ?? '') }}" class="w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
+                </div>
+            </div>
+            @endforeach
+        </div>
         <div class="flex flex-row justify-between gap-5">
             {{-- Se muestran los usuarios incritos --}}
             <div class="w-1/2">

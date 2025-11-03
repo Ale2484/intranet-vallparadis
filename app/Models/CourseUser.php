@@ -12,4 +12,13 @@ class CourseUser extends Model
         "course_id",
         "certificate"
     ];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
