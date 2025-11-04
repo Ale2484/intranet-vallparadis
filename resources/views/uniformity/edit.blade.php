@@ -21,7 +21,7 @@
     </div>
     <!-- Formulario -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] text-[#0F172A]">
-        <form action="{{ route("user.uniformity.update", $userEdit->id ) }}" method="POST">
+        <form action="{{ route("user.uniformity.update", $userEdit ) }}" method="POST">
             @csrf
             @method("PATCH")
             

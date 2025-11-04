@@ -1,15 +1,13 @@
 <?php
 
 use App\Http\Controllers\CenterController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UniformityController;
 use App\Http\Controllers\UniformityRenovationController;
-
-
-
-
+use Illuminate\Support\Facades\Auth;
 
 // Al login solo se puede acceder si el usuario no ha iniciado session
 Route::middleware("guest")->group(function () {
@@ -17,16 +15,22 @@ Route::middleware("guest")->group(function () {
     Route::post("/login", [UserController::class, "login"]);
 });
 
+
+
 Route::middleware("auth")->group(function () {
     
     Route::get('/', function () {
         return view('dashboard');
     })->name("dashboard");
 
+    // Cursos
+    Route::resource("courses", CourseController::class);
+    Route::patch("/courses/{course}/deactivate", [CourseController::class, "deactivate"])->name('courses.deactivate');
+    Route::patch("/courses/{course}/activate", [CourseController::class, "activate"])->name('courses.activate');
+
     // Uniformes
     Route::get("/users/{user}/uniformities/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
     Route::patch("/users/{user}/uniformities/update", [UniformityController::class, "update"])->name('user.uniformity.update');
-
 
     
     //Usuarios
@@ -34,6 +38,10 @@ Route::middleware("auth")->group(function () {
     Route::patch('/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate');
     Route::patch('/users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
     Route::post('/logout', [UserController::class, 'logout'])->name('users.logout');
+    Route::get('/logout', function () {
+        if (Auth::check()) {return redirect()->route('dashboard');}
+        return redirect()->route('login');
+    });
     
     // Centros
     Route::resource("centers", CenterController::class)->except("destroy");
