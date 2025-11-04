@@ -31,6 +31,7 @@ Route::middleware("auth")->group(function () {
     Route::resource("courses", CourseController::class);
     Route::patch("/courses/{course}/deactivate", [CourseController::class, "deactivate"])->name('courses.deactivate');
     Route::patch("/courses/{course}/activate", [CourseController::class, "activate"])->name('courses.activate');
+    Route::post("/courses/search", [CourseController::class, "search"])->name('courses.search');
 
     // Uniformes
     Route::get("/users/{user}/uniformities/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
