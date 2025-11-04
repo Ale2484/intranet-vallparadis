@@ -110,7 +110,7 @@
             <li>
                 <a href="{{ route("users.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6 ">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -118,7 +118,7 @@
             <li>
                 <a href="{{ route("users.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Professional actius
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -126,7 +126,7 @@
             <li>
                 <a href="{{ route("users.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] justify-between">
                     Professional inactius
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -151,7 +151,7 @@
             <li>
                 <a href="{{ route("centers.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Alta d'un centre nou
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -159,7 +159,7 @@
             <li>
                 <a href="#centresActius" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] ">
                     Centres actius
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -167,7 +167,7 @@
             <li>
                 <a href="#centresInActius" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Centres inactius
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -192,7 +192,7 @@
             <li>
                 <a href="{{ route("projects.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou projecte/comissió
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -200,7 +200,7 @@
             <li>
                 <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Projectes
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -208,7 +208,7 @@
             <li>
                 <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Comissions
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -234,7 +234,7 @@
             <li>
                 <a href="{{ route("courses.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Alta d'un nou curs
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -242,7 +242,7 @@
             <li>
                 <a href="{{ route("courses.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Cursos actius
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -250,7 +250,7 @@
             <li>
                 <a href="{{ route("courses.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Cursos inactius
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -275,7 +275,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -283,7 +283,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -291,7 +291,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -316,7 +316,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -324,7 +324,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -332,7 +332,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
