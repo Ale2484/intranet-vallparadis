@@ -5,7 +5,7 @@
     <!-- Header -->
     <div class="w-full flex flex-row justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
-            <a href="{{ route('users.index') }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
+            <a href="{{ route('users.show', $user->id) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
@@ -50,10 +50,12 @@
                     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-4">
                         <div class="border-b-1 border-[#AFAFAF] pb-5">
                             <div class="flex flex-row gap-5 items-center">
-                                <div class="bg-gray-200 w-12 h-12 rounded-full">
-                                    {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                    {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                    <minidenticon-svg username="{{ md5($tracking->register) }}"></minidenticon-svg>
+                                <div>
+                                    <div class="bg-gray-200 w-12 h-12 rounded-full">
+                                        {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
+                                        {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
+                                        <minidenticon-svg username="{{ md5($tracking->register) }}"></minidenticon-svg>
+                                    </div>
                                 </div>
                                 <div class="flex flex-col gap-1 w-full">
                                     <div class="flex flex-row justify-between w-full items-center">

@@ -5,7 +5,7 @@
     <!-- Header -->
     <div class="w-full flex flex-row justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
-            <a href="{{ route('users.index') }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
+            <a href="{{ route('trackings.index', $user->id) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
