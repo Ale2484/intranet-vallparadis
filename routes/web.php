@@ -7,16 +7,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UniformityController;
 use App\Http\Controllers\UniformityRenovationController;
-
-
-
-
+use Illuminate\Support\Facades\Auth;
 
 // Al login solo se puede acceder si el usuario no ha iniciado session
 Route::middleware("guest")->group(function () {
     Route::get("/login", [UserController::class, "showLoginForm"])->name("login");
     Route::post("/login", [UserController::class, "login"]);
 });
+
+
 
 Route::middleware("auth")->group(function () {
     
@@ -39,6 +38,10 @@ Route::middleware("auth")->group(function () {
     Route::patch('/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate');
     Route::patch('/users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
     Route::post('/logout', [UserController::class, 'logout'])->name('users.logout');
+    Route::get('/logout', function () {
+        if (Auth::check()) {return redirect()->route('dashboard');}
+        return redirect()->route('login');
+    });
     
     // Centros
     Route::resource("centers", CenterController::class)->except("destroy");

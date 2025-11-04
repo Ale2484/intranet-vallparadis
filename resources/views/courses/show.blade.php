@@ -2,7 +2,7 @@
 @section("title", "Mostra el curs")
 @section("main")
 <div class="w-full flex items-center justify-center">
-    <div class="w-[60%] flex flex-col items-center justify-center">   
+    <div class="w-[90%] flex flex-col items-center justify-center">   
         <!-- Apartado superior -->
         <div class="w-full flex flex-col gap-3">
             <a href="{{ route("courses.index") }}" class="flex gap-3 text-[#AFAFAF]">
@@ -171,7 +171,7 @@
                             </div>
                             @endforeach
                             @if (count($totalUsers) > 0 && count($totalUsers) > count($usersPreview))
-                                <button class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+                                <button data-modal-id="showAllUsersModal" class="open-modal-button bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
                                     <svg class="w-6 h-6 ">
                                         <use xlink:href="#icon-group-user"></use>
                                     </svg>
@@ -183,9 +183,36 @@
                         <p>Aquest curs no te usuaris inscrits</p>                        
                     @endif
                 </div>
-    
             </div>
         </div>
     </div>
 </div>
+@if (count($totalUsers) > 0 && count($totalUsers) > count($usersPreview))
+    {{-- Modal para ver los usuarios --}}
+    <div id="showAllUsersModal" class="fixed inset-0 bg-black/20 z-20 flex items-center justify-center hidden">
+        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] relative">
+            {{-- Boton para cerrar el modal --}}
+            <button class="close-modal-button absolute top-5 right-5 cursor-pointer">
+                <svg class="w-8 h-8 text-gray-400 hover:text-gray-600">
+                    <use xlink:href="#icon-cross"></use>
+                </svg>
+            </button>
+            <p class="text-2xl font-bold text-[#011020]">Usuaris registrats al curs:</p>
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 mt-3 flex flex-col gap-5 h-96 overflow-y-auto">
+                @foreach ($totalUsers as $user)
+                    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center gap-2">
+                        <div class="w-15 h-15 bg-gray-200 rounded-full">
+                            <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                        </div>
+                        <div>
+                            <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
+                            <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+@endif
 @endsection
