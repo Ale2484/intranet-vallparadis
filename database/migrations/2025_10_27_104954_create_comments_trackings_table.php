@@ -11,20 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trackings', function (Blueprint $table) {
+        Schema::create('comments_trackings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("register");
-            $table->string("topic");
-            $table->unsignedBigInteger("user");
-            $table->boolean("open");
 
-            $table->timestamp("origin")->nullable();
-            $table->timestamp("end_link")->nullable();
+            $table->unsignedBigInteger("user");
+            $table->unsignedBigInteger("tracking");
+            $table->text("comment");
 
             $table->timestamps();
 
-            $table->foreign("register")->references("id")->on("users");
             $table->foreign("user")->references("id")->on("users");
+            $table->foreign("tracking")->references("id")->on("trackings");
         });
     }
 
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tracking');
+        Schema::dropIfExists('comments_trackings');
     }
 };

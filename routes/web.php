@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UniformityController;
 use App\Http\Controllers\UniformityRenovationController;
+use App\Http\Controllers\CommentsTrackingController;
+use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Auth;
+
+
 
 // Al login solo se puede acceder si el usuario no ha iniciado session
 Route::middleware("guest")->group(function () {
@@ -66,5 +70,12 @@ Route::middleware("auth")->group(function () {
     Route::get("/exportAllUniformityRenovation", [UniformityRenovationController::class, "exportAllUniformityRenovation"])->name("exportAllUniformityRenovation");
     Route::get("/exportUniformityRenovation/{userId}", [UniformityRenovationController::class, "exportUniformityRenovation"])->name("exportUniformityRenovation");
 
+    // Seguimiento de profesionales
+    Route::get("/users/{user}/trackings", [TrackingController::class, "index"])->name("trackings.index");
+    Route::get("/users/{user}/trackings/{tracking}", [TrackingController::class, "show"])->name("trackings.show");
+    Route::post("/users/{user}/trackings/store", [TrackingController::class, "store"])->name("trackings.store");
+
+    // Comentarios seguimiento profesionales
+    Route::post("/users/{user}/trackings/{tracking}/store", [CommentsTrackingController::class, "store"])->name("trackings.comments.store");
 
 });
