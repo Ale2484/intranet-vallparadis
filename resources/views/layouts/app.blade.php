@@ -23,7 +23,7 @@
         @yield("main")
     </main>
     
-    <footer class="px-24">
+    <footer class="px-24 mt-10">
         @include("components.footer")
     </footer>
     @include("partials.confirmable_modal")

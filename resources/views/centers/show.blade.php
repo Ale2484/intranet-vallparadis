@@ -106,7 +106,7 @@
     <div class="w-[60%] flex justify-end mt-5 gap-3">
         <a href="{{ route("centers.index") }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">Tornar</a>
     
-        <a href="{{ route("centers.edit", $center->id) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">Editar el centre</a>
+        <a href="{{ route("centers.edit", $center) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">Editar el centre</a>
     </div>
 </div>
 @endsection

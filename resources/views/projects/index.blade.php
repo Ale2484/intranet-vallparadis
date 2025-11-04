@@ -130,7 +130,7 @@
                             </div>
                         @endif
                         <div class="flex flex-col items-start gap-2">
-                            <a href="{{ route('projects.show', $project->id) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $project->name }}</a>
+                            <a href="{{ route('projects.show', $project) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $project->name }}</a>
                             <p class="p-1 text-white w-16 text-center rounded-lg {{ $project->is_active ? 'bg-green-600' : 'bg-red-600' }}"> {{ $project->is_active ? "Actiu" : "Inactiu" }}</p>
                         </div>
                     </div>

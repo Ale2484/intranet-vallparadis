@@ -60,8 +60,6 @@ class CenterController extends Controller
      */
     public function show(Center $center)
     {
-        //dd("El centro que se pasa es: " . $center);
-
         return view("centers.show", compact("center"));
     }
 

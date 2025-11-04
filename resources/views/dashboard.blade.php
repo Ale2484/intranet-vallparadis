@@ -92,10 +92,10 @@
 
 
 <!-- Apartados del sistema -->
-<div class="flex flex-row justify-between flex-wrap gap-8">
+<div class="w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start w-80">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-blue-50 rounded-lg p-2 mb-3">
             <svg class="w-8 h-8 text-blue-600">
                 <use xlink:href="#icon-users"></use>
@@ -109,8 +109,8 @@
         <ul class="my-5 w-full">
             <li>
                 <a href="{{ route("users.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
-                    Alta d'un professional nou
-                <svg class="w-6 h-6 text-[#012F4A]">
+                    Nou professional
+                <svg class="w-6 h-6 ">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -118,7 +118,7 @@
             <li>
                 <a href="{{ route("users.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Professional actius
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -126,7 +126,7 @@
             <li>
                 <a href="{{ route("users.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] justify-between">
                     Professional inactius
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -136,7 +136,7 @@
         <a href="{{ route("users.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start w-80">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-green-50 rounded-lg p-2 mb-3">
             <svg class="w-8 h-8 text-green-600">
                 <use xlink:href="#icon-center"></use>
@@ -151,7 +151,7 @@
             <li>
                 <a href="{{ route("centers.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Alta d'un centre nou
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -159,7 +159,7 @@
             <li>
                 <a href="#centresActius" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] ">
                     Centres actius
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -167,7 +167,7 @@
             <li>
                 <a href="#centresInActius" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Centres inactius
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -176,7 +176,7 @@
         <a href="{{ route("centers.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start w-80">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-teal-50 rounded-lg p-2 mb-3">
             <svg class="w-8 h-8 text-teal-600">
                 <use xlink:href="#icon-folder"></use>
@@ -191,8 +191,8 @@
         <ul class="my-5 w-full">
             <li>
                 <a href="{{ route("projects.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
-                    Alta d'un nou projecte/comissió
-                <svg class="w-6 h-6 text-[#012F4A]">
+                    Nou projecte/comissió
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -200,7 +200,7 @@
             <li>
                 <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Projectes
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -208,7 +208,7 @@
             <li>
                 <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Comissions
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -218,7 +218,49 @@
 
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start w-80">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
+        <div class="bg-violet-50 rounded-lg p-2 mb-3">
+            <svg class="w-8 h-8 text-violet-600">
+                <use xlink:href="#icon-book"></use>
+            </svg>
+
+        </div>
+
+        <p class="text-[20px] font-bold text-[#011020]">Cursos</p>
+        <p class="text-[#013148] text-sm" >Control gestió i seguiment dels cursos</p>
+
+        <!-- Opciones -->
+        <ul class="my-5 w-full">
+            <li>
+                <a href="{{ route("courses.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    Alta d'un nou curs
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-no-line-arrow"></use>
+                </svg>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route("courses.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    Cursos actius
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-no-line-arrow"></use>
+                </svg>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route("courses.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    Cursos inactius
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-no-line-arrow"></use>
+                </svg>
+                </a>
+            </li>
+        </ul>
+        <a href="{{ route("courses.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
+
+    </div>
+    <!-- Container -->
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-[#fee9d6] rounded-lg p-2 mb-3">
             <svg class="w-8 h-8 text-[#FF7E13]">
                 <use xlink:href="#icon-knife"></use>
@@ -233,7 +275,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -241,7 +283,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -249,7 +291,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -258,7 +300,7 @@
         <a href="#test" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir al apartat</a>
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start w-80">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
         <div class="bg-red-50 rounded-lg p-2 mb-3">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-red-600">
                 <use xlink:href="#icon-group-user"></use>
@@ -274,7 +316,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -282,7 +324,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -290,7 +332,7 @@
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
                     Nou professional
-                <svg class="w-6 h-6 text-[#012F4A]">
+                <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
                 </a>
@@ -301,9 +343,3 @@
     </div>
 </div>
 @endsection
-
-@section("footer")
-@endsection
-
-</body>
-</html>

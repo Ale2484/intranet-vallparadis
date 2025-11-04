@@ -80,4 +80,9 @@ class User extends Authenticatable
     public function tracking() : HasMany {
         return $this->hasMany(Tracking::class);
     }
+    
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, "course_users");
+    }
 }
