@@ -159,24 +159,50 @@
                     @if (count($usersPreview) > 0)
                         <div class="flex flex-col gap-5">
                             @foreach ($usersPreview as $user )
-                            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center gap-2">
-                                <div class="w-15 h-15 bg-gray-200 rounded-full">
-                                    <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-15 h-15 bg-gray-200 rounded-full">
+                                        <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                    </div>
+                                    <div>
+                                        <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
+                                        <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
-                                    <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
+                                <div class="flex items-center gap-5">
+                                    @if ($user->pivot->certificate == "PENDENT")
+                                        <div class="text-green-600 bg-green-200 p-2 rounded-lg flex items-center justify-center">
+                                            <form action="{{ route("courses.giveCertificate", ["course" => $course, "user" => $user]) }}" method="post" class="flex items-center justify-center">
+                                                @csrf
+                                                @method("PATCH")
+                                                <button type="submit" class="cursor-pointer">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 15a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/><path d="M13 17.5V22l2-1.5l2 1.5v-4.5"/><path d="M10 19H5a2 2 0 0 1-2-2V7c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-1 1.73M6 9h12M6 12h3m-3 3h2"/></g></svg>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        @else
+                                            <div class="text-red-600 bg-red-200 p-2 rounded-lg flex items-center justify-center">                                         
+                                                <form action="{{ route("courses.giveCertificate", ["course" => $course, "user" => $user]) }}" method="post" class="flex items-center justify-center">
+                                                    @csrf
+                                                    @method("PATCH")
+                                                    <button type="submit" class="cursor-pointer">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12.876 12.881a3 3 0 0 0 4.243 4.243m.588-3.42a3 3 0 0 0-1.437-1.423"/><path d="M13 17.5V22l2-1.5l2 1.5v-4.5M10 19H5a2 2 0 0 1-2-2V7c0-1.1.9-2 2-2m4 0h10a2 2 0 0 1 2 2v10M6 9h3m4 0h5M6 12h3m-3 3h2M3 3l18 18"/></g></svg>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                        
                                 </div>
 
                             </div>
                             @endforeach
                             @if (count($totalUsers) > 0 && count($totalUsers) > count($usersPreview))
-                                <button data-modal-id="showAllUsersModal" class="open-modal-button bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+                                <a href="{{ route("courses.users", $course) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
                                     <svg class="w-6 h-6 ">
                                         <use xlink:href="#icon-group-user"></use>
                                     </svg>
                                     Veure tots els usuaris
-                                </button>
+                                </a>
                             @endif
                         </div>
                     @else
@@ -187,32 +213,4 @@
         </div>
     </div>
 </div>
-@if (count($totalUsers) > 0 && count($totalUsers) > count($usersPreview))
-    {{-- Modal para ver los usuarios --}}
-    <div id="showAllUsersModal" class="fixed inset-0 bg-black/20 z-20 flex items-center justify-center hidden">
-        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] relative">
-            {{-- Boton para cerrar el modal --}}
-            <button class="close-modal-button absolute top-5 right-5 cursor-pointer">
-                <svg class="w-8 h-8 text-gray-400 hover:text-gray-600">
-                    <use xlink:href="#icon-cross"></use>
-                </svg>
-            </button>
-            <p class="text-2xl font-bold text-[#011020]">Usuaris registrats al curs:</p>
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 mt-3 flex flex-col gap-5 h-96 overflow-y-auto">
-                @foreach ($totalUsers as $user)
-                    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center gap-2">
-                        <div class="w-15 h-15 bg-gray-200 rounded-full">
-                            <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
-                        </div>
-                        <div>
-                            <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
-                            <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
-                        </div>
-
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-@endif
 @endsection

@@ -88,7 +88,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $usersPreview = $course->users()->limit(4)->get();
+        $usersPreview = $course->users()->withPivot('certificate')->limit(4)->get();
         $totalUsers = $course->users;
         $schedules = $course->schedule;
         return view("courses.show", compact("course", "usersPreview", "totalUsers", "schedules"));
@@ -173,12 +173,33 @@ class CourseController extends Controller
         return redirect()->route("courses.index")->with("success", "Curs creat correctament");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    // Metodo que muestra todos los usuarios que pertenecen a un curso
+    public function showCourseUsers(Course $course)
     {
-        //
+        $courseUsers = CourseUser::where("course_id", $course->id)->get();
+        return view("courses.users", compact("courseUsers"));
+    }
+
+
+    public function giveCertificate(Course $course, User $user)
+    {
+        $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
+        if ($courseUser) {
+            $courseUser->update(["certificate" => "ENTREGAT"]);
+            return redirect()->route("courses.show", $course)->with("success", "Certificat lliurat correctament");
+        } else{
+            return back()->with("error", "Error en intentar donar el certificat a l'usuari seleccionat");
+        }
+    }
+    public function removeCertificate(Course $course, User $user)
+    {
+        $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
+        if ($courseUser) {
+            $courseUser->update(["certificate" => "PENDENT"]);
+            return redirect()->route("courses.show", $course)->with("success", "Certificat tret correctament");
+        } else{
+            return back()->with("error", "Error en intentar treure el certificat a l'usuari seleccionat");
+        }
     }
 
     public function deactivate(Course $course)
