@@ -9,6 +9,7 @@ use App\Http\Controllers\UniformityController;
 use App\Http\Controllers\UniformityRenovationController;
 use App\Http\Controllers\CommentsTrackingController;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\EvaluationController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -79,6 +80,6 @@ Route::middleware("auth")->group(function () {
     Route::post("/users/{user}/trackings/{tracking}/store", [CommentsTrackingController::class, "store"])->name("trackings.comments.store");
 
     // Evaluacion de profesionales
-    Route::get("/users/{user}/evaluations", [EvaluationsController::class, "index"])->name("evaluations.index");
-    Route::post("/users/{user}/evaluations/store", [EvaluationsController::class, "store"])->name("evaluations.store");
+    Route::get("/users/{user}/evaluations", [EvaluationController::class, "index"])->name("evaluations.index");
+    Route::post("/users/{user}/evaluations/store", [EvaluationController::class, "store"])->name("evaluations.store");
 });
