@@ -78,4 +78,7 @@ Route::middleware("auth")->group(function () {
     // Comentarios seguimiento profesionales
     Route::post("/users/{user}/trackings/{tracking}/store", [CommentsTrackingController::class, "store"])->name("trackings.comments.store");
 
+    // Evaluacion de profesionales
+    Route::get("/users/{user}/evaluations", [EvaluationsController::class, "index"])->name("evaluations.index");
+    Route::post("/users/{user}/evaluations/store", [EvaluationsController::class, "store"])->name("evaluations.store");
 });
