@@ -176,15 +176,15 @@ class CourseController extends Controller
     // Metodo que muestra todos los usuarios que pertenecen a un curso
     public function showCourseUsers(Course $course)
     {
-        $courseUsers = CourseUser::where("course_id", $course->id)->get();
-        return view("courses.users", compact("courseUsers"));
+        $courseUsers = $course->users()->withPivot("certificate")->get();
+        return view("courses.users", compact("courseUsers", "course"));
     }
 
 
     public function giveCertificate(Course $course, User $user)
     {
         $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
-        if ($courseUser) {
+        if ($courseUser && $courseUser->certificate == "PENDENT") {
             $courseUser->update(["certificate" => "ENTREGAT"]);
             return redirect()->route("courses.show", $course)->with("success", "Certificat lliurat correctament");
         } else{
@@ -194,7 +194,7 @@ class CourseController extends Controller
     public function removeCertificate(Course $course, User $user)
     {
         $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
-        if ($courseUser) {
+        if ($courseUser && $courseUser->certificate == "ENTREGAT") {
             $courseUser->update(["certificate" => "PENDENT"]);
             return redirect()->route("courses.show", $course)->with("success", "Certificat tret correctament");
         } else{
