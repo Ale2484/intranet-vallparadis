@@ -227,4 +227,7 @@
         @endforeach
     </div>
 </div>
+<div class="pagination">
+    {{ $projects->links('pagination::tailwind') }}
+</div>
 @endsection

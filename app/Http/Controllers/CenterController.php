@@ -13,7 +13,7 @@ class CenterController extends Controller
      */
     public function index()
     {
-        $centers = Center::all();
+        $centers = Center::orderBy("created_at", "asc")->paginate(20);
         $inactiveCenters = $centers->where("is_active", false)->count();
         $activeCenters = $centers->count() - $inactiveCenters;
 

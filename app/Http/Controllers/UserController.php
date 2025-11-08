@@ -18,7 +18,7 @@ class UserController extends Controller
         $activeUsers = User::active()->count();
         $inactiveUsers = User::inactive()->count();
         
-        $users = User::orderBy('created_at', 'desc')->get();
+        $users = User::orderBy('created_at', 'desc')->paginate(20);
 
         return view("users.index", compact(
             'totalUsers', 

@@ -14,9 +14,9 @@
     </a>
 </div>
 
-<div class="flex flex-row gap-5">
+<div class="flex items-center flex-row gap-5">
     <!-- Barra de busqueda -->
-    <form action="{{ route("courses.search") }}" method="post" class="searchBar w-[90%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-white p-5">
+    <form action="{{ route("courses.search") }}" method="post" class="searchBar w-[80%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-white p-5">
         @csrf
         <button type="submit" class="cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#AFAFAF" class="size-6">
@@ -26,7 +26,7 @@
     
         <input type="search" name="search" id="search" placeholder="Buscar cursos...." class="pl-2 w-full h-10 outline-0">
     </form>
-
+    @include("partials.loader")
     <!-- Filtros -->
     <div class="flex flex-row justify-between gap-2">
         <button class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-20">Tots</button>

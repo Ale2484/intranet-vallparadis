@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const link = event.target.closest("a");
             if (link) {
                 event.preventDefault();
-                
                 // Se obtiene la pagina a la que quiere redireccionar
                 const page = link.getAttribute("href").split("page=")[1] || 1;
                 const searchInput = document.querySelector(".searchBar input[type='search']");
@@ -34,8 +33,11 @@ async function fetchCourses(searchValue = "", page = 1) {
     const paginationContainer = document.querySelector(".pagination");
     const meta = document.querySelector('meta[name="csrf-token"]');
     const token = meta ? meta.getAttribute('content') : '';
-
+    const loader = document.getElementById("loader");
     try {
+        if (loader) {
+            loader.classList.remove("hidden");
+        }
         const response = await fetch("/courses/search", {
             method: "POST",
             headers: {
@@ -44,10 +46,13 @@ async function fetchCourses(searchValue = "", page = 1) {
             },
             body: JSON.stringify({ searchValue, page })
         });
-
         const data = await response.json();
+        if (loader) {
+            loader.classList.add("hidden");
+        }
         resultContainer.innerHTML = data.htmlContent || "No hay resultados";
         paginationContainer.innerHTML = data.pagination || "";
+
     } catch (error) {
         console.error("Error:", error);
         resultContainer.innerHTML = "<p>Error al buscar</p>";

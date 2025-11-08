@@ -175,4 +175,7 @@
         </div>
 @endforeach
 </div>
+<div class="pagination">
+    {{ $centers->links('pagination::tailwind') }}
+</div>
 @endsection

@@ -17,7 +17,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::orderBy("created_at", "asc")->paginate(3);
+        $courses = Course::orderBy("created_at", "asc")->paginate(20);
         return view("courses.index", compact("courses"));
     }
 

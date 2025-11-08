@@ -220,4 +220,7 @@
             @endforeach
         </div>
 </div>
+<div class="pagination">
+    {{ $users->links('pagination::tailwind') }}
+</div>
 @endsection

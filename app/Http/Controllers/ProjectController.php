@@ -19,7 +19,7 @@ class ProjectController extends Controller
         
         $projects = Project::with(['centerRelation', 'userRelation'])
                           ->orderBy('created_at', 'desc')
-                          ->get();
+                          ->paginate(20);
 
         return view("projects.index", compact(
             'totalProjects', 
