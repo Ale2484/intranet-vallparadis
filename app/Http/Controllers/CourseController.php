@@ -28,7 +28,7 @@ class CourseController extends Controller
         // Se obtiene la pagina, sino, se usa la pagina 1
         $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate(3, ['*'], 'page', $page);
+        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
         if (!empty($searchCourses)) {
             foreach ($searchCourses as $course) {
                 $htmlContent .= view("components.course-card", compact("course"))->render();

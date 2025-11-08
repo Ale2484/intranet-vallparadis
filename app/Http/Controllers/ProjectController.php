@@ -29,6 +29,24 @@ class ProjectController extends Controller
         ));
     }
 
+    public function search(Request $request)
+    {
+        $pagination = "";
+        $htmlContent = "";
+        // Se obtiene la pagina, sino, se usa la pagina 1
+        $page = $request->input("page", 1);
+        $searchValue = $request->searchValue;
+        $searchProjects = Project::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        if (!empty($searchProjects)) {
+            foreach ($searchProjects as $project) {
+                $htmlContent .= view("components.project-card", compact("project"))->render();
+            }
+            // Se obtiene la paginacion
+            $pagination = $searchProjects->links()->render();
+        }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+    }
+
     public function create()
     {
         $project = new Project();

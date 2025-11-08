@@ -1,16 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Formulario de busqueda
-    const searchBar = document.querySelector(".searchBar");
+    const searchForm = document.querySelector(".searchForm");
     // Div contenedor de la paginacion
     const paginationContainer = document.querySelector(".pagination");
+    // Tipo de elemento que se busca
+    let elementType = "";
+    // El ultimo valor de busqueda
+    let lastSearchValue = "";
 
-    if (searchBar) {
-        searchBar.addEventListener("submit", (event) => {
+    if (searchForm) {
+        // Input de busqueda
+        const searchInput = searchForm.querySelector("input[type='search']");
+        elementType = searchForm.dataset.type;
+        searchForm.addEventListener("submit", (event) => {
             event.preventDefault();
-            // Input de busqueda
-            const searchInput = searchBar.querySelector("input[type='search']");
-            fetchCourses(searchInput.value);
+            fetchSearch(searchInput.value);
         });
+        // Cada segundo se verifica 
+        setInterval(() => {
+            // Si el valor del input de busqueda tiene algo y es diferente a la ultima busqueda entonces se vuelve a buscar
+            if (searchInput.value != lastSearchValue ) {
+                fetchSearch(searchInput.value);
+            }
+        }, 1000);
     }
     // Si el div de la paginacion existe, entonces detecta sus clicks
     if (paginationContainer) {
@@ -21,43 +33,44 @@ document.addEventListener("DOMContentLoaded", () => {
                 event.preventDefault();
                 // Se obtiene la pagina a la que quiere redireccionar
                 const page = link.getAttribute("href").split("page=")[1] || 1;
-                const searchInput = document.querySelector(".searchBar input[type='search']");
+                const searchInput = document.querySelector(".searchForm input[type='search']");
                 // Se envia al controller el valor de busqueda y la pagina en la que tiene que buscar
-                fetchCourses(searchInput.value, page);
+                fetchSearch(searchInput.value, page);
             }
         });
     }
-});
-async function fetchCourses(searchValue = "", page = 1) {
-    const resultContainer = document.querySelector(".resultContainer");
-    const paginationContainer = document.querySelector(".pagination");
-    const meta = document.querySelector('meta[name="csrf-token"]');
-    const token = meta ? meta.getAttribute('content') : '';
-    const loader = document.getElementById("loader");
-    try {
-        if (loader) {
-            loader.classList.remove("hidden");
+    async function fetchSearch(searchValue = "", page = 1) {
+        const resultContainer = document.querySelector(".resultContainer");
+        const paginationContainer = document.querySelector(".pagination");
+        const meta = document.querySelector('meta[name="csrf-token"]');
+        const token = meta ? meta.getAttribute('content') : '';
+        const loader = document.getElementById("loader");
+        try {
+            if (loader) {
+                loader.classList.remove("hidden");
+            }
+            const response = await fetch(`/${elementType}/search`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": token,
+                },
+                body: JSON.stringify({ searchValue, page })
+            });
+            const data = await response.json();
+            if (loader) {
+                loader.classList.add("hidden");
+            }
+            lastSearchValue = searchValue;
+            resultContainer.innerHTML = data.htmlContent || "No hay resultados";
+            paginationContainer.innerHTML = data.pagination || "";
+    
+        } catch (error) {
+            console.error("Error:", error);
+            resultContainer.innerHTML = "<p>Error al buscar</p>";
         }
-        const response = await fetch("/courses/search", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": token,
-            },
-            body: JSON.stringify({ searchValue, page })
-        });
-        const data = await response.json();
-        if (loader) {
-            loader.classList.add("hidden");
-        }
-        resultContainer.innerHTML = data.htmlContent || "No hay resultados";
-        paginationContainer.innerHTML = data.pagination || "";
-
-    } catch (error) {
-        console.error("Error:", error);
-        resultContainer.innerHTML = "<p>Error al buscar</p>";
     }
-}
+});
 
 /* document.addEventListener("DOMContentLoaded", () => {
     // Formulario de busqueda

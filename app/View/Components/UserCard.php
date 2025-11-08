@@ -3,19 +3,19 @@
 namespace App\View\Components;
 
 use Closure;
-use App\Models\Course;
-use Illuminate\Contracts\View\View;
+use App\Models\User;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
-class CourseCard extends Component
+class UserCard extends Component
 {
-    public $course;
+    public $user;
     /**
      * Create a new component instance.
      */
-    public function __construct(Course $course)
+    public function __construct(User $user)
     {
-        $this->course = $course;
+        $this->user = $user;
     }
 
     /**
@@ -23,6 +23,6 @@ class CourseCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.course-card');
+        return view('components.user-card');
     }
 }

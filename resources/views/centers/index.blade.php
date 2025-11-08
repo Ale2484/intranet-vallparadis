@@ -87,7 +87,7 @@
 
 <div class="flex flex-row gap-5">
     <!-- Barra de busqueda -->
-    <form action="#" method="post" class="w-[90%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-white p-5">
+    <form action="{{ route("centers.search") }}" method="post" data-type="centers" class="searchForm w-[95%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-white p-5">
         @csrf
         <button type="submit" class="cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#AFAFAF" class="size-6">
@@ -95,9 +95,11 @@
             </svg>
         </button>
     
-        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class=" pl-2 w-full h-10">
+        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class=" pl-2 w-full h-10 outline-0">
     </form>
-
+    <div class="w-12">
+        @include("partials.loader")
+    </div>
     <!-- Filtros -->
     <div class="flex flex-row justify-between gap-2">
         <button class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-20">Tots</button>
@@ -107,72 +109,9 @@
     </div>
 </div>
 <!-- Centros -->
-<div class="w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
+<div class="resultContainer w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
 @foreach ($centers as $center )
-        <!-- Contenedor -->
-        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[32%] min-w-[350px] mb-5 flex flex-col gap-5">
-            <div class="flex justify-between items-center">
-                <div class="flex flex-row items-center gap-5">
-                    <div class="bg-[#ffe7de] rounded-lg p-2">
-                    <svg class="w-8 h-8 text-[#FF7E13]">
-                        <use xlink:href="#icon-maps"></use>
-                    </svg>
-                    </div>
-                    <a href="{{ route("centers.show", $center) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $center->name }}</a>
-                </div>
-
-                <p class="w-20 border-1 p-1 text-center {{ $center->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$center->is_active ? "Actiu" : "Inactiu"}}</p>
-            </div>
-            <!-- Especificaciones -->
-            <div class="flex flex-col gap-3 text-[#0F172A]">
-                <div class="flex flex-row items-center gap-2 pl-2">
-                    <svg class="w-7 h-7">
-                        <use xlink:href="#icon-maps"></use>
-                    </svg>
-                    <p>{{ $center->address }}</p>
-                </div>
-
-                <div class="flex flex-row items-center gap-2 pl-2">
-                    <svg class="w-7 h-7">
-                        <use xlink:href="#icon-phone"></use>
-                    </svg>
-                    <p>{{ $center->phone ?? "Aquest centre no te telefon" }}</p>
-                </div>
-
-                <div class="flex flex-row items-center gap-2 pl-2">
-                    <svg class="w-7 h-7">
-                        <use xlink:href="#icon-mail"></use>
-                    </svg>
-                    <p>{{ $center->email ?? "Aquest centre no te correu electronic" }}</p>
-                </div>
-            </div>
-            <p class="text-sm">Creat: {{ $center->created_at->format("d/m/Y") }} | Actualizat: {{ $center->updated_at->format("d/m/Y") }}</p>
-            
-            <!-- Activar/Desactivar -->
-            <div class="flex flex-row gap-5 justify-end">
-                <a href="{{ route("centers.edit", $center) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF]">
-                    <svg class="w-6 h-6">
-                        <use xlink:href="#icon-square-pen"></use>
-                    </svg>
-                    Editar
-                </a>
-                
-
-                <form action="{{ $center->is_active ? route("centers.deactivate", $center) : route("centers.activate", $center) }}" method="post">
-                    @csrf
-                    @method("PATCH")
-                    <button type="submit"
-                        class="confirmable flex justify-center gap-3 {{ $center->is_active ? "text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all" : "text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all" }}"
-                        data-confirm-message="{{ $center->is_active ? "Estàs segur que vols desactivar aquest centre?" : "Estàs segur que vols activar aquest centre?" }}">
-                        <svg class="w-6 h-6">
-                            <use xlink:href="#icon-power"></use>
-                        </svg>
-                        {{ $center->is_active ? "Desactivar" : "Activar" }}
-                    </button>
-                </form>
-            </div>
-
-        </div>
+    <x-center-card :center="$center"/>
 @endforeach
 </div>
 <div class="pagination">

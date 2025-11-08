@@ -28,6 +28,24 @@ class UserController extends Controller
         ));
     }
 
+    public function search(Request $request)
+    {
+        $pagination = "";
+        $htmlContent = "";
+        // Se obtiene la pagina, sino, se usa la pagina 1
+        $page = $request->input("page", 1);
+        $searchValue = $request->searchValue;
+        $searchUsers = User::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        if (!empty($searchUsers)) {
+            foreach ($searchUsers as $user) {
+                $htmlContent .= view("components.user-card", compact("user"))->render();
+            }
+            // Se obtiene la paginacion
+            $pagination = $searchUsers->links()->render();
+        }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+    }
+
     public function create()
     {
         $user = new User();
@@ -42,7 +60,7 @@ class UserController extends Controller
             'phone' => 'nullable|string|max:9',
             'role' => 'required|in:technical_team,management_team,administration,professional',
             'status' => 'required|in:active,inactive,substitute',
-            'locker' => 'required|integer',
+            'locker' => 'required|string',
             'locker_password' => 'required|string',
             'password' => 'required|min:8',
         ]);

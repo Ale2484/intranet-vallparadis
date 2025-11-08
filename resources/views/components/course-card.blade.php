@@ -56,7 +56,7 @@
                 @method("PATCH")
                 <button type="submit"
                     class="confirmable w-full sm:w-full md:w-auto lg:w-auto flex justify-center gap-3 {{ $course->is_active ? "text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all" : "text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all" }}"
-                    data-confirm-message="{{ $course->is_active ? "Estàs segur que vols desactivar aquest centre?" : "Estàs segur que vols activar aquest centre?" }}">
+                    data-confirm-message="{{ $course->is_active ? "Estàs segur que vols desactivar aquest curs?" : "Estàs segur que vols activar aquest curs?" }}">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-power"></use>
                     </svg>
