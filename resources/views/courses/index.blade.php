@@ -6,12 +6,18 @@
 <div class="flex items-center justify-between mb-7">
     <h1 class="text-3xl font-bold text-[#011020]">Gestió de cursos: </h1>
 
-    <a  href="{{ route("courses.create") }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
-        <svg class="w-6 h-6 text-white">
-            <use xlink:href="#icon-plus"></use>
-        </svg>
-        Nou curs
-    </a>
+    {{-- Enlaces --}}
+    <div class="flex items-center gap-3">
+        <a href="{{ route("courses.exportAll") }}" class="bg-green-600 text-white rounded-lg p-2 font-bold" >
+            Exportar cursos
+        </a>
+        <a href="{{ route("courses.create") }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+            <svg class="w-6 h-6 text-white">
+                <use xlink:href="#icon-plus"></use>
+            </svg>
+            Nou curs
+        </a>
+    </div>
 </div>
 
 <div class="flex items-center flex-row gap-5">
