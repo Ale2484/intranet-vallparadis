@@ -28,9 +28,14 @@ Route::middleware("auth")->group(function () {
     })->name("dashboard");
 
     // Cursos
+    // Primero se establece el /courses/exportAll porque sino da problemas con la ruta /courses/show (se supoerpone)
+    Route::get("/courses/exportAll", [CourseController::class, "exportAllCourses"])->name('courses.exportAll');
     Route::resource("courses", CourseController::class);
     Route::patch("/courses/{course}/deactivate", [CourseController::class, "deactivate"])->name('courses.deactivate');
     Route::patch("/courses/{course}/activate", [CourseController::class, "activate"])->name('courses.activate');
+    Route::get("/courses/{course}/users/", [CourseController::class, "showCourseUsers"])->name('courses.users');
+    Route::patch("/courses/{course}/{user}/giveCertificate", [CourseController::class, "giveCertificate"])->name('courses.giveCertificate');
+    Route::patch("/courses/{course}/{user}/removeCertificate", [CourseController::class, "removeCertificate"])->name('courses.removeCertificate');
 
     // Uniformes
     Route::get("/users/{user}/uniformities/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
