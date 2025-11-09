@@ -28,9 +28,12 @@
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <label for="name">Pantalons:</label>
             </div>
+
             <select name="pants" id="pants" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-3" required>
-                @foreach ($sizes as $size )
-                <option value="{{ $size }}">{{ $size }}</option>
+                @foreach ($sizes as $size)
+                    <option value="{{ $size }}" {{ old("pants", $uniformity->pants) == $size ? "selected" : "" }}>
+                        {{ $size }}
+                    </option>
                 @endforeach
             </select>
 
@@ -39,7 +42,9 @@
             </div>
             <select name="shirt" id="shirt" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-3" required>
                 @foreach ($sizes as $size )
-                <option value="{{ $size }}">{{ $size }}</option>
+                    <option value="{{ $size }}" {{ old("shirt", $uniformity->shirt) == $size ? "selected" : "" }}>
+                        {{ $size }}
+                    </option>
                 @endforeach
             </select>
         
@@ -49,7 +54,7 @@
             <input type="number" name="shoes" id="shoes" min="30" max="50" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5">
         
             <div class="flex items-center gap-3 mb-3 font-semibold">
-                <label for="email">Usuari que entrega el material</label>
+                <label for="userRenewal">Usuari que entrega el material</label>
             </div>
         
             <select name="userRenewal" id="userRenewal" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-10" required>

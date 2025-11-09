@@ -18,7 +18,6 @@ class UniformityController extends Controller
         $userEdit = $user;
         $users = User::all();
         $uniformity = $user->uniformity;
-
         return view("uniformity.edit", compact("uniformity", "users", "sizes", "userEdit"));
     }
     public function update(Request $request, User $user)
