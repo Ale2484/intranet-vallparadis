@@ -51,7 +51,7 @@
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <label for="phone">Sabates</label>
             </div>
-            <input type="number" name="shoes" id="shoes" min="30" max="50" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5">
+            <input type="number" name="shoes" id="shoes" step="0.5" min="30" max="50" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" value="{{ old("shoes", $uniformity->shoes) }}">
         
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <label for="userRenewal">Usuari que entrega el material</label>
@@ -59,7 +59,7 @@
         
             <select name="userRenewal" id="userRenewal" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-10" required>
                 @foreach ($users as $user )
-                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                 @endforeach
             </select>
         

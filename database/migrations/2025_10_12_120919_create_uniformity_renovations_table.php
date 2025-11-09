@@ -16,6 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger("uniformity_id");
             $table->date("renewal_date");
             $table->unsignedBigInteger("delivered_by");
+
+            $table->enum("shirt_renewal",["S", "M", "L", "XL", "XXL", "3XL", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58"])->nullable();
+            $table->enum("pants_renewal",["S", "M", "L", "XL", "XXL", "3XL", "36", "38", "40", "42", "44", "46", "48", "50", "52", "54", "56", "58"])->nullable();
+            $table->decimal('shoes_renewal', 3, 1)->nullable();
+
             $table->string("file");
             $table->timestamps();
 

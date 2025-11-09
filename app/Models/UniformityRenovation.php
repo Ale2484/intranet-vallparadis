@@ -12,6 +12,9 @@ class UniformityRenovation extends Model
         "uniformity_id",
         "renewal_date",
         "delivered_by",
+        "shirt_renewal",
+        "pants_renewal",
+        "shoes_renewal",
         "file"
     ];
 
