@@ -13,7 +13,7 @@
             Tornar a la gestió de cursos
         </a>
 
-        <h1 class="text-3xl font-bold text-[#011020]">Usuaris del curs</h1>
+        <h1 class="text-3xl font-bold text-[#011020]">Usuaris del curs i els seus certificats</h1>
 
         <p class="text-[#AFAFAF] mb-7">Visualitza els usuaris que pertanyen al curs</p>
     </div>
@@ -51,7 +51,7 @@
                                     Entregar certificat
                                 </button>
                             </form>
-                            <form action="{{ route("courses.removeCertificate", ["course" => $course, "user" => $user]) }}" method="post" class="flex items-center justify-center" disabled>
+                            <form action="{{ route("courses.removeCertificate", ["course" => $course, "user" => $user]) }}" method="post" class="flex items-center justify-center">
                                 @csrf
                                 @method("PATCH")
                                 <button type="submit" @disabled($user->pivot->certificate == "PENDENT") class="bg-white text-[#FF7E13] border-1 border-[#FF7E13] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-100 disabled:border-gray-400 disabled:opacity-30">

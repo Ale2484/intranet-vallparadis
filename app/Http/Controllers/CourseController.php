@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CoursesExport;
 use App\Models\Center;
 use App\Models\Course;
 use App\Models\CourseSchedule;
@@ -9,6 +10,7 @@ use App\Models\CourseUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
@@ -200,6 +202,11 @@ class CourseController extends Controller
         } else{
             return back()->with("error", "Error en intentar treure el certificat a l'usuari seleccionat");
         }
+    }
+
+    public function exportAllCourses()
+    {
+        return Excel::download(new CoursesExport, "courses.xlsx");
     }
 
     public function deactivate(Course $course)
