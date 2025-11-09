@@ -244,6 +244,9 @@
             <div class="items-start h-full">
                 <a href="{{ route("trackings.index", $user->id) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">Seguiment</a>
             </div>
+            <div class="items-start h-full">
+                <a href="{{ route("evaluations.index", $user->id) }}" class="bg-green-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-green-700 transition-all h-fit">Evaluacions</a>
+            </div>
         </div>
     </div>
 </div>

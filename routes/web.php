@@ -81,5 +81,6 @@ Route::middleware("auth")->group(function () {
 
     // Evaluacion de profesionales
     Route::get("/users/{user}/evaluations", [EvaluationController::class, "index"])->name("evaluations.index");
+    Route::get("/users/{user}/evaluations/create", [EvaluationController::class, "create"])->name("evaluations.create");
     Route::post("/users/{user}/evaluations/store", [EvaluationController::class, "store"])->name("evaluations.store");
 });

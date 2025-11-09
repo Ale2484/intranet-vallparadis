@@ -46,4 +46,14 @@ class Evaluation extends Model
     {
         return $this->belongsTo(User::class, 'evaluator');
     }
+
+
+    // metodos
+
+    // puntuacion media
+    public function getAverageScoreAttribute()
+    {
+        $fields = collect(range(1, 20))->map(fn($i) => "p$i");
+        return $fields->avg(fn($field) => (int) $this->$field);
+    }
 }
