@@ -118,7 +118,7 @@
     </div>
 
     <!-- Active Professionals Section -->
-        <div class="resultContainer w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
+        <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             @foreach($users as $user)
                 <x-user-card :user="$user"/>
             @endforeach
