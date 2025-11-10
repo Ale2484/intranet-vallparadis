@@ -13,7 +13,7 @@ class CenterController extends Controller
      */
     public function index()
     {
-        $centers = Center::all();
+        $centers = Center::orderBy("created_at", "asc")->paginate(20);
         $inactiveCenters = $centers->where("is_active", false)->count();
         $activeCenters = $centers->count() - $inactiveCenters;
 
@@ -26,7 +26,24 @@ class CenterController extends Controller
 
         return view("centers.index", compact("centers", "inactiveCenters", "activeCenters", "activePercentage", "inactivePercentage"));
     }
-
+    
+    public function search(Request $request)
+    {
+        $pagination = "";
+        $htmlContent = "";
+        // Se obtiene la pagina, sino, se usa la pagina 1
+        $page = $request->input("page", 1);
+        $searchValue = $request->searchValue;
+        $searchCenters = Center::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        if (!empty($searchCenters)) {
+            foreach ($searchCenters as $center) {
+                $htmlContent .= view("components.center-card", compact("center"))->render();
+            }
+            // Se obtiene la paginacion
+            $pagination = $searchCenters->links()->render();
+        }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+    }
     /**
      * Show the form for creating a new resource.
      */

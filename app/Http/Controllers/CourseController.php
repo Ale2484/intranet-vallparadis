@@ -23,6 +23,24 @@ class CourseController extends Controller
         return view("courses.index", compact("courses"));
     }
 
+    public function search(Request $request)
+    {
+        $pagination = "";
+        $htmlContent = "";
+        // Se obtiene la pagina, sino, se usa la pagina 1
+        $page = $request->input("page", 1);
+        $searchValue = $request->searchValue;
+        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        if (!empty($searchCourses)) {
+            foreach ($searchCourses as $course) {
+                $htmlContent .= view("components.course-card", compact("course"))->render();
+            }
+            // Se obtiene la paginacion
+            $pagination = $searchCourses->links()->render();
+        }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -132,7 +150,7 @@ class CourseController extends Controller
         $course->update($validate);
         
         // Se obtienen los usuarios pasados en la request incluyendo los usuarios que ya estaban inscritos en el curso
-        $userIds = !empty($request->userIds) ? explode(",", $request->userIds) : "";
+        $userIds = !empty($request->userIds) ? explode(",", $request->userIds) : [];
         // Se obtienen los usuarios inscritos al curso
         $registeredUsers = $course->users->pluck("id")->toArray();
         

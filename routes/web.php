@@ -36,7 +36,7 @@ Route::middleware("auth")->group(function () {
     Route::get("/courses/{course}/users/", [CourseController::class, "showCourseUsers"])->name('courses.users');
     Route::patch("/courses/{course}/{user}/giveCertificate", [CourseController::class, "giveCertificate"])->name('courses.giveCertificate');
     Route::patch("/courses/{course}/{user}/removeCertificate", [CourseController::class, "removeCertificate"])->name('courses.removeCertificate');
-
+    Route::post("/courses/search", [CourseController::class, "search"])->name("courses.search");
     // Uniformes
     Route::get("/users/{user}/uniformities/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
     Route::patch("/users/{user}/uniformities/update", [UniformityController::class, "update"])->name('user.uniformity.update');
@@ -46,21 +46,24 @@ Route::middleware("auth")->group(function () {
     Route::resource("users", UserController::class);
     Route::patch('/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate');
     Route::patch('/users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
-    Route::post('/logout', [UserController::class, 'logout'])->name('users.logout');
-    Route::get('/logout', function () {
-        if (Auth::check()) {return redirect()->route('dashboard');}
-        return redirect()->route('login');
+    Route::post("/users/search", [UserController::class, "search"])->name('users.search');
+    Route::post("/logout", [UserController::class, "logout"])->name("users.logout");
+    Route::get("/logout", function () {
+        if (Auth::check()) {return redirect()->route("dashboard");}
+        return redirect()->route("login");
     });
     
     // Centros
     Route::resource("centers", CenterController::class)->except("destroy");
     Route::patch("/centers/{center}/deactivate", [CenterController::class, "deactivate"])->name("centers.deactivate");
     Route::patch("/centers/{center}/activate", [CenterController::class, "activate"])->name("centers.activate");
-    
+    Route::post("/centers/search", [CenterController::class, "search"])->name("centers.search");
+
     // Proyectos  
     Route::resource('projects', ProjectController::class);
     Route::patch('/projects/{project}/deactivate', [ProjectController::class, 'deactivate'])->name('projects.deactivate');
     Route::patch('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');
+    Route::post("/projects/search", [ProjectController::class, "search"])->name("projects.search");
     Route::delete('/project-documents/{document}', [ProjectController::class, 'deleteDocument'])->name('project-documents.destroy');
 
     // Exportacion de taquillas
