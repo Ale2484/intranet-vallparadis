@@ -98,6 +98,176 @@ class CourseSeeder extends Seeder
                     "end_date" => now(),
                     "created_at" => now(),
                     "updated_at" => now()
+                ],
+                [
+                    "id" => 6,
+                    "center_id" => 1,
+                    "name" => "Curso test 5",
+                    "code" => "TEST",
+                    "hours" => 23.3,
+                    "type" => "Formació interna",
+                    "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
+                    "is_active" => true,
+                    "assistant" => 1,
+                    
+                    "start_date" => now(),
+                    "end_date" => now(),
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 7,
+                    "center_id" => 1,
+                    "name" => "Curso test 5",
+                    "code" => "TEST",
+                    "hours" => 23.3,
+                    "type" => "Formació interna",
+                    "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
+                    "is_active" => true,
+                    "assistant" => 1,
+                    
+                    "start_date" => now(),
+                    "end_date" => now(),
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 8,
+                    "center_id" => 1,
+                    "name" => "Curso test 5",
+                    "code" => "TEST",
+                    "hours" => 23.3,
+                    "type" => "Formació interna",
+                    "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
+                    "is_active" => true,
+                    "assistant" => 1,
+                    
+                    "start_date" => now(),
+                    "end_date" => now(),
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 9,
+                    "center_id" => 1,
+                    "name" => "Curso test 5",
+                    "code" => "TEST",
+                    "hours" => 23.3,
+                    "type" => "Formació interna",
+                    "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
+                    "is_active" => true,
+                    "assistant" => 1,
+                    
+                    "start_date" => now(),
+                    "end_date" => now(),
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 10,
+                    "center_id" => 1,
+                    "name" => "Curso test 5",
+                    "code" => "TEST",
+                    "hours" => 23.3,
+                    "type" => "Formació interna",
+                    "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
+                    "is_active" => true,
+                    "assistant" => 1,
+                    
+                    "start_date" => now(),
+                    "end_date" => now(),
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 11,
+                    "center_id" => 1,
+                    "name" => "Curso test 5",
+                    "code" => "TEST",
+                    "hours" => 23.3,
+                    "type" => "Formació interna",
+                    "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
+                    "is_active" => true,
+                    "assistant" => 1,
+                    
+                    "start_date" => now(),
+                    "end_date" => now(),
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 12,
+                    "center_id" => 1,
+                    "name" => "Curso test 5",
+                    "code" => "TEST",
+                    "hours" => 23.3,
+                    "type" => "Formació interna",
+                    "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
+                    "is_active" => true,
+                    "assistant" => 1,
+                    
+                    "start_date" => now(),
+                    "end_date" => now(),
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 13,
+                    "center_id" => 1,
+                    "name" => "Curso test 5",
+                    "code" => "TEST",
+                    "hours" => 23.3,
+                    "type" => "Formació interna",
+                    "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
+                    "is_active" => true,
+                    "assistant" => 1,
+                    
+                    "start_date" => now(),
+                    "end_date" => now(),
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 14,
+                    "center_id" => 1,
+                    "name" => "Curso test 5",
+                    "code" => "TEST",
+                    "hours" => 23.3,
+                    "type" => "Formació interna",
+                    "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
+                    "is_active" => true,
+                    "assistant" => 1,
+                    
+                    "start_date" => now(),
+                    "end_date" => now(),
+                    "created_at" => now(),
+                    "updated_at" => now()
+                ],
+                [
+                    "id" => 15,
+                    "center_id" => 1,
+                    "name" => "Curso test 5",
+                    "code" => "TEST",
+                    "hours" => 23.3,
+                    "type" => "Formació interna",
+                    "modality" => "Presencial",
+                    "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima expedita ab cum sed ipsam, magni consequuntur atque veniam exercitationem unde sapiente eius totam animi dicta cumque nisi! Atque, pariatur dicta?",
+                    "is_active" => true,
+                    "assistant" => 1,
+                    
+                    "start_date" => now(),
+                    "end_date" => now(),
+                    "created_at" => now(),
+                    "updated_at" => now()
                 ]
             ]
         );

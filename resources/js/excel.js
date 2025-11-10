@@ -4,6 +4,7 @@ if (redirectSelect){
         const url = this.value;
         if (url) {
             window.location.href = url;
+            redirectSelect.selectedIndex = 0;
         }
     });
 }

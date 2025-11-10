@@ -24,12 +24,12 @@ class UniformityRenovationExport implements FromCollection, WithHeadings, WithMa
     public function headings(): array
     {
         return [
-            "Fecha de renovación",
-            "Entregado por",
-            "Entregado a",
-            "Talla Camiseta",
-            "Talla Pantalón",
-            "Talla Zapatos",
+            "Data de renovació",
+            "Entregat per",
+            "Entregat a",
+            "Mida Samarreta",
+            "Mida Pantaló",
+            "Mida Sabates",
         ];
     }
     public function map($row): array
@@ -38,9 +38,9 @@ class UniformityRenovationExport implements FromCollection, WithHeadings, WithMa
             $row->renewal_date,
             optional($row->deliveredBy)->name,
             optional($row->uniformity?->userAssigned)->name,
-            optional($row->uniformity)->shirt,
-            optional($row->uniformity)->pants,
-            optional($row->uniformity)->shoes,
+            $row->shirt_renewal ?? "-",
+            $row->pants_renewal ?? "-",
+            $row->shoes_renewal ?? "-",
         ];
     }
 }

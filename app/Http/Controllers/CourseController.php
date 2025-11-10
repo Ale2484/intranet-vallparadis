@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CoursesExport;
 use App\Models\Center;
 use App\Models\Course;
 use App\Models\CourseSchedule;
@@ -9,6 +10,7 @@ use App\Models\CourseUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
@@ -19,6 +21,24 @@ class CourseController extends Controller
     {
         $courses = Course::orderBy("created_at", "asc")->paginate(20);
         return view("courses.index", compact("courses"));
+    }
+
+    public function search(Request $request)
+    {
+        $pagination = "";
+        $htmlContent = "";
+        // Se obtiene la pagina, sino, se usa la pagina 1
+        $page = $request->input("page", 1);
+        $searchValue = $request->searchValue;
+        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        if (!empty($searchCourses)) {
+            foreach ($searchCourses as $course) {
+                $htmlContent .= view("components.course-card", compact("course"))->render();
+            }
+            // Se obtiene la paginacion
+            $pagination = $searchCourses->links()->render();
+        }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
     }
 
     /**
@@ -88,7 +108,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        $usersPreview = $course->users()->limit(4)->get();
+        $usersPreview = $course->users()->withPivot('certificate')->limit(4)->get();
         $totalUsers = $course->users;
         $schedules = $course->schedule;
         return view("courses.show", compact("course", "usersPreview", "totalUsers", "schedules"));
@@ -130,7 +150,7 @@ class CourseController extends Controller
         $course->update($validate);
         
         // Se obtienen los usuarios pasados en la request incluyendo los usuarios que ya estaban inscritos en el curso
-        $userIds = !empty($request->userIds) ? explode(",", $request->userIds) : "";
+        $userIds = !empty($request->userIds) ? explode(",", $request->userIds) : [];
         // Se obtienen los usuarios inscritos al curso
         $registeredUsers = $course->users->pluck("id")->toArray();
         
@@ -173,12 +193,38 @@ class CourseController extends Controller
         return redirect()->route("courses.index")->with("success", "Curs creat correctament");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    // Metodo que muestra todos los usuarios que pertenecen a un curso
+    public function showCourseUsers(Course $course)
     {
-        //
+        $courseUsers = $course->users()->withPivot("certificate")->get();
+        return view("courses.users", compact("courseUsers", "course"));
+    }
+
+
+    public function giveCertificate(Course $course, User $user)
+    {
+        $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
+        if ($courseUser && $courseUser->certificate == "PENDENT") {
+            $courseUser->update(["certificate" => "ENTREGAT"]);
+            return redirect()->route("courses.show", $course)->with("success", "Certificat lliurat correctament");
+        } else{
+            return back()->with("error", "Error en intentar donar el certificat a l'usuari seleccionat");
+        }
+    }
+    public function removeCertificate(Course $course, User $user)
+    {
+        $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
+        if ($courseUser && $courseUser->certificate == "ENTREGAT") {
+            $courseUser->update(["certificate" => "PENDENT"]);
+            return redirect()->route("courses.show", $course)->with("success", "Certificat tret correctament");
+        } else{
+            return back()->with("error", "Error en intentar treure el certificat a l'usuari seleccionat");
+        }
+    }
+
+    public function exportAllCourses()
+    {
+        return Excel::download(new CoursesExport, "courses.xlsx");
     }
 
     public function deactivate(Course $course)

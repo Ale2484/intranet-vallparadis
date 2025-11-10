@@ -4,23 +4,28 @@
 <div class="w-full flex items-center justify-center">
     <div class="w-[90%] flex flex-col items-center justify-center">   
         <!-- Apartado superior -->
-        <div class="w-full flex flex-col gap-3">
-            <a href="{{ route("courses.index") }}" class="flex gap-3 text-[#AFAFAF]">
-                <svg class="w-6 h-6 ">
-                    <use xlink:href="#icon-arrow-left"></use>
-                </svg>
-                Tornar a la gestió de cursos
+        <div class="w-full flex items-center justify-between">
+            <div class="flex flex-col gap-3">
+                <a href="{{ route("courses.index") }}" class="flex gap-3 text-[#AFAFAF]">
+                    <svg class="w-6 h-6 ">
+                        <use xlink:href="#icon-arrow-left"></use>
+                    </svg>
+                    Tornar a la gestió de cursos
+                </a>
+        
+                <h1 class="text-3xl font-bold text-[#011020]">{{ $course->name }}</h1>
+        
+                <h1 class="text-lg font-bold text-[#FF7E13]">Codi: {{ $course->code ?? "Aquest curs no te codi" }}</h1>
+                <p class="text-[#AFAFAF] mb-7">Informació completa del curs</p>
+            </div>
+            <a href="{{ route("courses.edit", $course) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+                Editar el curs                
             </a>
-    
-            <h1 class="text-3xl font-bold text-[#011020]">{{ $course->name }}</h1>
-    
-            <h1 class="text-lg font-bold text-[#FF7E13]">Codi: {{ $course->code ?? "Aquest curs no te codi" }}</h1>
-            <p class="text-[#AFAFAF] mb-7">Informació completa del curs</p>
         </div>
         <!-- Contenedor principal -->
         <div class="w-full flex flex-wrap flex-row justify-between gap-5 text-[#011020]">
             
-            <div class="w-[60%] flex flex-col gap-3">
+            <div class="w-[55%] flex flex-col gap-3">
                 {{-- Contenedor secundario --}}
                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col min-w-[350px]">
                     <p class="text-[20px] font-bold text-[#011020] mb-5">Informació del general:</p>
@@ -149,34 +154,71 @@
             </div>
             
             {{-- Contenedor lateral --}}
-            <div class="w-[35%]">
+            <div class="w-[40%]">
                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-flex-col min-w-[300px]">
                     <div class="flex flex-row justify-between">
-                        <p class="text-[20px] font-bold text-[#011020] mb-5">Usuaris inscrits:</p>
+                        <p class="text-[20px] font-bold text-[#011020] mb-5">Usuaris inscrits i el seus certificats:</p>
                         <p class="bg-[#ffe7de] text-[#FF7E13] w-7 h-7 flex items-center justify-center rounded-full font-semibold">{{count($totalUsers) }}</p>
                     </div>
 
                     @if (count($usersPreview) > 0)
                         <div class="flex flex-col gap-5">
                             @foreach ($usersPreview as $user )
-                            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center gap-2">
-                                <div class="w-15 h-15 bg-gray-200 rounded-full">
-                                    <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
-                                </div>
-                                <div>
-                                    <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
-                                    <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
+                                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-2">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-15 h-15 bg-gray-200 rounded-full">
+                                                <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                            </div>
+                                            <div>
+                                                <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
+                                                <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <svg width="10" height="10">
+                                                <circle cx="5" cy="5" r="5" class="{{ $user->pivot->certificate == "ENTREGAT" ? "fill-green-600" : "fill-red-600" }}"/>
+                                            </svg>
+                                            <p class="mr-10 {{ $user->pivot->certificate == "ENTREGAT" ? "text-green-600" : "text-red-600" }}">{{ $user->pivot->certificate }}</p>
+                                        </div>
+                                    </div>
+
+                                    {{-- Certificados --}}
+                                    <div class="w-full flex items-center gap-5 mt-3 p-2">
+                                        <form action="{{ route("courses.giveCertificate", ["course" => $course, "user" => $user]) }}" method="post" class="flex items-center justify-center w-[50%]">
+                                            @csrf
+                                            @method("PATCH")
+                                            <button type="submit" @disabled($user->pivot->certificate == "ENTREGAT") class="w-full bg-white text-[#FF7E13] border-1 border-[#FF7E13] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-100 disabled:border-gray-400 disabled:opacity-30">
+                                                <svg class="w-6 h-6 ">
+                                                    <use xlink:href="#icon-plus"></use>
+                                                </svg>
+                                                Entregar certificat
+                                            </button>
+                                        </form>
+                                    
+                                        <form action="{{ route("courses.removeCertificate", ["course" => $course, "user" => $user]) }}" method="post" class="flex items-center justify-center w-[50%]">
+                                            @csrf
+                                            @method("PATCH")
+                                            <button type="submit" @disabled($user->pivot->certificate == "PENDENT") class="w-full bg-white text-[#FF7E13] border-1 border-[#FF7E13] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-100 disabled:border-gray-400 disabled:opacity-30">
+                                                <svg class="w-6 h-6 ">
+                                                    <use xlink:href="#icon-cross"></use>
+                                                </svg>
+                                                Treure certificat
+                                            </button>
+                                        </form>
+
+                                    </div>
                                 </div>
 
-                            </div>
                             @endforeach
+
                             @if (count($totalUsers) > 0 && count($totalUsers) > count($usersPreview))
-                                <button data-modal-id="showAllUsersModal" class="open-modal-button bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+                                <a href="{{ route("courses.users", $course) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
                                     <svg class="w-6 h-6 ">
                                         <use xlink:href="#icon-group-user"></use>
                                     </svg>
                                     Veure tots els usuaris
-                                </button>
+                                </a>
                             @endif
                         </div>
                     @else
@@ -187,32 +229,4 @@
         </div>
     </div>
 </div>
-@if (count($totalUsers) > 0 && count($totalUsers) > count($usersPreview))
-    {{-- Modal para ver los usuarios --}}
-    <div id="showAllUsersModal" class="fixed inset-0 bg-black/20 z-20 flex items-center justify-center hidden">
-        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] relative">
-            {{-- Boton para cerrar el modal --}}
-            <button class="close-modal-button absolute top-5 right-5 cursor-pointer">
-                <svg class="w-8 h-8 text-gray-400 hover:text-gray-600">
-                    <use xlink:href="#icon-cross"></use>
-                </svg>
-            </button>
-            <p class="text-2xl font-bold text-[#011020]">Usuaris registrats al curs:</p>
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 mt-3 flex flex-col gap-5 h-96 overflow-y-auto">
-                @foreach ($totalUsers as $user)
-                    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center gap-2">
-                        <div class="w-15 h-15 bg-gray-200 rounded-full">
-                            <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
-                        </div>
-                        <div>
-                            <a href="{{ route("users.show" , $user) }}" class="font-semibold">{{$user->name ?? " - "}}</a>
-                            <p class="text-[#5E6468]">{{$user->email ?? " - "}}</p>
-                        </div>
-
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-@endif
 @endsection

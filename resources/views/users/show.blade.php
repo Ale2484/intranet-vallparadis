@@ -22,7 +22,7 @@
         </select>
     </div>
 
-    <div class="flex justify-between gap-10">
+    <div class="flex justify-between items-start gap-10">
 
         <!-- Información del Profesional -->
         <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3 w-5/7">
@@ -157,93 +157,49 @@
             </div>
         </div>
 
-        <div class="w-2/7 flex flex-col justify-between gap-5">
-            <!-- Seguridad y acceso -->
+        <div class="w-2/7 flex flex-col gap-5">
+            {{-- Seguridad y acceso --}}
             <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3">
-                <div class="text-xl font-semibold text-[#012F4A] flex items-center gap-2">
-                    <svg class="w-10 h-10 text-[#FF7033]">
-                        <use xlink:href="#icon-shield"></use>
+                <div class="flex items-center gap-2">
+                    <svg class="w-9 h-9 {{ $user->is_active ? "text-green-600" : "text-red-600" }}">
+                        <use xlink:href="#icon-check-circle"></use>
                     </svg>
-                    Seguretat i accés
+                    <p class="text-xl font-semibold text-[#012F4A]">Seguretat i accéss</p>
                 </div>
-                
-                <div class="border-b-1 border-b-gray-600 pb-6 flex flex-col gap-4">
-                    <!-- Taquilla -->
-                    <div class="flex flex-col gap-5 border-[#FF7033] border-1 text-[#FF7033] bg-[#FF7033]/17 rounded-lg p-2 justify-start items-start">
-                        <div class="flex items-center gap-2">
-                            <svg class="w-10 h-10 text-[#FF7033]">
-                                <use xlink:href="#icon-key"></use>
-                            </svg>
-                            <p class="text-gray-600 mb-3 font-bold">Taquilla</h2>
-                        </div>
-                        <div class="flex-1">
-                            
-                            <!-- Número de taquilla -->
-                            <div class="mb-4">
-                                <p class="text-gray-600 mb-1">Número de taquilla</p>
-                                <p class="text-[#FF7033] font-semibold">T-{{ $user->locker }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tallas -->
-                    <div class="grid grid-cols-2 gap-5 border-[#FF7033] border-1 text-[#FF7033] bg-[#FF7033]/17 rounded-lg p-2 justify-start items-start">
-                        <div class="flex items-center gap-2">
-                            <svg class="w-10 h-10 text-[#FF7033]">
-                                <use xlink:href="#icon-sweater"></use>
-                            </svg>
-                            <p class="text-gray-600 mb-3 font-bold">Tallas</h2>
-                        </div>
-                        <div class="flex-1">
-                            
-                            <!-- talla jersei -->
-                            <div class="mb-4">
-                                <p class="text-gray-600 mb-1">Jersei</p>
-                                <p class="text-[#FF7033] font-semibold">{{ optional($user->uniformity)->shirt ?? '—' }}</p>
-                            </div>
-                        </div>
-                        <div class="flex-1">
-                            
-                            <!-- talla pantalon -->
-                            <div class="mb-4">
-                                <p class="text-gray-600 mb-1">Pantalons</p>
-                                <p class="text-[#FF7033] font-semibold">{{ optional($user->uniformity)->pants ?? '—' }}</p>
-                            </div>
-                        </div>
-                        <div class="flex-1">
-                            
-                            <!-- talla zapatos -->
-                            <div class="mb-4">
-                                <p class="text-gray-600 mb-1">Sabates</p>
-                                <p class="text-[#FF7033] font-semibold">{{ optional($user->uniformity)->shoes ?? '—' }}</p>
-                            </div>
-                        </div>
-                    </div>
+                <p class="font-semibold {{ $user->is_active ? "text-green-600" : "text-red-600" }}">Compte {{ $user->is_active ? "actiu" : "inactiu"}}</p>
+            </div>
+            {{-- Tallas --}}
+            <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3">
+                <div class="flex items-center gap-2">
+                    <svg class="w-9 h-9 text-[#FF7033]">
+                        <use xlink:href="#icon-sweater"></use>
+                    </svg>
+                    <p class="text-xl font-semibold text-[#012F4A]">Talles</p>
                 </div>
-        
-                <h3 class="text-xl font-semibold text-[#012F4A]">Estat del compte</h3>
-                <div class="flex items-start gap-3">
-                    <div class="flex-1">
-                        @if($user->is_active)
-                            <div class="flex items-center gap-2 mt-2 text-green-600">
-                                <svg class="w-10 h-10">
-                                    <use xlink:href="#icon-check-circle"></use>
-                                </svg>
-                                <p class="mb-1">Compte {{ $user->is_active ? 'actiu' : 'inactiu' }}</p>
-                            </div>
-                        @else
-                            <div class="flex items-center gap-2 mt-2 text-red-600">
-                                <svg class="w-10 h-10">
-                                    <use xlink:href="#icon-cross-circle"></use>
-                                </svg>
-                                <p class="mb-1">Compte {{ $user->is_active ? 'actiu' : 'inactiu' }}</p>
-                            </div>
-                        @endif
+                {{-- Contenedor de las tallas --}}
+                <div class="mt-3 flex flex-col gap-3">
+                    <div class="w-full p-5 bg-[#fef5eb] border-1 border-[#fed6aa] rounded-lg">
+                        <p class="text-[#FF7033] font-semibold text-[16px]">JERSEI</p>
+                        <p class="font-bold text-3xl text-[#FF7033]">{{ optional($user->uniformity)->shirt ?? "—" }}</p>
+                    </div>
+                    <div class="w-full p-5 bg-blue-50 border-1 border-blue-200 rounded-lg">
+                        <p class="text-blue-600 font-semibold text-[16px]">PANTALONS</p>
+                        <p class="font-bold text-3xl text-blue-900">{{ optional($user->uniformity)->pants ?? "—" }}</p>
+                    </div>
+                    <div class="w-full p-5 bg-green-50 border-1 border-green-200 rounded-lg">
+                        <p class="text-green-600 font-semibold text-[16px]">SABATES</p>
+                        <p class="font-bold text-3xl text-green-900">{{ optional($user->uniformity)->shoes ?? "—" }}</p>
                     </div>
                 </div>
             </div>
-            <div class="items-start h-full">
-                <a href="{{ route("trackings.index", $user->id) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">Seguiment</a>
+            {{-- Taquilla --}}
+            <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3">
+                <p class="text-xl font-semibold text-[#012F4A]">Numero de taquilla</p>
+                <div class="bg-[#fef5eb] p-5 border-1 border-[#fed6aa] rounded-lg">
+                    <p class="text-2xl font-bold text-[#FF7033]">{{ $user->locker}}</p>
+                </div>
             </div>
+            <a href="{{ route("trackings.index", $user->id) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">Seguiment</a>
             <div class="items-start h-full">
                 <a href="{{ route("evaluations.index", $user->id) }}" class="bg-green-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-green-700 transition-all h-fit">Evaluacions</a>
             </div>
