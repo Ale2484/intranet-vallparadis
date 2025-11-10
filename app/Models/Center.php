@@ -19,4 +19,10 @@ class Center extends Model
     public function user() : HasMany {
         return $this->hasMany(User::class);
     }
+    public function course() : HasMany {
+        return $this->hasMany(Course::class);
+    }
+    public function project() : HasMany {
+        return $this->hasMany(Project::class);
+    }
 }
