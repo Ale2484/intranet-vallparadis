@@ -15,15 +15,15 @@ class UserController extends Controller
     public function index()
     {
         $totalUsers = User::count();
-        $activeUsers = User::active()->count();
-        $inactiveUsers = User::inactive()->count();
+        // $activeUsers = User::active()->count();
+        // $inactiveUsers = User::inactive()->count();
         
         $users = User::orderBy('created_at', 'desc')->get();
 
         return view("users.index", compact(
             'totalUsers', 
-            'activeUsers', 
-            'inactiveUsers',
+        //    'activeUsers', 
+        //    'inactiveUsers',
             'users'
         ));
     }

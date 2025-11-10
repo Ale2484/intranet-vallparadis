@@ -88,7 +88,7 @@
                             <div>
                                 {{ number_format($evaluation->average_score, 2, '.', '') }}/3
                             </div>
-                            <div class="w-40 h-2 flex justify-between">
+                            <div class="w-1/2 h-2 flex justify-between">
                                 <div class="w-full h-2 bg-[#D9D9D9] rounded-full">
                                     <p style="width:{{ ($evaluation->average_score/3)*100 }}%;" class="h-2 bg-[#FF7033] rounded-full">&nbsp;</p>
                                 </div>
