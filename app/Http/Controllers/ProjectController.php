@@ -14,8 +14,8 @@ class ProjectController extends Controller
     public function index()
     {
         $totalProjects = Project::count();
-        $activeProjects = Project::active()->count();
-        $inactiveProjects = Project::inactive()->count();
+        // $activeProjects = Project::active()->count();
+        // $inactiveProjects = Project::inactive()->count();
         
         $projects = Project::with(['centerRelation', 'userRelation'])
                           ->orderBy('created_at', 'desc')
@@ -23,8 +23,8 @@ class ProjectController extends Controller
 
         return view("projects.index", compact(
             'totalProjects', 
-            'activeProjects', 
-            'inactiveProjects',
+            // 'activeProjects', 
+            // 'inactiveProjects',
             'projects'
         ));
     }
