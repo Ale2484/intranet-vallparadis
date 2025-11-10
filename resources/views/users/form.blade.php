@@ -130,7 +130,7 @@
                 </svg>
                 Taquilla *
             </label>
-            <input type="number" name="locker" id="locker" value="{{ old('locker', $user->locker) }}"
+            <input type="text" name="locker" id="locker" value="{{ old('locker', $user->locker) }}"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('locker') border-red-500 @enderror"
                     required>
             @error('locker')
