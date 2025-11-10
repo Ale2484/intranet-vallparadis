@@ -1,6 +1,6 @@
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-32/100 min-w-[350px] mb-5 flex flex-col gap-5">
+<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5">
         <div>
-            <div class="flex flex-row justify-between items-center w-full">
+            <div class="flex justify-between items-center mb-5">
                 <div class="flex flex-row justify-between gap-2">
                     <div class="bg-gray-200 rounded-full h-16 w-16">
                         <!-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> -->
@@ -60,20 +60,20 @@
             </div>
         </div>
         
-        <div class="flex flex-row gap-5 justify-end">
+        <div class="w-full flex gap-5 flex-col sm:flex-col justify-center md:flex-row">
             <a href="{{ route('users.edit', $user) }}" 
-                class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-1/2">
+                class="w-full sm:w-full md:w-[50%] flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF]">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-square-pen"></use>
                 </svg>
                 Editar
             </a>
             @if($user->is_active)
-                <form action="{{ route('users.deactivate', $user) }}" method="POST" class="inline w-1/2">
+                <form action="{{ route('users.deactivate', $user) }}" method="POST" class="w-full sm:w-full md:w-[50%] lg:w-[50%]">
                     @csrf
                     @method('PATCH')
                     <button type="submit" 
-                            class="confirmable text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all w-full flex justify-center gap-3"
+                            class="confirmable w-full text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all flex justify-center gap-3"
                             data-confirm-message="Estàs segur que vols desactivar aquest usuari?">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-power"></use>
@@ -82,11 +82,11 @@
                     </button>
                 </form>
             @else
-                <form action="{{ route('users.activate', $user) }}" method="POST" class="inline w-1/2">
+                <form action="{{ route('users.activate', $user) }}" method="POST" class="w-full sm:w-full md:w-[50%] lg:w-[50%]">
                     @csrf
                     @method('PATCH')
                     <button type="submit" 
-                            class="confirmable text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all w-full flex justify-center gap-3"
+                            class="confirmable w-full text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all flex justify-center gap-3"
                             data-confirm-message="Estàs segur que vols activar aquest usuari?">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-power"></use>

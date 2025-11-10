@@ -41,8 +41,8 @@
             <p>{{ $course->modality ?? "Aquest centre no te correu electronic" }}</p>
         </div>
     </div>
-        <p class="text-sm ml-3 my-4">Inici: {{ $course->start_date ? date("d/m/Y", strtotime($course->start_date)) : " - " }} | Fi: {{ $course->end_date ? date("d/m/Y", strtotime($course->end_date)) : " - " }}</p>
-    <div class="flex items-center justify-end mt-2">
+    <p class="text-sm ml-3 my-4">Inici: {{ $course->start_date ? date("d/m/Y", strtotime($course->start_date)) : " - " }} | Fi: {{ $course->end_date ? date("d/m/Y", strtotime($course->end_date)) : " - " }}</p>
+    <div class="flex flex-row gap-5 justify-end">
         <!-- Activar/Desactivar -->
         <div class="w-full sm:w-full md:w-auto lg:w-auto flex gap-5 justify-end flex-col sm:flex-col sm:justify-center md:flex-row">
             <a href="{{ route("courses.edit", $course) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF]">
