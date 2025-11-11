@@ -12,7 +12,7 @@ class TrackingController extends Controller
 {
     public function index(User $user)
     {
-        $trackings=Tracking::where('user', $user->id)->get();
+        $trackings=Tracking::where('user', $user->id)->get()->sortByDesc('created_at');
         $total=$trackings->count();
 
         return view("trackings.index", compact(
@@ -42,7 +42,7 @@ class TrackingController extends Controller
 
     public function show(User $user, Tracking $tracking)
     {
-        $comments=CommentsTracking::where('tracking', $tracking->id)->get();
+        $comments=CommentsTracking::where('tracking', $tracking->id)->get()->sortByDesc('created_at');
         $total=$comments->count();
 
         return view("trackings.show", compact(
