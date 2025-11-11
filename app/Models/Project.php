@@ -39,6 +39,14 @@ class Project extends Model
         return $this->belongsTo(User::class, 'user');
     }
 
+    // Modelo Project
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_projects', 'project', 'user');
+    }
+
+
+
     // Relación con los documentos
     public function documents()
     {
