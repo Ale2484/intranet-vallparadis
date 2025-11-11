@@ -61,7 +61,7 @@
                                 <div class="flex flex-col gap-1 w-full">
                                     <div class="flex flex-row justify-between w-full items-center">
                                         <a href="{{ route("trackings.show", ['user' => $user->id, 'tracking' => $tracking->id]) }}" class="text-2xl font-bold">
-                                            {{ $tracking->topic }}
+                                            {{ Str::limit($tracking->topic, 20) }}
                                         </a>
                                         <div class="flex flex-row gap-2">
                                             <svg class="w-6 h-6">
@@ -84,7 +84,7 @@
                                 <use xlink:href="#icon-chat-text"></use>
                             </svg>
                             <div class="overflow-hidden">
-                                {{ $tracking->lastComment->comment ?? 'Sense comentaris' }}
+                                {{ Str::limit($tracking->lastComment->comment ?? 'Sense comentaris',75) }}
                             </div>
                         </div>
                     </div>

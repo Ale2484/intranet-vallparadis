@@ -47,7 +47,7 @@
             </div>
             <div class="flex flex-col justify-between">
                 <div class="text-[#AFAFAF]">
-                    Usuari seguit
+                    Registrador
                 </div>
                 <div class="text-2xl font-bold">
                     {{ $tracking->registerRelation->name }}
@@ -65,7 +65,7 @@
 
         <div class="flex flex-row justify-between gap-5">
             <!-- Historial -->
-            <div class="flex flex-col justify-start w-5/8 gap-5 h-[443px] border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+            <div class="flex flex-col justify-start w-5/8 gap-5 max-h-[451px] {{ $total<1 ? 'h-[150px]' : '' }} {{ $total==1 ? 'h-[340px]' : '' }} border border-[#AFAFAF] bg-white rounded-[15px] p-5">
                 <div class="flex flex-row justify-between items-center w-full">
                     <div class="text-2xl font-bold text-[#011020]">
                         Historial de commentaris
@@ -107,9 +107,9 @@
                             </div>
                         </div>
                     @endforeach
-                    @if($total<1)
+                    <!-- @if($total<1)
                         <div class='mb-4'>No hi ha commentaris</div>
-                    @endif
+                    @endif -->
                     <div class="flex flex-row gap-5 items-center">
                         <div class="bg-gray-100 p-5 w-fit rounded-full">
                             <div class="bg-gray-200 w-4 h-4 rounded-full">
@@ -143,7 +143,7 @@
                     <div class="flex flex-col gap-3">
                         <div class="flex flex-col gap-1">
                             <label for="comment">Afegir comentari</label>
-                            <textarea type="text" id="comment" name="comment" class="border border-[#AFAFAF] bg-white rounded-lg p-2 h-[200px]"></textarea>
+                            <textarea type="text" id="comment" name="comment" class="border border-[#AFAFAF] bg-white rounded-lg p-2 max-h-[200px] h-[200px]"></textarea>
                         </div>
                     </div>
                     <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
