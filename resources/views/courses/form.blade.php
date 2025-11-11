@@ -49,7 +49,7 @@
                         <p>Hores:</p>
                     </div>
                 </div>
-                <input type="number" step="0.1" name="hours" id="hours" placeholder="Introdueix les hores del curs" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('hours') border-red-600 @enderror" value="{{ old("hours", $course->hours) }}" required>
+                <input type="number" step="0.1" name="hours" id="hours" placeholder="Introdueix les hores del curs" max="99999" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('hours') border-red-600 @enderror" value="{{ old("hours", $course->hours) }}" required>
             </div>
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">

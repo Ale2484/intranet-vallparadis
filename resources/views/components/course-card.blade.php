@@ -1,5 +1,5 @@
 <!-- Contenedor -->
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col {{ $course->is_active ? "" : "opacity-70" }}">
+<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col">
     <div class="flex justify-between items-center mb-5">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
