@@ -107,7 +107,9 @@
                             </div>
                         </div>
                     @endforeach
-                    <div class='mb-4'>{{ $total<1 ? "No hi ha commentaris" : "" }}</div>                
+                    @if($total<1)
+                        <div class='mb-4'>No hi ha commentaris</div>
+                    @endif
                     <div class="flex flex-row gap-5 items-center">
                         <div class="bg-gray-100 p-5 w-fit rounded-full">
                             <div class="bg-gray-200 w-4 h-4 rounded-full">
