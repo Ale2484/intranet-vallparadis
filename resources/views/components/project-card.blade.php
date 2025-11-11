@@ -8,7 +8,7 @@
                             <use xlink:href="#icon-folder"></use>
                         </svg>
                     </div>
-                @elseif($project->type_label == "Comissió")
+                @elseif($project->type_label == "Comissio")
                     <div class="bg-[#FF7033]/17 border-1 border-[#FF7033] rounded-full p-4 flex items-center justify-center">
                         <svg class="w-8 h-8 text-[#FF7033]">
                             <use xlink:href="#icon-folder"></use>
@@ -24,7 +24,7 @@
                 <div class="border-1 p-1 text-center bg-green-200 text-green-600 border-green-600 rounded-lg w-24 ">
                     Projecte
                 </div>
-            @elseif($project->type_label == "Comissió")
+            @elseif($project->type_label == "Comissio")
                 <div class="border-1 bg-[#FF7033]/17 text-[#FF7033] border-[#FF7033] rounded-lg p-1 text-center w-24">
                     Comissió
                 </div>
