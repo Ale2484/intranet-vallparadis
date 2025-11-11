@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Center;
 use App\Models\User;
 use App\Models\ProjectDocument;
+use App\Models\UserProject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -51,9 +52,10 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $centers = Center::all();
+        $assignedUsers = collect();
         // $users = User::active()->get();
         $users = User::all();
-        return view('projects.create', compact('centers', 'users', 'project'));
+        return view('projects.create', compact('centers', 'users', 'project', "assignedUsers"));
     }
 
     public function store(Request $request)
@@ -71,7 +73,6 @@ class ProjectController extends Controller
 
         $validated["center"]=1;
 
-
         $validated['is_active'] = true;
 
         // Crear el proyecto
@@ -82,13 +83,23 @@ class ProjectController extends Controller
             $this->processDocuments($project, $request->file('documents'));
         }
 
+        // Se procesan los usuarios
+        $asignedUsers = $request->input("users");
+        if (!empty($asignedUsers)) {
+            foreach ($asignedUsers as $userId) {
+                // Se añaden los nuevos usuarios
+                UserProject::create(["user" => $userId, "project" => $project->id]);
+            }
+        }
+
         return redirect()->route('projects.index')->with('success', 'Projecte/comissió creat correctament.');
     }
 
     public function show(Project $project)
     {
+        $asignedUsers = $project->users;
         $project->load(['centerRelation', 'userRelation', 'documents']);
-        return view("projects.show", compact("project"));
+        return view("projects.show", compact("project", "asignedUsers"));
     }
 
     public function edit(Project $project)
@@ -96,8 +107,10 @@ class ProjectController extends Controller
         $centers = Center::all();
         // $users = User::active()->get();
         $users = User::all();
+        $assignedUsers = $project->users;
+
         $project->load('documents');
-        return view('projects.edit', compact('project', 'centers', 'users'));
+        return view('projects.edit', compact('project', 'centers', 'users', "assignedUsers"));
     }
 
     public function update(Request $request, Project $project)
@@ -116,6 +129,17 @@ class ProjectController extends Controller
         $validated["center"]=1;
 
         $project->update($validated);
+
+
+        // Se procesan los usuarios
+        $asignedUsers = $request->input("users");
+        foreach ($asignedUsers as $userId) {
+            $searchUser = UserProject::where(["user" => $userId, "project" => $project->id])->exists();
+            
+            if (!$searchUser) {
+                UserProject::create(["user" => $userId, "project" => $project->id]);
+            }
+        }
 
         // Procesar nuevos documentos si existen
         if ($request->hasFile('documents')) {
