@@ -79,7 +79,7 @@ class EvaluationController extends Controller
         
         LOG::info($request);
         $validated = $request->validate([
-            'comment' => 'required|string|max:255',
+            'comment' => 'nullable|string|max:255',
             'p1' => 'required|in:0,1,2,3',
             'p2' => 'required|in:0,1,2,3',
             'p3' => 'required|in:0,1,2,3',

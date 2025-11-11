@@ -16,7 +16,7 @@
         </div>
     </div>
     
-    <div class="w-full border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-row justify-between">
+    <div class="w-full border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-row items-center justify-between">
         <div class="flex flex-row gap-3">
             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg h-fit w-fit">
                 <svg class="w-6 h-6">
@@ -176,7 +176,7 @@
                             cx="80" cy="80" r="70"
                             class="text-gray-300"
                             stroke="currentColor"
-                            stroke-width="7"
+                            stroke-width="20"
                             fill="none"
                         />
                         <!-- anillo con -->
@@ -185,9 +185,8 @@
                             cx="80" cy="80" r="70"
                             class="text-green-600 transition-all duration-700 ease-out"
                             stroke="currentColor"
-                            stroke-width="7"
+                            stroke-width="20"
                             fill="none"
-                            stroke-linecap="round"
                             style="stroke-dasharray: 440; stroke-dashoffset: {{ 440 - ($percent / 100) * 440 }};"
                         />
                     </svg>
