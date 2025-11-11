@@ -43,6 +43,7 @@
                 {{ $total }} Registres
             </div>
         </div>
+        {{ $total<1 ? "No hi ha seguiments" : "" }}
         <div class="flex flex-row justify-between gap-5">
             <!-- Historial -->
             <div class="flex flex-col justify-start w-5/8 gap-5 overflow-y-scroll h-[443px]">

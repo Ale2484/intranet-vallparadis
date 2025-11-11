@@ -9,7 +9,7 @@
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
-                Tornar a la gestió de professionals
+                Tornar a la gestió de seguimients
             </a>
             <h1 class="text-3xl font-bold text-[#011020]">Seguimient de {{ $user->name }}</h1>
             <p class="text-[#AFAFAF]" >Seguimient del professional seleccionat</p>
@@ -107,6 +107,9 @@
                             </div>
                         </div>
                     @endforeach
+                    @if($total<1)
+                        <div class='mb-4'>No hi ha commentaris</div>
+                    @endif
                     <div class="flex flex-row gap-5 items-center">
                         <div class="bg-gray-100 p-5 w-fit rounded-full">
                             <div class="bg-gray-200 w-4 h-4 rounded-full">
@@ -144,7 +147,7 @@
                         </div>
                     </div>
                     <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
-                        Nou seguiment
+                        Nou comentari
                     </button>
                 </form>
             </div>

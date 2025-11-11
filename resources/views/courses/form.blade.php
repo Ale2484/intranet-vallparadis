@@ -49,7 +49,7 @@
                         <p>Hores:</p>
                     </div>
                 </div>
-                <input type="number" step="0.1" name="hours" id="hours" placeholder="Introdueix les hores del curs" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('hours') border-red-600 @enderror" value="{{ old("hours", $course->hours) }}" required>
+                <input type="number" step="0.1" name="hours" id="hours" placeholder="Introdueix les hores del curs" max="99999" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('hours') border-red-600 @enderror" value="{{ old("hours", $course->hours) }}" required>
             </div>
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
@@ -188,7 +188,7 @@
         </div>
         <div class="flex flex-row justify-between gap-5">
             {{-- Se muestran los usuarios incritos --}}
-            <div class="w-1/2">
+            <div class="w-1/2 relative">
                 <p class="font-bold text-2xl mb-3">Usuaris inscrits:</p>
                 <input type="text" placeholder="Busca un usuari" class="searchUser w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
                 {{-- Zona de drop --}}
@@ -208,16 +208,22 @@
                                 </div>
                             @endforeach
                     @endif
-                    
                     <p class="no-registered-users {{ $registeredUsers->isNotEmpty() ? "hidden" : "" }}">No hi ha usuaris registrats</p>
+                </div>
+                {{-- Informacion extra --}}
+                <div class="information-drop absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-10 pointer-events-none hidden ">
+                    <svg class="w-10 h-10 text-green-600 font-bold">
+                        <use xlink:href="#icon-plus"></use>
+                    </svg>
+                    <p class="text-2xl font-bold text-green-600">Inscriure usuari</p>
                 </div>
             </div>
             {{-- Se muestra el total de usuarios --}}
-            <div class="w-1/2">
+            <div class="w-1/2 relative">
                 <p class="font-bold text-2xl mb-3">Usuaris no inscrits:</p>
                 <input type="text" placeholder="Busca un usuari" class="searchUser w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
                 {{-- Zona de drop --}}
-                <div id="dropZoneRight" class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 h-[450px] overflow-y-auto">
+                <div id="dropZoneRight" class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 h-[450px] overflow-y-auto relative">
                     <p class="no-user-message hidden">No hi han usuaris que coincideixin amb la busqueda</p>
                     {{-- Si hay usuarios inscritos, se muestran --}}
                     @if ($users->isNotEmpty() &&  $users->diff($registeredUsers)->isNotEmpty())
@@ -236,6 +242,13 @@
                             @endforeach
                     @endif
                     <p class="no-registered-users {{ $users->isNotEmpty() &&  $users->diff($registeredUsers)->isNotEmpty() ? 'hidden' : '' }}">No hi ha usuaris que es puguin inscriure al curs</p>
+                </div>
+                {{-- Informacion extra --}}
+                <div class="information-drop absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-10 pointer-events-none hidden">
+                    <svg class="w-10 h-10 text-red-600 font-bold">
+                        <use xlink:href="#icon-cross"></use>
+                    </svg>
+                    <p class="text-2xl font-bold text-red-600">Desinscriure usuari</p>
                 </div>
             </div>
         </div>

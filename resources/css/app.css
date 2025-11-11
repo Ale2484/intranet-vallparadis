@@ -46,6 +46,20 @@
 }
 
 
+.dragStartleft > :not(.information-drop){
+    @apply opacity-50
+}
+.dragStartleft{
+    @apply bg-green-50 border-4 border-dashed border-green-600 
+}
+.dragStartRight > :not(.information-drop){
+    @apply opacity-50
+}
+.dragStartRight{
+    @apply bg-red-50 border-4 border-dashed border-red-600
+}
+
+
 /* 
 .simple-container{
     @apply border border-[#AFAFAF] bg-white rounded-[15px] p-5;

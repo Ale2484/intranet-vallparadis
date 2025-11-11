@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dropZoneLeft = document.getElementById("dropZoneLeft");
     const dropZoneRight = document.getElementById("dropZoneRight");
     const usersContainers = document.querySelectorAll("[draggable]");
+    const informationsDrop = document.querySelectorAll(".information-drop");
     // Input hidden que se usara para rellenarlo de los ids de los usuarios inscritos
     const userIdsInput = document.getElementById("userIds");
     let draggedElement = null;
@@ -11,6 +12,21 @@ document.addEventListener("DOMContentLoaded", () => {
         usersContainers.forEach(userContainer => {
             userContainer.addEventListener("dragstart", (e) => {
                 draggedElement = e.target;
+                dropZoneLeft.classList.add("dragStartleft");
+                dropZoneRight.classList.add("dragStartRight");
+                informationsDrop.forEach(informationDrop => {
+                    informationDrop.classList.remove("hidden");
+                });
+            });
+        });
+        // Cuando se deja el contenedor del usuario se oculta la informacion de drop
+        usersContainers.forEach(userContainer => {
+            userContainer.addEventListener("dragend", () => {
+                dropZoneLeft.classList.remove("dragStartleft");
+                dropZoneRight.classList.remove("dragStartRight");
+                informationsDrop.forEach(informationDrop => {
+                    informationDrop.classList.add("hidden");
+                });
             });
         });
     }

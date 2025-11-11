@@ -51,17 +51,17 @@ class User extends Authenticatable
         return $this->hasOne(Uniformity::class, 'user', 'id');
     }
 
-    // Scope para usuarios activos
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', true);
-    }
+    // // Scope para usuarios activos
+    // public function scopeActive($query)
+    // {
+    //     return $query->where('is_active', true);
+    // }
 
-    // Scope para usuarios inactivos
-    public function scopeInactive($query)
-    {
-        return $query->where('is_active', false);
-    }
+    // // Scope para usuarios inactivos
+    // public function scopeInactive($query)
+    // {
+    //     return $query->where('is_active', false);
+    // }
 
     // Accesor para el label del rol
     public function getRoleLabelAttribute()

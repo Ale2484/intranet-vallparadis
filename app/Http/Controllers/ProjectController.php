@@ -14,19 +14,37 @@ class ProjectController extends Controller
     public function index()
     {
         $totalProjects = Project::count();
-        $activeProjects = Project::active()->count();
-        $inactiveProjects = Project::inactive()->count();
+        // $activeProjects = Project::active()->count();
+        // $inactiveProjects = Project::inactive()->count();
         
         $projects = Project::with(['centerRelation', 'userRelation'])
                           ->orderBy('created_at', 'desc')
-                          ->get();
+                          ->paginate(20);
 
         return view("projects.index", compact(
             'totalProjects', 
-            'activeProjects', 
-            'inactiveProjects',
+            // 'activeProjects', 
+            // 'inactiveProjects',
             'projects'
         ));
+    }
+
+    public function search(Request $request)
+    {
+        $pagination = "";
+        $htmlContent = "";
+        // Se obtiene la pagina, sino, se usa la pagina 1
+        $page = $request->input("page", 1);
+        $searchValue = $request->searchValue;
+        $searchProjects = Project::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        if (!empty($searchProjects)) {
+            foreach ($searchProjects as $project) {
+                $htmlContent .= view("components.project-card", compact("project"))->render();
+            }
+            // Se obtiene la paginacion
+            $pagination = $searchProjects->links()->render();
+        }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
     }
 
     public function create()

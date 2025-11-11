@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("center_id");
             $table->string("code");
-            $table->decimal("hours", 3, 1);
+            $table->decimal("hours", 10, 2);
             $table->string("type");
             $table->string("modality");
             $table->string("name");
