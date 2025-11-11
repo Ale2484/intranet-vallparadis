@@ -49,7 +49,7 @@ class CourseController extends Controller
         $course = new Course();
         $centers = Center::all();
         $users = User::all();
-        $daysOfWeek = ["Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Disabte", "Diumenge"];
+        $daysOfWeek = ["Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"];
         // Se pasa el registeredUsers a coleccion porque sino cuando se usan algunos metodos especificos da problemas
         $registeredUsers = collect([]);
         return view("courses.create", compact("course", "centers", "users", "registeredUsers", "daysOfWeek"));
@@ -121,7 +121,7 @@ class CourseController extends Controller
     {
         $centers = Center::all();
         $users = User::all();
-        $daysOfWeek = ["Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Disabte", "Diumenge"];
+        $daysOfWeek = ["Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"];
         $schedules = $course->schedule()->get()->keyBy('day_of_week')->toArray();
 
         // Se obtienen todos los usuarios registrados en el curso
@@ -137,7 +137,7 @@ class CourseController extends Controller
         $validate = $request->validate([
             "center_id" => "required|exists:centers,id",
             "code" => "required|string",
-            "hours" => "required|numeric",
+            "hours" => "required|numeric|max:90000.99",
             "type" => "required|string",
             "modality" => "required|string",
             "name" => "required|string",
