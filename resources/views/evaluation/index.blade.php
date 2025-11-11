@@ -64,6 +64,7 @@
     <div class="font-bold text-xl">
         Avaluacions del professional
     </div>
+    {{ $total<1 ? "no hi ha avaluacions" : "" }}
     <div class="flex flex-row flex-wrap justify-between">
         @foreach ($evaluations as $evaluation)
             <div class="border border-[#AFAFAF] bg-white rounded-[15px] w-49/99 mb-5">
