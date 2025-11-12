@@ -133,13 +133,16 @@ class ProjectController extends Controller
 
         // Se procesan los usuarios
         $asignedUsers = $request->input("users");
-        foreach ($asignedUsers as $userId) {
-            $searchUser = UserProject::where(["user" => $userId, "project" => $project->id])->exists();
-            
-            if (!$searchUser) {
-                UserProject::create(["user" => $userId, "project" => $project->id]);
+        if (!empty($asignedUsers)) {
+            foreach ($asignedUsers as $userId) {
+                $searchUser = UserProject::where(["user" => $userId, "project" => $project->id])->exists();
+                
+                if (!$searchUser) {
+                    UserProject::create(["user" => $userId, "project" => $project->id]);
+                }
             }
         }
+
 
         // Procesar nuevos documentos si existen
         if ($request->hasFile('documents')) {

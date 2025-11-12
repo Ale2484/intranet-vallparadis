@@ -18,9 +18,7 @@
                 </svg>
                 Nom complet *
             </label>
-            <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" 
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('name') border-red-500 @enderror"
-                    required>
+            <input type="text" name="name" id="name" placeholder="Nom complet de l'usuari" value="{{ old('name', $user->name) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('name') border-red-500 @enderror" required>
             @error('name')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -34,9 +32,7 @@
                 </svg>
                 Email *
             </label>
-            <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('email') border-red-500 @enderror"
-                    required>
+            <input type="email" name="email" id="email" placeholder="Email de l'usuari" value="{{ old('email', $user->email) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('email') border-red-500 @enderror" required>
             @error('email')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -50,9 +46,7 @@
                 </svg>
                 Telèfon
             </label>
-            <input type="text" name="phone" id="phone" value="{{ old('phone', $user->phone) }}" 
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('phone') border-red-500 @enderror"
-                    maxlength="9">
+            <input type="text" name="phone" id="phone" placeholder="Telefon de l'usuari" value="{{ old('phone', $user->phone) }}"  class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('phone') border-red-500 @enderror" maxlength="9">
             @error('phone')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
