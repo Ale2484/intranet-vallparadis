@@ -43,9 +43,7 @@
                             <p class="font-bold text-lg">Usuari assignat</p>
                         </div>
                         <div class="flex items-center">
-                            <div class="bg-gray-200 rounded-full p-7 w-10">
-        
-                            </div>
+                            <minidenticon-svg username="{{ md5($project->userRelation->id) }}" class="w-16 h-16 bg-gray-200 rounded-full"></minidenticon-svg>
                             <div class="ml-2">
                                 <p class="text-xl font-bold text-[#011020] mb-1">{{ $project->userRelation->name ?? 'No assignat' }}</p>
                                 <p class="text-[#AFAFAF] text-sm">{{ $project->userRelation->email ?? '' }}</p>

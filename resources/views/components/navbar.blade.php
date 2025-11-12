@@ -21,7 +21,7 @@
                 <svg class="w-7 h-7">
                     <use xlink:href="#icon-users"></use>
                 </svg>
-                <span class="menu-text hidden">Usuaris</span>
+                <span class="menu-text hidden">Professionals</span>
             </a>
         </li>
         <li>
@@ -29,7 +29,7 @@
                 <svg class="w-7 h-7">
                     <use xlink:href="#icon-center"></use>
                 </svg>
-                <span class="menu-text hidden">Centers</span>
+                <span class="menu-text hidden">Centres</span>
             </a>
         </li>
         <li>

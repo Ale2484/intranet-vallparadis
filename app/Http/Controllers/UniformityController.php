@@ -19,6 +19,13 @@ class UniformityController extends Controller
         $userEdit = $user;
         $users = User::all();
         $uniformity = $user->uniformity;
+        if (!$uniformity) {
+            // Se crea un objeto vacio para evitar el null
+            $uniformity = new \stdClass();
+            $uniformity->pants = "";
+            $uniformity->shirt = "";
+            $uniformity->shoes = "";
+        }
         return view("uniformity.edit", compact("uniformity", "users", "sizes", "userEdit"));
     }
 
