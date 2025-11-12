@@ -11,15 +11,15 @@
         </div>
 
         <!-- Nombre -->
-        <div class="">
+        <div>
             <label for="name" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-user"></use>
                 </svg>
                 Nom *
             </label>
-            <input type="text" name="name" id="name" value="{{ old('name', $project->name) }}" 
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('name') border-red-500 @enderror"
+            <input type="text" name="name" id="name" value="{{ old('name', $project->name) }}" placeholder="Nom del projecte/comissió"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('name') border-red-500 @enderror"
                     required>
             @error('name')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -35,7 +35,7 @@
                 Data d'inici
             </label>
             <input type="date" name="start" id="start" value="{{ old('start', $project->start ? $project->start->format('Y-m-d') : '') }}"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('start') border-red-500 @enderror">
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('start') border-red-500 @enderror">
             @error('start')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -50,7 +50,7 @@
                 Professional responsable *
             </label>
             <select name="user" id="user" 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('user') border-red-500 @enderror"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('user') border-red-500 @enderror"
             required>
                 @foreach($users as $user)
                     <option value="{{ $user->id }}" {{ old('user', $project->user) == $user->id ? 'selected' : '' }}>
@@ -72,7 +72,7 @@
             Tipus *
         </label>
         <select name="type" id="type" 
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('type') border-red-500 @enderror"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('type') border-red-500 @enderror"
                 required>
             <option value="">Selecciona un tipus</option>
             <option value="project" {{ old('type', $project->type) == 'project' ? 'selected' : '' }}>Projecte</option>
@@ -91,8 +91,8 @@
                 </svg>
                 Descripció *
             </label>
-            <textarea name="description" id="description" rows="3"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('description') border-red-500 @enderror"
+            <textarea name="description" id="description" rows="3" placeholder="Descripció del projecte/comissió"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('description') border-red-500 @enderror"
                         required>{{ old('description', $project->description) }}</textarea>
             @error('description')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -107,8 +107,8 @@
                 </svg>
                 Observacions *
             </label>
-            <textarea name="observations" id="observations" rows="3"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('observations') border-red-500 @enderror"
+            <textarea name="observations" id="observations" rows="3" placeholder="Observacions del projecte/comissió"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('observations') border-red-500 @enderror"
                         required>{{ old('observations', $project->observations) }}</textarea>
             @error('observations')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -126,12 +126,13 @@
                             <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
                         </div>
                         <div class="flex flex-col text-[#5E6468]">
-                            <label for="user_{{ $user->id }}">{{ $user->name }}</label>
-                            <p>{{ $user->email }}</p>
+                            <label for="user_{{ $user->id }}">
+                                {{ $user->name }}
+                                <p>{{ $user->email }}</p>
+                            </label>
                         </div>
                     </div>
                 @endforeach
-    
             </div>
         </div>
     </div>

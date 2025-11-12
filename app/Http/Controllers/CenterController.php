@@ -34,7 +34,7 @@ class CenterController extends Controller
         // Se obtiene la pagina, sino, se usa la pagina 1
         $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchCenters = Center::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        $searchCenters = Center::where("name", "like" , "%$searchValue%")->paginate(21, ["*"], "page", $page);
         if (!empty($searchCenters)) {
             foreach ($searchCenters as $center) {
                 $htmlContent .= view("components.center-card", compact("center"))->render();

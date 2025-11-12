@@ -5,7 +5,7 @@
     @endisset
     <div class="flex flex-col gap-5">
         {{-- Contenedor de 2 --}}
-        <div class="flex flex-row gap-5 items-center mb-1">
+        <div class="flex flex-row gap-5 items-start mb-1">
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
                     <div class="flex flex-row items-center gap-2">
@@ -15,16 +15,21 @@
                         <p>Centre:</p>
                     </div>
                 </div>
-                <select name="center_id" id="center_id" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('center_id') border-red-600 @enderror" required>
-                    <option value="" {{ old("center_id", $course->center_id) ? "" : "selected" }} hidden>Selecciona un centre</option>
-                    @if (count($centers) > 0 )
-                        @foreach ($centers as $center)
-                            <option value="{{ $center->id }}" {{ old("center_id", $course->center_id) == $center->id ? "selected" : "" }} >{{ $center->name }}</option>
-                        @endforeach
-                    @else
-                        <option value="" disabled>No hi ha centres</option>
-                    @endif
-                </select>
+                <div>
+                    <select name="center_id" id="center_id" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('center_id') border-red-600 @enderror" required>
+                        <option value="" {{ old("center_id", $course->center_id) ? "" : "selected" }} hidden>Selecciona un centre</option>
+                        @if (count($centers) > 0 )
+                            @foreach ($centers as $center)
+                                <option value="{{ $center->id }}" {{ old("center_id", $course->center_id) == $center->id ? "selected" : "" }} >{{ $center->name }}</option>
+                            @endforeach
+                        @else
+                            <option value="" disabled>No hi ha centres</option>
+                        @endif
+                    </select>
+                    @error("center_id")
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
             </div>
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
@@ -36,10 +41,13 @@
                     </div>
                 </div>
                 <input type="text" name="code" id="code" placeholder="Introdueix el codi del curs" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('code') border-red-600 @enderror" value="{{ old("code", $course->code) }}" required>
+                @error("code")
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
         </div>
         {{-- Contenedor de 2 --}}
-        <div class="flex flex-row gap-5 items-center mb-1">
+        <div class="flex flex-row gap-5 items-start mb-1">
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
                     <div class="flex flex-row items-center gap-2">
@@ -50,6 +58,9 @@
                     </div>
                 </div>
                 <input type="number" step="0.1" name="hours" id="hours" placeholder="Introdueix les hores del curs" max="99999" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('hours') border-red-600 @enderror" value="{{ old("hours", $course->hours) }}" required>
+                @error("hours")
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
@@ -61,10 +72,13 @@
                     </div>
                 </div>
                 <input type="text" name="type" id="type" placeholder="Introdueix el tipus de curs" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('type') border-red-600 @enderror" value="{{ old("type", $course->type) }}" required>
+                @error("type")
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
         </div>
         {{-- Contenedor de 2 --}}
-        <div class="flex flex-row gap-5 items-center mb-1">
+        <div class="flex flex-row gap-5 items-start mb-1">
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
                     <div class="flex flex-row items-center gap-2">
@@ -74,7 +88,16 @@
                         <p>Modalitat:</p>
                     </div>
                 </div>
-                <input type="text" name="modality" id="modality" placeholder="Introdueix la modalitat del curs" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('modality') border-red-600 @enderror" value="{{ old("modality", $course->modality) }}" required>
+                    <select name="modality" id="modality" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('modality') border-red-600 @enderror" required>
+
+                        <option value="presential" {{ old("modality", $course->modality) == "presential" ? "selected" : "" }}>Presencial</option>
+                        <option value="online" {{ old("modality", $course->modality) == "online" ? "selected" : "" }}>Online</option>
+                        <option value="mixed" {{ old("modality", $course->modality) == "mixed" ? "selected" : "" }}>Mixte</option>
+                    </select>
+                    @error("modality")
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+
             </div>
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
@@ -86,6 +109,9 @@
                     </div>
                 </div>
                 <input type="text" name="name" id="name" placeholder="Introdueix el nombre del curs" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('name') border-red-600 @enderror" value="{{ old("name", $course->name) }}" required>
+                @error("name")
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
         </div>
         {{-- Contenedor de 2 --}}
@@ -97,9 +123,12 @@
                 <p>Descripció:</p>
             </div>
             <textarea name="description" id="description" placeholder="Descripció del curs" class="w-12/12 h-50 border-1 border-[#AFAFAF] rounded-lg p-3 max-h-[250px] @error('description') border-red-600 @enderror">{{ old("description", $course->description) }}</textarea>
+            @error("description")
+                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            @enderror
         </div>
         {{-- Contenedor de 2 --}}
-        <div class="flex flex-row gap-5 items-center mb-1">
+        <div class="flex flex-row gap-5 items-start mb-1">
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
                     <div class="flex flex-row items-center gap-2">
@@ -110,6 +139,9 @@
                     </div>
                 </div>
                 <input type="date" name="start_date" id="start_date" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('start_date') border-red-600 @enderror" value="{{ old("start_date", $course->start_date) }}" required>
+                @error("start_date")
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div class="w-1/2 flex flex-col gap-2">
                 <div class="flex flex-row">
@@ -121,11 +153,14 @@
                     </div>
                 </div>
                 <input type="date" name="end_date" id="end_date" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('end_date') border-red-600 @enderror" value="{{ old("end_date", $course->end_date) }}" required>
+                @error("end_date")
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
         </div>
         {{-- Contenedor de 2 --}}
-        <div class="flex flex-row gap-5 items-center mb-1">
-            <div class="w-1/2 flex flex-col gap-2">
+        <div class="flex flex-row gap-5 items-start mb-1">
+            <div class="w-1/2 flex flex-col gap-2 mb-5">
                 <div class="flex flex-row">
                     <div class="flex flex-row items-center gap-2">
                         <svg class="w-6 h-6">
@@ -134,18 +169,21 @@
                         <p>Assitent:</p>
                     </div>
                 </div>
-                <select name="assistant" id="assistant" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-10 @error('assistant') border-red-600 @enderror" required>
+                <select name="assistant" id="assistant" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('assistant') border-red-600 @enderror" required>
                     <option value="" selected hidden>Selecciona un assistent</option>
                     @if (count($users) > 0)
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}" {{ old("assistant", $course->assistant) == $user->id ? "selected" : "" }} >{{ $user->name }}</option>
                         @endforeach
-                    @else
+                        @else
                         <option value="" disabled>No hi ha usuaris disponibles</option>
-                    @endif
+                        @endif
                 </select>
+                @error("assistant")
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>            
-            <div class="w-1/2 flex flex-col gap-2">
+            <div class="w-1/2 flex flex-col gap-2 mb-10">
                 <div class="flex flex-row">
                     <div class="flex flex-row items-center gap-2">
                         <svg class="w-6 h-6">
@@ -154,10 +192,13 @@
                         <p>Estat:</p>
                     </div>
                 </div>
-                <select name="is_active" id="is_active" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-10 @error('is_active') border-red-600 @enderror" required>
+                <select name="is_active" id="is_active" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('is_active') border-red-600 @enderror" required>
                     <option value="1" {{ old("is_active", $course->is_active) == 1 ? "selected" : "" }}>Actiu</option>
                     <option value="0" {{ old("is_active", $course->is_active) == 0 ? "selected" : "" }}>Inactiu</option>
                 </select>
+                @error("is_active")
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
         </div>
         {{-- Horarios --}}
@@ -174,14 +215,14 @@
                     <th>Inici:</th>
                     @foreach ($daysOfWeek as $day )
                         <td>
-                            <input type="time" name="schedules[{{ $day }}][start_time]" id="schedules[{{ $day }}][start_time]" value="{{ old("schedules" . $day . "start_time", $schedules[$day]['start_time'] ?? '') }}" class="w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
+                            <input type="time" name="schedules[{{ $day }}][start_time]" id="schedules[{{ $day }}][start_time]" value="{{ old("schedules" . $day . "start_time", isset($schedules[$day]["start_time"]) ? \Carbon\Carbon::parse($schedules[$day]["start_time"])->format("H:i") : '') }}" class="w-24 border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
                         </td>
                     @endforeach
                 </tr>
                 <th>Final:</th>
                 @foreach ($daysOfWeek as $day )
                     <td>
-                        <input type="time" name="schedules[{{ $day }}][end_time]" id="schedules[{{ $day }}][end_time]" value="{{ old("schedules" . $day . "end_time", $schedules[$day]['end_time'] ?? '') }}" class="w-full border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
+                        <input type="time" name="schedules[{{ $day }}][end_time]" id="schedules[{{ $day }}][end_time]" value="{{ old("schedules" . $day . "end_time", isset($schedules[$day]["end_time"]) ? \Carbon\Carbon::parse($schedules[$day]["end_time"])->format("H:i") : '') }}" class="w-24 border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
                     </td>
                 @endforeach
             </table>

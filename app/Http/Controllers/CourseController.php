@@ -19,7 +19,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::orderBy("created_at", "asc")->paginate(20);
+        $courses = Course::orderBy("created_at", "asc")->paginate(21);
         return view("courses.index", compact("courses"));
     }
 
@@ -30,7 +30,7 @@ class CourseController extends Controller
         // Se obtiene la pagina, sino, se usa la pagina 1
         $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate(21, ["*"], "page", $page);
         if (!empty($searchCourses)) {
             foreach ($searchCourses as $course) {
                 $htmlContent .= view("components.course-card", compact("course"))->render();
@@ -94,6 +94,9 @@ class CourseController extends Controller
         if (!empty($request->schedules)) {
             foreach ($request->schedules as $day => $times) {
                 if (isset($times["start_time"]) && isset($times["end_time"])) {
+                    // Se pasa el formato a Horas:Minutos
+                    $times["start_time"] =  \Carbon\Carbon::parse($times["start_time"])->format("H:i");
+                    $times["end_time"] =  \Carbon\Carbon::parse($times["end_time"])->format("H:i");
                     CourseSchedule::create(["course_id" => $newCourse->id, "day_of_week" => $day, "start_time" => $times["start_time"], "end_time" => $times["end_time"]]);
                 }
             }
@@ -108,6 +111,13 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        if ($course->modality == "presential") {
+            $course->modality = "Presencial";
+        } elseif ($course->modality == "mixed") {
+            $course->modality = "Mixte";
+        } elseif ($course->modality == "online") {
+            $course->modality = "Online";
+        }
         $usersPreview = $course->users()->withPivot('certificate')->limit(4)->get();
         $totalUsers = $course->users;
         $schedules = $course->schedule;
