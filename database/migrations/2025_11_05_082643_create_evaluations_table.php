@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger("user");
             $table->unsignedBigInteger("evaluator");
-            $table->text("comment");
+            $table->text("comment")->nullable();
 
             $table->enum("p1",["0","1","2","3"]);
             $table->enum("p2",["0","1","2","3"]);
