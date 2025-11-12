@@ -47,7 +47,7 @@
                     </svg>
                     Observacions
                 </div>
-                <textarea name="comment" id="comment" cols="30" rows="3" class="border border-[#AFAFAF] bg-white rounded-[15px] p-5"></textarea>
+                <textarea name="comment" id="comment" cols="30" rows="3" class="border border-[#AFAFAF] bg-white rounded-[15px] p-3" placeholder="Afegir una nova observació"></textarea>
             </div>
             <div class="flex flex-row gap-4 justify-end mt-8 pt-6 border-t border-gray-200">
                 <a href="{{ route('evaluations.index', $user->id) }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">

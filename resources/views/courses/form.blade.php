@@ -96,7 +96,7 @@
                 </svg>
                 <p>Descripció:</p>
             </div>
-            <textarea name="description" id="description" placeholder="Descripció del curs" class="w-12/12 h-50 border-1 border-[#AFAFAF] rounded-lg p-3 max-h-[250px] @error('description') border-red-600 @enderror" value="{{ old("description", $course->description) }}"></textarea>
+            <textarea name="description" id="description" placeholder="Descripció del curs" class="w-12/12 h-50 border-1 border-[#AFAFAF] rounded-lg p-3 max-h-[250px] @error('description') border-red-600 @enderror">{{ old("description", $course->description) }}</textarea>
         </div>
         {{-- Contenedor de 2 --}}
         <div class="flex flex-row gap-5 items-center mb-1">

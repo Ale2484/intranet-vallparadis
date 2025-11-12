@@ -60,9 +60,14 @@
                 </svg>
                 Contrasenya *
             </label>
-            <input type="password" name="password" id="password"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('password') border-red-500 @enderror"
-                    required minlength="8">
+            <div class="relative">
+                <input type="password" name="password" id="password"
+                        class="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('password') border-red-500 @enderror"
+                        required minlength="8">
+                <svg class=" absolute top-2 right-3 w-6 h-6 text-gray-700 cursor-pointer hover:text-[#FF7E13] transition-all">
+                    <use data-id-input="password" class="togglePassword" xlink:href="#icon-eye"></use>
+                </svg>
+            </div>
             @error('password')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror

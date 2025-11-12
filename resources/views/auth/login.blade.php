@@ -59,8 +59,13 @@
               
               <p class="font-bold text-[#012F4A]">Contrasenya * </p>
             </div>
-  
-            <input type="password" name="password" id="password" placeholder="La teva contrasenya" required class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF]">
+            <div class="relative">
+              <input type="password" name="password" id="password" placeholder="La teva contrasenya" required class="w-full border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF]">
+              
+              <svg class=" absolute top-2 right-3 w-6 h-6 text-gray-700 cursor-pointer hover:text-[#FF7E13] transition-all">
+                  <use data-id-input="password" class="togglePassword" xlink:href="#icon-eye"></use>
+              </svg>
+            </div>
           </div>
   
           <button type="submit" name="submit" id="submit" class="mt-4 w-full font-bold bg-[#FF7E13] text-white rounded-lg p-2 flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
@@ -75,5 +80,6 @@
   </div>
 </body>
 @vite("resources/js/notifications.js")
+@vite("resources/js/togglePassword.js")
 
 </html>
