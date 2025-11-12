@@ -116,7 +116,7 @@
                         <div class="flex flex-col gap-1">
                             <label for="open">Tipus de seguiment</label>
                             <select name="open" id="open" class="border border-[#AFAFAF] bg-white rounded-lg p-2" >
-                                <option value="0">Tancat</option>
+                                <option value="0">Restringit</option>
                                 <option value="1">Obert</option>
                             </select>
                         </div>

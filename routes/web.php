@@ -83,6 +83,8 @@ Route::middleware("auth")->group(function () {
     Route::get("/users/{user}/trackings", [TrackingController::class, "index"])->name("trackings.index");
     Route::get("/users/{user}/trackings/{tracking}", [TrackingController::class, "show"])->name("trackings.show");
     Route::post("/users/{user}/trackings/store", [TrackingController::class, "store"])->name("trackings.store");
+    Route::patch('/users/{user}/trackings/{tracking}/deactivate', [TrackingController::class, 'deactivate'])->name('trackings.deactivate');
+    
 
     // Comentarios seguimiento profesionales
     Route::post("/users/{user}/trackings/{tracking}/store", [CommentsTrackingController::class, "store"])->name("trackings.comments.store");

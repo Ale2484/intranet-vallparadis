@@ -37,7 +37,7 @@
             </div>
             <div class="flex flex-col gap-2 font-bold text-xl">
                 <p>Puntuacio mitjana</p>
-                <p>{{ number_format($averageScore, 2, '.', '') }}</p>
+                <p>{{ number_format($averageScore*(100/3), 2, '.', '') }}</p>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
             </div>
             <div class="flex flex-col gap-2 font-bold text-xl">
                 <p>Ultima avaluacio</p>
-                <p>{{ number_format($lastScore, 2, '.', '') }}</p>
+                <p>{{ number_format($lastScore*(100/3), 2, '.', '') }}</p>
             </div>
         </div>
 
@@ -87,7 +87,7 @@
                         </div>
                         <div class="w-full flex flex-col items-end font-bold">
                             <div>
-                                {{ number_format($evaluation->average_score, 2, '.', '') }}/3
+                                {{ number_format($evaluation->average_score*(100/3), 2, '.', '') }}/100
                             </div>
                             <div class="w-1/2 h-2 flex justify-between">
                                 <div class="w-full h-2 bg-[#D9D9D9] rounded-full">
@@ -136,7 +136,7 @@
                     <div class="w-full h-2 bg-[#D9D9D9] rounded-full">
                         <p style="width:{{ ($questionAverage["p".$i]/3)*100 }}%;" class="h-2 bg-[#FF7033] rounded-full">&nbsp;</p>
                     </div>
-                    {{ number_format($questionAverage["p".$i], 2, '.', '') }}/3
+                    {{ number_format($questionAverage["p".$i]*(100/3), 2, '.', '') }}/100
                 </div>
             </div>
         @endfor
@@ -164,7 +164,7 @@
             <div class="flex flex-row justify-between items-center">
                 <div class="flex flex-col gap-3 font-bold">
                     <div class="text-xl">Puntuacion general</div>
-                    <div class="text-2xl text-green-600">{{ number_format($evaluation->average_score, 2, '.', '') }}/3</div>
+                    <div class="text-2xl text-green-600">{{ number_format($evaluation->average_score*(100/3), 2, '.', '') }}/100</div>
                 </div>
                 <div class="flex items-center justify-center">
                     @php
@@ -210,7 +210,7 @@
                                 <div class="w-full h-2 bg-[#D9D9D9] rounded-full">
                                     <p style="width:{{ ($evaluation->{"p".$i}/3)*100 }}%;" class="h-2 bg-[#FF7033] rounded-full">&nbsp;</p>
                                 </div>
-                                {{ $evaluation->{"p".$i} }}/3
+                                {{ number_format($evaluation->{"p".$i}*(5/3), 2, '.', '') }}/5
                             </div>
                         </div>
                     @endfor

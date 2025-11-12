@@ -52,4 +52,10 @@ class TrackingController extends Controller
             "total"
         ));
     }
+
+    public function deactivate(User $user, Tracking $tracking)
+    {
+        $tracking->update(["end_link" => now()]);
+        return redirect()->route("trackings.show", ['user' => $user->id, 'tracking' => $tracking->id])->with("success", "Seguiment finalitzat correctament");
+    }
 }
