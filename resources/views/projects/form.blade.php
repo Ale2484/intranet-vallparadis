@@ -120,7 +120,7 @@
             <p class="text-xl font-semibold text-[#012F4A] mb-4 flex items-center gap-2">Usuaris inscrits:</p>
             <div class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 w-full h-56 overflow-y-auto">
                 @foreach ($users as $user)
-                    <div class="flex items-center flex-row gap-2 border-1 mb-2 rounded-lg p-2 border-[#AFAFAF]">
+                    <div class="flex items-center flex-row gap-2 border-1 mb-4 rounded-lg p-2 border-[#AFAFAF]">
                         <input type="checkbox" name="users[]" value="{{ $user->id }}" id="user_{{ $user->id }}"  @if(in_array($user->id, $assignedUsers->pluck('id')->toArray())) checked @endif>
                         <div class="w-12 h-12 bg-gray-200 rounded-full">
                             <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>

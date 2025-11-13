@@ -11,4 +11,12 @@ toggleButton.addEventListener('click', () => {
     setTimeout(() => {
         menuTexts.forEach(text => text.classList.toggle('hidden', !isCollapsed));
     }, isCollapsed ? 200 : 0);
+
+});
+
+// Cerrar el menu cuando se hace click fuera
+document.addEventListener("click", (event) => {
+    if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+        console.log("Click fuera del menu");
+    }
 });

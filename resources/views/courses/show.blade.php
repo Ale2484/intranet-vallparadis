@@ -18,7 +18,10 @@
                 <h1 class="text-lg font-bold text-[#FF7E13]">Codi: {{ $course->code ?? "Aquest curs no te codi" }}</h1>
                 <p class="text-[#AFAFAF] mb-7">Informació completa del curs</p>
             </div>
-            <a href="{{ route("courses.edit", $course) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+            <a href="{{ route("courses.edit", $course) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all py-3">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-square-pen"></use>
+                </svg>
                 Editar el curs                
             </a>
         </div>

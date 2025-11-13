@@ -5,7 +5,7 @@
     <!-- Header -->
     <div class="w-full flex flex-row mb-8 justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
-            <a href="{{ route('projects.index') }}" class="text-[#AFAFAF] flex flex-row justify-between items-center">
+            <a href="{{ route('projects.show' , $project) }}" class="text-[#AFAFAF] flex flex-row justify-between items-center">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
