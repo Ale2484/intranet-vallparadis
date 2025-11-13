@@ -4,19 +4,33 @@ let menuTexts = document.querySelectorAll('.menu-text');
 
 toggleButton.addEventListener('click', () => {
     let isCollapsed = sidebar.classList.contains('w-20');
-    sidebar.classList.toggle('w-20', !isCollapsed);
-    sidebar.classList.toggle('w-64', isCollapsed);
-    toggleButton.querySelector('svg').classList.toggle('rotate-180');
-
-    setTimeout(() => {
-        menuTexts.forEach(text => text.classList.toggle('hidden', !isCollapsed));
-    }, isCollapsed ? 200 : 0);
-
+    if (isCollapsed) {
+        enableMenu();
+    } else{
+        disableMenu();
+    }
 });
 
 // Cerrar el menu cuando se hace click fuera
 document.addEventListener("click", (event) => {
     if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
-        console.log("Click fuera del menu");
+        disableMenu();
     }
 });
+
+function enableMenu(){
+    sidebar.classList.remove("w-20");
+    sidebar.classList.add("w-64");
+    toggleButton.querySelector('svg').classList.add("rotate-180");
+    setTimeout(() => {
+        menuTexts.forEach(text => text.classList.remove("hidden"));
+    }, 200);
+}
+function disableMenu(){
+    sidebar.classList.add("w-20");
+    sidebar.classList.remove("w-64");
+    toggleButton.querySelector('svg').classList.remove("rotate-180");
+    setTimeout(() => {
+        menuTexts.forEach(text => text.classList.add("hidden"));
+    }, 0);
+}
