@@ -110,7 +110,10 @@
         </div>
         <!-- Filtros -->
         <div class="flex flex-row justify-between gap-2">
-            <button data-modal-id="filterContainer" class="open-modal-button bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-20">
+            <button data-modal-id="filterContainer" class="open-modal-button bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-adjustments-horizontal"></use>
+                </svg>
                 Filtres
             </button>
         </div>

@@ -61,12 +61,14 @@ Route::middleware("auth")->group(function () {
     Route::patch("/centers/{center}/deactivate", [CenterController::class, "deactivate"])->name("centers.deactivate");
     Route::patch("/centers/{center}/activate", [CenterController::class, "activate"])->name("centers.activate");
     Route::post("/centers/search", [CenterController::class, "search"])->name("centers.search");
+    Route::post("/centers/filter", [CenterController::class, "filter"])->name("centers.filter");
 
     // Proyectos  
     Route::resource('projects', ProjectController::class);
     Route::patch('/projects/{project}/deactivate', [ProjectController::class, 'deactivate'])->name('projects.deactivate');
     Route::patch('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');
     Route::post("/projects/search", [ProjectController::class, "search"])->name("projects.search");
+    Route::post("/projects/filter", [ProjectController::class, "filter"])->name("projects.filter");
     Route::delete('/project-documents/{document}', [ProjectController::class, 'deleteDocument'])->name('project-documents.destroy');
 
     // Exportacion de taquillas
