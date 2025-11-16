@@ -38,6 +38,7 @@ Route::middleware("auth")->group(function () {
     Route::patch("/courses/{course}/{user}/giveCertificate", [CourseController::class, "giveCertificate"])->name('courses.giveCertificate');
     Route::patch("/courses/{course}/{user}/removeCertificate", [CourseController::class, "removeCertificate"])->name('courses.removeCertificate');
     Route::post("/courses/search", [CourseController::class, "search"])->name("courses.search");
+    Route::post("/courses/filter", [CourseController::class, "filter"])->name("courses.filter");
     // Uniformes
     Route::get("/users/{user}/uniformities/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
     Route::patch("/users/{user}/uniformities/update", [UniformityController::class, "update"])->name('user.uniformity.update');
@@ -48,6 +49,7 @@ Route::middleware("auth")->group(function () {
     Route::patch('/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate');
     Route::patch('/users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
     Route::post("/users/search", [UserController::class, "search"])->name('users.search');
+    Route::post("/users/filter", [UserController::class, "filter"])->name('users.filter');
     Route::post("/logout", [UserController::class, "logout"])->name("users.logout");
     Route::get("/logout", function () {
         if (Auth::check()) {return redirect()->route("dashboard");}
