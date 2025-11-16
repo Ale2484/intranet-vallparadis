@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('general_services', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("center");
-            $table->unsignedBigInteger("external_contact");
+            $table->unsignedBigInteger("center_id");
+            //$table->unsignedBigInteger("external_contact");
             $table->string("type");
-            $table->string("grill");
+            $table->string("manager_name");
+            $table->string("manager_email");
+            $table->string("manager_phone");
             $table->timestamps();
 
-            $table->foreign("center")->references("id")->on("centers");
-            $table->foreign("external_contact")->references("id")->on("external_contacts");
+            $table->foreign("center_id")->references("id")->on("centers");
+            //$table->foreign("external_contact")->references("id")->on("external_contacts");
         });
     }
 
