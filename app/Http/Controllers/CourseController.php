@@ -19,7 +19,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::orderBy("created_at", "asc")->paginate(20);
+        $courses = Course::orderBy("created_at", "desc")->paginate(20);
         return view("courses.index", compact("courses"));
     }
 
@@ -38,6 +38,55 @@ class CourseController extends Controller
             // Se obtiene la paginacion
             $pagination = $searchCourses->links()->render();
         }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+    }
+
+    public function filter(Request $request)
+    {
+        $page = $request->input("page", 1);
+        $order = $request->input("order", null);
+        $status = $request->input("status", null);
+        $query = Course::query();
+
+        // Se obtiene el filtro del estado y se añade a la query
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+
+        // Se comprueba que tipo de orden se envia y se añade a la query
+        switch ($order) {
+            case "recent-first":
+                $query->orderBy("created_at", "desc");
+                break;
+            case "oldest-first":
+                $query->orderBy("created_at", "asc");
+                break;
+            case "az":
+                $query->orderBy("name", "asc");
+                break;
+            case "za":
+                $query->orderBy("name", "desc");
+                break;
+            case "last-modified":
+                $query->orderBy("updated_at", "desc");
+                break;
+            case "first-modified":
+                $query->orderBy("updated_at", "asc");
+                break;
+        }
+
+        // Se pagina la query
+        $courses = $query->paginate(20, ["*"], "page", $page);
+
+        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
+        $htmlContent = "";
+        foreach ($courses as $course) {
+            $htmlContent .= view("components.course-card", compact("course"))->render();
+        }
+        $pagination = $courses->links()->render();
+
         return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
     }
 

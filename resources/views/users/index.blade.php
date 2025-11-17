@@ -110,20 +110,24 @@
         </div>
         <!-- Filtros -->
         <div class="flex flex-row justify-between gap-2">
-            <button class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-20">Tots</button>
-            <button class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-20">Actius</button>
-            <button class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-20">Inactius</button>
-        
+            <button data-modal-id="filterContainer" class="open-modal-button bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-adjustments-horizontal"></use>
+                </svg>
+                Filtres
+            </button>
         </div>
     </div>
 
     <!-- Active Professionals Section -->
-        <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            @foreach($users as $user)
-                <x-user-card :user="$user"/>
-            @endforeach
-        </div>
+    <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        @foreach($users as $user)
+            <x-user-card :user="$user"/>
+        @endforeach
+    </div>
 </div>
+{{-- Modal de filtros --}}
+<x-filter-card :type="'users'"/>
 <div class="pagination">
     {{ $users->links('pagination::tailwind') }}
 </div>
