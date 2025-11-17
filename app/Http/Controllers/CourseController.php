@@ -19,11 +19,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
-        $courses = Course::orderBy("created_at", "asc")->paginate(21);
-=======
         $courses = Course::orderBy("created_at", "desc")->paginate(20);
->>>>>>> fb3afdd (Finalizacion filtros #90)
         return view("courses.index", compact("courses"));
     }
 
