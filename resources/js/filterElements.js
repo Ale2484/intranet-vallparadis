@@ -76,7 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             resultContainer.innerHTML = data.htmlContent || "No hay resultados";
             paginationContainer.innerHTML = data.pagination || "";
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            setTimeout(() => {
+                // Se hace scroll hasta la parte de arriba de la pagina
+                window.scrollTo({ top: 0, behavior: "smooth"});
+            }, 10);
 
         } catch (error) {
             console.error("Error:", error);

@@ -14,12 +14,13 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
+    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $courses = Course::orderBy("created_at", "desc")->paginate(20);
+        $courses = Course::orderBy("created_at", "desc")->paginate($this->paginateNumber);
         return view("courses.index", compact("courses"));
     }
 
@@ -30,7 +31,7 @@ class CourseController extends Controller
         // Se obtiene la pagina, sino, se usa la pagina 1
         $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate(21, ["*"], "page", $page);
+        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchCourses)) {
             foreach ($searchCourses as $course) {
                 $htmlContent .= view("components.course-card", compact("course"))->render();
@@ -78,7 +79,7 @@ class CourseController extends Controller
         }
 
         // Se pagina la query
-        $courses = $query->paginate(20, ["*"], "page", $page);
+        $courses = $query->paginate($this->paginateNumber, ["*"], "page", $page);
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";

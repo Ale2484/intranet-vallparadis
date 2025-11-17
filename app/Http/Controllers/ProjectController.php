@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
+    protected $paginateNumber = 20;
     public function index()
     {
         $totalProjects = Project::count();
@@ -20,7 +21,7 @@ class ProjectController extends Controller
         
         $projects = Project::with(['centerRelation', 'userRelation'])
                           ->orderBy('created_at', 'desc')
-                          ->paginate(20);
+                          ->paginate($this->paginateNumber);
 
         return view("projects.index", compact(
             'totalProjects', 
@@ -37,7 +38,7 @@ class ProjectController extends Controller
         // Se obtiene la pagina, sino, se usa la pagina 1
         $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchProjects = Project::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        $searchProjects = Project::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchProjects)) {
             foreach ($searchProjects as $project) {
                 $htmlContent .= view("components.project-card", compact("project"))->render();
@@ -84,7 +85,7 @@ class ProjectController extends Controller
         }
 
         // Se pagina la query
-        $projects = $query->paginate(20, ["*"], "page", $page);
+        $projects = $query->paginate($this->paginateNumber, ["*"], "page", $page);
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";

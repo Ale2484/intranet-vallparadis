@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    protected $paginateNumber = 21;
     public function index()
     {
         $totalUsers = User::count();
@@ -35,7 +36,7 @@ class UserController extends Controller
         // Se obtiene la pagina, sino, se usa la pagina 1
         $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchUsers = User::where("name", "like" , "%$searchValue%")->paginate(21, ["*"], "page", $page);
+        $searchUsers = User::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchUsers)) {
             foreach ($searchUsers as $user) {
                 $htmlContent .= view("components.user-card", compact("user"))->render();
@@ -83,7 +84,7 @@ class UserController extends Controller
         }
 
         // Se pagina la query
-        $users = $query->paginate(20, ["*"], "page", $page);
+        $users = $query->paginate($this->paginateNumber, ["*"], "page", $page);
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";

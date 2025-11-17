@@ -8,12 +8,13 @@ use Illuminate\Support\Facades\Log;
 
 class CenterController extends Controller
 {
+    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $centers = Center::orderBy("created_at", "desc")->paginate(21);
+        $centers = Center::orderBy("created_at", "desc")->paginate($this->paginateNumber);
         $inactiveCenters = $centers->where("is_active", false)->count();
         $activeCenters = $centers->count() - $inactiveCenters;
 
@@ -34,7 +35,7 @@ class CenterController extends Controller
         // Se obtiene la pagina, sino, se usa la pagina 1
         $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchCenters = Center::where("name", "like" , "%$searchValue%")->paginate(21, ["*"], "page", $page);
+        $searchCenters = Center::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchCenters)) {
             foreach ($searchCenters as $center) {
                 $htmlContent .= view("components.center-card", compact("center"))->render();
@@ -82,7 +83,7 @@ class CenterController extends Controller
         }
 
         // Se pagina la query
-        $centers = $query->paginate(20, ["*"], "page", $page);
+        $centers = $query->paginate($this->paginateNumber, ["*"], "page", $page);
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
