@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('general_services', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("center_id");
+            $table->string("name");
             //$table->unsignedBigInteger("external_contact");
             $table->string("type");
             $table->string("manager_name");
