@@ -271,7 +271,7 @@
                             @foreach ($users as $user )
                                 @if (!$registeredUsers->contains($user))
                                     <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2 mb-3" data-id="{{ $user->id ?? "" }}" draggable="true">
-                                        <div class="w-15 h-15 bg-gray-200 rounded-full">
+                                        <div class="w-15 h-15 aspect-square bg-gray-200 rounded-full">
                                             <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
                                         </div>
                                         <div>

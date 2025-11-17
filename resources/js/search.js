@@ -7,10 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let elementType = "";
     // El ultimo valor de busqueda
     let lastSearchValue = "";
-
+    
+    let searchInput = null;
+    
     if (searchForm) {
         // Input de busqueda
-        const searchInput = searchForm.querySelector("input[type='search']");
+        searchInput = searchForm.querySelector("input[type='search']");
         elementType = searchForm.dataset.type;
         searchForm.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -29,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         paginationContainer.addEventListener("click", (event) => {
             // Se obtiene el enlace al que se quiere redireccionar
             const link = event.target.closest("a");
-            if (link) {
+            if (link && searchInput != null && searchInput.value !== "") {
                 event.preventDefault();
                 // Se obtiene la pagina a la que quiere redireccionar
                 const page = link.getAttribute("href").split("page=")[1] || 1;
