@@ -6,11 +6,11 @@
     <!-- Apartado superior -->
     <div class="w-[65%] flex flex-col gap-5">
 
-        <a href="{{ route("courses.index") }}" class="flex gap-3 text-[#AFAFAF]">
+        <a href="{{ route("courses.show", $course) }}" class="flex gap-3 text-[#AFAFAF]">
             <svg class="w-6 h-6 ">
                 <use xlink:href="#icon-arrow-left"></use>
             </svg>
-            Tornar a la gestió de cursos
+            Tornar al curs {{ $course->name }}
         </a>
 
         <h1 class="text-3xl font-bold text-[#011020]">Usuaris del curs i els seus certificats</h1>

@@ -68,7 +68,7 @@
             </svg>
         </button>
 
-        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class=" pl-2 w-full h-10">
+        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class="pl-2 w-full h-10 outline-0">
     </form>
 
     <div class="w-[25%] flex flex-row items-center justify-between px-10">
@@ -86,7 +86,7 @@
 
         <div class="flex flex-row items-center gap-5 ">
             <a href="{{ route("users.show", auth()->user()->id) }}" class="flex items-center gap-5">
-                <minidenticon-svg username="{{ md5(auth()->user()->id) }}" class="w-16 h-16 bg-gray-200 rounded-full"></minidenticon-svg>
+                <minidenticon-svg username="{{ md5(auth()->user()->id) }}" class="w-16 h-16 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
                 <div>
                     <p class="font-bold">{{ auth()->user()->name }}</p>
                     <p>{{ auth()->user()->centerRelation->name  }}</p>

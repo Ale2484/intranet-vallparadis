@@ -4,18 +4,26 @@
 <div class="w-full flex flex-col items-center justify-center">
     
     <!-- Apartado superior -->
-    <div class="w-[60%] flex flex-col gap-3">
-
-        <a href="{{ route("centers.index") }}" class="flex gap-3 text-[#AFAFAF]">
-            <svg class="w-6 h-6 ">
-                <use xlink:href="#icon-arrow-left"></use>
+    <div class="w-[60%] flex justify-between items-center">
+        <div class="flex flex-col gap-3">
+    
+            <a href="{{ route("centers.index") }}" class="flex gap-3 text-[#AFAFAF]">
+                <svg class="w-6 h-6 ">
+                    <use xlink:href="#icon-arrow-left"></use>
+                </svg>
+                Tornar a la gestió de centres
+            </a>
+            <h1 class="text-3xl font-bold text-[#011020]">Detalls del centre</h1>
+    
+            <p class="text-[#AFAFAF] mb-7">Informació completa del centre</p>
+        </div>
+        <a href="{{ route("centers.edit", $center) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+            <svg class="w-6 h-6">
+                <use xlink:href="#icon-square-pen"></use>
             </svg>
-            Tornar a la gestió de centres
+            Editar el centre
         </a>
 
-        <h1 class="text-3xl font-bold text-[#011020]">Detalls del centre</h1>
-
-        <p class="text-[#AFAFAF] mb-7">Informació completa del centre</p>
     </div>
     <!-- Contenedor principal -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] text-[#0F172A] mb-10">
@@ -103,10 +111,10 @@
             </div>
         </div>
     </div>
-    <div class="w-[60%] flex justify-end mt-5 gap-3">
+    {{-- <div class="w-[60%] flex justify-end mt-5 gap-3">
         <a href="{{ route("centers.index") }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">Tornar</a>
     
         <a href="{{ route("centers.edit", $center) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">Editar el centre</a>
-    </div>
+    </div> --}}
 </div>
 @endsection

@@ -1,3 +1,4 @@
+// Boton con la clase open-modal-button, y con el data-modal-id con el id del modal
 document.addEventListener("DOMContentLoaded", () => {
     const openModalButtons = document.querySelectorAll(".open-modal-button");
     
@@ -5,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
         openModalButtons.forEach(openButton => {
             // Por cada boton se añade un event listener
             openButton.addEventListener("click", () => {
-                console.log("Se intenta abrir un modal");
                 // Se obtiene el modal
                 const modal = document.getElementById(openButton.dataset.modalId);
                 if (modal) {
