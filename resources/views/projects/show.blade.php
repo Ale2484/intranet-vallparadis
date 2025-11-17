@@ -25,8 +25,14 @@
                 @endif
             </div>
         </div>
+        <a href="{{ route('projects.edit', $project) }}" 
+            class="w-fit  bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all py-3">
+            <svg class="w-6 h-6">
+                <use xlink:href="#icon-square-pen"></use>
+            </svg>
+            {{ $project->type_label == "Comissió" ? "Editar la comissió" : "Editar el projecte" }}
+        </a>
     </div>
-
     <div class="flex flex-col gap-5 w-full">
         <div class="w-full flex justify-beetwen gap-10">
             <!-- Tarjeta de información básica -->
@@ -178,7 +184,7 @@
             <div class="text-xl font-semibold text-[#012F4A] flex items-center gap-2 ml-2">
                 <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
                     <svg class="w-6 h-6">
-                        <use xlink:href="#icon-eye"></use>
+                        <use xlink:href="#icon-users"></use>
                     </svg>
                 </div>
                 <p class="text-xl font-semibold text-[#012F4A] flex items-center gap-2">Usuaris inscrits:</p>
@@ -203,7 +209,7 @@
             </div>
         </div>
 
-        <div class="w-full flex justify-end gap-3">
+        {{-- <div class="w-full flex justify-end gap-3">
             <a href="{{ route('projects.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
                 Cancel·lar
             </a>
@@ -212,7 +218,7 @@
                 
                 {{ $project->type_label == "Comissió" ? "Editar la comissió" : "Editar el projecte" }}
             </a>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection

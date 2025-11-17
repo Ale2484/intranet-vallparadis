@@ -32,13 +32,16 @@
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-role"></use>
             </svg>
-            <p>{{ $course->type ?? "Aquest centre no te correu electronic" }}</p>
+            <p>{{ $course->type ?? "Aquest curs no te tipus" }}</p>
         </div>
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-computer-desktop"></use>
             </svg>
-            <p>{{ $course->modality ?? "Aquest centre no te correu electronic" }}</p>
+            @php
+                $course->modality = ($course->modality == "presential" ? "Presencial" : ($course->modality == "mixed" ? "Mixte" : ($course->modality == "online" ? "Online" : $course->modality)))
+            @endphp
+            <p>{{ $course->modality ?? "Aquest curs no te una modalitat electronic" }}</p>
         </div>
     </div>
     <p class="text-sm ml-3 my-4">Inici: {{ $course->start_date ? date("d/m/Y", strtotime($course->start_date)) : " - " }} | Fi: {{ $course->end_date ? date("d/m/Y", strtotime($course->end_date)) : " - " }}</p>

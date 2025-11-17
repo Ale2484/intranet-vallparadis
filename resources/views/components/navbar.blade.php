@@ -68,7 +68,7 @@
             </svg>
         </button>
 
-        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class=" pl-2 w-full h-10">
+        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class="pl-2 w-full h-10 outline-0">
     </form>
 
     <div class="w-[25%] flex flex-row items-center justify-between px-10">

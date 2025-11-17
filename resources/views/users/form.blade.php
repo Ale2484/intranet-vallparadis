@@ -61,7 +61,7 @@
                 Contrasenya *
             </label>
             <div class="relative">
-                <input type="password" name="password" id="password"
+                <input type="password" name="password" id="password" placeholder="Contrasenya de l'usuari"
                         class="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('password') border-red-500 @enderror"
                         required minlength="8">
                 <button type="button" data-id-input="password" class="absolute top-2 right-3 togglePassword">
@@ -131,7 +131,7 @@
                 </svg>
                 Taquilla *
             </label>
-            <input type="text" name="locker" id="locker" value="{{ old('locker', $user->locker) }}"
+            <input type="text" name="locker" id="locker" value="{{ old('locker', $user->locker) }}" placeholder="Nombre de taquilla"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('locker') border-red-500 @enderror"
                     required>
             @error('locker')
@@ -147,7 +147,7 @@
                 </svg>
                 Contrasenya taquilla *
             </label>
-            <input type="text" name="locker_password" id="locker_password" value="{{ old('locker_password', $user->locker_password) }}"
+            <input type="text" name="locker_password" id="locker_password" value="{{ old('locker_password', $user->locker_password) }}" placeholder="Contrasenya taquilla"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('locker_password') border-red-500 @enderror"
                     required>
             @error('locker_password')

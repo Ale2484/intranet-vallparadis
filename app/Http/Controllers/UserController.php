@@ -35,7 +35,7 @@ class UserController extends Controller
         // Se obtiene la pagina, sino, se usa la pagina 1
         $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchUsers = User::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        $searchUsers = User::where("name", "like" , "%$searchValue%")->paginate(21, ["*"], "page", $page);
         if (!empty($searchUsers)) {
             foreach ($searchUsers as $user) {
                 $htmlContent .= view("components.user-card", compact("user"))->render();

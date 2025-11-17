@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("code");
             $table->decimal("hours", 10, 2);
             $table->string("type");
-            $table->string("modality");
+            $table->enum("modality", ["presential", "online", "mixed"]);
             $table->string("name");
             $table->text("description")->nullable();
             $table->boolean("is_active")->default(true);
