@@ -5,8 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const orderRadios = document.querySelectorAll("input[name='order']");
     // Radiobuttons de opciones de estados
     const statusRadios = document.querySelectorAll("input[name='status']");
+    
     const paginationContainer = document.querySelector(".pagination");
-    let searchForm =  document.querySelector(".searchForm");
+    const searchForm =  document.querySelector(".searchForm");
+    const resultContainer = document.querySelector(".resultContainer");
+    const loader = document.getElementById("loader");
 
     let selectedOrder = null;
     let selectedStatus = null;
@@ -45,11 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Funcion que se encarga de hacer la peticion
     async function getFilteredElements(page=1){
-        const resultContainer = document.querySelector(".resultContainer");
-        const paginationContainer = document.querySelector(".pagination");
-        const loader = document.getElementById("loader");
         const meta = document.querySelector('meta[name="csrf-token"]');
         const token = meta ? meta.getAttribute("content") : "";
+        const searchInput = searchForm.querySelector("input[type='search']");
 
         try {
             if (loader) {
@@ -68,6 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const data = await response.json();
             if (loader) {
                 loader.classList.add("hidden");
+            }
+            // Si habia algun valor dentro del input, se quita
+            if (searchInput) {
+                searchInput.value = "";
             }
             resultContainer.innerHTML = data.htmlContent || "No hay resultados";
             paginationContainer.innerHTML = data.pagination || "";

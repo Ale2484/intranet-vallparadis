@@ -26,7 +26,7 @@
                     </div>
                     <div class="flex flex-col">
                         <p class="text-[18px] font-bold text-[#011020]">Ordenar por</p>
-                        <p class="text-gray-500 text-sm">Selecciona como deseas ver los cursos</p>
+                        <p class="text-gray-500 text-sm">Selecciona como deseas ver los elementos</p>
                     </div>
                 </div>
                 <div class="mt-4">
@@ -91,7 +91,7 @@
                     </div>
                     <div class="flex flex-col">
                         <p class="text-[18px] font-bold text-[#011020]">Estado</p>
-                        <p class="text-gray-500 text-sm">Filtrar por estado del curso</p>
+                        <p class="text-gray-500 text-sm">Filtrar por estado del elemento</p>
                     </div>
                 </div>
                 <div class="mt-4">
