@@ -76,7 +76,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="text" name="manager_email" id="manager_email" class="border-1 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('type') border-red-600 @enderror" placeholder="Email de l'encarregat" required>
+                    <input type="email" name="manager_email" id="manager_email" class="border-1 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('type') border-red-600 @enderror" placeholder="Email de l'encarregat" required>
                     @error("manager_email")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
