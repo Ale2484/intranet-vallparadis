@@ -6,36 +6,105 @@ use App\Models\Project;
 use App\Models\Center;
 use App\Models\User;
 use App\Models\ProjectDocument;
+use App\Models\UserProject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
+    protected $paginateNumber = 20;
     public function index()
     {
         $totalProjects = Project::count();
-        $activeProjects = Project::active()->count();
-        $inactiveProjects = Project::inactive()->count();
+        // $activeProjects = Project::active()->count();
+        // $inactiveProjects = Project::inactive()->count();
         
         $projects = Project::with(['centerRelation', 'userRelation'])
                           ->orderBy('created_at', 'desc')
-                          ->get();
+                          ->paginate($this->paginateNumber);
 
         return view("projects.index", compact(
             'totalProjects', 
-            'activeProjects', 
-            'inactiveProjects',
+            // 'activeProjects', 
+            // 'inactiveProjects',
             'projects'
         ));
+    }
+
+    public function search(Request $request)
+    {
+        $pagination = "";
+        $htmlContent = "";
+        // Se obtiene la pagina, sino, se usa la pagina 1
+        $page = $request->input("page", 1);
+        $searchValue = $request->searchValue;
+        $searchProjects = Project::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
+        if (!empty($searchProjects)) {
+            foreach ($searchProjects as $project) {
+                $htmlContent .= view("components.project-card", compact("project"))->render();
+            }
+            // Se obtiene la paginacion
+            $pagination = $searchProjects->links()->render();
+        }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+    }
+    
+    public function filter(Request $request)
+    {
+        $page = $request->input("page", 1);
+        $order = $request->input("order", null);
+        $status = $request->input("status", null);
+        $query = Project::query();
+
+        // Se obtiene el filtro del estado y se añade a la query
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        // Se comprueba que tipo de orden se envia y se añade a la query
+        switch ($order) {
+            case "recent-first":
+                $query->orderBy("created_at", "desc");
+                break;
+            case "oldest-first":
+                $query->orderBy("created_at", "asc");
+                break;
+            case "az":
+                $query->orderBy("name", "asc");
+                break;
+            case "za":
+                $query->orderBy("name", "desc");
+                break;
+            case "last-modified":
+                $query->orderBy("updated_at", "desc");
+                break;
+            case "first-modified":
+                $query->orderBy("updated_at", "asc");
+                break;
+        }
+
+        // Se pagina la query
+        $projects = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+
+        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
+        $htmlContent = "";
+        foreach ($projects as $project) {
+            $htmlContent .= view("components.project-card", compact("project"))->render();
+        }
+        $pagination = $projects->links()->render();
+
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
     }
 
     public function create()
     {
         $project = new Project();
         $centers = Center::all();
+        $assignedUsers = collect();
         // $users = User::active()->get();
         $users = User::all();
-        return view('projects.create', compact('centers', 'users', 'project'));
+        return view('projects.create', compact('centers', 'users', 'project', "assignedUsers"));
     }
 
     public function store(Request $request)
@@ -53,7 +122,6 @@ class ProjectController extends Controller
 
         $validated["center"]=1;
 
-
         $validated['is_active'] = true;
 
         // Crear el proyecto
@@ -64,13 +132,23 @@ class ProjectController extends Controller
             $this->processDocuments($project, $request->file('documents'));
         }
 
+        // Se procesan los usuarios
+        $asignedUsers = $request->input("users");
+        if (!empty($asignedUsers)) {
+            foreach ($asignedUsers as $userId) {
+                // Se añaden los nuevos usuarios
+                UserProject::create(["user" => $userId, "project" => $project->id]);
+            }
+        }
+
         return redirect()->route('projects.index')->with('success', 'Projecte/comissió creat correctament.');
     }
 
     public function show(Project $project)
     {
+        $asignedUsers = $project->users;
         $project->load(['centerRelation', 'userRelation', 'documents']);
-        return view("projects.show", compact("project"));
+        return view("projects.show", compact("project", "asignedUsers"));
     }
 
     public function edit(Project $project)
@@ -78,8 +156,10 @@ class ProjectController extends Controller
         $centers = Center::all();
         // $users = User::active()->get();
         $users = User::all();
+        $assignedUsers = $project->users;
+
         $project->load('documents');
-        return view('projects.edit', compact('project', 'centers', 'users'));
+        return view('projects.edit', compact('project', 'centers', 'users', "assignedUsers"));
     }
 
     public function update(Request $request, Project $project)
@@ -98,6 +178,20 @@ class ProjectController extends Controller
         $validated["center"]=1;
 
         $project->update($validated);
+
+
+        // Se procesan los usuarios
+        $asignedUsers = $request->input("users");
+        if (!empty($asignedUsers)) {
+            foreach ($asignedUsers as $userId) {
+                $searchUser = UserProject::where(["user" => $userId, "project" => $project->id])->exists();
+                
+                if (!$searchUser) {
+                    UserProject::create(["user" => $userId, "project" => $project->id]);
+                }
+            }
+        }
+
 
         // Procesar nuevos documentos si existen
         if ($request->hasFile('documents')) {

@@ -25,8 +25,14 @@
                 @endif
             </div>
         </div>
+        <a href="{{ route('projects.edit', $project) }}" 
+            class="w-fit  bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all py-3">
+            <svg class="w-6 h-6">
+                <use xlink:href="#icon-square-pen"></use>
+            </svg>
+            {{ $project->type_label == "Comissió" ? "Editar la comissió" : "Editar el projecte" }}
+        </a>
     </div>
-
     <div class="flex flex-col gap-5 w-full">
         <div class="w-full flex justify-beetwen gap-10">
             <!-- Tarjeta de información básica -->
@@ -43,9 +49,7 @@
                             <p class="font-bold text-lg">Usuari assignat</p>
                         </div>
                         <div class="flex items-center">
-                            <div class="bg-gray-200 rounded-full p-7 w-10">
-        
-                            </div>
+                            <minidenticon-svg username="{{ md5($project->userRelation->id) }}" class="w-16 h-16 bg-gray-200 rounded-full"></minidenticon-svg>
                             <div class="ml-2">
                                 <p class="text-xl font-bold text-[#011020] mb-1">{{ $project->userRelation->name ?? 'No assignat' }}</p>
                                 <p class="text-[#AFAFAF] text-sm">{{ $project->userRelation->email ?? '' }}</p>
@@ -173,7 +177,39 @@
             </div>
         </div>
         @endif
-        <div class="w-full flex justify-end gap-3">
+
+
+
+        <div class="bg-white text-[#011020] rounded-lg p-5 font-semibold flex flex-col gap-2 border-1 border-[#AFAFAF]">
+            <div class="text-xl font-semibold text-[#012F4A] flex items-center gap-2 ml-2">
+                <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg">
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-users"></use>
+                    </svg>
+                </div>
+                <p class="text-xl font-semibold text-[#012F4A] flex items-center gap-2">Usuaris inscrits:</p>
+            </div>
+            <div class="bg-white rounded-[15px] px-2 block pt-5 pb-5 w-full h-56 overflow-y-auto">
+                @if ($asignedUsers->isNotEmpty())
+                    @foreach ($asignedUsers as $user)
+                        <div class="flex gap-5 border border-[#AFAFAF] bg-white rounded-[15px] p-5 mb-5">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full">
+                                <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                            </div>
+                            <div class="flex flex-col text-[#5E6468]">
+                                <label for="user_{{ $user->id }}">{{ $user->name }}</label>
+                                <p>{{ $user->email }}</p>
+                            </div>
+
+                        </div>
+                    @endforeach
+                @else
+                    <p class="text-xl font-semibold text-[#012F4A]">No hi ha usuaris registrats</p>
+                @endif
+            </div>
+        </div>
+
+        {{-- <div class="w-full flex justify-end gap-3">
             <a href="{{ route('projects.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
                 Cancel·lar
             </a>
@@ -182,7 +218,7 @@
                 
                 {{ $project->type_label == "Comissió" ? "Editar la comissió" : "Editar el projecte" }}
             </a>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection

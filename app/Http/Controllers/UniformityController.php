@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Uniformity;
 use App\Models\User;
 use App\Exports\UniformityExport;
+use App\Models\UniformityRenovation;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -18,9 +19,16 @@ class UniformityController extends Controller
         $userEdit = $user;
         $users = User::all();
         $uniformity = $user->uniformity;
-
+        if (!$uniformity) {
+            // Se crea un objeto vacio para evitar el null
+            $uniformity = new \stdClass();
+            $uniformity->pants = "";
+            $uniformity->shirt = "";
+            $uniformity->shoes = "";
+        }
         return view("uniformity.edit", compact("uniformity", "users", "sizes", "userEdit"));
     }
+
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
@@ -31,9 +39,61 @@ class UniformityController extends Controller
 
         ]);
 
-        $user->uniformity->update($validated);
+        // Se obtiene el uniforme del usuario
+        $uniformity = $user->uniformity;
+        // Si no existe ningun registro se crea uno
+        if (!$uniformity) {
+            $uniformity = Uniformity::create([
+                "user" => $user->id,
+                "pants" => $validated["pants"],
+                "shirt" => $validated["shirt"],
+                "shoes" => $validated["shoes"]
+            ]);
 
-        return redirect()->route("users.index")->with("success", "Uniforme renovat correctament");
+            // Se crea un nuevo registro de las renovaciones
+            UniformityRenovation::create([
+                "uniformity_id" => $uniformity->id,
+                "renewal_date" => now(),
+                "delivered_by" => $validated["userRenewal"],
+                "pants_renewal" => $validated["pants"],
+                "shirt_renewal" => $validated["shirt"],
+                "shoes_renewal" => $validated["shoes"],
+                "file" => "",
+            ]);
+        } else{
+            $renovation = [
+                "uniformity_id" => $uniformity->id,
+                "renewal_date" => now(),
+                "delivered_by" => $validated["userRenewal"],
+                "file" => "",
+            ];
+            $hasChange = false;
+            // Si tenia ya un uniforme, se compara si cambia algo para crear la renovacion
+            if ($validated["pants"] != $uniformity->pants) {
+                $renovation["pants_renewal"] = $validated["pants"];
+                $hasChange = true;
+            }
+            if ($validated["shirt"] != $uniformity->shirt) {
+                $renovation["shirt_renewal"] = $validated["shirt"];
+                $hasChange = true;
+            }
+            if ($validated["shoes"] != $uniformity->shoes) {
+                $renovation["shoes_renewal"] = $validated["shoes"];
+                $hasChange = true;
+            }
+
+            // Si se ha renovado algo, se crea un nuevo registro en la tabla de renovaciones, y se actualiza el uniforme actual
+            if ($hasChange) {
+                $user->uniformity->update([
+                    "pants" => $validated["pants"],
+                    "shirt" => $validated["shirt"],
+                    "shoes" => $validated["shoes"]
+                ]);
+                UniformityRenovation::create($renovation);
+            }
+
+        }
+        return redirect()->route("users.show", $user)->with("success", "Uniforme renovat correctament");
     }
 
     public function exportAllUniformity()

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/svg+xml">
+
   @vite('resources/css/app.css')
   <title>Login - Vallparadis</title>
 </head>
@@ -58,8 +59,15 @@
               
               <p class="font-bold text-[#012F4A]">Contrasenya * </p>
             </div>
-  
-            <input type="password" name="password" id="password" placeholder="La teva contrasenya" required class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF]">
+            <div class="relative">
+              <input type="password" name="password" id="password" placeholder="La teva contrasenya" required class="w-full border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF]">
+              
+              <button type="button" data-id-input="password" class="absolute top-2 right-3 togglePassword">
+                  <svg class=" w-6 h-6 text-gray-700 cursor-pointer hover:text-[#FF7E13] transition-all">
+                      <use class="togglePassword" xlink:href="#icon-eye"></use>
+                  </svg>
+              </button>
+            </div>
           </div>
   
           <button type="submit" name="submit" id="submit" class="mt-4 w-full font-bold bg-[#FF7E13] text-white rounded-lg p-2 flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
@@ -74,5 +82,6 @@
   </div>
 </body>
 @vite("resources/js/notifications.js")
+@vite("resources/js/togglePassword.js")
 
 </html>

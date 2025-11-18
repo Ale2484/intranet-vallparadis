@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("register");
             $table->string("topic");
-            $table->string("comments");
             $table->unsignedBigInteger("user");
             $table->boolean("open");
 

@@ -39,29 +39,37 @@ class Project extends Model
         return $this->belongsTo(User::class, 'user');
     }
 
+    // Modelo Project
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_projects', 'project', 'user');
+    }
+
+
+
     // Relación con los documentos
     public function documents()
     {
         return $this->hasMany(ProjectDocument::class, 'project');
     }
 
-    // Scope para proyectos activos
-    public function scopeActive($query)
-    {
-        return $query->where('is_active', true);
-    }
+    // // Scope para proyectos activos
+    // public function scopeActive($query)
+    // {
+    //     return $query->where('is_active', true);
+    // }
 
-    // Scope para proyectos inactivos
-    public function scopeInactive($query)
-    {
-        return $query->where('is_active', false);
-    }
+    // // Scope para proyectos inactivos
+    // public function scopeInactive($query)
+    // {
+    //     return $query->where('is_active', false);
+    // }
 
-    // Scope para filtrar por tipo
-    public function scopeType($query, $type)
-    {
-        return $query->where('type', $type);
-    }
+    // // Scope para filtrar por tipo
+    // public function scopeType($query, $type)
+    // {
+    //     return $query->where('type', $type);
+    // }
 
     // Accesor para el label del tipo
     public function getTypeLabelAttribute()
@@ -74,11 +82,11 @@ class Project extends Model
         return $types[$this->type] ?? $this->type;
     }
 
-    // Accesor para el estado
-    public function getStatusLabelAttribute()
-    {
-        return $this->is_active ? 'Actiu' : 'Inactiu';
-    }
+    // // Accesor para el estado
+    // public function getStatusLabelAttribute()
+    // {
+    //     return $this->is_active ? 'Actiu' : 'Inactiu';
+    // }
 
     // Accesor para la fecha formateada
     public function getFormattedStartAttribute()
