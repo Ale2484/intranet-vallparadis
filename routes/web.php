@@ -10,6 +10,7 @@ use App\Http\Controllers\UniformityRenovationController;
 use App\Http\Controllers\CommentsTrackingController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -95,4 +96,7 @@ Route::middleware("auth")->group(function () {
     Route::get("/users/{user}/evaluations", [EvaluationController::class, "index"])->name("evaluations.index");
     Route::get("/users/{user}/evaluations/create", [EvaluationController::class, "create"])->name("evaluations.create");
     Route::post("/users/{user}/evaluations/store", [EvaluationController::class, "store"])->name("evaluations.store");
+
+    // Servicios generales
+    Route::resource("services", ServiceController::class);
 });

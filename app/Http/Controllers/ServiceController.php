@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Center;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        $service = new Service();
+        $centers = Center::all();
+        return view("services.create", compact("service", "centers"));
     }
 
     /**

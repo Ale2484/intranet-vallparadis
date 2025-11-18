@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("manager_name");
             $table->string("manager_email");
             $table->string("manager_phone");
+            $table->boolean("is_active")->default(true);
             $table->timestamps();
 
             $table->foreign("center_id")->references("id")->on("centers");
