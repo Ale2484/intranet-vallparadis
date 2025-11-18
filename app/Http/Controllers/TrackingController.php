@@ -12,7 +12,9 @@ class TrackingController extends Controller
 {
     public function index(User $user)
     {
-        $trackings=Tracking::where('user', $user->id)->get()->sortByDesc('created_at');
+        $trackingsOpen=Tracking::where('user', $user->id)->whereNull('end_link')->get()->sortByDesc('created_at');
+        $trackingsClosed=Tracking::where('user', $user->id)->whereNotNull('end_link')->get()->sortByDesc('created_at');
+        $trackings = $trackingsOpen->merge($trackingsClosed);
         $total=$trackings->count();
 
         return view("trackings.index", compact(
