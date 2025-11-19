@@ -8,7 +8,7 @@
     <!-- Apartado superior -->
     <div class="w-[60%] flex flex-col gap-5">
 
-        <a href="{{ route("users.index") }}" class="flex gap-3 text-[#AFAFAF]">
+        <a href="{{ route("users.show", $userEdit) }}" class="flex gap-3 text-[#AFAFAF]">
             <svg class="w-6 h-6 ">
                 <use xlink:href="#icon-arrow-left"></use>
             </svg>
@@ -17,7 +17,7 @@
 
         <h1 class="text-3xl font-bold text-[#011020]">Editar l'uniforme</h1>
 
-        <p class="text-[#AFAFAF] mb-7">Edita l'uniforme</p>
+        <p class="text-[#AFAFAF] mb-7">Edita l'uniforme de l'usuari {{ $userEdit->name}}</p>
     </div>
     <!-- Formulario -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] text-[#0F172A]">
@@ -26,10 +26,11 @@
             @method("PATCH")
             
             <div class="flex items-center gap-3 mb-3 font-semibold">
-                <label for="name">Pantalons:</label>
+                <label for="pants">Pantalons:</label>
             </div>
 
-            <select name="pants" id="pants" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-3" required>
+            <select name="pants" id="pants" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-3">
+                <option value="" selected hidden>Selecciona una talla de pantalons</option>
                 @foreach ($sizes as $size)
                     <option value="{{ $size }}" {{ old("pants", $uniformity->pants) == $size ? "selected" : "" }}>
                         {{ $size }}
@@ -38,9 +39,10 @@
             </select>
 
             <div class="flex items-center gap-3 mb-3 font-semibold">
-                <label for="address">Jersei * </label>
+                <label for="shirt">Jersei * </label>
             </div>
-            <select name="shirt" id="shirt" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-3" required>
+            <select name="shirt" id="shirt" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-3">
+                <option value="" selected hidden>Selecciona una talla de jersei</option>
                 @foreach ($sizes as $size )
                     <option value="{{ $size }}" {{ old("shirt", $uniformity->shirt) == $size ? "selected" : "" }}>
                         {{ $size }}
@@ -49,15 +51,16 @@
             </select>
         
             <div class="flex items-center gap-3 mb-3 font-semibold">
-                <label for="phone">Sabates</label>
+                <label for="shoes">Sabates</label>
             </div>
-            <input type="number" name="shoes" id="shoes" step="0.5" min="30" max="50" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" value="{{ old("shoes", $uniformity->shoes) }}">
+            <input type="number" name="shoes" id="shoes" step="0.5" min="30" max="50" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" value="{{ old("shoes", $uniformity->shoes) }}" placeholder="Introdueix un numero de sabates">
         
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <label for="userRenewal">Usuari que entrega el material</label>
             </div>
         
             <select name="userRenewal" id="userRenewal" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-10" required>
+                <option value="" selected hidden>Selecciona l'usuari que entrega el material</option>
                 @foreach ($users as $user )
                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                 @endforeach
