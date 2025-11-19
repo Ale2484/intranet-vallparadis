@@ -147,8 +147,8 @@ class UserSeeder extends Seeder
             ],
             [
                 "id" => 11,
-                "name" => "Miguel Torres",
-                "email" => "miguel.torres@gmail.com",
+                "name" => "Juan Carlos De la Cruz Gonzalez",
+                "email" => "juancarlos.delacruz@gmail.com",
                 "phone" => "602345678",
                 "role" => "technical_team",
                 "center" => "2",
