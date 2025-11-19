@@ -63,6 +63,13 @@ class EvaluationController extends Controller
             "La seva entrada i permanència en el lloc de treball es duu a terme sense retards o absències no justificades",
         ];
 
+        $answers=[
+            "0" => "Gens d'acord",
+            "1" => "Poc d'acord",
+            "2" => "Bastant d'acord",
+            "3" => "Molt d'acord"
+        ];
+
         return view("evaluation.index", compact(
             'evaluations', 
             'user',
@@ -70,7 +77,8 @@ class EvaluationController extends Controller
             "averageScore",
             "lastScore",
             "questionAverage",
-            "questions"
+            "questions",
+            "answers"
         ));
     }
 
