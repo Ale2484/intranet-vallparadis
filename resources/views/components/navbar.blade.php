@@ -49,7 +49,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route("services.index") }}" class="{{ request()->is('services*') ? "menu-option-selected" : "menu-option" }}">
+            <a href="{{ route("general-services.index") }}" class="{{ request()->is('general-services*') ? "menu-option-selected" : "menu-option" }}">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-knife"></use>
             </svg>

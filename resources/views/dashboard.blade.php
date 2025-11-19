@@ -268,7 +268,7 @@
         </div>
 
         <p class="text-[20px] font-bold text-[#011020]">Serveis generals</p>
-        <p class="text-[#013148] text-sm" >Control i seguiment del personal del centre</p>
+        <p class="text-[#013148] text-sm" >Control i seguiment del serveis del centre</p>
 
         <!-- Opciones -->
         <ul class="my-5 w-full">
@@ -297,7 +297,7 @@
                 </a>
             </li>
         </ul>
-        <a href="{{ route("services.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
+        <a href="{{ route("general-services.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
     <!-- Container -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">

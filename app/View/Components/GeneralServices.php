@@ -6,15 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ServiceCard extends Component
+class GeneralServices extends Component
 {
-    public $service;
+    public $generalService;
     /**
      * Create a new component instance.
      */
-    public function __construct($service)
+    public function __construct($generalService)
     {
-        $this->service = $service;
+        $this->generalService = $generalService;
     }
 
     /**
@@ -22,6 +22,6 @@ class ServiceCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.service-card');
+        return view('components.general-services');
     }
 }

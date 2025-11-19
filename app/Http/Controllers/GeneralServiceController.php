@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Center;
-use App\Models\Service;
+use App\Models\GeneralService;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class GeneralServiceController extends Controller
 {
     protected $paginateNumber = 21;
 
@@ -15,9 +15,9 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::orderBy("created_at", "desc")->paginate($this->paginateNumber);
+        $generalServices = GeneralService::orderBy("created_at", "desc")->paginate($this->paginateNumber);
 
-        return view("services.index", compact("services"));
+        return view("general-services.index", compact("generalServices"));
     }
 
     /**
@@ -25,9 +25,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $service = new Service();
+        $generalService = new GeneralService();
         $centers = Center::all();
-        return view("services.create", compact("service", "centers"));
+        return view("general-services.create", compact("generalService", "centers"));
     }
 
     /**
@@ -35,7 +35,20 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Se validan los datos que se envian por el form de creacion de centro
+        $validated = $request->validate([
+            "center_id" => "required|exists:centers,id",
+            "name" => "required|string",
+            "type" => "required|in:cleaning,laundry,cook",
+            "manager_name"=> "required|string",
+            "manager_email" => "required|email",
+            "manager_phone" => "nullable",
+            "is_active" => "required|boolean"
+        ]);
+
+        GeneralService::create($validated);
+
+        return redirect()->route("general-services.index")->with("success", "Servei crat correctament");
     }
 
     /**

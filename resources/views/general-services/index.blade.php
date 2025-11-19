@@ -8,7 +8,7 @@
 
     {{-- Enlaces --}}
     <div class="flex items-center">
-        <a href="{{ route("services.create") }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+        <a href="{{ route("general-services.create") }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
             <svg class="w-6 h-6 text-white">
                 <use xlink:href="#icon-plus"></use>
             </svg>
@@ -43,14 +43,14 @@
 </div>
 <!-- Cursos -->
 <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-    @foreach ($services as $service )
-        <x-service-card :service="'services'"/>
+    @foreach ($generalServices as $generalService )
+        <x-general-services-card :generalService="$generalService"/>
     @endforeach
 </div>
 {{-- Modal de filtros --}}
 <x-filter-card :type="'services'"/>
 <div class="pagination">
-    {{ $services->links('pagination::tailwind') }}
+    {{ $generalServices->links('pagination::tailwind') }}
 </div>
 
 

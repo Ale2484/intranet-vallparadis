@@ -10,6 +10,7 @@ use App\Http\Controllers\UniformityRenovationController;
 use App\Http\Controllers\CommentsTrackingController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\GeneralServiceController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Auth;
 
@@ -98,5 +99,8 @@ Route::middleware("auth")->group(function () {
     Route::post("/users/{user}/evaluations/store", [EvaluationController::class, "store"])->name("evaluations.store");
 
     // Servicios generales
-    Route::resource("services", ServiceController::class);
+    Route::resource("general-services", GeneralServiceController::class);
+    Route::patch("/general-services/{course}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
+    Route::patch("/general-services/{course}/activate", [GeneralServiceController::class, "activate"])->name('general-services.activate');
+
 });

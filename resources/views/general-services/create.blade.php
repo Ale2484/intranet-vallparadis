@@ -5,7 +5,7 @@
     <!-- Apartado superior -->
     <div class="w-[60%] flex flex-col gap-5">
 
-        <a href="{{ route("services.index") }}" class="flex gap-3 text-[#AFAFAF]">
+        <a href="{{ route("general-services.create") }}" class="flex gap-3 text-[#AFAFAF]">
             <svg class="w-6 h-6 ">
                 <use xlink:href="#icon-arrow-left"></use>
             </svg>
@@ -18,10 +18,10 @@
     </div>
     <!-- Formulario -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] text-[#0F172A] mb-20">
-        @include("services.form", [
-            "action" => route('services.store', $service),
+        @include("general-services.form", [
+            "action" => route('general-services.store', $generalService),
             "method" => "POST",
-            "course" => $service,
+            "generalService" => $generalService,
             "submitText" => "Crea servei"
         ])
     </div>

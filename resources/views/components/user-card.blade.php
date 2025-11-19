@@ -3,9 +3,9 @@
             <div class="flex justify-between items-center mb-5">
                 <div class="flex flex-row justify-between gap-2">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
-                        <!-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> -->
+                        <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full">
                         <!-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> -->
-                        <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                        {{-- <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg> --}}
                     </div>
                     <div class="flex items-center">
                         <a href="{{ route("users.show", $user) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $user->name }}</a>

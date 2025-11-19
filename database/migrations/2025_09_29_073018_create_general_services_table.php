@@ -16,10 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger("center_id");
             $table->string("name");
             //$table->unsignedBigInteger("external_contact");
-            $table->string("type");
+            $table->enum("type", ["cleaning", "laundry", "cook"]);
             $table->string("manager_name");
             $table->string("manager_email");
-            $table->string("manager_phone");
+            $table->string("manager_phone")->nullable();
             $table->boolean("is_active")->default(true);
             $table->timestamps();
 
