@@ -3,10 +3,9 @@
     <div class="flex justify-between items-center mb-5">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10c2.483 0 4.345-3 4.345-3s1.862 3 4.345 3s4.965-3 4.965-3s2.483 3 4.345 3M3 17c2.483 0 4.345-3 4.345-3s1.862 3 4.345 3s4.965-3 4.965-3s2.483 3 4.345 3"/></svg>
-            <svg class="w-8 h-8 text-[#FF7E13]">
-                <use xlink:href="#icon-{{ $generalService->type == "cleaning" ? "sparkles"  : ($generalService->type == "Bugaderia" ? "sea" : ($generalService->type == "cook" ? "knife"  : "Aquest servei no te un tipus participants" )) }}"></use>
-            </svg>
+                <svg class="w-8 h-8 text-[#FF7E13]">
+                    <use xlink:href="#icon-{{ $generalService->type == 'cleaning' ? 'sparkles' : ($generalService->type == 'Bugaderia' ? 'sea' : ($generalService->type == 'cook' ? 'knife' : 'default-icon')) }}"></use>
+                </svg>
             </div>
             <a href="{{ route("general-services.show", $generalService) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $generalService->name }}</a>
         </div>
