@@ -48,9 +48,9 @@
             <!-- Historial -->
             <div class="flex flex-col justify-start w-5/8 gap-5 overflow-y-scroll h-[443px]">
                 @foreach($trackings as $tracking)
-                    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-4">
+                    <div class="border-2 border-{{ $tracking->end_link ? 'red' : 'blue'}}-300 bg-white rounded-[15px] p-5 flex flex-col gap-4">
                         <div class="border-b-1 border-[#AFAFAF] pb-5">
-                            <div class="flex flex-row gap-5 items-center">
+                            <div class="flex flex-row gap-5">
                                 <div>
                                     <div class="bg-gray-200 w-12 h-12 rounded-full">
                                         {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
@@ -58,23 +58,33 @@
                                         <minidenticon-svg username="{{ md5($tracking->register) }}"></minidenticon-svg>
                                     </div>
                                 </div>
-                                <div class="flex flex-col gap-1 w-full">
-                                    <div class="flex flex-row justify-between w-full items-center">
-                                        <a href="{{ route("trackings.show", ['user' => $user->id, 'tracking' => $tracking->id]) }}" class="text-2xl font-bold">
-                                            {{ Str::limit($tracking->topic, 20) }}
-                                        </a>
-                                        <div class="flex flex-row gap-2">
-                                            <svg class="w-6 h-6">
-                                                <use xlink:href="#icon-calendar"></use>
-                                            </svg>
-                                            {{ $tracking->created_at }}
+                                <div class="w-full">
+                                    <div class="flex flex-row justify-between w-full h-min">
+                                        <div class="flex flex-col gap-1">
+                                            <a href="{{ route("trackings.show", ['user' => $user->id, 'tracking' => $tracking->id]) }}" class="text-2xl font-bold">
+                                                {{ Str::limit($tracking->topic, 20) }}
+                                            </a>
+                                            <div class="flex flex-row gap-2 items-center" >
+                                                <svg class="w-6 h-6">
+                                                    <use xlink:href="#icon-user"></use>
+                                                </svg>
+                                                {{ $tracking->registerRelation->name }}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="flex flex-row gap-2 items-center" >
-                                        <svg class="w-6 h-6">
-                                            <use xlink:href="#icon-user"></use>
-                                        </svg>
-                                        {{ $tracking->registerRelation->name }}
+                                        <div class="flex flex-col gap-2">
+                                            <div class="flex flex-row gap-2 {{ $tracking->end_link ? '' : ''}}">
+                                                <svg class="w-6 h-6">
+                                                    <use xlink:href="#icon-calendar"></use>
+                                                </svg>
+                                                {{ $tracking->created_at }}
+                                            </div>
+                                            <div class="flex flex-row gap-2">
+                                                <svg class="w-6 h-6">
+                                                    <use xlink:href="#icon-id"></use>
+                                                </svg>
+                                                {{ $tracking->open ? "Public":"Restringit" }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -116,8 +126,8 @@
                         <div class="flex flex-col gap-1">
                             <label for="open">Tipus de seguiment</label>
                             <select name="open" id="open" class="border border-[#AFAFAF] bg-white rounded-lg p-2" >
-                                <option value="0">Tancat</option>
-                                <option value="1">Obert</option>
+                                <option value="0">Restringit</option>
+                                <option value="1">Public</option>
                             </select>
                         </div>
                     </div>

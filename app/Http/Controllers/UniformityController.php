@@ -32,68 +32,73 @@ class UniformityController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            "pants" => "required",
-            "shirt" => "required",
-            "shoes" => "required",
-            "userRenewal" => "required"
+            "pants" => "nullable",
+            "shirt" => "nullable",
+            "shoes" => "nullable|numeric|min:30|max:50",
+            "userRenewal" => "required|exists:users,id"
 
         ]);
-
-        // Se obtiene el uniforme del usuario
-        $uniformity = $user->uniformity;
-        // Si no existe ningun registro se crea uno
-        if (!$uniformity) {
-            $uniformity = Uniformity::create([
-                "user" => $user->id,
-                "pants" => $validated["pants"],
-                "shirt" => $validated["shirt"],
-                "shoes" => $validated["shoes"]
-            ]);
-
-            // Se crea un nuevo registro de las renovaciones
-            UniformityRenovation::create([
-                "uniformity_id" => $uniformity->id,
-                "renewal_date" => now(),
-                "delivered_by" => $validated["userRenewal"],
-                "pants_renewal" => $validated["pants"],
-                "shirt_renewal" => $validated["shirt"],
-                "shoes_renewal" => $validated["shoes"],
-                "file" => "",
-            ]);
-        } else{
-            $renovation = [
-                "uniformity_id" => $uniformity->id,
-                "renewal_date" => now(),
-                "delivered_by" => $validated["userRenewal"],
-                "file" => "",
-            ];
-            $hasChange = false;
-            // Si tenia ya un uniforme, se compara si cambia algo para crear la renovacion
-            if ($validated["pants"] != $uniformity->pants) {
-                $renovation["pants_renewal"] = $validated["pants"];
-                $hasChange = true;
-            }
-            if ($validated["shirt"] != $uniformity->shirt) {
-                $renovation["shirt_renewal"] = $validated["shirt"];
-                $hasChange = true;
-            }
-            if ($validated["shoes"] != $uniformity->shoes) {
-                $renovation["shoes_renewal"] = $validated["shoes"];
-                $hasChange = true;
-            }
-
-            // Si se ha renovado algo, se crea un nuevo registro en la tabla de renovaciones, y se actualiza el uniforme actual
-            if ($hasChange) {
-                $user->uniformity->update([
+        // Si minimo se renuva una cosa
+        if ($validated["pants"] || $validated["shirt"] || $validated["shoes"]) {
+            // Se obtiene el uniforme del usuario
+            $uniformity = $user->uniformity;
+            // Si no existe ningun registro se crea uno
+            if (!$uniformity) {
+                $uniformity = Uniformity::create([
+                    "user" => $user->id,
                     "pants" => $validated["pants"],
                     "shirt" => $validated["shirt"],
                     "shoes" => $validated["shoes"]
                 ]);
-                UniformityRenovation::create($renovation);
+    
+                // Se crea un nuevo registro de las renovaciones
+                UniformityRenovation::create([
+                    "uniformity_id" => $uniformity->id,
+                    "renewal_date" => now(),
+                    "delivered_by" => $validated["userRenewal"],
+                    "pants_renewal" => $validated["pants"],
+                    "shirt_renewal" => $validated["shirt"],
+                    "shoes_renewal" => $validated["shoes"],
+                    "file" => "",
+                ]);
+            } else{
+                $renovation = [
+                    "uniformity_id" => $uniformity->id,
+                    "renewal_date" => now(),
+                    "delivered_by" => $validated["userRenewal"],
+                    "file" => "",
+                ];
+                $hasChange = false;
+                // Si tenia ya un uniforme, se compara si cambia algo para crear la renovacion
+                if ($validated["pants"] != $uniformity->pants) {
+                    $renovation["pants_renewal"] = $validated["pants"];
+                    $hasChange = true;
+                }
+                if ($validated["shirt"] != $uniformity->shirt) {
+                    $renovation["shirt_renewal"] = $validated["shirt"];
+                    $hasChange = true;
+                }
+                if ($validated["shoes"] != $uniformity->shoes) {
+                    $renovation["shoes_renewal"] = $validated["shoes"];
+                    $hasChange = true;
+                }
+    
+                // Si se ha renovado algo, se crea un nuevo registro en la tabla de renovaciones, y se actualiza el uniforme actual
+                if ($hasChange) {
+                    $user->uniformity->update([
+                        "pants" => $validated["pants"],
+                        "shirt" => $validated["shirt"],
+                        "shoes" => $validated["shoes"]
+                    ]);
+                    UniformityRenovation::create($renovation);
+                }
+    
             }
-
+            return redirect()->route("users.show", $user)->with("success", "Uniforme renovat correctament");
+        } else{
+            return back()->with("error", "Has de seleccionar almenys un element per renovar");
         }
-        return redirect()->route("users.show", $user)->with("success", "Uniforme renovat correctament");
+
     }
 
     public function exportAllUniformity()
