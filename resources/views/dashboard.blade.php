@@ -268,13 +268,13 @@
         </div>
 
         <p class="text-[20px] font-bold text-[#011020]">Serveis generals</p>
-        <p class="text-[#013148] text-sm" >Control i seguiment del personal del centre</p>
+        <p class="text-[#013148] text-sm" >Control i seguiment del serveis del centre</p>
 
         <!-- Opciones -->
         <ul class="my-5 w-full">
             <li>
                 <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
-                    Nou professional
+                    Nou servei
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
@@ -297,7 +297,7 @@
                 </a>
             </li>
         </ul>
-        <a href="#test" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
+        <a href="{{ route("general-services.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
     <!-- Container -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start min-w-[250px]">
