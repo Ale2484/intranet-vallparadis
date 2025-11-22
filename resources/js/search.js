@@ -7,10 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let elementType = "";
     // El ultimo valor de busqueda
     let lastSearchValue = "";
-
+    
+    let searchInput = null;
+    // Flag para saber si se ha aplicado un filtro
+    let applyRadioFilter = false;
+    
     if (searchForm) {
         // Input de busqueda
-        const searchInput = searchForm.querySelector("input[type='search']");
+        searchInput = searchForm.querySelector("input[type='search']");
         elementType = searchForm.dataset.type;
         searchForm.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -19,8 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // Cada segundo se verifica 
         setInterval(() => {
             // Si el valor del input de busqueda tiene algo y es diferente a la ultima busqueda entonces se vuelve a buscar
-            if (searchInput.value != lastSearchValue ) {
+            if (searchInput.value != lastSearchValue && searchInput.value != "" ) {
                 fetchSearch(searchInput.value);
+            } else if (searchInput.value == "" && applyRadioFilter === false && lastSearchValue !== "") {
+                // Si no hay nada escrito en la barra de busqueda, se muestran los elementos del filtro activo
+                const selectedRadioFilter = document.querySelector("input[name='order']:checked");
+                if (selectedRadioFilter) {
+                    applyRadioFilter = true;
+                    selectedRadioFilter.dispatchEvent(new Event("change"));
+                }
             }
         }, 1000);
     }
@@ -29,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         paginationContainer.addEventListener("click", (event) => {
             // Se obtiene el enlace al que se quiere redireccionar
             const link = event.target.closest("a");
-            if (link) {
+            if (link && searchInput != null && searchInput.value !== "") {
                 event.preventDefault();
                 // Se obtiene la pagina a la que quiere redireccionar
                 const page = link.getAttribute("href").split("page=")[1] || 1;
@@ -61,11 +72,16 @@ document.addEventListener("DOMContentLoaded", () => {
             if (loader) {
                 loader.classList.add("hidden");
             }
+            // Se guarda el valor que se acaba de buscar
             lastSearchValue = searchValue;
+            // Se dice que no hay filtro aplicado
+            applyRadioFilter = false;
             resultContainer.innerHTML = data.htmlContent || "No hay resultados";
             paginationContainer.innerHTML = data.pagination || "";
-            // Se hace scroll hasta la parte de arriba de la pagina
-            window.scrollTo({ top: 0, behavior: "smooth"});
+            setTimeout(() => {
+                // Se hace scroll hasta la parte de arriba de la pagina
+                window.scrollTo({ top: 0, behavior: "smooth"});
+            }, 10);
         } catch (error) {
             console.error("Error:", error);
             resultContainer.innerHTML = "<p>Error al buscar</p>";

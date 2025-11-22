@@ -46,7 +46,7 @@
             </div>
             <div class="flex items-center">
                 <svg class="w-7 h-7">
-                    <use xlink:href="#icon-calendar"></use>
+                    <use xlink:href="#icon-desc"></use>
                 </svg>
                 <p class="ml-2 w-[600px] text-sm">{{ $project->description }}</p>
             </div>

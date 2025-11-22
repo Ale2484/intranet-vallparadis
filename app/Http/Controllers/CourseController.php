@@ -14,12 +14,13 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
+    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $courses = Course::orderBy("created_at", "asc")->paginate(20);
+        $courses = Course::orderBy("created_at", "desc")->paginate($this->paginateNumber);
         return view("courses.index", compact("courses"));
     }
 
@@ -30,7 +31,7 @@ class CourseController extends Controller
         // Se obtiene la pagina, sino, se usa la pagina 1
         $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate(20, ["*"], "page", $page);
+        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchCourses)) {
             foreach ($searchCourses as $course) {
                 $htmlContent .= view("components.course-card", compact("course"))->render();
@@ -38,6 +39,55 @@ class CourseController extends Controller
             // Se obtiene la paginacion
             $pagination = $searchCourses->links()->render();
         }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+    }
+
+    public function filter(Request $request)
+    {
+        $page = $request->input("page", 1);
+        $order = $request->input("order", null);
+        $status = $request->input("status", null);
+        $query = Course::query();
+
+        // Se obtiene el filtro del estado y se añade a la query
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+
+        // Se comprueba que tipo de orden se envia y se añade a la query
+        switch ($order) {
+            case "recent-first":
+                $query->orderBy("created_at", "desc");
+                break;
+            case "oldest-first":
+                $query->orderBy("created_at", "asc");
+                break;
+            case "az":
+                $query->orderBy("name", "asc");
+                break;
+            case "za":
+                $query->orderBy("name", "desc");
+                break;
+            case "last-modified":
+                $query->orderBy("updated_at", "desc");
+                break;
+            case "first-modified":
+                $query->orderBy("updated_at", "asc");
+                break;
+        }
+
+        // Se pagina la query
+        $courses = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+
+        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
+        $htmlContent = "";
+        foreach ($courses as $course) {
+            $htmlContent .= view("components.course-card", compact("course"))->render();
+        }
+        $pagination = $courses->links()->render();
+
         return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
     }
 
@@ -94,6 +144,9 @@ class CourseController extends Controller
         if (!empty($request->schedules)) {
             foreach ($request->schedules as $day => $times) {
                 if (isset($times["start_time"]) && isset($times["end_time"])) {
+                    // Se pasa el formato a Horas:Minutos
+                    $times["start_time"] =  \Carbon\Carbon::parse($times["start_time"])->format("H:i");
+                    $times["end_time"] =  \Carbon\Carbon::parse($times["end_time"])->format("H:i");
                     CourseSchedule::create(["course_id" => $newCourse->id, "day_of_week" => $day, "start_time" => $times["start_time"], "end_time" => $times["end_time"]]);
                 }
             }
@@ -108,6 +161,13 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        if ($course->modality == "presential") {
+            $course->modality = "Presencial";
+        } elseif ($course->modality == "mixed") {
+            $course->modality = "Mixte";
+        } elseif ($course->modality == "online") {
+            $course->modality = "Online";
+        }
         $usersPreview = $course->users()->withPivot('certificate')->limit(4)->get();
         $totalUsers = $course->users;
         $schedules = $course->schedule;
