@@ -48,31 +48,45 @@ class GeneralServiceController extends Controller
 
         GeneralService::create($validated);
 
-        return redirect()->route("general-services.index")->with("success", "Servei crat correctament");
+        return redirect()->route("general-services.index")->with("success", "Servei creat correctament");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(GeneralService $generalService)
     {
-        //
+        $observations = $generalService->observations;
+        $schedules = $generalService->schedules ?? [];
+        return view("general-services.show", compact("generalService", "observations", "schedules"));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(GeneralService $generalService)
     {
-        //
+        $centers = Center::all();
+        return view("general-services.edit", compact("generalService", "centers"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, GeneralService $generalService)
     {
-        //
+        $validated = $request->validate([
+            "center_id" => "required|exists:centers,id",
+            "name" => "required|string",
+            "type" => "required|in:cleaning,laundry,cook",
+            "manager_name"=> "required|string",
+            "manager_email" => "required|email",
+            "manager_phone" => "nullable",
+            "is_active" => "required|boolean"
+        ]);
+
+        $generalService->update($validated);
+        return redirect()->route("general-services.index")->with("success", "Servei modificat correctament");
     }
 
     /**
@@ -81,5 +95,16 @@ class GeneralServiceController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function deactivate(GeneralService $generalService)
+    {
+        $generalService->update(["is_active" => false]);
+        return redirect()->route("general-services.index")->with("success", "Servei deshabilitat correctament");
+    }
+
+    public function activate(GeneralService $generalService)
+    {
+        $generalService->update(["is_active" => true]);
+        return redirect()->route("general-services.index")->with("success", "Servei habilitat correctament");
     }
 }

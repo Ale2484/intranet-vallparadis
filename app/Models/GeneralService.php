@@ -21,4 +21,9 @@ class GeneralService extends Model
     {
         return $this->belongsTo(Center::class);
     }
+
+    public function observations()
+    {
+        return $this->hasMany(GeneralServiceObservation::class);
+    }
 }

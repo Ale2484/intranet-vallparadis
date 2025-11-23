@@ -5,7 +5,7 @@
     <!-- Apartado superior -->
     <div class="w-[60%] flex flex-col gap-5">
 
-        <a href="{{ route("general-services.create") }}" class="flex gap-3 text-[#AFAFAF]">
+        <a href="{{ route("general-services.index") }}" class="flex gap-3 text-[#AFAFAF]">
             <svg class="w-6 h-6 ">
                 <use xlink:href="#icon-arrow-left"></use>
             </svg>

@@ -18,6 +18,7 @@ return new class extends Migration
             //$table->unsignedBigInteger("external_contact");
             $table->enum("type", ["cleaning", "laundry", "cook"]);
             $table->string("manager_name");
+            $table->text("description");
             $table->string("manager_email");
             $table->string("manager_phone")->nullable();
             $table->boolean("is_active")->default(true);

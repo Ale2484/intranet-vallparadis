@@ -4,7 +4,7 @@
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
                 <svg class="w-8 h-8 text-[#FF7E13]">
-                    <use xlink:href="#icon-{{ $generalService->type == 'cleaning' ? 'sparkles' : ($generalService->type == 'Bugaderia' ? 'sea' : ($generalService->type == 'cook' ? 'knife' : 'default-icon')) }}"></use>
+                    <use xlink:href="#icon-{{ $generalService->type == 'cleaning' ? 'sparkles' : ($generalService->type == 'laundry' ? 'sea' : ($generalService->type == 'cook' ? 'knife' : 'default-icon')) }}"></use>
                 </svg>
             </div>
             <a href="{{ route("general-services.show", $generalService) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $generalService->name }}</a>
@@ -30,18 +30,19 @@
         
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
-                <use xlink:href="#icon-role"></use>
+                <use xlink:href="#icon-users"></use>
             </svg>
-            <p>{{ $generalService->type ?? "Aquest curs no te tipus" }}</p>
+            <p>{{ $generalService->manager_name ?? "Aquest servei no te encarregat" }}</p>
         </div>
         <div class="flex flex-row items-center gap-2 pl-2">
-            <svg class="w-7 h-7">
-                <use xlink:href="#icon-computer-desktop"></use>
+            <svg class="w-7 h-7 flex-shrink-0">
+                <use xlink:href="#icon-phone"></use>
             </svg>
-            <p>{{ $generalService->manager_name ?? "Aquest curs no te una modalitat electronic" }}</p>
+            <p>{{ $generalService->manager_phone ?? "Aquest servei no te numero de encarregat" }}</p>
         </div>
     </div>
-    <p class="text-sm ml-3 my-4">Inici: </p>
+    <p class="text-sm my-4">Creat: {{ $generalService->created_at->format("d/m/Y") }} | Actualizat: {{ $generalService->updated_at->format("d/m/Y") }}</p>
+
     <div class="flex flex-row gap-5 justify-end">
         <!-- Activar/Desactivar -->
         <div class="w-full sm:w-full md:w-auto lg:w-auto flex gap-5 justify-end flex-col sm:flex-col sm:justify-center md:flex-row">

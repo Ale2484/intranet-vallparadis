@@ -43,9 +43,9 @@
                 <div>
                     <select name="type" id="type" class="border-1 h-10 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('type') border-red-600 @enderror" required">
                         <option value="" selected hidden>Selecciona un tipus de servei</option>
-                        <option value="cleaning">Neteja</option>
-                        <option value="laundry">Bugaderia</option>
-                        <option value="cook">Cuina</option>
+                        <option value="cleaning" {{ old("type", $generalService->type) == "cleaning" ? "selected" : "" }} >Neteja</option>
+                        <option value="laundry" {{ old("type", $generalService->type) == "laundry" ? "selected" : "" }}>Bugaderia</option>
+                        <option value="cook" {{ old("type", $generalService->type) == "cook" ? "selected" : ""}}>Cuina</option>
                     </select>
                     @error("type")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="text" name="name" id="name" class="border-1 h-10 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('name') border-red-600 @enderror" placeholder="Introdueix un nom per al servei" required>
+                    <input type="text" name="name" id="name" class="border-1 h-10 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('name') border-red-600 @enderror" value="{{ old("name", $generalService->name) }}" placeholder="Introdueix un nom per al servei" required>
                     @error("name")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="text" name="manager_name" id="manager_name" class="border-1 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('manager_name') border-red-600 @enderror" placeholder="Nom encarregat" required>
+                    <input type="text" name="manager_name" id="manager_name" class="border-1 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('manager_name') border-red-600 @enderror" value="{{ old("manager_name", $generalService->manager_name) }}" placeholder="Nom encarregat" required>
                     @error("manager_name")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="email" name="manager_email" id="manager_email" class="border-1 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('type') border-red-600 @enderror" placeholder="Email de l'encarregat" required>
+                    <input type="email" name="manager_email" id="manager_email" class="border-1 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('type') border-red-600 @enderror" value="{{ old("manager_email", $generalService->manager_email) }}" placeholder="Email de l'encarregat" required>
                     @error("manager_email")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
@@ -115,11 +115,11 @@
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-phone"></use>
                         </svg>
-                        <p>Telefon de l'encargat:</p>
+                        <p>Telefon de l'encarregat:</p>
                     </div>
                 </div>
                 <div>
-                    <input type="text" name="manager_phone" id="manager_phone" class="border-1 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('manager_name') border-red-600 @enderror" placeholder="Telefon de l'encargat">
+                    <input type="text" name="manager_phone" id="manager_phone" class="border-1 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('manager_name') border-red-600 @enderror" value="{{ old("manager_phone", $generalService->manager_phone) }}" placeholder="Telefon de l'encarregat">
                     @error("manager_phone")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror

@@ -102,7 +102,10 @@ Route::middleware("auth")->group(function () {
 
     // Servicios generales
     Route::resource("general-services", GeneralServiceController::class);
-    Route::patch("/general-services/{course}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
-    Route::patch("/general-services/{course}/activate", [GeneralServiceController::class, "activate"])->name('general-services.activate');
+    Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
+    Route::patch("/general-services/{generalService}/activate", [GeneralServiceController::class, "activate"])->name('general-services.activate');
+    Route::patch("/general-service/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
+    Route::patch("/general-service/{generalService}/activate", [GeneralServiceController::class, "activate"])->name('general-services.activate');
+
 
 });
