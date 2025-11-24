@@ -39,10 +39,11 @@ class GeneralServiceController extends Controller
         $validated = $request->validate([
             "center_id" => "required|exists:centers,id",
             "name" => "required|string",
-            "type" => "required|in:cleaning,laundry,cook",
+            "type" => "required|in:cuina,neteja,bugaderia",
             "manager_name"=> "required|string",
             "manager_email" => "required|email",
             "manager_phone" => "nullable",
+            "users_and_schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
 
@@ -57,8 +58,7 @@ class GeneralServiceController extends Controller
     public function show(GeneralService $generalService)
     {
         $observations = $generalService->observations;
-        $schedules = $generalService->schedules ?? [];
-        return view("general-services.show", compact("generalService", "observations", "schedules"));
+        return view("general-services.show", compact("generalService", "observations"));
     }
 
     /**
@@ -78,7 +78,7 @@ class GeneralServiceController extends Controller
         $validated = $request->validate([
             "center_id" => "required|exists:centers,id",
             "name" => "required|string",
-            "type" => "required|in:cleaning,laundry,cook",
+            "type" => "required|in:cuina,neteja,bugaderia",
             "manager_name"=> "required|string",
             "manager_email" => "required|email",
             "manager_phone" => "nullable",

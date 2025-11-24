@@ -43,8 +43,8 @@
                 <div>
                     <select name="type" id="type" class="border-1 h-10 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('type') border-red-600 @enderror" required">
                         <option value="" selected hidden>Selecciona un tipus de servei</option>
-                        <option value="cleaning" {{ old("type", $generalService->type) == "cleaning" ? "selected" : "" }} >Neteja</option>
-                        <option value="laundry" {{ old("type", $generalService->type) == "laundry" ? "selected" : "" }}>Bugaderia</option>
+                        <option value="cuina" {{ old("type", $generalService->type) == "cuina" ? "selected" : "" }} >Neteja</option>
+                        <option value="neteja" {{ old("type", $generalService->type) == "neteja" ? "selected" : "" }}>Bugaderia</option>
                         <option value="cook" {{ old("type", $generalService->type) == "cook" ? "selected" : ""}}>Cuina</option>
                     </select>
                     @error("type")
@@ -150,5 +150,4 @@
             {{ $submitText }}
         </button>
     </div>
-
 </form>

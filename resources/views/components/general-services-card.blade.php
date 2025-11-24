@@ -4,7 +4,7 @@
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
                 <svg class="w-8 h-8 text-[#FF7E13]">
-                    <use xlink:href="#icon-{{ $generalService->type == 'cleaning' ? 'sparkles' : ($generalService->type == 'laundry' ? 'sea' : ($generalService->type == 'cook' ? 'knife' : 'default-icon')) }}"></use>
+                    <use xlink:href="#icon-{{ $generalService->type == 'cuina' ? 'knife' : ($generalService->type == 'neteja' ? 'sparkles' : ($generalService->type == 'bugaderia' ? 'sea' : 'default-icon')) }}"></use>
                 </svg>
             </div>
             <a href="{{ route("general-services.show", $generalService) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $generalService->name }}</a>
@@ -25,7 +25,7 @@
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-cog-6-tooth"></use>
             </svg>
-            <p>{{ $generalService->type == "cleaning" ? "Neteja"  : ($generalService->type == "laundry" ? "Bugaderia" : ($generalService->type == "cook" ? "Cuina"  : "Aquest servei no te un tipus participants" )) }}</p>
+            <p>{{ $generalService->type ? ucfirst($generalService->type) : "Aquest servei no te  tipus" }}</p>
         </div>
         
         <div class="flex flex-row items-center gap-2 pl-2">

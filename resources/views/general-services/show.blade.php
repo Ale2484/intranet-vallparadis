@@ -85,9 +85,9 @@
                         {{-- Elemento --}}
                         <div class="flex w-1/2 flex-row items-center gap-2">
                             <div class="p-2 rounded-lg mb-2 flex flex-row items-center justify-center bg-[#ffe7de] text-[#FF7E13] w-12 h-12">
-                                @if ( in_array($generalService->type, ["cleaning", "laundry", "cook"]) )
+                                @if ( in_array($generalService->type, ["cuina", "neteja", "cook"]) )
                                     <svg class="w-8 h-8">
-                                        <use xlink:href="#icon-{{ $generalService->type == 'cleaning' ? 'sparkles' : ($generalService->type == 'laundry' ? 'sea' : ($generalService->type == 'cook' ? 'knife' : 'default-icon')) }}"></use>
+                                        <use xlink:href="#icon-{{ $generalService->type == 'cuina' ? 'sparkles' : ($generalService->type == 'neteja' ? 'sea' : ($generalService->type == 'cook' ? 'knife' : 'default-icon')) }}"></use>
                                     </svg>
                                 @endif
                             </div>
@@ -140,26 +140,33 @@
 
                     {{-- Contenedor elemento --}}
                     <div class="flex w-full flex-row items-center gap-2 mb-5">
-                        @if (count($schedules) > 0)
-                            @foreach ($schedules as $schedule )
-                                <div class="w-full flex flex-row items-center justify-between p-2 border-1 border-[#AFAFAF] bg-[#f6f8fc] rounded-lg">
-                                    <p>{{ $schedule->day_of_week ?? " - " }}</p>
-                                    <p class="text-[#FF7E13] font-semibold">{{ $schedule->start_time ? substr($schedule->start_time, 0,5) :" - " }} - {{ $schedule->end_time ? substr($schedule->end_time, 0,5) :" - " }}</p>
-                                </div>
-                            @endforeach
-                        @else
-                        <p>Aquest curs encara no te horari</p>
-                        @endif
+                        <p>{{ $generalService->users_and_schedules ?? "Aquest servei no te usuaris ni horaris" }}</p>
                     </div>
 
                 </div>
             </div>
             
             {{-- Contenedor lateral --}}
-            <div class="w-[40%]">
+            <div class="w-[40%] flex flex-col gap-5">
                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-flex-col min-w-[300px]">
                     <p class="text-[20px] font-bold text-[#011020] mb-5">Observacions:</p>
+                    @if (count($observations) > 0)
+                        @foreach ($observations as $observation)
+                            <p>{{ $observation->observation }}</p>                            
+                        @endforeach
+                    @endif
+                </div>
+                {{-- Apartado de observaciones --}}
+                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-flex-col min-w-[300px]">
+                    <div class="flex items-center gap-3">
+                    <svg class="w-8 h-8 text-[#FF7E13]">
+                        <use xlink:href="#icon-chat-text"></use>
+                    </svg>
+                        <p class="font-semibold">Nova observació</p>
+                    </div>
 
+                    <p class="my-2 text-sm">Afegeix una nova observacio per al servei de {{  }}</p>
+                    <hr class="text-[#AFAFAF] mt-2">
                 </div>
             </div>
         </div>
