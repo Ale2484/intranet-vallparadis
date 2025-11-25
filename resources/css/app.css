@@ -59,7 +59,14 @@
     @apply bg-red-50 border-4 border-dashed border-red-600
 }
 
+/* Rich editor */
+#rich-editor-container{
+    @apply h-96 text-[16px]
+}
 
+.rich-editor-container * {
+    all : revert;
+}
 /* 
 .simple-container{
     @apply border border-[#AFAFAF] bg-white rounded-[15px] p-5;

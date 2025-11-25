@@ -43,10 +43,10 @@ class GeneralServiceController extends Controller
             "manager_name"=> "required|string",
             "manager_email" => "required|email",
             "manager_phone" => "nullable",
-            "users_and_schedules" => "nullable|string",
+            "staff_and_schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
-
+        
         GeneralService::create($validated);
 
         return redirect()->route("general-services.index")->with("success", "Servei creat correctament");

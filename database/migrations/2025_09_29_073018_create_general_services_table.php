@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum("type", ["cuina", "neteja", "bugaderia"]);
             $table->string("manager_name");
             #$table->text("description")->nullable();
-            $table->text("users_and_schedules")->nullable();
+            $table->text("staff_and_schedules")->nullable();
             $table->string("manager_email");
             $table->string("manager_phone")->nullable();
             $table->boolean("is_active")->default(true);

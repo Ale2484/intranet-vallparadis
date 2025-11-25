@@ -43,9 +43,9 @@
                 <div>
                     <select name="type" id="type" class="border-1 h-10 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('type') border-red-600 @enderror" required">
                         <option value="" selected hidden>Selecciona un tipus de servei</option>
-                        <option value="cuina" {{ old("type", $generalService->type) == "cuina" ? "selected" : "" }} >Neteja</option>
-                        <option value="neteja" {{ old("type", $generalService->type) == "neteja" ? "selected" : "" }}>Bugaderia</option>
-                        <option value="cook" {{ old("type", $generalService->type) == "cook" ? "selected" : ""}}>Cuina</option>
+                        <option value="bugaderia" {{ old("type", $generalService->type) == "bugaderia" ? "selected" : "" }} >Bugaderia</option>
+                        <option value="neteja" {{ old("type", $generalService->type) == "neteja" ? "selected" : "" }}> Neteja</option>
+                        <option value="cuina" {{ old("type", $generalService->type) == "cuina" ? "selected" : ""}}>Cuina</option>
                     </select>
                     @error("type")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -143,6 +143,17 @@
             </div>
         </div>
     </div>
+    <div class="flex items-center gap-2 mt-3 mb-2">
+        <svg class="w-6 h-6">
+            <use xlink:href="#icon-users"></use>
+        </svg>
+        <p>Personal i horaris:</p>
+    </div>
+    <div id="rich-editor-container" data-id-input="staff_and_schedules">
+
+    </div>
+
+    <input type="hidden" name="staff_and_schedules" id="staff_and_schedules">
     <hr class="mt-10 text-[#AFAFAF]">
     <div class="flex justify-end gap-5 mt-5">
         <a href="{{ route("general-services.index") }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">Cancel·lar</a>

@@ -5,7 +5,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/svg+xml">
-
+    {{-- Rich text --}}
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
     @vite('resources/css/app.css')
     <title>@yield("title")</title>
 </head>

@@ -85,15 +85,15 @@
                         {{-- Elemento --}}
                         <div class="flex w-1/2 flex-row items-center gap-2">
                             <div class="p-2 rounded-lg mb-2 flex flex-row items-center justify-center bg-[#ffe7de] text-[#FF7E13] w-12 h-12">
-                                @if ( in_array($generalService->type, ["cuina", "neteja", "cook"]) )
+                                @if ( in_array($generalService->type, ["cuina", "neteja", "bugaderia"]) )
                                     <svg class="w-8 h-8">
-                                        <use xlink:href="#icon-{{ $generalService->type == 'cuina' ? 'sparkles' : ($generalService->type == 'neteja' ? 'sea' : ($generalService->type == 'cook' ? 'knife' : 'default-icon')) }}"></use>
+                                        <use xlink:href="#icon-{{ $generalService->type == 'neteja' ? 'sparkles' : ($generalService->type == 'bugaderia' ? 'sea' : ($generalService->type == 'cuina' ? 'knife' : 'default-icon')) }}"></use>
                                     </svg>
                                 @endif
                             </div>
                             <div>
                                 <p class="text-md">Tipus de servei:</p>
-                                <p class="font-semibold">{{ $generalService->type ?? "Aquest servei no te tipus"}}</p>
+                                <p class="font-semibold">{{ ucfirst($generalService->type) ?? "Aquest servei no te tipus"}}</p>
                             </div>
                         </div>
                         {{-- Elemento --}}
@@ -135,14 +135,14 @@
                                 <use xlink:href="#icon-clock"></use>
                             </svg>
                         </div>
-                        <p class="text-[20px] font-bold text-[#011020]">Horari del servei:</p>
+                        <p class="text-[20px] font-bold text-[#011020]">Personal i horaris:</p>
                     </div>
 
                     {{-- Contenedor elemento --}}
-                    <div class="flex w-full flex-row items-center gap-2 mb-5">
-                        <p>{{ $generalService->users_and_schedules ?? "Aquest servei no te usuaris ni horaris" }}</p>
+                    <div class="rich-editor-container">
+                        {!! $generalService->staff_and_schedules ?? "Aquest servei no te usuaris ni horaris" !!}
                     </div>
-
+                    <hr>
                 </div>
             </div>
             
@@ -165,7 +165,7 @@
                         <p class="font-semibold">Nova observació</p>
                     </div>
 
-                    <p class="my-2 text-sm">Afegeix una nova observacio per al servei de {{  }}</p>
+                    <p class="my-2 text-sm">Afegeix una nova observacio per al servei de {{ $generalService->name  }}</p>
                     <hr class="text-[#AFAFAF] mt-2">
                 </div>
             </div>

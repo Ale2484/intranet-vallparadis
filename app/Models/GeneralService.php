@@ -14,7 +14,7 @@ class GeneralService extends Model
         "manager_name",
         "manager_email",
         "manager_phone",
-        "users_and_schedules",
+        "staff_and_schedules",
         "is_active"
     ];
     
