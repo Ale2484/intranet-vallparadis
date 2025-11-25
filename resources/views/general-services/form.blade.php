@@ -153,7 +153,7 @@
 
     </div>
 
-    <input type="hidden" name="staff_and_schedules" id="staff_and_schedules">
+    <input type="hidden" name="staff_and_schedules" id="staff_and_schedules" value="{{ old("staff_and_schedules", $generalService->staff_and_schedules) }}">
     <hr class="mt-10 text-[#AFAFAF]">
     <div class="flex justify-end gap-5 mt-5">
         <a href="{{ route("general-services.index") }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">Cancel·lar</a>

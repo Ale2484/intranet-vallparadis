@@ -140,9 +140,8 @@
 
                     {{-- Contenedor elemento --}}
                     <div class="rich-editor-container">
-                        {!! $generalService->staff_and_schedules ?? "Aquest servei no te usuaris ni horaris" !!}
+                        {!! $generalService->staff_and_schedules ? $generalService->staff_and_schedules : "Aquest servei no te usuaris ni horaris" !!}
                     </div>
-                    <hr>
                 </div>
             </div>
             

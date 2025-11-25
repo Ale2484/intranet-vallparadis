@@ -66,7 +66,9 @@
 
 .rich-editor-container * {
     all : revert;
+    margin: 2px;
 }
+
 /* 
 .simple-container{
     @apply border border-[#AFAFAF] bg-white rounded-[15px] p-5;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Center;
 use App\Models\GeneralService;
 use Illuminate\Http\Request;
+use Mews\Purifier\Facades\Purifier;
 
 class GeneralServiceController extends Controller
 {
@@ -46,6 +47,8 @@ class GeneralServiceController extends Controller
             "staff_and_schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+
+        $validated["staff_and_schedules"] = Purifier::clean($validated["staff_and_schedules"], "quill");
         
         GeneralService::create($validated);
 
@@ -82,8 +85,10 @@ class GeneralServiceController extends Controller
             "manager_name"=> "required|string",
             "manager_email" => "required|email",
             "manager_phone" => "nullable",
+            "staff_and_schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["staff_and_schedules"] = Purifier::clean($validated["staff_and_schedules"], "quill");
 
         $generalService->update($validated);
         return redirect()->route("general-services.index")->with("success", "Servei modificat correctament");
