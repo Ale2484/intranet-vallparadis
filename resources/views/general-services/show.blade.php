@@ -16,11 +16,11 @@
                 <h1 class="text-3xl font-bold text-[#011020]">{{ $generalService->name }}</h1>        
                 <p class="text-[#AFAFAF] mb-7">Informació completa del servei</p>
             </div>
-            <a href="{{ route("general-services.edit", $generalService) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all py-3">
+            <a href="{{ route("general-services.edit", $generalService) }}" class="bg-[#FF7E13] text-white rounded-lg p-[10px] font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-square-pen"></use>
                 </svg>
-                Editar el servei                
+                Editar el servei
             </a>
         </div>
         <!-- Contenedor principal -->
@@ -119,7 +119,7 @@
                                     <use xlink:href="#icon-desc"></use>
                                 </svg>
                             </div>
-                            <div class="w-[80%] flex flex-col gap-3">
+                            <div class="w-[80%] flex flex-col">
                                 <p class="text-md font-semibold">Descripció:</p>
                                 <p>{{$generalService->description ?? "Aquest servei no te descripció"}}</p>
                             </div>
@@ -148,11 +148,35 @@
             {{-- Contenedor lateral --}}
             <div class="w-[40%] flex flex-col gap-5">
                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-flex-col min-w-[300px]">
-                    <p class="text-[20px] font-bold text-[#011020] mb-5">Observacions:</p>
+                    <div class="flex justify-between">
+                        <p class="text-[20px] font-bold text-[#011020] mb-5">Observacions:</p>
+                        <p class="bg-[#ffe7de] text-[#FF7E13] w-7 h-7 flex items-center justify-center rounded-full font-semibold">{{ $observations->count() }}</p>
+                    </div>
                     @if (count($observations) > 0)
-                        @foreach ($observations as $observation)
-                            <p>{{ $observation->observation }}</p>                            
-                        @endforeach
+                        <div class="flex flex-col gap-2 h-72 overflow-y-auto">
+                            @foreach ($observations as $observation)
+                                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-flex-col">
+                                    <div class="flex gap-2 max-w-full items-start">
+                                        <div class="w-16 h-16 aspect-square bg-gray-200 rounded-full sticky">
+                                            <minidenticon-svg username="{{ md5($observation->user_id) }}" class="w-16 h-16 aspect-square"></minidenticon-svg>
+                                        </div>
+                                        <div class="w-full">
+                                            <div class="w-full flex items-center justify-between mb-2">
+                                                <p class="font-bold">{{ $observation->user->name }}</p>
+                                                <div class="text-[#AFAFAF] flex gap-2">
+                                                    <svg class="w-6 h-6">
+                                                        <use xlink:href="#icon-calendar"></use>
+                                                    </svg>
+                                                    <p>{{ \Carbon\Carbon::parse($observation->created_at)->format("d/m/Y - H:i") }}</p>
+                                                </div>
+                                            </div>
+                                            <p class="break-all">{{ $observation->observation }}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     @endif
                 </div>
                 {{-- Apartado de observaciones --}}
@@ -163,9 +187,19 @@
                     </svg>
                         <p class="font-semibold">Nova observació</p>
                     </div>
-
-                    <p class="my-2 text-sm">Afegeix una nova observacio per al servei de {{ $generalService->name  }}</p>
-                    <hr class="text-[#AFAFAF] mt-2">
+                    <form action="{{ route("general-services.add-observation", $generalService) }}" method="POST">
+                        @csrf
+                        <p class="my-2 text-sm">Afegeix una nova observacio per al servei de {{ $generalService->name  }}</p>
+                        <hr class="text-[#AFAFAF] my-4">
+                        <label for="observation" class="font-semibold">Afegir nova observació:</label>
+                        <textarea name="observation" id="observation" placeholder="Introdueix una nova observació" class="resize-none border-1 shadow-sm h-24 p-2 rounded-lg border-[#AFAFAF] w-full mb-4 mt-2 @error('observation') border-red-600 @enderror"></textarea>
+                        <button type="submit" class="bg-[#FF7E13] w-full text-white rounded-lg p-[10px] font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+                            <svg class="w-6 h-6">
+                                <use xlink:href="#icon-paper-airplane"></use>
+                            </svg>
+                            Afegir observació
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

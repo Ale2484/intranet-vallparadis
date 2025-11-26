@@ -104,8 +104,9 @@ Route::middleware("auth")->group(function () {
     Route::resource("general-services", GeneralServiceController::class);
     Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
     Route::patch("/general-services/{generalService}/activate", [GeneralServiceController::class, "activate"])->name('general-services.activate');
-    Route::patch("/general-service/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
-    Route::patch("/general-service/{generalService}/activate", [GeneralServiceController::class, "activate"])->name('general-services.activate');
-
+    Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
+    Route::post("/general-services/{generalService}/add-observation", [GeneralServiceController::class, "addObservation"])->name("general-services.add-observation");
+    Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
+    Route::post("/general-services/filter", [GeneralServiceController::class, "filter"])->name("general-services.filter");
 
 });

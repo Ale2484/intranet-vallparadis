@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div>
-                    <select name="type" id="type" class="border-1 h-10 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('type') border-red-600 @enderror" required">
+                    <select name="type" id="type" class="border-1 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('type') border-red-600 @enderror" required">
                         <option value="" selected hidden>Selecciona un tipus de servei</option>
                         <option value="bugaderia" {{ old("type", $generalService->type) == "bugaderia" ? "selected" : "" }} >Bugaderia</option>
                         <option value="neteja" {{ old("type", $generalService->type) == "neteja" ? "selected" : "" }}> Neteja</option>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="text" name="name" id="name" class="border-1 h-10 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('name') border-red-600 @enderror" value="{{ old("name", $generalService->name) }}" placeholder="Introdueix un nom per al servei" required>
+                    <input type="text" name="name" id="name" class="border-1 shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full @error('name') border-red-600 @enderror" value="{{ old("name", $generalService->name) }}" placeholder="Introdueix un nom per al servei" required>
                     @error("name")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror

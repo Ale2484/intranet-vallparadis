@@ -60,7 +60,7 @@ class GeneralServiceController extends Controller
      */
     public function show(GeneralService $generalService)
     {
-        $observations = $generalService->observations;
+        $observations = $generalService->observations()->orderBy("created_at", "desc")->get();
         return view("general-services.show", compact("generalService", "observations"));
     }
 
@@ -101,6 +101,12 @@ class GeneralServiceController extends Controller
     {
         //
     }
+    public function addObservation(GeneralService $generalService, Request $request)
+    {
+        $validated = $request->validate(["observation" => "required|min:3"]);
+        $generalService->observations()->create(["user_id" => auth()->user()->id, "observation" => $validated["observation"]]);
+        return back()->with("success", "Observació creada correctament");
+    }
     public function deactivate(GeneralService $generalService)
     {
         $generalService->update(["is_active" => false]);
@@ -111,5 +117,71 @@ class GeneralServiceController extends Controller
     {
         $generalService->update(["is_active" => true]);
         return redirect()->route("general-services.index")->with("success", "Servei habilitat correctament");
+    }
+
+    public function search(Request $request)
+    {
+        $pagination = "";
+        $htmlContent = "";
+        // Se obtiene la pagina, sino, se usa la pagina 1
+        $page = $request->input("page", 1);
+        $searchValue = $request->searchValue;
+        $searchGeneralServices = GeneralService::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
+        if (!empty($searchGeneralServices)) {
+            foreach ($searchGeneralServices as $generalService) {
+                $htmlContent .= view("components.general-services-card", compact("generalService"))->render();
+            }
+            // Se obtiene la paginacion
+            $pagination = $searchGeneralServices->links()->render();
+        }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+    }
+    public function filter(Request $request)
+    {
+        $page = $request->input("page", 1);
+        $order = $request->input("order", null);
+        $status = $request->input("status", null);
+        $query = GeneralService::query();
+
+        // Se obtiene el filtro del estado y se añade a la query
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+
+        // Se comprueba que tipo de orden se envia y se añade a la query
+        switch ($order) {
+            case "recent-first":
+                $query->orderBy("created_at", "desc");
+                break;
+            case "oldest-first":
+                $query->orderBy("created_at", "asc");
+                break;
+            case "az":
+                $query->orderBy("name", "asc");
+                break;
+            case "za":
+                $query->orderBy("name", "desc");
+                break;
+            case "last-modified":
+                $query->orderBy("updated_at", "desc");
+                break;
+            case "first-modified":
+                $query->orderBy("updated_at", "asc");
+                break;
+        }
+
+        // Se pagina la query
+        $generalServices = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+
+        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
+        $htmlContent = "";
+        foreach ($generalServices as $generalService) {
+            $htmlContent .= view("components.general-services-card", compact("generalService"))->render();
+        }
+        $pagination = $generalServices->links()->render();
+
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
     }
 }
