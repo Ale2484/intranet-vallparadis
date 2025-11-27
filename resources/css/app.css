@@ -59,6 +59,15 @@
     @apply bg-red-50 border-4 border-dashed border-red-600
 }
 
+/* Rich editor */
+#rich-editor-container{
+    @apply h-96 text-[16px]
+}
+
+.rich-editor-container * {
+    all : revert;
+    margin: 2px;
+}
 
 /* 
 .simple-container{

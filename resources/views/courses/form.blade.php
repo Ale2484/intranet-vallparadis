@@ -169,7 +169,7 @@
                         <p>Assitent:</p>
                     </div>
                 </div>
-                <select name="assistant" id="assistant" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('assistant') border-red-600 @enderror" required>
+                <select name="assistant" id="assistant" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('assistant') border-red-600  @enderror" required>
                     <option value="" selected hidden>Selecciona un assistent</option>
                     @if (count($users) > 0)
                         @foreach ($users as $user)
