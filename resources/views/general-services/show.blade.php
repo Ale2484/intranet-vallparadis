@@ -177,6 +177,8 @@
                                 </div>
                             @endforeach
                         </div>
+                    @else
+                        <p>Actualment no hi ha observacions</p>
                     @endif
                 </div>
                 {{-- Apartado de observaciones --}}

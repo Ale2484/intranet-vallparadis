@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UniformityController;
 use App\Http\Controllers\UniformityRenovationController;
 use App\Http\Controllers\CommentsTrackingController;
+use App\Http\Controllers\ComplementaryServiceController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\GeneralServiceController;
@@ -109,4 +111,10 @@ Route::middleware("auth")->group(function () {
     Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
     Route::post("/general-services/filter", [GeneralServiceController::class, "filter"])->name("general-services.filter");
 
+    // Servicios complementarios
+    Route::resource("complementary-services", ComplementaryServiceController::class);
+
+    
+    // Documentos
+    Route::get("/documents/{document}/download", [DocumentController::class, "download"])->name("document.download");
 });
