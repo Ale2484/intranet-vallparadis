@@ -3,7 +3,7 @@
     <ul class="flex flex-col gap-3 ">
         <li class="mb-5 pt-1 flex items-end justify-end">
             <button id="toggleMenu" class="p-2 group cursor-pointer">
-                <svg class="w-7 h-7 text-[#0F172A]">
+                <svg class="w-7 h-7 text-[#FF7E13]">
                     <use xlink:href="#icon-no-line-arrow"></use>
                 </svg>
             </button>

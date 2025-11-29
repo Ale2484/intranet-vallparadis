@@ -7,6 +7,7 @@ import "./showHiddenModals"
 import "./search"
 import "./togglePassword"
 import "./filterElements"
+import "./changeView"
 //import "./toggleStatus"
 import { minidenticonSvg } from 'https://cdn.jsdelivr.net/npm/minidenticons@4.2.1/minidenticons.min.js'
 import "./evaluationTable"

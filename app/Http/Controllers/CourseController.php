@@ -9,8 +9,10 @@ use App\Models\CourseSchedule;
 use App\Models\CourseUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+
 
 class CourseController extends Controller
 {
@@ -21,7 +23,8 @@ class CourseController extends Controller
     public function index()
     {
         $courses = Course::orderBy("created_at", "desc")->paginate($this->paginateNumber);
-        return view("courses.index", compact("courses"));
+        $viewType = Cookie::get("view_type", "card");
+        return view("courses.index", compact("courses", "viewType"));
     }
 
     public function search(Request $request)

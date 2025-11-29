@@ -44,12 +44,24 @@
         </button>
     </div>
 </div>
+<button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+    Cambiar vista
+</button>
 <!-- Cursos -->
-<div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+@if ($viewType == "card")
+    <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        @foreach ($courses as $course )
+            <x-course-card :course="$course"/>
+        @endforeach
+    </div>
+@else
+<table class="resultContainer">
     @foreach ($courses as $course )
-        <x-course-card :course="$course"/>
+        <x-course-table :course="$course"/>
     @endforeach
-</div>
+</table>
+    
+@endif
 {{-- Modal de filtros --}}
 <x-filter-card :type="'courses'"/>
 <div class="pagination">
