@@ -111,7 +111,7 @@
                 Estat *
             </label>
             <select name="status" id="status" 
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('status') border-red-500 @enderror"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('status') border-red-500 @enderror"
                     required>
                 <option value="">Selecciona un estat</option>
                 <option value="active" {{ old('status', $user->status) == 'active' ? 'selected' : '' }}>Actiu</option>

@@ -170,4 +170,3 @@
     </div>
 </div>
 @endsection
-{{-- <div class="bg-blue-100 bg-red-100 border-blue-300 border-red-300 bg-blue-300 bg-red-300 bg-blue-200 bg-red-200 text-blue-500 text-red-500 hidden"></div> --}}

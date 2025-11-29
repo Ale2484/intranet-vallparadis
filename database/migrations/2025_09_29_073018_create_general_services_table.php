@@ -13,14 +13,20 @@ return new class extends Migration
     {
         Schema::create('general_services', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("center");
-            $table->unsignedBigInteger("external_contact");
-            $table->string("type");
-            $table->string("grill");
+            $table->unsignedBigInteger("center_id");
+            $table->string("name");
+            //$table->unsignedBigInteger("external_contact");
+            $table->enum("type", ["cuina", "neteja", "bugaderia"]);
+            $table->string("manager_name");
+            #$table->text("description")->nullable();
+            $table->text("staff_and_schedules")->nullable();
+            $table->string("manager_email");
+            $table->string("manager_phone")->nullable();
+            $table->boolean("is_active")->default(true);
             $table->timestamps();
 
-            $table->foreign("center")->references("id")->on("centers");
-            $table->foreign("external_contact")->references("id")->on("external_contacts");
+            $table->foreign("center_id")->references("id")->on("centers");
+            //$table->foreign("external_contact")->references("id")->on("external_contacts");
         });
     }
 

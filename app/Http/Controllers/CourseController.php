@@ -253,7 +253,7 @@ class CourseController extends Controller
                 }
             }
         }
-        return redirect()->route("courses.index")->with("success", "Curs creat correctament");
+        return redirect()->route("courses.index")->with("success", "Curs modificat correctament");
     }
 
     // Metodo que muestra todos los usuarios que pertenecen a un curso
@@ -299,6 +299,6 @@ class CourseController extends Controller
     public function activate(Course $course)
     {
         $course->update(["is_active" => true]);
-        return redirect()->route("courses.index")->with("success", "Curs deshabilitat correctament");
+        return redirect()->route("courses.index")->with("success", "Curs habilitat correctament");
     }
 }
