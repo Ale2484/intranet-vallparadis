@@ -9,21 +9,20 @@ use App\Models\CourseSchedule;
 use App\Models\CourseUser;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 
 class CourseController extends Controller
 {
-    protected $paginateNumber = 21;
+    protected $paginateNumber = 5;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $courses = Course::orderBy("created_at", "desc")->paginate($this->paginateNumber);
-        $viewType = Cookie::get("view_type", "card");
+        $viewType = $_COOKIE['view_type'] ?? "card";
         return view("courses.index", compact("courses", "viewType"));
     }
 
@@ -36,8 +35,17 @@ class CourseController extends Controller
         $searchValue = $request->searchValue;
         $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchCourses)) {
-            foreach ($searchCourses as $course) {
-                $htmlContent .= view("components.course-card", compact("course"))->render();
+            // Se obtiene el tipo de vista
+            $viewType = $_COOKIE['view_type'] ?? "card";
+
+            if ($viewType == "card") {
+                foreach ($searchCourses as $course) {
+                    $htmlContent .= view("components.course-card", compact("course"))->render();
+                }
+            } else{
+                foreach ($searchCourses as $course) {
+                    $htmlContent .= view("components.course-table", compact("course"))->render();
+                }
             }
             // Se obtiene la paginacion
             $pagination = $searchCourses->links()->render();
@@ -86,8 +94,15 @@ class CourseController extends Controller
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
-        foreach ($courses as $course) {
-            $htmlContent .= view("components.course-card", compact("course"))->render();
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        if ($viewType == "card") {
+            foreach ($courses as $course) {
+                $htmlContent .= view("components.course-card", compact("course"))->render();
+            }
+        } else{
+            foreach ($courses as $course) {
+                $htmlContent .= view("components.course-table", compact("course"))->render();
+            }
         }
         $pagination = $courses->links()->render();
 

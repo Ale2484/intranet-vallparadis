@@ -1,5 +1,5 @@
 <!-- Menu lateral -->
-<nav id="sidebar" class="bg-white h-screen p-5 shadow-sm flex flex-col items-start fixed top-0 left-0 z-10 w-20 transition-[width] duration-300">
+<nav id="sidebar" class="bg-white h-full p-5 shadow-sm flex flex-col items-start fixed top-0 left-0 z-10 w-20 transition-[width] duration-300 dark:bg-slate-900 dark:border dark:border-slate-800">
     <ul class="flex flex-col gap-3 ">
         <li class="mb-5 pt-1 flex items-end justify-end">
             <button id="toggleMenu" class="p-2 group cursor-pointer">
@@ -50,9 +50,9 @@
         </li>
         <li>
             <a href="{{ route("general-services.index") }}" class="{{ request()->is('general-services*') ? "menu-option-selected" : "menu-option" }}">
-            <svg class="w-7 h-7">
-                <use xlink:href="#icon-knife"></use>
-            </svg>
+                <svg class="w-7 h-7">
+                    <use xlink:href="#icon-knife"></use>
+                </svg>
                 <span class="menu-text hidden text-nowrap">Serveis generals</span>
             </a>
         </li>
@@ -61,22 +61,22 @@
 </nav>
 
 <!-- Menu superior -->
-<div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm pl-28">
+<div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm pl-28 dark:bg-slate-900 dark:border dark:border-slate-800">
 
     <a href="{{ route("dashboard") }}">
         <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10">
     </a>
 
-    <form action="#" method="post" class="w-[65%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-[#FFF9F6] p-5">
+    <form action="#" method="post" class="w-[65%] flex items-center gap-2 border border-[#E6E5DE] rounded-lg h-10 bg-[#FFF9F6] p-5 dark:bg-slate-800 dark:border-slate-700">
         @csrf
 
         <button type="submit" class="cursor-pointer">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#013148" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            <svg class="w-6 h-6 dark:text-slate-400">
+                <use xlink:href="#icon-search"></use>
             </svg>
         </button>
 
-        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class="pl-2 w-full h-10 outline-0">
+        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class="pl-2 w-full h-10 outline-0 dark:text-slate-400">
     </form>
 
     <div class="w-[25%] flex flex-row items-center justify-between px-10">
@@ -96,8 +96,8 @@
             <a href="{{ route("users.show", auth()->user()->id) }}" class="flex items-center gap-5">
                 <minidenticon-svg username="{{ md5(auth()->user()->id) }}" class="w-16 h-16 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
                 <div>
-                    <p class="font-bold">{{ auth()->user()->name }}</p>
-                    <p>{{ auth()->user()->centerRelation->name  }}</p>
+                    <p class="font-bold dark:text-white">{{ auth()->user()->name }}</p>
+                    <p class="dark:text-slate-400">{{ auth()->user()->centerRelation->name  }}</p>
                 </div>
             </a>
 

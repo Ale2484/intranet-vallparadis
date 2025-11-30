@@ -10,7 +10,7 @@
             <a href="{{ route("courses.show", $course) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $course->name }}</a>
         </div>
 
-        <p class="w-20 border-1 p-1 text-center {{ $course->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$course->is_active ? "Actiu" : "Inactiu"}}</p>
+        <p class="w-20 border p-1 text-center {{ $course->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$course->is_active ? "Actiu" : "Inactiu"}}</p>
     </div>
     <!-- Especificaciones -->
     <div class="flex flex-col gap-3 text-[#0F172A]">
@@ -53,7 +53,7 @@
                     <use xlink:href="#icon-square-pen"></use>
                 </svg>
                 Editar
-            </a>    
+            </a>
             <form action="{{ $course->is_active ? route("courses.deactivate", $course) : route("courses.activate", $course) }}" method="post" class="w-full sm:w-full md:w-auto lg:w-auto">
                 @csrf
                 @method("PATCH")

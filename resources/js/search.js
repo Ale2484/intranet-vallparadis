@@ -51,7 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     async function fetchSearch(searchValue = "", page = 1) {
-        const resultContainer = document.querySelector(".resultContainer");
+        console.log("Se busca");
+        const visibleResultContainer = Array.from(document.querySelectorAll(".resultContainer")).find(container => {
+            return container.offsetParent !== null;
+        });
         const paginationContainer = document.querySelector(".pagination");
         const meta = document.querySelector('meta[name="csrf-token"]');
         const token = meta ? meta.getAttribute('content') : '';
@@ -76,7 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
             lastSearchValue = searchValue;
             // Se dice que no hay filtro aplicado
             applyRadioFilter = false;
-            resultContainer.innerHTML = data.htmlContent || "No hay resultados";
+            // Si es en formato card se pone una <p> si es en formato table se pone un tr
+            if (visibleResultContainer.closest("table")) {
+                
+                visibleResultContainer.innerHTML = data.htmlContent || `<tr> <td colspan="${document.querySelectorAll('table thead th').length}" class="text-center bg-white py-4">No hay resultados</td> </tr>`;
+            } else{
+                visibleResultContainer.innerHTML = data.htmlContent || "<p>No hay resultados</p>";
+            }
+
             paginationContainer.innerHTML = data.pagination || "";
             setTimeout(() => {
                 // Se hace scroll hasta la parte de arriba de la pagina
@@ -84,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 10);
         } catch (error) {
             console.error("Error:", error);
-            resultContainer.innerHTML = "<p>Error al buscar</p>";
+            visibleResultContainer.innerHTML = "<p>Error al buscar</p>";
         }
     }
 });

@@ -12,7 +12,7 @@
     <title>@yield("title")</title>
 </head>
 
-<body class="bg-[#FFF9F6]">
+<body class="bg-[#FFF9F6] dark:bg-slate-950">
     @include('partials.icons')
     
     <header class="fixed top-0 left-0 flex items-start w-full h-auto z-10">

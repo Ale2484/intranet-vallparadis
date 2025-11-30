@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const paginationContainer = document.querySelector(".pagination");
     const searchForm =  document.querySelector(".searchForm");
-    const resultContainer = document.querySelector(".resultContainer");
+    let visibleResultContainer = null;
     const loader = document.getElementById("loader");
 
     let selectedOrder = null;
@@ -51,6 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const meta = document.querySelector('meta[name="csrf-token"]');
         const token = meta ? meta.getAttribute("content") : "";
         const searchInput = searchForm.querySelector("input[type='search']");
+        // Se obtiene el contenedor del resultado visible (por si ha cambiado el tipo de vista)
+        const visibleResultContainer = Array.from(document.querySelectorAll(".resultContainer")).find(container => {
+            return container.offsetParent !== null;
+        });
 
         try {
             if (loader) {
@@ -74,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (searchInput) {
                 searchInput.value = "";
             }
-            resultContainer.innerHTML = data.htmlContent || "No hay resultados";
+            visibleResultContainer.innerHTML = data.htmlContent || "No hay resultados";
             paginationContainer.innerHTML = data.pagination || "";
             setTimeout(() => {
                 // Se hace scroll hasta la parte de arriba de la pagina

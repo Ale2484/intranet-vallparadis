@@ -81,7 +81,5 @@
     </form>
   </div>
 </body>
-@vite("resources/js/notifications.js")
-@vite("resources/js/togglePassword.js")
-
+@vite("resources/js/app.js")
 </html>

@@ -88,14 +88,14 @@
     </div>
 
 </div> --}}
-<h2 class="font-bold text-lg mb-5 text-[#011020]">APARTATS DEL SISTEMA</h2>
+<h2 class="font-bold text-lg mb-5 text-[#011020] dark:text-white">APARTATS DEL SISTEMA</h2>
 
 
 <!-- Apartados del sistema -->
 <div class="w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
 
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-slate-900 dark:border-slate-800">
         <div class="flex flex-col items-start w-full">
             <div class="bg-blue-50 rounded-lg p-2 mb-3">
                 <svg class="w-8 h-8 text-blue-600">
@@ -103,13 +103,13 @@
                 </svg>
             </div>
     
-            <p class="text-[20px] font-bold text-[#011020]">Professionals</p>
-            <p class="text-[#013148] text-sm" >Control i seguiment del personal del centre</p>
+            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Professionals</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment del personal del centre</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="{{ route("users.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="{{ route("users.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou professional
                     <svg class="w-6 h-6 ">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -117,7 +117,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("users.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="{{ route("users.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Professional actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -125,7 +125,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("users.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] justify-between">
+                    <a href="{{ route("users.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] justify-between dark:text-slate-300 dark:hover:bg-slate-700">
                         Professional inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -138,7 +138,7 @@
         <a href="{{ route("users.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-slate-900 dark:border-slate-800">
         <div class="flex flex-col items-start w-full">
             <div class="bg-green-50 rounded-lg p-2 mb-3">
                 <svg class="w-8 h-8 text-green-600">
@@ -146,13 +146,13 @@
                 </svg>
             </div>
     
-            <p class="text-[20px] font-bold text-[#011020]">Centres</p>
-            <p class="text-[#013148] text-sm" >Control i seguiment del personal del centre</p>
+            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Centres</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment del personal del centre</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="{{ route("centers.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="{{ route("centers.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Alta d'un centre nou
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -160,7 +160,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#centresActius" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] ">
+                    <a href="#centresActius" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700 ">
                         Centres actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -168,7 +168,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#centresInActius" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="#centresInActius" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Centres inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -180,7 +180,7 @@
         <a href="{{ route("centers.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-slate-900 dark:border-slate-800">
         <div class="flex flex-col items-start w-full">
             <div class="bg-teal-50 rounded-lg p-2 mb-3">
                 <svg class="w-8 h-8 text-teal-600">
@@ -189,13 +189,13 @@
     
             </div>
     
-            <p class="text-[20px] font-bold text-[#011020]">Proyectes i comissions</p>
-            <p class="text-[#013148] text-sm" >Control i seguiment del personal del centre</p>
+            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Proyectes i comissions</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment del personal del centre</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="{{ route("projects.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="{{ route("projects.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou projecte/comissió
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -203,7 +203,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Projectes
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -211,7 +211,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Comissions
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -224,7 +224,7 @@
 
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-slate-900 dark:border-slate-800">
         <div class="flex flex-col items-start w-full">
             <div class="bg-violet-50 rounded-lg p-2 mb-3">
                 <svg class="w-8 h-8 text-violet-600">
@@ -233,13 +233,13 @@
     
             </div>
     
-            <p class="text-[20px] font-bold text-[#011020]">Cursos</p>
-            <p class="text-[#013148] text-sm" >Control gestió i seguiment dels cursos</p>
+            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Cursos</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400">Control gestió i seguiment dels cursos</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="{{ route("courses.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="{{ route("courses.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Alta d'un nou curs
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -247,7 +247,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("courses.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="{{ route("courses.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Cursos actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -255,7 +255,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("courses.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="{{ route("courses.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Cursos inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -269,7 +269,7 @@
 
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-slate-900 dark:border-slate-800">
         <div class="flex flex-col items-start w-full">
             <div class="bg-[#fee9d6] rounded-lg p-2 mb-3">
                 <svg class="w-8 h-8 text-[#FF7E13]">
@@ -277,13 +277,13 @@
                 </svg>
             </div>
     
-            <p class="text-[20px] font-bold text-[#011020]">Serveis generals</p>
-            <p class="text-[#013148] text-sm" >Control i seguiment del serveis del centre</p>
+            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Serveis generals</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400">Control i seguiment del serveis del centre</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou servei
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -291,7 +291,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou professional
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -299,7 +299,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou professional
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -311,7 +311,7 @@
         <a href="{{ route("general-services.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-slate-900 dark:border-slate-800">
         <div class="flex flex-col items-start w-full">
             <div class="bg-red-50 rounded-lg p-2 mb-3">
                 <svg class="w-8 h-8 text-red-600">
@@ -320,13 +320,13 @@
     
             </div>
     
-            <p class="text-[20px] font-bold text-[#011020]">Temes pendents RRHH</p>
-            <p class="text-[#013148] text-sm" >Control i seguiment del personal del centre</p>
+            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Temes pendents RRHH</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment del personal del centre</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou professional
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -334,7 +334,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou professional
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -342,7 +342,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou professional
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -354,7 +354,7 @@
         <a href="#test" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
     <!-- Container -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-slate-900 dark:border-slate-800">
         <div class="flex flex-col items-start w-full">
             <div class="bg-indigo-50 rounded-lg p-2 mb-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-indigo-600">
@@ -362,13 +362,13 @@
                 </svg>
             </div>
     
-            <p class="text-[20px] font-bold text-[#011020]">Manteniment</p>
-            <p class="text-[#013148] text-sm" >Control i seguiment del personal del centre</p>
+            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Manteniment</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment del personal del centre</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou professional
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -376,7 +376,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou professional
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -384,7 +384,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-slate-700">
                         Nou professional
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
