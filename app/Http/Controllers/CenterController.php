@@ -143,6 +143,7 @@ class CenterController extends Controller
      */
     public function update(Request $request, Center $center)
     {
+        dd($request->file('files'));
         $validated = $request->validate([
             "name" => "required|string|max:100",
             "address" => "required|string|max:255",

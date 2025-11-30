@@ -1,4 +1,4 @@
-<form action="{{ $action }}" method="POST">
+<form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf
     @isset($method)
         @method($method)
@@ -42,10 +42,18 @@
         </svg>
         <label for="is_active">Estat *</label>
     </div>
-    <select name="is_active" id="is_active" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-10" required>
+    <select name="is_active" id="is_active" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" required>
         <option value="1" {{ old("is_active", $center->is_active) == 1 ? "selected" : "" }}>Actiu</option>
         <option value="0" {{ old("is_active", $center->is_active) == 0 ? "selected" : "" }}>Inactiu</option>
     </select>
+
+    <div class="flex items-center gap-3 mb-3 font-semibold">
+        <svg class="w-6 h-6">
+            <use xlink:href="#icon-desc"></use>
+        </svg>
+        <label for="is_active">Arxius *</label>
+    </div>
+    <input type="file" name="files[]" id="files" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-10" multiple>
 
     <hr class="text-[#AFAFAF]">
 
