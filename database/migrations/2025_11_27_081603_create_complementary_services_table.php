@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('complementary_services', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("center_Id");
             $table->string("type");
-            $table->date("start_date");
-            $table->date("end_date");
+            // $table->date("start_date");
             $table->string("manager_name");
-            $table->string("manager_phone")->nullable();
             $table->string("manager_email");
-            $table->text("staff_and_schedules")->nullable();
-
+            $table->string("manager_phone")->nullable();
+            $table->text("schedules")->nullable();
+            $table->boolean("is_active")->default(true);
             $table->timestamps();
+
+            $table->foreign("center_id")->references("id")->on("centers");
         });
     }
 

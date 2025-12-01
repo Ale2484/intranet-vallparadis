@@ -284,7 +284,7 @@
             <ul class="my-5 w-full">
                 <li>
                     <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
-                        Nou servei
+                        Nou servei general
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
@@ -309,6 +309,48 @@
             </ul>
         </div>
         <a href="{{ route("general-services.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
+    </div>
+    <!-- Container -->
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px]">
+        <div class="flex flex-col items-start w-full">
+            <div class="bg-fuchsia-50 rounded-lg p-2 mb-3">
+                <svg class="w-8 h-8 text-fuchsia-600">
+                    <use xlink:href="#icon-arrows-right-left"></use>
+                </svg>
+            </div>
+    
+            <p class="text-[20px] font-bold text-[#011020]">Serveis complementaris</p>
+            <p class="text-[#013148] text-sm" >Control i seguiment del serveis complementaris del centre</p>
+    
+            <!-- Opciones -->
+            <ul class="my-5 w-full">
+                <li>
+                    <a href="{{ route("complementary-services.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                        Nou servei complementari
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-no-line-arrow"></use>
+                    </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                        Nou professional
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-no-line-arrow"></use>
+                    </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13]">
+                        Nou professional
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-no-line-arrow"></use>
+                    </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <a href="{{ route("complementary-services.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
     <!-- Container -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px]">

@@ -52,7 +52,7 @@ class GeneralServiceController extends Controller
         
         GeneralService::create($validated);
 
-        return redirect()->route("general-services.index")->with("success", "Servei creat correctament");
+        return redirect()->route("general-services.index")->with("success", "Servei general creat correctament");
     }
 
     /**
