@@ -9,7 +9,7 @@ class ComplementaryService extends Model
     protected $table = "complementary_services";
     protected $fillable = [
         "center_id",
-        "type",
+        "name",
         "type",
         "manager_name",
         "manager_email",
@@ -17,4 +17,9 @@ class ComplementaryService extends Model
         "schedules",
         "is_active"
     ];
+
+    public function center()
+    {
+        return $this->belongsTo(Center::class);
+    }
 }

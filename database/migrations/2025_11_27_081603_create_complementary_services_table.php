@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('complementary_services', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("center_Id");
+            $table->unsignedBigInteger("center_id");
+            $table->string("name");
             $table->string("type");
             // $table->date("start_date");
             $table->string("manager_name");

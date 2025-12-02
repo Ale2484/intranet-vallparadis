@@ -50,7 +50,7 @@
 {{-- Modal de filtros --}}
 <x-filter-card :type="'general-services'"/>
 <div class="pagination">
-    {{ $generalServices->links('pagination::tailwind') }}
+    {{ $complementaryServices->links('pagination::tailwind') }}
 </div>
 
 

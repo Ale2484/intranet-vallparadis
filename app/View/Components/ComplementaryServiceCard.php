@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ComplementaryService extends Component
+class ComplementaryServiceCard extends Component
 {
     public $complementaryService;
     /**
@@ -22,6 +22,6 @@ class ComplementaryService extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.complementary-service');
+        return view('components.complementary-service-card');
     }
 }

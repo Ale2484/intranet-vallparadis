@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="text" name="type" id="type" placeholder="Introdueix un tipus" required class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full h-10 @error('type')border-red-600 focus:ring-orange-500 @enderror">
+                    <input type="text" name="type" id="type" placeholder="Introdueix un tipus" value="{{ old("type", $complementaryService->type) }}" required class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full h-10 @error('type')border-red-600 focus:ring-orange-500 @enderror">
                     @error("type")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror

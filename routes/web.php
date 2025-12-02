@@ -14,6 +14,7 @@ use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\GeneralServiceController;
 use App\Http\Controllers\ServiceController;
+use App\Models\ComplementaryService;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -113,7 +114,11 @@ Route::middleware("auth")->group(function () {
 
     // Servicios complementarios
     Route::resource("complementary-services", ComplementaryServiceController::class);
-
+    
+    Route::patch("/complementary-services/{complementaryService}/activate", [ComplementaryService::class, "activate"])->name('complementary-services.activate');
+    Route::patch("/complementary-services/{complementaryService}/deactivate", [ComplementaryService::class, "deactivate"])->name('complementary-services.deactivate');
+    Route::post("/complementary-services/search", [ComplementaryService::class, "search"])->name("complementary-services.search");
+    Route::post("/complementary-services/filter", [ComplementaryService::class, "filter"])->name("complementary-services.filter");
     
     // Documentos
     Route::get("/documents/{document}/download", [DocumentController::class, "download"])->name("document.download");
