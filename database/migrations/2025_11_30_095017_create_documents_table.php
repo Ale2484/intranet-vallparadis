@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("description")->nullable();
             $table->string("path");
             
-            $table->unsignedBigInteger("user");
+            $table->unsignedBigInteger("user")->nullable();
 
             $table->morphs("documentstable");
             
