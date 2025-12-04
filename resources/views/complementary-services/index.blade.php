@@ -19,7 +19,7 @@
 
 <div class="flex items-center flex-row gap-5">
     <!-- Barra de busqueda -->
-    <form action="{{ route("courses.search") }}" method="post" data-type="general-services" class="searchForm w-[95%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-white p-5">
+    <form action="{{ route("complementary-services.search") }}" method="post" data-type="complementary-services" class="searchForm w-[95%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-white p-5">
         @csrf
         <button type="submit" class="cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#AFAFAF" class="size-6">
@@ -48,7 +48,7 @@
     @endforeach
 </div>
 {{-- Modal de filtros --}}
-<x-filter-card :type="'general-services'"/>
+<x-filter-card :type="'complementary-services'"/>
 <div class="pagination">
     {{ $complementaryServices->links('pagination::tailwind') }}
 </div>

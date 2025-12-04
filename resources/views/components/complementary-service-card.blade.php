@@ -52,7 +52,7 @@
                 </svg>
                 Editar
             </a>    
-            <form action="{{ $complementaryService->is_active ? route("general-services.deactivate", $complementaryService) : route("general-services.activate", $complementaryService) }}" method="post" class="w-full sm:w-full md:w-auto lg:w-auto">
+            <form action="{{ $complementaryService->is_active ? route("complementary-services.deactivate", $complementaryService) : route("complementary-services.activate", $complementaryService) }}" method="post" class="w-full sm:w-full md:w-auto lg:w-auto">
                 @csrf
                 @method("PATCH")
                 <button type="submit"

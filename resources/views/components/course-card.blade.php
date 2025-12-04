@@ -10,7 +10,7 @@
             <a href="{{ route("courses.show", $course) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $course->name }}</a>
         </div>
 
-        <p class="w-20 border-1 p-1 text-center {{ $course->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$course->is_active ? "Actiu" : "Inactiu"}}</p>
+        <p class="w-20 border-1 p-1 ml-3 text-center {{ $course->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$course->is_active ? "Actiu" : "Inactiu"}}</p>
     </div>
     <!-- Especificaciones -->
     <div class="flex flex-col gap-3 text-[#0F172A]">
@@ -22,10 +22,19 @@
         </div>
         
         <div class="flex flex-row items-center gap-2 pl-2">
-            <svg class="w-7 h-7">
-                <use xlink:href="#icon-group-user"></use>
-            </svg>
-            <p>{{ $course->users->count() ? $course->users->count() . " participants" :  "Aquest curs no te participants" }}</p>
+            @if ($course->users->count()) 
+                <a href="{{ route('courses.users', $course) }}" class="flex flex-row items-center gap-2 text-orange-500">
+                    <svg class="w-7 h-7">
+                        <use xlink:href="#icon-group-user"></use>
+                    </svg>
+                    <p>{{ $course->users->count() }} participants</p>
+                </a>
+            @else
+                <svg class="w-7 h-7">
+                    <use xlink:href="#icon-group-user"></use>
+                </svg>
+                <p>Aquest curs no te participants</p>
+            @endif
         </div>
         
         <div class="flex flex-row items-center gap-2 pl-2">

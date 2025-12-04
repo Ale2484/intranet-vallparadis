@@ -68,7 +68,21 @@
     all : revert;
     margin: 2px;
 }
-
+.ql-align-center{
+    @apply text-center;
+}
+.ql-align-right{
+    @apply text-right;
+}
+.ql-align-justify{
+    @apply text-justify;
+}
+.ql-font-serif{
+    @apply font-serif;
+}
+.ql-font-monospace{
+    @apply font-mono;
+}
 /* 
 .simple-container{
     @apply border border-[#AFAFAF] bg-white rounded-[15px] p-5;

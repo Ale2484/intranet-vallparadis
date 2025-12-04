@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Mostra el servei")
+@section("title", "Mostra el servei general")
 @section("main")
 <div class="w-full flex items-center justify-center">
     <div class="w-[90%] flex flex-col items-center justify-center">   
@@ -10,7 +10,7 @@
                     <svg class="w-6 h-6 ">
                         <use xlink:href="#icon-arrow-left"></use>
                     </svg>
-                    Tornar a la gestió de serveis
+                    Tornar a la gestió de serveis generals
                 </a>
         
                 <h1 class="text-3xl font-bold text-[#011020]">{{ $generalService->name }}</h1>        
@@ -20,7 +20,7 @@
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-square-pen"></use>
                 </svg>
-                Editar el servei
+                Editar el servei general
             </a>
         </div>
         <!-- Contenedor principal -->
