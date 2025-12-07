@@ -12,13 +12,13 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020] ">Editar professional</h1>
+            <h1 class="text-3xl font-bold text-[#011020] dark:text-white ">Editar professional</h1>
             <p class="text-[#AFAFAF]" >Edita un professional al sistema</p>
         </div>
     </div>
 
     <!-- Form -->
-    <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+    <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 dark:bg-neutral-800 dark:border-neutral-600">
         @include('users.form', [
             'action' => route('users.update', $user),
             'method' => 'PATCH',

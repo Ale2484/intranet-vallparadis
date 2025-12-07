@@ -2,7 +2,7 @@
 @section("title", "Veure els centres")
 @section("main")
 <div class="flex items-center justify-between mb-7">
-    <h1 class="text-3xl font-bold text-[#011020]">Gestió de centres: </h1>
+    <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Gestió de centres:</h1>
 
     <a  href="{{ route("centers.create") }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
         <svg class="w-6 h-6 text-white">
@@ -13,7 +13,7 @@
 </div>
 <div class="flex flex-row gap-5">
     <!-- Barra de busqueda -->
-    <form action="{{ route("centers.search") }}" method="post" data-type="centers" class="searchForm w-[95%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-white p-5">
+    <form action="{{ route("centers.search") }}" method="post" data-type="centers" class="searchForm w-[95%] flex items-center gap-2 border border-[#E6E5DE] rounded-lg h-10 bg-white p-5 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
         @csrf
         <button type="submit" class="cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#AFAFAF" class="size-6">

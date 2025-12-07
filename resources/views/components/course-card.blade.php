@@ -1,5 +1,5 @@
 <!-- Contenedor -->
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col">
+<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600">
     <div class="flex justify-between items-center mb-5">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
@@ -7,32 +7,32 @@
                 <use xlink:href="#icon-book"></use>
             </svg>
             </div>
-            <a href="{{ route("courses.show", $course) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $course->name }}</a>
+            <a href="{{ route("courses.show", $course) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $course->name }}</a>
         </div>
 
         <p class="w-20 border p-1 text-center {{ $course->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$course->is_active ? "Actiu" : "Inactiu"}}</p>
     </div>
     <!-- Especificaciones -->
-    <div class="flex flex-col gap-3 text-[#0F172A]">
+    <div class="flex flex-col gap-3 text-[#0F172A] dark:text-neutral-400">
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-center"></use>
             </svg>
-            <p>{{ $course->center->name }}</p>
+            <p class="dark:text-white">{{ $course->center->name }}</p>
         </div>
         
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-group-user"></use>
             </svg>
-            <p>{{ $course->users->count() ? $course->users->count() . " participants" :  "Aquest curs no te participants" }}</p>
+            <p class="dark:text-white">{{ $course->users->count() ? $course->users->count() . " participants" :  "Aquest curs no te participants" }}</p>
         </div>
         
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-role"></use>
             </svg>
-            <p>{{ $course->type ?? "Aquest curs no te tipus" }}</p>
+            <p class="dark:text-white">{{ $course->type ?? "Aquest curs no te tipus" }}</p>
         </div>
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
@@ -41,10 +41,10 @@
             @php
                 $course->modality = ($course->modality == "presential" ? "Presencial" : ($course->modality == "mixed" ? "Mixte" : ($course->modality == "online" ? "Online" : $course->modality)))
             @endphp
-            <p>{{ $course->modality ?? "Aquest curs no te una modalitat electronic" }}</p>
+            <p class="dark:text-white">{{ $course->modality ?? "Aquest curs no te una modalitat electronic" }}</p>
         </div>
     </div>
-    <p class="text-sm ml-3 my-4">Inici: {{ $course->start_date ? date("d/m/Y", strtotime($course->start_date)) : " - " }} | Fi: {{ $course->end_date ? date("d/m/Y", strtotime($course->end_date)) : " - " }}</p>
+    <p class="text-sm ml-3 my-4 dark:text-white">Inici: {{ $course->start_date ? date("d/m/Y", strtotime($course->start_date)) : " - " }} | Fi: {{ $course->end_date ? date("d/m/Y", strtotime($course->end_date)) : " - " }}</p>
     <div class="flex flex-row gap-5 justify-end">
         <!-- Activar/Desactivar -->
         <div class="w-full sm:w-full md:w-auto lg:w-auto flex gap-5 justify-end flex-col sm:flex-col sm:justify-center md:flex-row">

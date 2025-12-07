@@ -15,7 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
-    protected $paginateNumber = 5;
+    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */

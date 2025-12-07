@@ -1,5 +1,5 @@
 <!-- Contenedor -->
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5">
+<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5 dark:bg-neutral-800 dark:border-neutral-600">
     <div class="flex justify-between items-center">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
@@ -7,35 +7,35 @@
                 <use xlink:href="#icon-maps"></use>
             </svg>
             </div>
-            <a href="{{ route("centers.show", $center) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $center->name }}</a>
+            <a href="{{ route("centers.show", $center) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $center->name }}</a>
         </div>
 
-        <p class="w-20 border-1 p-1 text-center {{ $center->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$center->is_active ? "Actiu" : "Inactiu"}}</p>
+        <p class="w-20 border p-1 text-center {{ $center->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$center->is_active ? "Actiu" : "Inactiu"}}</p>
     </div>
     <!-- Especificaciones -->
-    <div class="flex flex-col gap-3 text-[#0F172A]">
+    <div class="flex flex-col gap-3 text-[#0F172A] dark:text-neutral-400">
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-maps"></use>
             </svg>
-            <p>{{ $center->address }}</p>
+            <p class="dark:text-white">{{ $center->address }}</p>
         </div>
 
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-phone"></use>
             </svg>
-            <p>{{ $center->phone ?? "Aquest centre no te telefon" }}</p>
+            <p class="dark:text-white">{{ $center->phone ?? "Aquest centre no te telefon" }}</p>
         </div>
 
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-mail"></use>
             </svg>
-            <p>{{ $center->email ?? "Aquest centre no te correu electronic" }}</p>
+            <p class="dark:text-white">{{ $center->email ?? "Aquest centre no te correu electronic" }}</p>
         </div>
     </div>
-    <p class="text-sm">Creat: {{ $center->created_at->format("d/m/Y") }} | Actualizat: {{ $center->updated_at->format("d/m/Y") }}</p>
+    <p class="text-sm dark:text-white">Creat: {{ $center->created_at->format("d/m/Y") }} | Actualizat: {{ $center->updated_at->format("d/m/Y") }}</p>
     
     <!-- Activar/Desactivar -->
     <div class="flex flex-row gap-5 justify-end">

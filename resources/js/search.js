@@ -82,9 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Si es en formato card se pone una <p> si es en formato table se pone un tr
             if (visibleResultContainer.closest("table")) {
                 
-                visibleResultContainer.innerHTML = data.htmlContent || `<tr> <td colspan="${document.querySelectorAll('table thead th').length}" class="text-center bg-white py-4">No hay resultados</td> </tr>`;
+                visibleResultContainer.innerHTML = data.htmlContent || `<tr> <td colspan="${document.querySelectorAll('table thead th').length}" class="text-center bg-white py-4">No hi ha resultats</td> </tr>`;
             } else{
-                visibleResultContainer.innerHTML = data.htmlContent || "<p>No hay resultados</p>";
+                visibleResultContainer.innerHTML = data.htmlContent || "<p class='dark:text-white'>No hi ha resultats</p>";
             }
 
             paginationContainer.innerHTML = data.pagination || "";

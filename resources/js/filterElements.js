@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (searchInput) {
                 searchInput.value = "";
             }
-            visibleResultContainer.innerHTML = data.htmlContent || "No hay resultados";
+            visibleResultContainer.innerHTML = data.htmlContent || "<p class='dark:text-white'>No hay resultados<p>";
             paginationContainer.innerHTML = data.pagination || "";
             setTimeout(() => {
                 // Se hace scroll hasta la parte de arriba de la pagina
