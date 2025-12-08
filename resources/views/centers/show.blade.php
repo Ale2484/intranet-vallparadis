@@ -2,7 +2,6 @@
 @section("title", "Mostra el centre")
 @section("main")
 <div class="w-full flex flex-col items-center justify-center">
-    
     <!-- Apartado superior -->
     <div class="w-[60%] flex justify-between items-center">
         <div class="flex flex-col gap-3">
