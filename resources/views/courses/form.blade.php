@@ -88,11 +88,11 @@
                         <p class="dark:text-white">Modalitat:</p>
                     </div>
                 </div>
-                    <select name="modality" id="modality" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('modality') border-red-600 @enderror" required>
+                    <select name="modality" id="modality" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('modality') border-red-600 @enderror" required>
 
-                        <option value="presential" {{ old("modality", $course->modality) == "presential" ? "selected" : "" }}>Presencial</option>
+                        <option value="presencial" {{ old("modality", $course->modality) == "presential" ? "selected" : "" }}>Presencial</option>
                         <option value="online" {{ old("modality", $course->modality) == "online" ? "selected" : "" }}>Online</option>
-                        <option value="mixed" {{ old("modality", $course->modality) == "mixed" ? "selected" : "" }}>Mixte</option>
+                        <option value="mixt" {{ old("modality", $course->modality) == "mixed" ? "selected" : "" }}>Mixte</option>
                     </select>
                     @error("modality")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

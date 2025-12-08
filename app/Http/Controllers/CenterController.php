@@ -25,7 +25,8 @@ class CenterController extends Controller
         $inactivePercentage = round($inactivePercentage, 1);
         
 
-        return view("centers.index", compact("centers", "inactiveCenters", "activeCenters", "activePercentage", "inactivePercentage"));
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        return view("centers.index", compact("centers", "inactiveCenters", "activeCenters", "activePercentage", "inactivePercentage", "viewType"));
     }
     
     public function search(Request $request)
@@ -37,8 +38,15 @@ class CenterController extends Controller
         $searchValue = $request->searchValue;
         $searchCenters = Center::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchCenters)) {
-            foreach ($searchCenters as $center) {
-                $htmlContent .= view("components.center-card", compact("center"))->render();
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($searchCenters as $center) {
+                    $htmlContent .= view("components.center-card", compact("center"))->render();
+                }
+            } else {
+                foreach ($searchCenters as $center) {
+                    $htmlContent .= view("components.center-table", compact("center"))->render();
+                }
             }
             // Se obtiene la paginacion
             $pagination = $searchCenters->links()->render();
@@ -87,8 +95,15 @@ class CenterController extends Controller
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
-        foreach ($centers as $center) {
-            $htmlContent .= view("components.center-card", compact("center"))->render();
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        if ($viewType == "card") {
+            foreach ($centers as $center) {
+                $htmlContent .= view("components.center-card", compact("center"))->render();
+            }
+        } else {
+            foreach ($centers as $center) {
+                $htmlContent .= view("components.center-table", compact("center"))->render();
+            }
         }
         $pagination = $centers->links()->render();
 

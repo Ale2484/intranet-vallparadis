@@ -18,7 +18,8 @@ class GeneralServiceController extends Controller
     {
         $generalServices = GeneralService::orderBy("created_at", "desc")->paginate($this->paginateNumber);
 
-        return view("general-services.index", compact("generalServices"));
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        return view("general-services.index", compact("generalServices", "viewType"));
     }
 
     /**
@@ -128,8 +129,15 @@ class GeneralServiceController extends Controller
         $searchValue = $request->searchValue;
         $searchGeneralServices = GeneralService::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchGeneralServices)) {
-            foreach ($searchGeneralServices as $generalService) {
-                $htmlContent .= view("components.general-services-card", compact("generalService"))->render();
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($searchGeneralServices as $generalService) {
+                    $htmlContent .= view("components.general-services-card", compact("generalService"))->render();
+                }
+            } else {
+                foreach ($searchGeneralServices as $generalService) {
+                    $htmlContent .= view("components.general-services-table", compact("generalService"))->render();
+                }
             }
             // Se obtiene la paginacion
             $pagination = $searchGeneralServices->links()->render();
@@ -177,8 +185,15 @@ class GeneralServiceController extends Controller
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
-        foreach ($generalServices as $generalService) {
-            $htmlContent .= view("components.general-services-card", compact("generalService"))->render();
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        if ($viewType == "card") {
+            foreach ($generalServices as $generalService) {
+                $htmlContent .= view("components.general-services-card", compact("generalService"))->render();
+            }
+        } else {
+            foreach ($generalServices as $generalService) {
+                $htmlContent .= view("components.general-services-table", compact("generalService"))->render();
+            }
         }
         $pagination = $generalServices->links()->render();
 

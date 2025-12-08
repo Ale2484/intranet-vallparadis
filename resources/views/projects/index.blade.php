@@ -114,11 +114,44 @@
         </div>
     </div>
 
+    {{-- Cambiar vista --}}
+    <button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]">
+        <svg class="w-6 h-6">
+            <use xlink:href="#icon-{{ $viewType == "card" ? "table" : "square" }}"></use>
+        </svg>
+    </button>
+
     <!-- Projects Section -->
-    <div class="resultContainer w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
-        @foreach($projects as $project)
-            <x-project-card :project="$project"/>
-        @endforeach
+    <div class="w-full {{ $viewType != "card" ? "hidden" : "" }}">
+        <div class="resultContainer w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
+            @if ($viewType == "card")
+                @foreach($projects as $project)
+                    <x-project-card :project="$project"/>
+                @endforeach
+            @endif
+        </div>
+    </div>
+    <div class="tableContainer {{ $viewType != "table" ? "hidden" : "" }}">
+        <table class="w-full border-collapse">
+            <thead class="bg-[#edecec] dark:bg-neutral-900 dark:text-white">
+                <tr class="border-b border-[#AFAFAF] text-center">
+                    <th class="p-2">Projecte</th>
+                    <th>Responsable</th>
+                    <th>Tipus</th>
+                    <th>Documents</th>
+                    <th>Creat</th>
+                    <th>Estat</th>
+                    <th>Accions</th>
+                </tr>
+            </thead>
+            <tbody class="resultContainer">
+                @if ($viewType == "table")
+                    @foreach($projects as $project)
+                        <x-project-table :project="$project"/>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
     </div>
 </div>
 {{-- Modal de filtros --}}

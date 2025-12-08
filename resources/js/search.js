@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     async function fetchSearch(searchValue = "", page = 1) {
-        console.log("Se busca");
         const visibleResultContainer = Array.from(document.querySelectorAll(".resultContainer")).find(container => {
             return container.offsetParent !== null;
         });
@@ -81,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
             applyRadioFilter = false;
             // Si es en formato card se pone una <p> si es en formato table se pone un tr
             if (visibleResultContainer.closest("table")) {
-                
                 visibleResultContainer.innerHTML = data.htmlContent || `<tr> <td colspan="${document.querySelectorAll('table thead th').length}" class="text-center bg-white py-4">No hi ha resultats</td> </tr>`;
             } else{
                 visibleResultContainer.innerHTML = data.htmlContent || "<p class='dark:text-white'>No hi ha resultats</p>";

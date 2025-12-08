@@ -35,12 +35,44 @@
             Filtres
         </button>
     </div>
+    {{-- Cambiar vista --}}
+    <button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]">
+        <svg class="w-6 h-6">
+            <use xlink:href="#icon-{{ $viewType == "card" ? "table" : "square" }}"></use>
+        </svg>
+    </button>
 </div>
 <!-- Centros -->
-<div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-@foreach ($centers as $center )
-    <x-center-card :center="$center"/>
-@endforeach
+<div class="w-full {{ $viewType != "card" ? "hidden" : "" }}">
+    <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        @if ($viewType == "card")
+            @foreach ($centers as $center )
+                <x-center-card :center="$center"/>
+            @endforeach
+        @endif
+    </div>
+</div>
+<div class="tableContainer {{ $viewType != "table" ? "hidden" : "" }}">
+    <table class="w-full border-collapse">
+        <thead class="bg-[#edecec] dark:bg-neutral-900 dark:text-white">
+            <tr class="border-b border-[#AFAFAF] text-center">
+                <th class="p-2">Centre</th>
+                <th>Adreça</th>
+                <th>Telèfon</th>
+                <th>Correu</th>
+                <th>Creat</th>
+                <th>Estat</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
+        <tbody class="resultContainer">
+            @if ($viewType == "table")
+                @foreach ($centers as $center )
+                    <x-center-table :center="$center"/>
+                @endforeach
+            @endif
+        </tbody>
+    </table>
 </div>
 {{-- Modal de filtros --}}
 <x-filter-card :type="'centers'"/>

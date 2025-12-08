@@ -68,7 +68,7 @@
                 <th class="w-1/12">Participants</th>
                 <th class="w-2/12">Tipus</th>
                 <th class="w-2/12">Modalitat</th>
-                <th class="w-2/12">Dates</th>
+                <th class="w-2/12">Data d'inici</th>
                 <th class="w-2/12">Estat</th>
                 <th class="w-3/12" >Accions</th>
             </tr>
