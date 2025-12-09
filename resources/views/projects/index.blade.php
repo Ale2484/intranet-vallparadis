@@ -13,81 +13,6 @@
             Nou projecte/comissió
         </a>
     </div>
-    <!-- Statistics Cards -->
-    {{-- <div class="w-full flex flex-wrap flex-row items-stretch justify-between">
-        <!-- Totals -->
-        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-23/100 mb-10 min-w-fit">
-            <div class="flex justify-between items-center">
-                <h2 class="text-[#012F4A] font-bold text-[20px]">Projectes/Comissions totals</h2>
-                <div class="bg-[#FF7E13] rounded-lg p-2">
-                    <svg class="w-8 h-8 text-white">
-                        <use xlink:href="#icon-center"></use>
-                    </svg>
-                </div>
-            </div>
-            <p class="text-3xl text-left font-bold py-5">{{ $totalProjects }}</p>
-            <p class="font-bold text-[#335C68] text-md text-left">Projectes i comissions registrats al centre</p>
-        </div>
-
-        <!-- ultimo mes -->
-        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-23/100 mb-10 min-w-fit">
-            <div class="flex justify-between items-center">
-                <h2 class="text-[#012F4A] font-bold text-[20px]">Projectes/Comissions nous</h2>
-                <div class="bg-[#FF7E13] rounded-lg p-2">
-                    <svg class="w-8 h-8 text-white">
-                        <use xlink:href="#icon-plus"></use>
-                    </svg>
-                </div>
-            </div>
-            <p class="text-3xl text-left font-bold py-5">{{ $totalProjects }}</p>
-            <p class="font-bold text-[#335C68] text-md text-left">Afegits durant l'últim mes</p>
-        </div>
-        
-        <!-- Actius -->
-        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-23/100 mb-10 min-w-fit">
-            <div class="flex justify-between items-center">
-                <h2 class="text-[#012F4A] font-bold text-[20px]">Projectes/Comissions actius</h2>
-                <div class="bg-green-600 rounded-lg p-2">
-                    <svg class="w-8 h-8 text-white">
-                        <use xlink:href="#icon-check-circle"></use>
-                    </svg>
-                </div>
-            </div>
-            <p class="text-3xl text-left font-bold py-5">{{ $activeProjects }}</p>
-            <p class="font-bold text-[#335C68] text-md text-left">Registrats al centre</p>
-            <div class="w-full h-5 mt-3 flex justify-between">
-                @if ($totalProjects !=0)
-                    <div class="w-[87%] h-5 bg-[#D9D9D9] rounded-full">
-                        <p style="width:{{ ($activeProjects/$totalProjects)*100 }}%;" class="h-5 bg-[#00A63E] rounded-full">&nbsp;</p>
-                    </div>
-                    <p class="text-sm text-green-600 font-bold">{{($activeProjects/$totalProjects)*100 }}%</p>
-                @endif
-            </div>
-        </div>
-        
-        <!-- Inactius -->
-        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-23/100 mb-10 min-w-fit">
-            <div class="flex justify-between items-center">
-                <h2 class="text-[#012F4A] font-bold text-[20px]">Projectes/Comissions inactius</h2>
-                <div class="bg-red-600 rounded-lg p-2">
-                    <svg class="w-8 h-8 text-white">
-                        <use xlink:href="#icon-cross-circle"></use>
-                    </svg>
-                </div>
-            </div>
-            <p class="text-3xl text-left font-bold py-5">{{ $inactiveProjects }}</p>
-            <p class="font-bold text-[#335C68] text-md text-left">Registrats al centre</p>
-            <div class="w-full h-5 mt-3 flex justify-between">
-                @if ($totalProjects !=0)
-                    <div class="w-[87%] h-5 bg-[#D9D9D9] rounded-full">
-                        <p style="width:{{ ($inactiveProjects/$totalProjects)*100 }}%;" class="h-5 bg-red-600 rounded-full">&nbsp;</p>
-                    </div>
-                    <p class="text-sm text-red-600 font-bold">{{($inactiveProjects/$totalProjects)*100 }}%</p>
-                @endif
-            </div>
-        </div>
-    </div> --}}
-
     <div class="flex flex-row gap-5">
         <!-- Barra de busqueda -->
         <form action="{{ route("projects.search") }}" method="post" data-type="projects" class="searchForm w-[95%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-white p-5">
@@ -112,18 +37,18 @@
                 Filtres
             </button>
         </div>
+        {{-- Cambiar vista --}}
+        <button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]">
+            <svg class="w-6 h-6">
+                <use xlink:href="#icon-{{ $viewType == "card" ? "table" : "square" }}"></use>
+            </svg>
+        </button>
     </div>
 
-    {{-- Cambiar vista --}}
-    <button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]">
-        <svg class="w-6 h-6">
-            <use xlink:href="#icon-{{ $viewType == "card" ? "table" : "square" }}"></use>
-        </svg>
-    </button>
 
-    <!-- Projects Section -->
+    <!-- Projectos -->
     <div class="w-full {{ $viewType != "card" ? "hidden" : "" }}">
-        <div class="resultContainer w-full flex flex-wrap flex-row justify-between items-stretch mt-10">
+        <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             @if ($viewType == "card")
                 @foreach($projects as $project)
                     <x-project-card :project="$project"/>
