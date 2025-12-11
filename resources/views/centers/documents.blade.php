@@ -17,6 +17,10 @@
     <div class="flex flex-row justify-between">
         {{-- documentos --}}
         <div class="w-8/11 flex flex-col gap-4">
+            @if ($documents->count()==0)
+                No hi ha documents al centre
+            @else
+                
             @foreach ($documents as $document)
                 <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full">
                     <div class="border-b-[#AFAFAF] border-b-2 pb-5 flex flex-row flex items-center justify-between">
@@ -69,6 +73,7 @@
                     </div>
                 </div>
             @endforeach
+            @endif
         </div>
         <div class="w-1/4">
             {{-- formulario --}}
