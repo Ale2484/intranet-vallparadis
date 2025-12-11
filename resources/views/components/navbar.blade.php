@@ -67,16 +67,29 @@
         <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10">
     </a>
 
-    <form action="#" method="post" class="w-[65%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-[#FFF9F6] p-5">
+    <form action="{{ route("general-search") }}" method="post" id="general-search" class="w-[65%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-[#FFF9F6] p-5 relative">
         @csrf
-
         <button type="submit" class="cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#013148" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
             </svg>
         </button>
-
         <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class="pl-2 w-full h-10 outline-0">
+        <div id="general-results" class="bg-white rounded-b-lg border-b border-t-none border-2 border-x border-[#E6E5DE] w-full absolute top-9 right-0 px-3 pb-3">
+            <p class="text-[#012F4A] font-bold mt-2">Usuaris:</p>
+            <p class="border-b border-[#E6E5DE] p-2 pl-5">Funciona</p>
+            <p class="border-b border-[#E6E5DE] p-2 pl-5">Funciona</p>
+            <p class="text-[#012F4A] font-bold mt-2">Cursos:</p>
+            <p class="border-b border-[#E6E5DE] p-2 pl-5">Funciona</p>
+            <p class="border-b border-[#E6E5DE] p-2 pl-5">Funciona</p>
+            <p class="text-[#012F4A] font-bold mt-2">Projectes:</p>
+            <p class="border-b border-[#E6E5DE] p-2 pl-5">Funciona</p>
+            <p class="border-b border-[#E6E5DE] p-2 pl-5">Funciona</p>
+            <p class="text-[#012F4A] font-bold mt-2">Serveis generals:</p>
+            <p class="border-b border-[#E6E5DE] p-2 pl-5">Funciona</p>
+            <p class="border-b border-[#E6E5DE] p-2 pl-5">Funciona</p>
+
+        </div>
     </form>
 
     <div class="w-[25%] flex flex-row items-center justify-between px-10">

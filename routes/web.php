@@ -10,6 +10,7 @@ use App\Http\Controllers\UniformityRenovationController;
 use App\Http\Controllers\CommentsTrackingController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\GeneralSearchController;
 use App\Http\Controllers\GeneralServiceController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Auth;
@@ -109,4 +110,6 @@ Route::middleware("auth")->group(function () {
     Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
     Route::post("/general-services/filter", [GeneralServiceController::class, "filter"])->name("general-services.filter");
 
+    //  Buscador
+    Route::post("/general-search", [GeneralSearchController::class, "generalSearch"])->name("general-search");
 });
