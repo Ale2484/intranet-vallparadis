@@ -31,7 +31,7 @@ class CenterDocumentsController extends Controller
         ]);
 
         if (!$request->hasFile('documents')) {
-            return back()->with('error', 'No has subido ningún archivo');
+            return back()->with('error', 'No has pujat cap fitxer');
         }
 
         foreach ($request->file('documents') as $file) {
@@ -49,6 +49,6 @@ class CenterDocumentsController extends Controller
             ]);
         }
 
-        return back()->with('success', 'Documentos subidos correctamente');
+        return back()->with('success', 'Documents pujats correctament');
     }
 }
