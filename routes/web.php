@@ -12,6 +12,7 @@ use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\GeneralServiceController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CenterDocumentsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -109,4 +110,7 @@ Route::middleware("auth")->group(function () {
     Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
     Route::post("/general-services/filter", [GeneralServiceController::class, "filter"])->name("general-services.filter");
 
+    // Documentos del centro
+    Route::get("/centers/{center}/documents", [CenterDocumentsController::class, "index"])->name("centers.documents");
+    Route::post("/centers/{center}/documents/store", [CenterDocumentsController::class, "store"])->name("centers.documents.store");
 });
