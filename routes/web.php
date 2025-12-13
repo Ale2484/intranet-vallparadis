@@ -12,6 +12,9 @@ use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\GeneralServiceController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\RRHHTopicController;
+use App\Http\Controllers\RRHHTrackingController;
+use App\Http\Controllers\RRHHDocsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -109,4 +112,18 @@ Route::middleware("auth")->group(function () {
     Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
     Route::post("/general-services/filter", [GeneralServiceController::class, "filter"])->name("general-services.filter");
 
+    // Temas RRHH
+    Route::resource("rrhh", RRHHTopicController::class)->except(["destroy","update","edit"]);
+
+    Route::get("rrhh/{rrhh}/tracking", [RRHHTrackingController::class, "index"])->name('rrhh.tracking');
+    Route::post("rrhh/{rrhh}/tracking/store", [RRHHTrackingController::class, "store"])->name('rrhh.tracking.store');
+    
+    Route::get("rrhh/{rrhh}/docs", [RRHHDocsController::class, "index"])->name('rrhh.docs');
+    Route::post("rrhh/{rrhh}/docs/store", [RRHHDocsController::class, "Store"])->name('rrhh.docs.store');
+
+    Route::post("/rrhh/search", [RRHHTopicController::class, "search"])->name("rrhh.search");
+    Route::post("/rrhh/filter", [RRHHTopicController::class, "filter"])->name("rrhh.filter");
+
+    Route::patch("/rrhh/{rrhh}/deactivate", [RRHHTopicController::class, "deactivate"])->name("rrhh.deactivate");
+    Route::patch("/rrhh/{rrhh}/activate", [RRHHTopicController::class, "activate"])->name("rrhh.activate");
 });

@@ -1,0 +1,119 @@
+@extends("layouts.app")
+@section("title", "Mostra el centre")
+@section("main")
+<div class="w-full flex flex-col items-center justify-center gap-10">
+    
+    <!-- Apartado superior -->
+    <div class="w-4/5 flex justify-between items-center">
+        <div class="flex flex-col gap-3">
+    
+            <a href="{{ route("rrhh.index") }}" class="flex gap-3 text-[#AFAFAF]">
+                <svg class="w-6 h-6 ">
+                    <use xlink:href="#icon-arrow-left"></use>
+                </svg>
+                Tornar a la gestió de temas pendents
+            </a>
+            <h1 class="text-3xl font-bold text-[#011020]">Detalls de {{ $rrhh->topic }}</h1>
+    
+            <p class="text-[#AFAFAF]">Informació completa del tema pendent</p>
+        </div>
+
+    </div>
+    <!-- Contenedor principal -->
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-4/5 text-[#0F172A] flex items-center justify-between h-30">
+        <p class="text-3xl font-bold text-[#011020]">{{ $rrhh->topic }}</p>
+        <div class="flex justify-end self-start">
+            <p class="w-20 border-1 p-1 text-center {{ $rrhh->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{ $rrhh->is_active ? "Actiu" : "Inactiu"}}</p>
+        </div>
+    </div>
+    <!-- Especificaciones -->
+    <div class="gap-5 justify-center text-[#0F172A] w-1/1 flex flex-col items-center">
+        <div class="w-4/5 flex flex-row gap-5">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%]">
+                <div class="flex gap-5 items-center ">
+                    <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
+                        <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}"></minidenticon-svg>
+                    </div>
+                    <div>
+                        <p>Profesional afectat</p>
+                        <p class="text-2xl font-bold text-[#011020]">{{ $rrhh->userAffectedRelation->name }}</p>
+                        <div>
+                            <div class="flex items-center text-[#011020] justify-between">
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-mail"></use>
+                                </svg>
+                                <span class="ml-2">{{ $rrhh->userAffectedRelation->email }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%]">
+                <div class="flex gap-5 items-center ">
+                    <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
+                        <minidenticon-svg username="{{ md5($rrhh->userRegisterRelation->id) }}"></minidenticon-svg>
+                    </div>
+                    <div>
+                        <p>Profesional registrador</p>
+                        <p class="text-2xl font-bold text-[#011020]">{{ $rrhh->userRegisterRelation->name }}</p>
+                        <div>
+                            <div class="flex items-center text-[#011020] justify-between">
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-mail"></use>
+                                </svg>
+                                <span class="ml-2">{{ $rrhh->userRegisterRelation->email }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-4/5 flex flex-row gap-5">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] flex flex-col gap-3">
+                <div class="flex gap-5 items-center">
+                    <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
+                        <svg class="w-7 h-7 text-[#FF7E13]">
+                            <use xlink:href="#icon-maps"></use>
+                        </svg>
+                    </div>
+                    <p class="text-2xl font-bold text-[#011020]">Derivat</p>
+                </div>
+                <div class="overflow-hidden break-words whitespace-normal break-all">
+                    {{ $rrhh->derivative }}
+                </div>
+            </div>
+    
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] flex flex-col gap-3">
+                <div class="flex gap-5 items-center">
+                    <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
+                        <svg class="w-7 h-7 text-[#FF7E13]">
+                            <use xlink:href="#icon-desc"></use>
+                        </svg>
+                    </div>
+                    <p class="text-2xl font-bold text-[#011020]">Descripcio</p>
+                </div>
+                <div class="overflow-hidden break-words whitespace-normal break-all">
+                    {{ $rrhh->description }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- botones --}}
+    <div class="flex w-4/5 justify-end items-center gap-3">
+        <a href="{{ route("rrhh.tracking", $rrhh) }}" class="bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2">
+            <svg class="w-6 h-6">
+                <use xlink:href="#icon-other-eye"></use>
+            </svg>
+            Seguiment
+        </a>
+    
+        <a href="{{ route("rrhh.docs", $rrhh) }}" class="bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2">
+            <svg class="w-6 h-6">
+                <use xlink:href="#icon-desc"></use>
+            </svg>
+            Documents
+        </a>
+    </div>
+</div>
+@endsection

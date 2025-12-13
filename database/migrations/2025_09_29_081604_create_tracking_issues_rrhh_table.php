@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger("issue");
             $table->unsignedBigInteger("user");
             $table->string("description");
-            $table->string("docs");
 
             $table->timestamps();
 
