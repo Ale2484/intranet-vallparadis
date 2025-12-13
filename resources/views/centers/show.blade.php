@@ -4,7 +4,7 @@
 <div class="w-full flex flex-col items-center justify-center">
     
     <!-- Apartado superior -->
-    <div class="md:w-[60%] w-full flex justify-between items-center">
+    <div class="md:w-[80%] w-full flex justify-between items-center">
         <div class="flex flex-col gap-3">
     
             <a href="{{ route("centers.index") }}" class="flex gap-3 text-[#AFAFAF]">
@@ -26,7 +26,7 @@
 
     </div>
     <!-- Contenedor principal -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 md:w-[60%] w-full text-[#0F172A] mb-10 dark:bg-neutral-800 dark:border-neutral-600">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 md:w-[80%] w-full text-[#0F172A] mb-10 dark:bg-neutral-800 dark:border-neutral-600">
         <div class="flex justify-end">
             <p class="w-20 border p-1 text-center {{ $center->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{ $center->is_active ? "Actiu" : "Inactiu"}}</p>
         </div>
@@ -40,9 +40,8 @@
         </div>
     </div>
     <!-- Especificaciones -->
-    <div class="md:w-[60%] w-full flex flex-row gap-5 justify-center text-[#0F172A] ">
-
-        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] dark:bg-neutral-800 dark:border-neutral-600">
+    <div class="md:w-[80%] w-full flex flex-col md:flex-row gap-5 justify-center text-[#0F172A] ">
+        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 md:w-[50%] w-full dark:bg-neutral-800 dark:border-neutral-600">
             <div class="flex items-center gap-5 mb-5">
                 <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                     <svg class="w-7 h-7 text-[#FF7E13]">
@@ -73,7 +72,7 @@
             </div>
         </div>
 
-        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] dark:bg-neutral-800 dark:border-neutral-600">
+        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 md:w-[50%] w-full dark:bg-neutral-800 dark:border-neutral-600">
             <div class="flex items-center gap-5 mb-5">
                 <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                     <svg class="w-7 h-7 text-[#FF7E13]">

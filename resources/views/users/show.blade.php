@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("title", "Mostrar l'usuari")
 @section('main')
-<div class="min-w-fit w-2/3 mx-auto flex flex-col mb-7 gap-5">
+<div class="min-w-fit w-full md:w-2/3 mx-auto flex flex-col mb-7 gap-5">
     <!-- Header -->
     <div class="w-full flex flex-row mb-8 justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
@@ -22,11 +22,11 @@
         </select>
     </div>
 
-    <div class="flex justify-between items-start gap-10">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-10 w-full">
         <!-- Información del Profesional -->
-        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3 w-5/7 dark:bg-neutral-800 dark:border-neutral-600">
+        <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3 w-full md:w-5/7 dark:bg-neutral-800 dark:border-neutral-600">
             <!-- Información principal -->
-            <div class="border-b-1 border-b-gray-600">
+            <div class="border-b border-b-gray-600">
                 <div class="flex items-center gap-4 mb-6">
                     <!-- Avatar -->
                     <div>
@@ -152,7 +152,7 @@
             </div>
         </div>
 
-        <div class="w-2/7 flex flex-col gap-5">
+        <div class="md:w-2/7 w-full flex flex-col gap-5">
             {{-- Seguridad y acceso --}}
             <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3 dark:bg-neutral-800 dark:border-neutral-600">
                 <div class="flex items-center gap-2">

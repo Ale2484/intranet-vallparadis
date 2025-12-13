@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div>
-                    <select name="center_id" id="center_id" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:bg-neutral-800 dark:border-neutral-600 dark:text-white @error('center_id') border-red-600 @enderror" required>
+                    <select name="center_id" id="center_id" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:bg-neutral-800 dark:border-neutral-600 dark:text-white @error('center_id') border-red-600 @enderror" required>
                         <option value="" {{ old("center_id", $course->center_id) ? "" : "selected" }} hidden>Selecciona un centre</option>
                         @if (count($centers) > 0 )
                             @foreach ($centers as $center)
@@ -135,7 +135,7 @@
                         <svg class="w-6 h-6 dark:text-neutral-400">
                             <use xlink:href="#icon-calendar"></use>
                         </svg>
-                        <p class="dark:text-white">Data d'inici:</p>
+                        <p class="dark:text-white">Data inici:</p>
                     </div>
                 </div>
                 <input type="date" name="start_date" id="start_date" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('start_date') border-red-600 @enderror" value="{{ old("start_date", $course->start_date) }}" required>
@@ -149,7 +149,7 @@
                         <svg class="w-6 h-6 dark:text-neutral-400">
                             <use xlink:href="#icon-calendar"></use>
                         </svg>
-                        <p class="dark:text-white">Data de finalització:</p>
+                        <p class="dark:text-white">Data finalització:</p>
                     </div>
                 </div>
                 <input type="date" name="end_date" id="end_date" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('end_date') border-red-600 @enderror" value="{{ old("end_date", $course->end_date) }}" required>

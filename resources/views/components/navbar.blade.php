@@ -61,7 +61,7 @@
 </nav>
 
 <!-- Menu superior -->
-<div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm md:pl-28 dark:bg-neutral-850 dark:border dark:border-slate-800">
+<div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm md:pl-28 dark:bg-neutral-850 dark:border dark:border-neutral-600">
 
     <a href="{{ route("dashboard") }}">
         <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10 hidden md:block">

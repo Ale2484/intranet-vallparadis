@@ -4,7 +4,7 @@
 <div>
     <!-- Header -->
     <div class="flex mb-7 items-center justify-between">
-        <h1 class="text-3xl font-bold text-[#011020]">Gestió de projectes i comissions:</h1>
+        <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Gestió de projectes i comissions:</h1>
         <a href="{{ route('projects.create') }}" 
             class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">
             <svg class="w-6 h-6">
