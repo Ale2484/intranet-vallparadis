@@ -74,7 +74,7 @@
                 <div class="flex gap-5 items-center">
                     <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                         <svg class="w-7 h-7 text-[#FF7E13]">
-                            <use xlink:href="#icon-maps"></use>
+                            <use xlink:href="#icon-d20"></use>
                         </svg>
                     </div>
                     <p class="text-2xl font-bold text-[#011020]">Derivat</p>

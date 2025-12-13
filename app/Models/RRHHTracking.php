@@ -17,4 +17,9 @@ class RRHHTracking extends Model
     {
         return $this->belongsTo(RRHHTopic::class, 'issue');
     }
+
+    public function userRelation()
+    {
+        return $this->belongsTo(User::class, 'user');
+    }
 }

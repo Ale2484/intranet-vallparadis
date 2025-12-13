@@ -33,8 +33,11 @@ class RRHHTopic extends Model
         return $this->belongsTo(User::class, 'user_register');
     }
 
-
     public function tracking() : HasOne {
         return $this->hasOne(RRHHTracking::class);
+    }
+
+    public function documents() {
+        return $this->morphMany(Document::class, 'documentstable');
     }
 }

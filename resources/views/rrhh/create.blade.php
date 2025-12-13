@@ -49,7 +49,7 @@
 
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <svg class="w-6 h-6">
-                    <use xlink:href="#icon-maps"></use>
+                    <use xlink:href="#icon-chat-bubble-bottom-center"></use>
                 </svg>
                 <label for="topic">Tema</label>
             </div>
@@ -57,7 +57,7 @@
 
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <svg class="w-6 h-6">
-                    <use xlink:href="#icon-phone"></use>
+                    <use xlink:href="#icon-d20"></use>
                 </svg>
                 <label for="derivative">Derivat</label>
             </div>

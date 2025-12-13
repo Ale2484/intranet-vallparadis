@@ -10,9 +10,13 @@ class RRHHDocsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(RRHHTopic $rrhh)
     {
-        //
+
+        $documents = $rrhh->documents()
+            ->orderBy('created_at', 'desc')
+            ->paginate(6);
+        return view("rrhh.documents", compact("rrhh", "documents"));
     }
 
     /**
@@ -26,9 +30,32 @@ class RRHHDocsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, RRHHTopic $rrhh)
     {
-        //
+        $validated = $request->validate([
+            'documents.*' => 'required|file|max:20480',
+        ]);
+
+        if (!$request->hasFile('documents')) {
+            return back()->with('error', 'No has pujat cap fitxer');
+        }
+
+        foreach ($request->file('documents') as $file) {
+
+            // Guardar archivo en storage/app/public/center-documents
+            $path = $file->store('rrhh-documents', 'public');
+
+            // Crear DOCUMENTO usando relación morph
+            $rrhh->documents()->create([
+                'name'        => $file->getClientOriginalName(),
+                'type'        => $validated['type'] ?? $file->getMimeType(),
+                'description' => $validated['description'] ?? null,
+                'path'        => $path,
+                'user'        => auth()->id(),
+            ]);
+        }
+
+        return back()->with('success', 'Documents pujats correctament');
     }
 
     /**

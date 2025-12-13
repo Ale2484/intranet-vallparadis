@@ -4,7 +4,7 @@
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
             <svg class="w-8 h-8 text-[#FF7E13]">
-                <use xlink:href="#icon-maps"></use>
+                <use xlink:href="#icon-group-user"></use>
             </svg>
             </div>
             <a href="{{ route("rrhh.show", $rrhh) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $rrhh->topic }}</a>
@@ -39,7 +39,7 @@
             <div class="flex flex-col gap-4">
                 <div class="flex items-center gap-4">
                     <svg class="w-6 h-6">
-                        <use xlink:href="#icon-desc"></use>
+                        <use xlink:href="#icon-d20"></use>
                     </svg>
                     <h2 class="text-[#012F4A] font-bold text-[20px]">Derivat</h2>
                 </div>

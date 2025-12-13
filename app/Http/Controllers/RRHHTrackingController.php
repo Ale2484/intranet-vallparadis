@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\RRHHTracking;
+use App\Models\RRHHTopic;
 use Illuminate\Http\Request;
 
 class RRHHTrackingController extends Controller
@@ -10,9 +11,16 @@ class RRHHTrackingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(RRHHTopic $rrhh)
     {
-        //
+        $comments=RRHHTracking::where('issue', $rrhh->id)->get()->sortByDesc('created_at');
+        $total=$comments->count();
+
+        return view("rrhh.tracking", compact(
+            "rrhh",
+            "comments",
+            "total"
+        ));
     }
 
     /**
@@ -26,9 +34,20 @@ class RRHHTrackingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, RRHHTopic $rrhh)
     {
-        //
+        $validated = $request->validate([
+            'comment' => 'required|string'
+        ]);
+
+        
+        RRHHTracking::create([
+            'user' => auth()->user()->id,
+            'issue' => $rrhh->id,
+            'description'=> $validated['comment']
+        ]);
+        
+        return redirect()->route('rrhh.tracking', $rrhh->id)->with('success', 'Comentari creat correctament.');
     }
 
     /**
