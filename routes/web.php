@@ -15,6 +15,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\RRHHTopicController;
 use App\Http\Controllers\RRHHTrackingController;
 use App\Http\Controllers\RRHHDocsController;
+use App\Http\Controllers\CenterDocumentsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -112,6 +113,10 @@ Route::middleware("auth")->group(function () {
     Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
     Route::post("/general-services/filter", [GeneralServiceController::class, "filter"])->name("general-services.filter");
 
+    // Documentos del centro
+    Route::get("/centers/{center}/documents", [CenterDocumentsController::class, "index"])->name("centers.documents");
+    Route::post("/centers/{center}/documents/store", [CenterDocumentsController::class, "store"])->name("centers.documents.store");
+    
     // Temas RRHH
     Route::resource("rrhh", RRHHTopicController::class)->except(["destroy","update","edit"]);
 
