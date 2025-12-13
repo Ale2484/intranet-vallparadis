@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('external_contacts', function (Blueprint $table) {
             $table->id();
-            $table->string("center_id");
-            $table->enum("category", ["assistencial ", "serveis_generals"]);
+            $table->unsignedBigInteger("center_id");
+            $table->enum("category", ["assistencial ", "serveis generals"]);
             $table->string("reason");
             $table->string("company_or_department");
             $table->string("contact_person");
             $table->string("phone")->nullable();
             $table->string("email");
             $table->boolean("is_active")->default(true);
-            $table->text("observations")->nullable();
+            $table->text(column: "observations")->nullable();
             $table->timestamps();
 
             $table->foreign("center_id")->references("id")->on("centers");

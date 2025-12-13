@@ -13,6 +13,7 @@ use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\GeneralServiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CenterDocumentsController;
+use App\Http\Controllers\ExternalContactController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -65,6 +66,11 @@ Route::middleware("auth")->group(function () {
     Route::patch("/centers/{center}/activate", [CenterController::class, "activate"])->name("centers.activate");
     Route::post("/centers/search", [CenterController::class, "search"])->name("centers.search");
     Route::post("/centers/filter", [CenterController::class, "filter"])->name("centers.filter");
+
+    // Contactos externos
+    Route::resource("external-contacts", ExternalContactController::class);
+    Route::patch("/external-contacts/{externalContact}/deactivate", [ExternalContactController::class, "deactivate"])->name("external-contacts.deactivate");
+    Route::patch("/external-contacts/{externalContact}/activate", [ExternalContactController::class, "activate"])->name("external-contacts.activate");
 
     // Proyectos  
     Route::resource('projects', ProjectController::class);
