@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("phone")->nullable();
             $table->string("email");
             $table->boolean("is_active")->default(true);
-            $table->text(column: "observations")->nullable();
+            $table->text("observations")->nullable();
             $table->timestamps();
 
             $table->foreign("center_id")->references("id")->on("centers");
