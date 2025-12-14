@@ -47,6 +47,9 @@
         <x-general-services-card :generalService="$generalService"/>
     @endforeach
 </div>
+@if ($generalServices->isEmpty()) 
+    <p class="text-center text-gray-600 mt-2">No s'han trobat serveis generals.</p>
+@endif
 {{-- Modal de filtros --}}
 <x-filter-card :type="'general-services'"/>
 <div class="pagination">
