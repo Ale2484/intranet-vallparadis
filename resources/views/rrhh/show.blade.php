@@ -20,7 +20,7 @@
 
     </div>
     <!-- Contenedor principal -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-4/5 text-[#0F172A] flex items-center justify-between h-30">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-4/5 text-[#0F172A] flex items-center justify-between h-30 min-w-min">
         <p class="text-3xl font-bold text-[#011020]">{{ $rrhh->topic }}</p>
         <div class="flex justify-end self-start">
             <p class="w-20 border-1 p-1 text-center {{ $rrhh->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{ $rrhh->is_active ? "Actiu" : "Inactiu"}}</p>
@@ -29,7 +29,7 @@
     <!-- Especificaciones -->
     <div class="gap-5 justify-center text-[#0F172A] w-1/1 flex flex-col items-center">
         <div class="w-4/5 flex flex-row gap-5">
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%]">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] min-w-min">
                 <div class="flex gap-5 items-center ">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
                         <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}"></minidenticon-svg>
@@ -49,7 +49,7 @@
                 </div>
             </div>
     
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%]">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] min-w-min">
                 <div class="flex gap-5 items-center ">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
                         <minidenticon-svg username="{{ md5($rrhh->userRegisterRelation->id) }}"></minidenticon-svg>
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="w-4/5 flex flex-row gap-5">
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] flex flex-col gap-3">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] flex flex-col gap-3 min-w-min">
                 <div class="flex gap-5 items-center">
                     <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                         <svg class="w-7 h-7 text-[#FF7E13]">
@@ -84,7 +84,7 @@
                 </div>
             </div>
     
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] flex flex-col gap-3">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] flex flex-col gap-3 min-w-min">
                 <div class="flex gap-5 items-center">
                     <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                         <svg class="w-7 h-7 text-[#FF7E13]">

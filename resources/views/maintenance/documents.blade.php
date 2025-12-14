@@ -4,14 +4,14 @@
 <div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10">
     <div class="w-full flex flex-row justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
-            <a href="{{ route('rrhh.show', $rrhh->id) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
+            <a href="{{ route('maintenance.show', $maintenance->id) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
-                Tornar a la gestió del tema pendent
+                Tornar a la gestió del manteniment
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Documents de {{ $rrhh->topic }}</h1>
-            <p class="text-[#AFAFAF]" >Documents del tema pendent seleccionat</p>
+            <h1 class="text-3xl font-bold text-[#011020]">Documents de {{ $maintenance->topic }}</h1>
+            <p class="text-[#AFAFAF]" >Documents del manteniment seleccionat</p>
         </div>
     </div>
     <div class="flex flex-row justify-between gap-5">
@@ -66,10 +66,10 @@
                         </div>
                     </div>
                     <div class="text-[#5E6468]">
-                        Afegeix un nou document per al centre: {{ $rrhh->name }}
+                        Afegeix un nou document per al centre: {{ $maintenance->name }}
                     </div>
                 </div>
-                <form action="{{ route('rrhh.docs.store', $rrhh->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7" enctype="multipart/form-data" >
+                <form action="{{ route('maintenance.docs.store', $maintenance->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7" enctype="multipart/form-data" >
                         @csrf
                         @method("POST")
                         <div class="flex flex-col gap-3">

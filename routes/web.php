@@ -16,6 +16,9 @@ use App\Http\Controllers\RRHHTopicController;
 use App\Http\Controllers\RRHHTrackingController;
 use App\Http\Controllers\RRHHDocsController;
 use App\Http\Controllers\CenterDocumentsController;
+use App\Http\Controllers\MaintenanceController;
+use App\Http\Controllers\MaintenanceTrackingController;
+use App\Http\Controllers\MaintenanceDocsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -131,4 +134,21 @@ Route::middleware("auth")->group(function () {
 
     Route::patch("/rrhh/{rrhh}/deactivate", [RRHHTopicController::class, "deactivate"])->name("rrhh.deactivate");
     Route::patch("/rrhh/{rrhh}/activate", [RRHHTopicController::class, "activate"])->name("rrhh.activate");
+    
+    // mantenimiento
+    Route::resource("maintenance", MaintenanceController::class)->except(["destroy","update","edit"]);
+
+    Route::get("maintenance/{maintenance}/tracking", [MaintenanceTrackingController::class, "index"])->name('maintenance.tracking');
+    Route::post("maintenance/{maintenance}/tracking/store", [MaintenanceTrackingController::class, "store"])->name('maintenance.tracking.store');
+    
+    Route::get("maintenance/{maintenance}/docs", [MaintenanceDocsController::class, "index"])->name('maintenance.docs');
+    Route::post("maintenance/{maintenance}/docs/store", [MaintenanceDocsController::class, "Store"])->name('maintenance.docs.store');
+
+    Route::post("/maintenance/search", [MaintenanceController::class, "search"])->name("maintenance.search");
+    Route::post("/maintenance/filter", [MaintenanceController::class, "filter"])->name("maintenance.filter");
+
+    Route::patch("/maintenance/{maintenance}/deactivate", [MaintenanceController::class, "deactivate"])->name("maintenance.deactivate");
+    Route::patch("/maintenance/{maintenance}/activate", [MaintenanceController::class, "activate"])->name("maintenance.activate");
+
+
 });

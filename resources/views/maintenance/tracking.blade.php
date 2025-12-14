@@ -5,14 +5,14 @@
     <!-- Header -->
     <div class="w-full flex flex-row justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
-            <a href="{{ route('rrhh.show', $rrhh) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
+            <a href="{{ route('maintenance.show', $maintenance) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
-                Tornar al tema pendent
+                Tornar al manteniment
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Seguimient de: {{ $rrhh->topic }}</h1>
-            <p class="text-[#AFAFAF]" >Comentaris del tema pendent</p>
+            <h1 class="text-3xl font-bold text-[#011020]">Seguimient de: {{ $maintenance->topic }}</h1>
+            <p class="text-[#AFAFAF]" >Comentaris del manteniment</p>
         </div>
     </div>
     <div class="flex flex-col gap-5">
@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            @unless ($rrhh->end_link)
+            @unless ($maintenance->end_link)
                 <!-- Formulario -->
                 <div class="flex flex-col justify-center w-1/4 h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5 gap-5 max-h-[640px] min-w-min">
                     <div class="pb-3 border-b-1 border-[#AFAFAF] flex flex-col gap-2">
@@ -88,10 +88,10 @@
                             </div>
                         </div>
                         <div class="text-[#5E6468]">
-                            Afegeix un comentari nou dins del tema pendent: {{ $rrhh->topic }}
+                            Afegeix un comentari nou dins del manteniment: {{ $maintenance->topic }}
                         </div>
                     </div>
-                    <form action="{{ route('rrhh.tracking.store', $rrhh) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7">
+                    <form action="{{ route('maintenance.tracking.store', $maintenance) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7">
                         @csrf
                         @method("POST")
                         <div class="flex flex-col gap-3">
