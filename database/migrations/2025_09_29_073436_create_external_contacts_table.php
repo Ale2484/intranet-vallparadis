@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("center_id");
             $table->enum("category", ["assistencial ", "serveis generals"]);
-            $table->string("reason");
+            $table->string("reason")->nullable();
             $table->string("company_or_department");
             $table->string("contact_person");
             $table->string("phone")->nullable();

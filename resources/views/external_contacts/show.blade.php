@@ -21,7 +21,7 @@
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-square-pen"></use>
             </svg>
-            Editar el conctacte
+            Editar el contacte
         </a>
 
     </div>
@@ -70,7 +70,7 @@
                 </svg>
                 <div>
                     <p class="font-semibold">Telèfon:</p>
-                    <p>{{ $externalContact->phone ?? "Aquest centre no te telèfon"}}</p>
+                    <p>{{ $externalContact->phone ?? "Aquest contacte no te telèfon"}}</p>
                 </div>
             </div>
             <hr class="text-[#AFAFAF] my-5">
@@ -80,7 +80,7 @@
                 </svg>
                 <div>
                     <p class="font-semibold">Email:</p>
-                    <p>{{ $externalContact->email ?? "Aquest centre no te email"}}</p>
+                    <p>{{ $externalContact->email ?? "Aquest contacte no te email"}}</p>
                 </div>
             </div>
         </div>
@@ -89,12 +89,29 @@
             <div class="flex items-center gap-5 mb-5">
                 <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                     <svg class="w-7 h-7 text-[#FF7E13]">
-                        <use xlink:href="#icon-eye"></use>
+                        <use xlink:href="#icon-notebook"></use>
                     </svg>
                 </div>
-                <p class="font-bold text-lg">Observacions</p>
+                <p class="font-bold text-lg">Altres dades</p>
             </div>
-            <p>{{ $externalContact->observations }}</p>
+            <div class="flex items-center gap-3 mb-5 pl-3">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-role"></use>
+                </svg>
+                <div>
+                    <p class="font-semibold">Empresa o departament:</p>
+                    <p>{{ $externalContact->company_or_department ?? "Aquest contacte no te empresa o deppartament"}}</p>
+                </div>
+            </div>
+            <hr class="text-[#AFAFAF] my-5">
+            <div class="flex items-center gap-3 mb-5 pl-3">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-eye"></use>
+                </svg>
+                <div>
+                    <p class="font-semibold">Observacions:</p>
+                    <p>{{ $externalContact->observations ?? "Aquest contacte no te observacions"}}</p>
+                </div>
             </div>
         </div>
     </div>

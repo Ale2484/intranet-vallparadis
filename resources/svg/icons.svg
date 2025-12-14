@@ -298,4 +298,10 @@
 <symbol id="icon-category" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
   <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4zm10 0h6v6h-6zM4 14h6v6H4zm10 3a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/>
 </symbol>
+
+<symbol id="icon-notebook" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+  <g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="3">
+    <path d="M10 6a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v36a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2z"/>
+    <path stroke-linecap="round" d="M34 6v36M6 14h8M6 24h8M6 34h8M27 4h12M27 44h12"/>
+  </g>
 </svg>

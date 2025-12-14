@@ -11,7 +11,7 @@
                     <use xlink:href="#icon-user"></use>
                 </svg>
                 <label for="contact_person" class="font-medium text-gray-700 flex items-center gap-2">
-                    Persona de Contacte *
+                    Persona de contacte *
                 </label>
             </div>
             <input type="text" name="contact_person" id="contact_person" placeholder="Nom de la persona de contacte" value="{{ old('contact_person', $externalContact->contact_person) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('contact_person') border-red-500 @enderror" required>
@@ -26,7 +26,7 @@
                     <use xlink:href="#icon-role"></use>
                 </svg>
                 <label for="company_or_department" class="font-medium text-gray-700 flex items-center gap-2">
-                    Empresa o Departament *
+                    Empresa o departament *
                 </label>
             </div>
             <input type="text" name="company_or_department" id="company_or_department" placeholder="Empresa o departament" value="{{ old('company_or_department', $externalContact->company_or_department) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('company_or_department') border-red-500 @enderror" required>
@@ -59,7 +59,7 @@
                     Telèfon
                 </label>
             </div>
-            <input type="text" name="phone" id="phone" placeholder="Telèfon del contacte" value="{{ old('phone', $externalContact->phone) }}"  class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('phone') border-red-500 @enderror" maxlength="20">
+            <input type="text" name="phone" id="phone" placeholder="Telèfon del contacte" value="{{ old('phone', $externalContact->phone) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('phone') border-red-500 @enderror" pattern="^\+\d{2,3}\s\d{9}$"  title="El número de telèfon ha de tenir el format +00 000000000 o +000 000000000">
             @error('phone')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
