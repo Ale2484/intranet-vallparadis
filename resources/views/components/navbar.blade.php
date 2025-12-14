@@ -59,7 +59,7 @@
         <li>
             <a href="{{ route("complementary-services.index") }}" class="{{ request()->is('complementary-services*') ? "menu-option-selected" : "menu-option" }}">
             <svg class="w-7 h-7">
-                <use xlink:href="#icon-arrows-right-left"></use>
+                <use xlink:href="#icon-cog-8-tooth"></use>
             </svg>
                 <span class="menu-text hidden text-nowrap">Serveis complementaris</span>
             </a>

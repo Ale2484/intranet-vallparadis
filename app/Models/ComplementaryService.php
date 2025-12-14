@@ -22,4 +22,9 @@ class ComplementaryService extends Model
     {
         return $this->belongsTo(Center::class);
     }
+
+    public function documents()
+    {
+        return $this->morphMany(Document::class, "documentstable");
+    }
 }

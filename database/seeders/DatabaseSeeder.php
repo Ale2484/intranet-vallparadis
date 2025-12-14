@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             //UniformityRenovationSeeder::class,
             CourseSeeder::class,
             CourseUserSeeder::class,
-            CourseScheduleSeeder::class
+            CourseScheduleSeeder::class,
+            ComplementaryServiceSeeder::class
 
         ]);
         // User::factory(10)->create();

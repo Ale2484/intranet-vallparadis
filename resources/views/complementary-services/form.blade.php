@@ -50,7 +50,7 @@
         </div>
         {{-- Contenedor de 2 --}}
         <div class="flex flex-row gap-5 items-start mb-1">
-            <div class="w-1/2 flex flex-col gap-2">
+            <div class="w-2/2 flex flex-col gap-2">
                 <div class="flex flex-row">
                     <div class="flex flex-row items-center gap-2">
                         <svg class="w-6 h-6">

@@ -16,11 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger("center_id");
             $table->string("name");
             $table->string("type");
-            // $table->date("start_date");
             $table->string("manager_name");
             $table->string("manager_email");
             $table->string("manager_phone")->nullable();
             $table->text("schedules")->nullable();
+            $table->text("observations")->nullable();
             $table->boolean("is_active")->default(true);
             $table->timestamps();
 

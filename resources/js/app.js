@@ -12,3 +12,4 @@ import { minidenticonSvg } from 'https://cdn.jsdelivr.net/npm/minidenticons@4.2.
 import "./evaluationTable"
 import "./excel"
 import "./richTextEditor"
+import "./uploadFile"

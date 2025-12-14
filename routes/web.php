@@ -121,5 +121,6 @@ Route::middleware("auth")->group(function () {
     Route::patch("/complementary-services/{complementaryService}/deactivate", [ComplementaryServiceController::class, "deactivate"])->name('complementary-services.deactivate');
     Route::post("/complementary-services/search", [ComplementaryServiceController::class, "search"])->name("complementary-services.search");
     Route::post("/complementary-services/filter", [ComplementaryServiceController::class, "filter"])->name("complementary-services.filter");
-    
+    Route::post("/complementary-services/{complementaryService}/upload-file", [ComplementaryServiceController::class, "uploadFile"])->name("complementary-services.documents.store");
+    Route::get("/complementary-services/documents/{baseName}/", [ComplementaryServiceController::class, "downloadFile"])->name("complementary-services.documents.download");
 });

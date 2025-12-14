@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Center;
 use App\Models\ComplementaryService;
+use App\Models\Document;
 use Illuminate\Http\Request;
 
 class ComplementaryServiceController extends Controller
@@ -118,7 +119,8 @@ class ComplementaryServiceController extends Controller
      */
     public function show(ComplementaryService $complementaryService)
     {
-        return view("complementary-services.show", compact("complementaryService"));
+        $complementaryServiceDocuments = $complementaryService->documents()->orderBy("created_at", "desc")->get();
+        return view("complementary-services.show", compact("complementaryService", "complementaryServiceDocuments"));
     }
 
     /**
@@ -148,14 +150,6 @@ class ComplementaryServiceController extends Controller
         $complementaryService->update($validated);
         return redirect()->route("complementary-services.index")->with("success", "Servei complementari modificat correctament");
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
     public function deactivate(ComplementaryService $complementaryService)
     {
         $complementaryService->update(["is_active" => false]);
@@ -166,5 +160,40 @@ class ComplementaryServiceController extends Controller
     {
         $complementaryService->update(["is_active" => true]);
         return redirect()->route("complementary-services.index")->with("success", "Servei complementari habilitat correctament");
+    }
+
+    public function uploadFile(Request $request, ComplementaryService $complementaryService) {
+        $validated = $request->validate([
+            "type" => "nullable|string|max:255",
+            "description" => "nullable|string|max:255",
+            "files*" => "required|file|max:20480",
+        ]);
+        if ($request->hasFile("files")) {
+            foreach ($request->file("files") as $file) {
+                $modifiedFileName = now()->format('y_m_d') . "_" . $file->getClientOriginalName();
+                $path = $file->store("center-documents", "public");
+    
+                $complementaryService->documents()->create([
+                    "name" => $modifiedFileName,
+                    "type" => $validated['type'] ?? $file->getMimeType(),
+                    "description" => $validated["description"] ?? null,
+                    "path" => $path,
+                    "user" => auth()->user()->id
+                ]);
+            }
+            return redirect()->route("complementary-services.show", $complementaryService)->with("success", "Fitxers pujats correctament");
+        } else{
+            return redirect()->route("complementary-services.show", $complementaryService)->with("error", "Has de pujar un fitxer vàlid");
+        }
+    }
+    public function downloadFile($baseName)
+    {
+        $document = Document::where("path", "like", "%$baseName")->firstOrFail();
+        $filePath = storage_path("app/public/" . $document->path);
+        if (file_exists($filePath)) {
+            return response()->download($filePath, $document->name);
+        } else {
+            return redirect()->back()->with("error", "El fitxer no existeix.");
+        }
     }
 }

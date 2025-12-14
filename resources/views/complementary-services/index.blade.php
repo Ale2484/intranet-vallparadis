@@ -47,6 +47,9 @@
         <x-complementary-service-card :complementaryService="$complementaryService"/>
     @endforeach
 </div>
+@if ($complementaryServices->isEmpty())
+<p class="text-gray-600 text-center">No hi ha cap servei complementari</p>
+@endif
 {{-- Modal de filtros --}}
 <x-filter-card :type="'complementary-services'"/>
 <div class="pagination">

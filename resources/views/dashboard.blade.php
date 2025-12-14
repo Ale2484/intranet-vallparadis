@@ -315,7 +315,7 @@
         <div class="flex flex-col items-start w-full">
             <div class="bg-fuchsia-50 rounded-lg p-2 mb-3">
                 <svg class="w-8 h-8 text-fuchsia-600">
-                    <use xlink:href="#icon-arrows-right-left"></use>
+                    <use xlink:href="#icon-cog-8-tooth"></use>
                 </svg>
             </div>
     
