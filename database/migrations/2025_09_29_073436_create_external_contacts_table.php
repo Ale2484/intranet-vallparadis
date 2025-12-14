@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('general_services', function (Blueprint $table) {
+        Schema::create('external_contacts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("center_id");
-            $table->string("name");
-            //$table->unsignedBigInteger("external_contact");
-            $table->enum("type", ["cuina", "neteja", "bugaderia"]);
-            $table->string("manager_name");
-            #$table->text("description")->nullable();
-            $table->text("staff_and_schedules")->nullable();
-            $table->string("manager_email");
-            $table->string("manager_phone")->nullable();
+            $table->enum("category", ["assistencial ", "serveis generals"]);
+            $table->string("reason")->nullable();
+            $table->string("company_or_department");
+            $table->string("contact_person");
+            $table->string("phone")->nullable();
+            $table->string("email");
             $table->boolean("is_active")->default(true);
+            $table->text("observations")->nullable();
             $table->timestamps();
 
             $table->foreign("center_id")->references("id")->on("centers");
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('general_services');
+        Schema::dropIfExists('external_contacts');
     }
 };

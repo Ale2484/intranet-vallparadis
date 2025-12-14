@@ -88,8 +88,7 @@
                         <p>Modalitat:</p>
                     </div>
                 </div>
-                    <select name="modality" id="modality" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('modality') border-red-600 @enderror" required>
-
+                    <select name="modality" id="modality" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('modality') border-red-600 @enderror" required>
                         <option value="presential" {{ old("modality", $course->modality) == "presential" ? "selected" : "" }}>Presencial</option>
                         <option value="online" {{ old("modality", $course->modality) == "online" ? "selected" : "" }}>Online</option>
                         <option value="mixed" {{ old("modality", $course->modality) == "mixed" ? "selected" : "" }}>Mixte</option>
@@ -108,7 +107,7 @@
                         <p>Nombre:</p>
                     </div>
                 </div>
-                <input type="text" name="name" id="name" placeholder="Introdueix el nombre del curs" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('name') border-red-600 @enderror" value="{{ old("name", $course->name) }}" required>
+                <input type="text" name="name" id="name" placeholder="Introdueix el nombre del curs" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full @error('name') border-red-600 @enderror" value="{{ old("name", $course->name) }}" required>
                 @error("name")
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
