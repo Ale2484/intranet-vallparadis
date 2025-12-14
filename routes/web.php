@@ -8,12 +8,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UniformityController;
 use App\Http\Controllers\UniformityRenovationController;
 use App\Http\Controllers\CommentsTrackingController;
-use App\Http\Controllers\ComplementaryServiceController;
-use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\GeneralServiceController;
-use App\Models\ComplementaryService;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CenterDocumentsController;
+use App\Http\Controllers\ComplementaryServiceController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -111,9 +111,12 @@ Route::middleware("auth")->group(function () {
     Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
     Route::post("/general-services/filter", [GeneralServiceController::class, "filter"])->name("general-services.filter");
 
+    // Documentos del centro
+    Route::get("/centers/{center}/documents", [CenterDocumentsController::class, "index"])->name("centers.documents");
+    Route::post("/centers/{center}/documents/store", [CenterDocumentsController::class, "store"])->name("centers.documents.store");
+
     // Servicios complementarios
     Route::resource("complementary-services", ComplementaryServiceController::class);
-    
     Route::patch("/complementary-services/{complementaryService}/activate", [ComplementaryServiceController::class, "activate"])->name('complementary-services.activate');    
     Route::patch("/complementary-services/{complementaryService}/deactivate", [ComplementaryServiceController::class, "deactivate"])->name('complementary-services.deactivate');
     Route::post("/complementary-services/search", [ComplementaryServiceController::class, "search"])->name("complementary-services.search");

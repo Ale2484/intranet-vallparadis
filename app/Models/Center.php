@@ -25,4 +25,8 @@ class Center extends Model
     public function project() : HasMany {
         return $this->hasMany(Project::class);
     }
+
+    public function documents() {
+        return $this->morphMany(Document::class, 'documentstable');
+    }
 }
