@@ -7,29 +7,29 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
             <div class="flex items-center gap-2 mb-2">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-user"></use>
                 </svg>
-                <label for="contact_person" class="font-medium text-gray-700 flex items-center gap-2">
+                <label for="contact_person" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
                     Persona de contacte *
                 </label>
             </div>
-            <input type="text" name="contact_person" id="contact_person" placeholder="Nom de la persona de contacte" value="{{ old('contact_person', $externalContact->contact_person) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('contact_person') border-red-500 @enderror" required>
+            <input type="text" name="contact_person" id="contact_person" placeholder="Nom de la persona de contacte" value="{{ old('contact_person', $externalContact->contact_person) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('contact_person') border-red-500 @enderror" required>
             @error('contact_person')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
 
         <div>
-            <div class="flex items-center gap-2 mb-2">
+            <div class="flex items-center gap-2 mb-2 dark:text-neutral-400">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-role"></use>
                 </svg>
-                <label for="company_or_department" class="font-medium text-gray-700 flex items-center gap-2">
+                <label for="company_or_department" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
                     Empresa o departament *
                 </label>
             </div>
-            <input type="text" name="company_or_department" id="company_or_department" placeholder="Empresa o departament" value="{{ old('company_or_department', $externalContact->company_or_department) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('company_or_department') border-red-500 @enderror" required>
+            <input type="text" name="company_or_department" id="company_or_department" placeholder="Empresa o departament" value="{{ old('company_or_department', $externalContact->company_or_department) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none dark:text-white dark:border-neutral-600 focus:ring-2 focus:ring-orange-500 @error('company_or_department') border-red-500 @enderror" required>
             @error('company_or_department')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -37,14 +37,14 @@
         
         <div>
             <div class="flex items-center gap-2 mb-2">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-mail"></use>
                 </svg>
-                <label for="email" class="font-medium text-gray-700 flex items-center gap-2">
+                <label for="email" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
                     Email *
                 </label>
             </div>
-            <input type="email" name="email" id="email" placeholder="Email del contacte" value="{{ old('email', $externalContact->email) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('email') border-red-500 @enderror" required>
+            <input type="email" name="email" id="email" placeholder="Email del contacte" value="{{ old('email', $externalContact->email) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('email') border-red-500 @enderror" required>
             @error('email')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror

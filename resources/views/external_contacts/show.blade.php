@@ -4,16 +4,15 @@
 <div class="w-full flex flex-col items-center justify-center">
     
     <!-- Apartado superior -->
-    <div class="w-[60%] flex justify-between items-center">
-        <div class="flex flex-col gap-3">
-    
+    <div class="md:w-[80%] w-full flex justify-between items-center">
+        <div class="flex flex-col gap-3 ">
             <a href="{{ route("external-contacts.index") }}" class="flex gap-3 text-[#AFAFAF]">
                 <svg class="w-6 h-6 ">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
                 Tornar a la gestió de contactes externs
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Detalls del contacte</h1>
+            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Detalls del contacte</h1>
     
             <p class="text-[#AFAFAF] mb-7">Informació completa del contacte</p>
         </div>
@@ -26,7 +25,7 @@
 
     </div>
     <!-- Contenedor principal -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] text-[#0F172A] mb-10">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 md:w-[80%] w-full text-[#0F172A] mb-10 dark:bg-neutral-800 dark:border-neutral-600 dark:text-[#FE712B]">
         <div class="flex justify-end">
             <p class="w-20 border p-1 text-center {{ $externalContact->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{ $externalContact->is_active ? "Actiu" : "Inactiu"}}</p>
         </div>
@@ -38,7 +37,7 @@
             </div>
             <div>
                 <p class="text-[#AFAFAF] font-semibold">{{ $externalContact->category ? strtoupper($externalContact->category) : "Categoria no asignada"}}</p>
-                <p class="text-3xl font-bold text-[#011020]">{{ $externalContact->contact_person }}</p>
+                <p class="text-3xl font-bold text-[#011020] dark:text-white">{{ $externalContact->contact_person }}</p>
             </div>
         </div>
         <div class="flex mt-5 font-semibold p-3 rounded-lg gap-2 border border-[#AFAFAF]">
@@ -46,15 +45,14 @@
                 <use xlink:href="#icon-desc"></use>
             </svg>
             <div>
-                <p class="font-semibold text-[#5E6468]">Motiu de contacte</p>
-                <p class="text-[#011020]">{{ $externalContact->reason }}</p>
+                <p class="font-semibold text-[#5E6468] dark:text-neutral-300">Motiu de contacte</p>
+                <p class="text-[#011020] dark:text-white">{{ $externalContact->reason }}</p>
             </div>
         </div>
     </div>
     <!-- Especificaciones -->
-    <div class="w-[60%] flex flex-row gap-5 justify-center text-[#0F172A]">
-
-        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%]">
+    <div class="md:w-[80%] w-full flex flex-col lg:flex-row gap-5 justify-center text-[#0F172A] ">
+        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 lg:w-[50%] w-full dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
             <div class="flex items-center gap-5 mb-5">
                 <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                     <svg class="w-7 h-7 text-[#FF7E13]">
@@ -65,7 +63,7 @@
             </div>
 
             <div class="flex items-center gap-3 mb-5 pl-3">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-phone"></use>
                 </svg>
                 <div>
@@ -75,7 +73,7 @@
             </div>
             <hr class="text-[#AFAFAF] my-5">
             <div class="flex items-center gap-3 mb-5 pl-3">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-mail"></use>
                 </svg>
                 <div>
@@ -84,8 +82,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%]">
+        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 lg:w-[50%] w-full dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
             <div class="flex items-center gap-5 mb-5">
                 <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                     <svg class="w-7 h-7 text-[#FF7E13]">
@@ -95,7 +92,7 @@
                 <p class="font-bold text-lg">Altres dades</p>
             </div>
             <div class="flex items-center gap-3 mb-5 pl-3">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-role"></use>
                 </svg>
                 <div>
@@ -105,7 +102,7 @@
             </div>
             <hr class="text-[#AFAFAF] my-5">
             <div class="flex items-center gap-3 mb-5 pl-3">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-eye"></use>
                 </svg>
                 <div>

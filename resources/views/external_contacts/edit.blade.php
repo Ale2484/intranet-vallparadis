@@ -11,18 +11,17 @@
                 </svg>
                 Tornar a la gestió de contactes externs
             </a>
-            <h1 class="text-3xl font-bold text-[#011020] ">Editar contacte extern</h1>
+            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Editar contacte extern</h1>
             <p class="text-[#AFAFAF]" >Actualitza la informació del contacte extern</p>
         </div>
     </div>
 
     <!-- Form -->
-    <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+    <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 dark:bg-neutral-800 dark:border-neutral-600">
         @include('external_contacts.form', [
             'action' => route('external-contacts.update', $externalContact),
             'method' => 'PATCH',
             'externalContact' => $externalContact,
-            'centers' => $centers,
             'submitText' => 'Actualitzar contacte'
         ])
     </div>

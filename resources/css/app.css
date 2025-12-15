@@ -74,6 +74,28 @@
     all : revert;
     margin: 2px;
 }
+.dark .ql-toolbar.ql-snow span {
+    @apply text-white
+}
+.dark .ql-toolbar.ql-snow .ql-stroke {
+  @apply stroke-white
+}
+
+.dark .ql-toolbar.ql-snow .ql-fill {
+  @apply fill-white
+}
+
+.dark .ql-toolbar.ql-snow .ql-thin {
+  @apply stroke-white
+}
+.dark .ql-editor {
+    @apply text-white
+}
+.dark .ql-editor::before {
+    @apply text-white
+}
+
+
 
 /* Tabla */
 .tableContainer {
