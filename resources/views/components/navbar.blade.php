@@ -56,6 +56,14 @@
                 <span class="menu-text hidden text-nowrap">Serveis generals</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route("external-contacts.index") }}" class="{{ request()->is('external-contacts*') ? "menu-option-selected" : "menu-option" }}">
+            <svg class="w-7 h-7">
+                <use xlink:href="#icon-conctact"></use>
+            </svg>
+                <span class="menu-text hidden text-nowrap">Serveis generals</span>
+            </a>
+        </li>
 
     </ul>
 </nav>

@@ -16,6 +16,7 @@ use App\Http\Controllers\RRHHTopicController;
 use App\Http\Controllers\RRHHTrackingController;
 use App\Http\Controllers\RRHHDocsController;
 use App\Http\Controllers\CenterDocumentsController;
+use App\Http\Controllers\ExternalContactController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MaintenanceTrackingController;
 use App\Http\Controllers\MaintenanceDocsController;
@@ -115,6 +116,13 @@ Route::middleware("auth")->group(function () {
     Route::post("/general-services/{generalService}/add-observation", [GeneralServiceController::class, "addObservation"])->name("general-services.add-observation");
     Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
     Route::post("/general-services/filter", [GeneralServiceController::class, "filter"])->name("general-services.filter");
+
+    // Contactos externos
+    Route::resource("external-contacts", ExternalContactController::class);
+    Route::patch("/external-contacts/{externalContact}/deactivate", [ExternalContactController::class, "deactivate"])->name("external-contacts.deactivate");
+    Route::patch("/external-contacts/{externalContact}/activate", [ExternalContactController::class, "activate"])->name("external-contacts.activate");
+    Route::post("/external-contacts/search", [ExternalContactController::class, "search"])->name("external-contacts.search");
+    Route::post("/external-contacts/filter", [ExternalContactController::class, "filter"])->name("external-contacts.filter");
 
     // Documentos del centro
     Route::get("/centers/{center}/documents", [CenterDocumentsController::class, "index"])->name("centers.documents");
