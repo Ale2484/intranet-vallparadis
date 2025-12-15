@@ -1,5 +1,5 @@
 <!-- Contenedor -->
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-fit mb-5 flex flex-col gap-5">
+<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] min-w-min p-5 mb-5 flex flex-col gap-5 overflow-hidden break-words whitespace-normal break-all h-fit">
     <div class="flex justify-between items-center border-b-1 border-b-[#AFAFAF] pb-5">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
@@ -15,36 +15,27 @@
     <!-- Especificaciones -->
     <div class="flex flex-col gap-3 text-[#0F172A]">
         <div class="flex gap-4 border-b-1 border-b-[#AFAFAF] pb-5 pt-2">
-            <div class="border-r-1 border-r-[#AFAFAF] pr-5 flex flex-col gap-4">
+            <div class="flex flex-col gap-4 w-full">
                 <h2 class="text-[#012F4A] font-bold text-[20px]">Profesional afectat</h2>
-                <div class="flex justify-between items-center">
+                <div class="flex gap-10 items-center">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
                         <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}"></minidenticon-svg>
                     </div>
                     {{ $rrhh->userAffectedRelation->name }}
                 </div>
-                <div class="flex items-center text-[#011020] justify-between">
+                <div class="flex items-center text-[#011020] gap-15 pl-5">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-phone"></use>
                     </svg>
-                    <span class="ml-2">{{ $rrhh->userAffectedRelation->phone ?? '+34 000 000 000' }}</span>
+                    <span>{{ $rrhh->userAffectedRelation->phone ?? '+34 000 000 000' }}</span>
                 </div>
-                <div class="flex items-center text-[#011020] justify-between">
-                    <svg class="w-6 h-6">
-                        <use xlink:href="#icon-mail"></use>
-                    </svg>
-                    <span class="ml-2">{{ $rrhh->userAffectedRelation->email }}</span>
-                </div>
-            </div>
-            <div class="flex flex-col gap-4">
-                <div class="flex items-center gap-4">
-                    <svg class="w-6 h-6">
-                        <use xlink:href="#icon-d20"></use>
-                    </svg>
-                    <h2 class="text-[#012F4A] font-bold text-[20px]">Derivat</h2>
-                </div>
-                <div class="overflow-hidden break-words whitespace-normal break-all">
-                    {{ Str::limit($rrhh->derivative, 500) }}
+                <div class="flex items-center text-[#011020] gap-15 pl-5">
+                    <div>
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-mail"></use>
+                        </svg>
+                    </div>
+                    <span class="">{{ $rrhh->userAffectedRelation->email }}</span>
                 </div>
             </div>
         </div>
@@ -70,11 +61,13 @@
                 @csrf
                 @method("PATCH")
                 <button type="submit"
-                    class="confirmable w-full sm:w-full md:w-auto lg:w-auto flex justify-center gap-3  {{ $rrhh->is_active ? "text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all" : "text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all" }}"
+                    class="confirmable w-max sm:w-max md:w-max lg:w-max flex justify-center gap-3  {{ $rrhh->is_active ? "text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all" : "text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all" }}"
                     data-confirm-message="{{ $rrhh->is_active ? "Estàs segur que vols desactivar aquest Tema pendent?" : "Estàs segur que vols activar aquest Tema pendent?" }}">
-                    <svg class="w-6 h-6">
-                        <use xlink:href="#icon-power"></use>
-                    </svg>
+                    <div>
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-power"></use>
+                        </svg>
+                    </div>
                     {{ $rrhh->is_active ? "Desactivar" : "Activar" }}
                 </button>
             </form>

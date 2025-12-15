@@ -65,7 +65,7 @@
 
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <svg class="w-6 h-6">
-                    <use xlink:href="#icon-mail"></use>
+                    <use xlink:href="#icon-desc"></use>
                 </svg>
                 <label for="description">Descripcio</label>
             </div>
