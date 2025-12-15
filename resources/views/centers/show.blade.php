@@ -17,12 +17,20 @@
     
             <p class="text-[#AFAFAF] mb-7">Informació completa del centre</p>
         </div>
-        <a href="{{ route("centers.edit", $center) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
-            <svg class="w-6 h-6">
-                <use xlink:href="#icon-square-pen"></use>
-            </svg>
-            Editar el centre
-        </a>
+        <div class="flex flex-row gap-2">
+            <a href="{{ route("centers.edit", $center) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-square-pen"></use>
+                </svg>
+                Editar el centre
+            </a>
+            <a href="{{ route("centers.documents", $center) }}" class="bg-cyan-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-cyan-700 transition-all">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-document"></use>
+                </svg>
+                Documents
+            </a>
+        </div>
 
     </div>
     <!-- Contenedor principal -->

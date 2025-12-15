@@ -177,6 +177,8 @@
                                 </div>
                             @endforeach
                         </div>
+                    @else 
+                        <p class="text-gray-600">Encara no hi ha observacions per a aquest servei.</p>
                     @endif
                 </div>
                 {{-- Apartado de observaciones --}}

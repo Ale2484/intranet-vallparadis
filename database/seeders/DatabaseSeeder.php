@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CenterSeeder::class,
+            ExternalContactSeeder::class,
             UserSeeder::class,
             //UniformitySeeder::class,
             ProjectSeeder::class,
