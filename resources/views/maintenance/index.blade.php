@@ -43,5 +43,8 @@
 @endforeach
 </div>
 {{-- Modal de filtros --}}
-{{ $maintenances->links('pagination::tailwind') }}
+<x-filter-card :type="'maintenance'"/>
+<div class="pagination">
+    {{ $maintenances->links('pagination::tailwind') }}
+</div>
 @endsection

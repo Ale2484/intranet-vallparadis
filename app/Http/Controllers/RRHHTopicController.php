@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 
 class RRHHTopicController extends Controller
 {
+    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $rrhhs = RRHHTopic::orderBy("created_at", "desc")->paginate(21);
+        $rrhhs = RRHHTopic::orderBy("created_at", "desc")->paginate($this->paginateNumber);
         return view("rrhh.index", compact("rrhhs"));
     }
 
@@ -93,5 +94,72 @@ class RRHHTopicController extends Controller
     {
         $rrhh->update(["is_active" => true]);
         return redirect()->route("rrhh.index")->with("success", "Tema pendent deshabilitat correctament");
+    }
+
+    public function search(Request $request)
+    {
+        $pagination = "";
+        $htmlContent = "";
+        // Se obtiene la pagina, sino, se usa la pagina 1
+        $page = $request->input("page", 1);
+        $searchValue = $request->searchValue;
+        $searchRRHHs = RRHHTopic::where("topic", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
+        if (!empty($searchRRHHs)) {
+            foreach ($searchRRHHs as $rrhh) {
+                $htmlContent .= view("components.r-r-h-h-card", compact("rrhh"))->render();
+            }
+            // Se obtiene la paginacion
+            $pagination = $searchRRHHs->links()->render();
+        }
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+    }
+
+    public function filter(Request $request)
+    {
+        $page = $request->input("page", 1);
+        $order = $request->input("order", null);
+        $status = $request->input("status", null);
+        $query = RRHHTopic::query();
+
+        // Se obtiene el filtro del estado y se añade a la query
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+
+        // Se comprueba que tipo de orden se envia y se añade a la query
+        switch ($order) {
+            case "recent-first":
+                $query->orderBy("created_at", "desc");
+                break;
+            case "oldest-first":
+                $query->orderBy("created_at", "asc");
+                break;
+            case "az":
+                $query->orderBy("topic", "asc");
+                break;
+            case "za":
+                $query->orderBy("topic", "desc");
+                break;
+            case "last-modified":
+                $query->orderBy("updated_at", "desc");
+                break;
+            case "first-modified":
+                $query->orderBy("updated_at", "asc");
+                break;
+        }
+
+        // Se pagina la query
+        $rrhhs = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+
+        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
+        $htmlContent = "";
+        foreach ($rrhhs as $rrhh) {
+            $htmlContent .= view("components.r-r-h-h-card", compact("rrhh"))->render();
+        }
+        $pagination = $rrhhs->links()->render();
+
+        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
     }
 }

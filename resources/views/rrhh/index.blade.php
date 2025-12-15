@@ -43,5 +43,8 @@
 @endforeach
 </div>
 {{-- Modal de filtros --}}
-{{ $rrhhs->links('pagination::tailwind') }}
+<x-filter-card :type="'rrhh'"/>
+<div class="pagination">
+    {{ $rrhhs->links('pagination::tailwind') }}
+</div>
 @endsection
