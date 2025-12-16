@@ -10,14 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 let iconSvg = buttonSvg.querySelector("use");
                 // Se se hace click sobre el icono del ojo se cambia el tipo de input a text
                 let inputPassword = document.getElementById(buttonSvg.dataset.idInput);
-                let atributoSvg = iconSvg.getAttribute("xlink:href");
-                
-                if (atributoSvg == "#icon-eye") {
-                    inputPassword.type = "text";
-                    iconSvg.setAttribute("xlink:href", "#icon-eye-slash");
-                } else{
-                    inputPassword.type = "password";
-                    iconSvg.setAttribute("xlink:href", "#icon-eye");
+                if (iconSvg) {
+                    let atributoSvg = iconSvg.getAttribute("xlink:href");
+                    
+                    if (atributoSvg == "#icon-eye") {
+                        inputPassword.type = "text";
+                        iconSvg.setAttribute("xlink:href", "#icon-eye-slash");
+                    } else{
+                        inputPassword.type = "password";
+                        iconSvg.setAttribute("xlink:href", "#icon-eye");
+                    }
                 }
             })
         });
