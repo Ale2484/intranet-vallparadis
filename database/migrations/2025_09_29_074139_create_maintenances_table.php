@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,12 +16,13 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("center");
             $table->timestamps();
-            $table->unsignedBigInteger("user");
+            $table->string("responsible");
             $table->string("description");
-            $table->string("doc");
+            $table->string("topic");
+            $table->boolean("is_active")->default(true);
+
 
             $table->foreign("center")->references("id")->on("centers");
-            $table->foreign("user")->references("id")->on("users");
         });
     }
 

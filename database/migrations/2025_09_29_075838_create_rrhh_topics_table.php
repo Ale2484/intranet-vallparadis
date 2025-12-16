@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string("description", 255);
             $table->unsignedBigInteger("user_register");
             $table->string("derivative", 255);
-            $table->string("docs", 255);
+            $table->string("topic");
+            $table->boolean("is_active")->default(true);
 
             $table->timestamps();
 

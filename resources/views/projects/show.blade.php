@@ -189,7 +189,7 @@
                 </div>
                 <p class="text-xl font-semibold text-[#012F4A] dark:text-white flex items-center gap-2">Usuaris inscrits:</p>
             </div>
-            <div class="bg-white rounded-[15px] px-2 block pt-5 pb-5 w-full h-56 overflow-y-auto dark:bg-neutral-900 ">
+            <div class="bg-white rounded-[15px] px-2 block pt-5 pb-5 w-full h-56 overflow-y-auto dark:bg-neutral-950 ">
                 @if ($asignedUsers->isNotEmpty())
                     @foreach ($asignedUsers as $user)
                         <div class="flex gap-5 border border-[#AFAFAF] bg-white rounded-[15px] p-5 mb-5 items-center dark:bg-neutral-800 dark:border-neutral-600">

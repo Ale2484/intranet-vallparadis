@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,8 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("maintenance");
             $table->timestamps();
             $table->unsignedBigInteger("user");
-            $table->string("description", 255);
-            $table->string("doc");
+            $table->string("description");
 
             $table->foreign("maintenance")->references("id")->on("maintenances");
             $table->foreign("user")->references("id")->on("users");
