@@ -192,14 +192,12 @@ class UserController extends Controller
 
     public function showLoginForm()
     {
-        $centers = Center::all();
-        return view("auth.login", compact("centers"));
+        return view("auth.login");
     }
 
     public function login(Request $request)
     {
         $request->validate([
-            "center" => "required|exists:centers,id",
             "email" => "required",
             "password" => "required"
         ]);
