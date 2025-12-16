@@ -4,7 +4,7 @@
 
 @section("main")
 <div class="flex items-center justify-between mb-7">
-    <h1 class="text-3xl font-bold text-[#011020]">Gestió de serveis complementaris: </h1>
+    <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Gestió de serveis complementaris: </h1>
 
     {{-- Enlaces --}}
     <div class="flex items-center">

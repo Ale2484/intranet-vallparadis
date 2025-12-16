@@ -20,12 +20,14 @@ class UserController extends Controller
         // $inactiveUsers = User::inactive()->count();
         
         $users = User::orderBy('created_at', 'desc')->paginate(21);
+        $viewType = $_COOKIE['view_type'] ?? "card";
 
         return view("users.index", compact(
             'totalUsers', 
         //    'activeUsers', 
         //    'inactiveUsers',
-            'users'
+            'users',
+            'viewType'
         ));
     }
 
@@ -38,8 +40,17 @@ class UserController extends Controller
         $searchValue = $request->searchValue;
         $searchUsers = User::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchUsers)) {
-            foreach ($searchUsers as $user) {
-                $htmlContent .= view("components.user-card", compact("user"))->render();
+            // Se obtiene el tipo de vista
+            $viewType = $_COOKIE['view_type'] ?? "card";
+
+            if ($viewType == "card") {
+                foreach ($searchUsers as $user) {
+                    $htmlContent .= view("components.user-card", compact("user"))->render();
+                }
+            } else {
+                foreach ($searchUsers as $user) {
+                    $htmlContent .= view("components.user-table", compact("user"))->render();
+                }
             }
             // Se obtiene la paginacion
             $pagination = $searchUsers->links()->render();
@@ -88,8 +99,16 @@ class UserController extends Controller
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
-        foreach ($users as $user) {
-            $htmlContent .= view("components.user-card", compact("user"))->render();
+        // Se obtiene el tipo de vista
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        if ($viewType == "card") {
+            foreach ($users as $user) {
+                $htmlContent .= view("components.user-card", compact("user"))->render();
+            }
+        } else {
+            foreach ($users as $user) {
+                $htmlContent .= view("components.user-table", compact("user"))->render();
+            }
         }
         $pagination = $users->links()->render();
 
@@ -173,14 +192,12 @@ class UserController extends Controller
 
     public function showLoginForm()
     {
-        $centers = Center::all();
-        return view("auth.login", compact("centers"));
+        return view("auth.login");
     }
 
     public function login(Request $request)
     {
         $request->validate([
-            "center" => "required|exists:centers,id",
             "email" => "required",
             "password" => "required"
         ]);

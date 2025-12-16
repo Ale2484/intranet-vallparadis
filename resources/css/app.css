@@ -1,5 +1,11 @@
 @import 'tailwindcss';
+@custom-variant light (&:where(:not(.dark), :not(.dark) *));
+@custom-variant dark (&:where(.dark, .dark *));
 
+
+@theme {
+  --color-neutral-850: #1b1b1b;
+}
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -12,11 +18,11 @@
 
 /* Estilos del menu */
 .menu-option{
-    @apply p-2 rounded-lg mb-2 flex flex-row items-center justify-start w-full text-[#0F172A] hover:bg-[#fef5eb] hover:text-[#FF7E13];
+    @apply p-2 rounded-lg mb-2 flex flex-row items-center justify-start w-full text-[#0F172A] hover:bg-[#fef5eb] hover:text-[#FF7E13] transition-all dark:text-neutral-300 dark:hover:bg-neutral-700;
 }
 
 .menu-option-selected{
-    @apply p-2 rounded-lg mb-2 flex flex-row items-center justify-start w-full bg-[#fef5eb] text-[#FF7E13];
+    @apply p-2 rounded-lg mb-2 flex flex-row items-center justify-start w-full bg-[#fef5eb] text-[#FF7E13] dark:bg-neutral-700;
 }
 
 .menu-text{
@@ -24,7 +30,7 @@
 }
 
 .menu-option:hover .menu-text{
-    @apply ml-4 hover:bg-[#fef5eb] hover:text-[#FF7E13];
+    @apply ml-4 hover:text-[#FF7E13];
 
 }
 /* Notifications */
@@ -50,13 +56,13 @@
     @apply opacity-50
 }
 .dragStartleft{
-    @apply bg-green-50 border-4 border-dashed border-green-600 
+    @apply bg-green-50 dark:bg-green-200 border-4 border-dashed border-green-600 
 }
 .dragStartRight > :not(.information-drop){
     @apply opacity-50
 }
 .dragStartRight{
-    @apply bg-red-50 border-4 border-dashed border-red-600
+    @apply bg-red-50 dark:bg-red-200 border-4 border-dashed border-red-600
 }
 
 /* Rich editor */
@@ -83,6 +89,38 @@
 .ql-font-monospace{
     @apply font-mono;
 }
+.dark .ql-toolbar.ql-snow span {
+    @apply text-white
+}
+.dark .ql-toolbar.ql-snow .ql-stroke {
+  @apply stroke-white
+}
+
+.dark .ql-toolbar.ql-snow .ql-fill {
+  @apply fill-white
+}
+
+.dark .ql-toolbar.ql-snow .ql-thin {
+  @apply stroke-white
+}
+.dark .ql-editor {
+    @apply text-white
+}
+.dark .ql-editor::before {
+    @apply text-white
+}
+
+
+
+/* Tabla */
+.tableContainer {
+    @apply border border-[#AFAFAF] rounded-lg mt-10 overflow-x-auto border-b
+}
+
+.tableContainer tbody tr:last-child {
+    @apply border-b-0
+}
+
 /* 
 .simple-container{
     @apply border border-[#AFAFAF] bg-white rounded-[15px] p-5;

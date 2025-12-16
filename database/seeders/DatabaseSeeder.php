@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CenterSeeder::class,
+            ExternalContactSeeder::class,
             UserSeeder::class,
             //UniformitySeeder::class,
             ProjectSeeder::class,
@@ -24,7 +25,8 @@ class DatabaseSeeder extends Seeder
             CourseSeeder::class,
             CourseUserSeeder::class,
             CourseScheduleSeeder::class,
-            ComplementaryServiceSeeder::class
+            ComplementaryServiceSeeder::class,
+            GeneralServiceSeeder::class
 
         ]);
         // User::factory(10)->create();

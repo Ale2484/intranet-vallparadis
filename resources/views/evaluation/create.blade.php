@@ -29,7 +29,7 @@
                 </div>
                 @for ($i = 1; $i <= 20; $i++)
                 <div class="flex flex-row items-center pl-5 h-20 border-b-1 border-b-[#AFAFAF]">
-                    <div class="w-1/2 font-bold text-xl">{{ $questions[$i-1] }}</div>
+                    <div class="w-1/2 font-bold text-lg">{{ $questions[$i-1] }}</div>
                     <div class="flex-1 flex justify-between">
                         @for ($j = 0; $j < 4; $j++)
                         <div class="flex-1 border-1 border-[#AFAFAF] h-20 flex items-center justify-center" data-question="p{{ $i }}" data-value="{{ $j }}">
