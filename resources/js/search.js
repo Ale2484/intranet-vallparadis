@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     async function fetchSearch(searchValue = "", page = 1) {
-        const resultContainer = document.querySelector(".resultContainer");
+        const visibleResultContainer = Array.from(document.querySelectorAll(".resultContainer")).find(container => {
+            return container.offsetParent !== null;
+        });
         const paginationContainer = document.querySelector(".pagination");
         const meta = document.querySelector('meta[name="csrf-token"]');
         const token = meta ? meta.getAttribute('content') : '';
@@ -76,7 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
             lastSearchValue = searchValue;
             // Se dice que no hay filtro aplicado
             applyRadioFilter = false;
-            resultContainer.innerHTML = data.htmlContent || "No hay resultados";
+            // Si es en formato card se pone una <p> si es en formato table se pone un tr
+            if (visibleResultContainer.closest("table")) {
+                visibleResultContainer.innerHTML = data.htmlContent || `<tr> <td colspan="${document.querySelectorAll('table thead th').length}" class="text-center bg-white py-4">No hi ha resultats</td> </tr>`;
+            } else{
+                visibleResultContainer.innerHTML = data.htmlContent || "<p class='dark:text-white'>No hi ha resultats</p>";
+            }
+
             paginationContainer.innerHTML = data.pagination || "";
             setTimeout(() => {
                 // Se hace scroll hasta la parte de arriba de la pagina
@@ -84,46 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 10);
         } catch (error) {
             console.error("Error:", error);
-            resultContainer.innerHTML = "<p>Error al buscar</p>";
+            visibleResultContainer.innerHTML = "<p>Error al buscar</p>";
         }
     }
 });
-
-/* document.addEventListener("DOMContentLoaded", () => {
-    // Formulario de busqueda
-    const searchBar = document.querySelector(".searchBar");
-    if (searchBar) {
-        searchBar.addEventListener("submit", async (event) => {
-            event.preventDefault();
-            // Barra de busqueda (input)
-            const searchInput = searchBar.querySelector("input[type='search']");
-            const paginationContainer = document.querySelector(".pagination");
-            // Div que contendra los resultados de las busquedas
-            const resultContainer = document.querySelector(".resultContainer");
-            if (searchInput) {
-                const meta = document.querySelector('meta[name="csrf-token"]');
-                const token = meta ? meta.getAttribute('content') : '';
-
-                try {
-                    console.log("Inicia la peticion");
-                    // Se hace la peticion
-                    let response = await fetch("/courses/search", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-CSRF-TOKEN": token,
-                        },
-                        body: JSON.stringify({ searchValue: searchInput.value })
-                    });
-                    let data = await response.json();
-                    console.log("Se acaba de pasar el data a JSON");
-                    resultContainer.innerHTML = data.htmlContent ? data.htmlContent : "Sin resultados";
-                    paginationContainer.innerHTML = data.pagination ? data.pagination : "";
-
-                } catch (error) {
-                    console.log("Error");
-                }
-            }
-        });
-    }
-}); */

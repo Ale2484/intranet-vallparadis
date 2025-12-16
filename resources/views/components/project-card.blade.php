@@ -1,113 +1,67 @@
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-48/100 min-w-fit mb-5 flex flex-col gap-5">
+<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600">
     <div class="border-b-gray-600 border-b-1 pb-5">
         <div class="flex flex-row justify-between items-center w-full mb-2">
-            <div class="flex flex-row justify-between gap-2">
+            <div class="flex flex-row justify-between gap-2 items-center">
                 @if($project->type_label == "Projecte")
-                    <div class="bg-green-200 border-green-600 border-1 rounded-full p-4 flex items-center justify-center">
+                    <div class="bg-green-200 rounded-lg p-2 flex items-center justify-center">
                         <svg class="w-8 h-8 text-green-600">
                             <use xlink:href="#icon-folder"></use>
                         </svg>
                     </div>
                 @elseif($project->type_label == "Comissió")
-                    <div class="bg-[#FF7033]/17 border-1 border-[#FF7033] rounded-full p-4 flex items-center justify-center">
+                    <div class="bg-[#FF7033]/17 rounded-lg p-2 flex items-center justify-center">
                         <svg class="w-8 h-8 text-[#FF7033]">
                             <use xlink:href="#icon-folder"></use>
                         </svg>
                     </div>
                 @endif
-                <div class="flex flex-col items-start gap-2">
-                    <a href="{{ route('projects.show', $project) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $project->name }}</a>
-                    <p class="p-1 text-white w-16 text-center rounded-lg {{ $project->is_active ? 'bg-green-600' : 'bg-red-600' }}"> {{ $project->is_active ? "Actiu" : "Inactiu" }}</p>
-                </div>
+                <a href="{{ route('projects.show', $project) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $project->name }}</a>
             </div>
-            @if($project->type_label == "Projecte")
-                <div class="border-1 p-1 text-center bg-green-200 text-green-600 border-green-600 rounded-lg w-24 ">
-                    Projecte
-                </div>
-            @elseif($project->type_label == "Comissió")
-                <div class="border-1 bg-[#FF7033]/17 text-[#FF7033] border-[#FF7033] rounded-lg p-1 text-center w-24">
-                    Comissió
-                </div>
-            @endif
+            <p class="w-20 border p-1 text-center {{ $project->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$project->is_active ? "Actiu" : "Inactiu"}}</p>
         </div>
         
-        <div class="mt-3 ml-5 space-y-5 text-[#011020]">
-            <div class="flex items-center">
-                <svg class="w-7 h-7">
-                    <use xlink:href="#icon-folder"></use>
-                </svg>
-                <span class="ml-2 w-[600px]">{{ $project->userRelation->name ?? 'Usuari no assignat' }}</span>
-            </div>
+        <div class="mt-3 ml-5 space-y-5 text-[#011020] dark:text-neutral-400">
             <div class="flex items-center">
                 <svg class="w-7 h-7">
                     <use xlink:href="#icon-user"></use>
                 </svg>
-                <span class="ml-2 w-[600px]">{{ $project->userRelation->email ?? 'Usuari no assignat' }}</span>
-            </div>
-            <div class="flex items-center">
-                <svg class="w-7 h-7">
-                    <use xlink:href="#icon-desc"></use>
-                </svg>
-                <p class="ml-2 w-[600px] text-sm">{{ $project->description }}</p>
-            </div>
-            <div class="flex items-center">
-                <svg class="w-7 h-7">
-                    <use xlink:href="#icon-eye"></use>
-                </svg>
-                <p class="ml-2 w-[600px] text-sm">{{ $project->observations }}</p>
+                <span class="ml-2 dark:text-white">{{ $project->userRelation->name ?? 'Usuari no assignat' }}</span>
             </div>
             <div class="flex items-center">
                 <svg class="w-7 h-7">
                     <use xlink:href="#icon-document"></use>
                 </svg>
-                <p class="ml-2 w-[600px] text-sm">{{ $project->documents_count }} Documents adjunts</p>
+                <p class="ml-2 dark:text-white">{{ $project->documents_count }} Documents adjunts</p>
+            </div>
+            <div class="flex items-center">
+                <p class="ml-2 text-sm dark:text-white">
+                    Creat: {{ $project->created_at->format("d/m/Y") }}
+                </p>
             </div>
         </div>
     </div>
     
-    <div class="flex flex-row gap-5 justify-between">
-        <div class="flex flex-col">
-            <p class="text-sm">
-                Creat: {{ $project->created_at->format("d/m/Y") }}
-            <p class="text-sm">
-                Actualizat: {{ $project->updated_at->format("d/m/Y") }}
-            </p>
-        </div>
-        <div class="flex w-2/3 justify-end gap-3">
+    <div class="flex flex-row gap-5 justify-end mt-4">
+        <div class="w-full sm:w-full md:w-auto lg:w-auto flex gap-5 justify-end flex-col sm:flex-col sm:justify-center md:flex-row">
             <a href="{{ route('projects.edit', $project) }}" 
-                class=" bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] w-1/4 min-w-fit">
+                class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-square-pen"></use>
                 </svg>
                 Editar
             </a>
-            @if($project->is_active)
-                <form action="{{ route('projects.deactivate', $project) }}" method="POST" class="inline w-1/4 min-w-fit">
-                    @csrf
-                    @method('PATCH')
-                    <button type="submit" 
-                            class="confirmable text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all w-full flex justify-center h-full items-center gap-3"
-                            data-confirm-message="Estàs segur que vols desactivar aquest projecte/comissió?">
-                        <svg class="w-6 h-6">
-                            <use xlink:href="#icon-power"></use>
-                        </svg>
-                        Desactivar
-                    </button>
-                </form>
-            @else
-                <form action="{{ route('projects.activate', $project) }}" method="POST" class="inline w-1/4 min-w-fit">
-                    @csrf
-                    @method('PATCH')
-                    <button type="submit" 
-                            class="confirmable text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all w-full flex justify-center h-full items-center gap-3"
-                            data-confirm-message="Estàs segur que vols activar aquest projecte/comissió?">
-                        <svg class="w-6 h-6">
-                            <use xlink:href="#icon-power"></use>
-                        </svg>
-                        Activar
-                    </button>
-                </form>
-            @endif
+            <form action="{{ $project->is_active ? route('projects.deactivate', $project) : route('projects.activate', $project) }}" method="POST" class="w-full sm:w-full md:w-auto lg:w-auto">
+                @csrf
+                @method('PATCH')
+                <button type="submit" 
+                        class="confirmable w-full sm:w-full md:w-auto lg:w-auto flex justify-center gap-3 {{ $project->is_active ? "text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all" : "text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all" }}"
+                        data-confirm-message="{{ $project->is_active ? "Estàs segur que vols desactivar aquest projecte/comissió?" : "Estàs segur que vols activar aquest projecte/comissió?" }}">
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-power"></use>
+                    </svg>
+                    {{ $project->is_active ? 'Desactivar' : 'Activar' }}
+                </button>
+            </form>
         </div>
     </div>
 </div>

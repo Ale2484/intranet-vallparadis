@@ -7,7 +7,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Información Básica -->
         <div class="md:col-span-2">
-            <h2 class="text-xl font-semibold text-[#012F4A] mb-4">Informació bàsica</h2>
+            <h2 class="text-xl font-semibold text-[#012F4A] dark:text-white mb-4">Informació bàsica</h2>
         </div>
 
         <!-- Nombre -->
@@ -19,7 +19,7 @@
                 Nom *
             </label>
             <input type="text" name="name" id="name" value="{{ old('name', $project->name) }}" placeholder="Nom del projecte/comissió"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('name') border-red-500 @enderror"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white @error('name') border-red-500 @enderror"
                     required>
             @error('name')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
