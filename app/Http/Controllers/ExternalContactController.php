@@ -13,7 +13,8 @@ class ExternalContactController extends Controller
     public function index()
     {
         $externalContacts = ExternalContact::orderBy("created_at", "desc")->paginate($this->paginateNumber);
-        return view("external_contacts.index", compact("externalContacts"));
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        return view("external_contacts.index", compact("externalContacts", "viewType"));
     }
     public function search(Request $request)
     {
@@ -24,9 +25,17 @@ class ExternalContactController extends Controller
         $searchValue = $request->searchValue;
         $searchExternalContacts = ExternalContact::where("contact_person", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchExternalContacts)) {
-            foreach ($searchExternalContacts as $externalContact) {
-                $htmlContent .= view("components.external-contact-card", compact("externalContact"))->render();
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($searchExternalContacts as $externalContact) {
+                    $htmlContent .= view("components.external-contact-card", compact("externalContact"))->render();
+                }
+            } else{
+                foreach ($searchExternalContacts as $externalContact) {
+                    $htmlContent .= view("components.external-contact-table", compact("externalContact"))->render();
+                }
             }
+
             // Se obtiene la paginacion
             $pagination = $searchExternalContacts->links()->render();
         }
@@ -74,9 +83,18 @@ class ExternalContactController extends Controller
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
-        foreach ($externalContacts as $externalContact) {
-            $htmlContent .= view("components.external-contact-card", compact("externalContact"))->render();
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        if ($viewType == "card") {
+            foreach ($externalContacts as $externalContact) {
+                $htmlContent .= view("components.external-contact-card", compact("externalContact"))->render();
+            }
+            
+        } else {
+            foreach ($externalContacts as $externalContact) {
+                $htmlContent .= view("components.external-contact-table", compact("externalContact"))->render();
+            }
         }
+
         $pagination = $externalContacts->links()->render();
 
         return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);

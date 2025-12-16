@@ -70,7 +70,7 @@
 
 <!-- Menu superior -->
 <div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm md:pl-28 dark:bg-neutral-850 dark:border dark:border-neutral-600">
-    <button id="toggleMenu" class="p-2 group cursor-pointer">
+    <button id="toggleMenu" class="p-2 group cursor-pointer md:hidden">
         <svg class="w-7 h-7 text-[#FF7E13]">
             <use xlink:href="#icon-no-line-arrow"></use>
         </svg>

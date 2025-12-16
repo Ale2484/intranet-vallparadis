@@ -40,14 +40,43 @@
                 Filtres
             </button>
         </div>
+        {{-- Cambiar vista --}}
+        <button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]">
+            <svg class="w-6 h-6">
+                <use xlink:href="#icon-{{ $viewType == "card" ? "table" : "square"  }}"></use>
+            </svg>
+        </button>
     </div>
-
     <!-- Apartado de los contactos externos -->
-    <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        @foreach($externalContacts as $externalContact)
-            <x-external-contact-card :externalContact="$externalContact"/>
-        @endforeach
+    <div class="w-full {{ $viewType != "card" ? "hidden" : "" }}">
+        <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            @foreach($externalContacts as $externalContact)
+                <x-external-contact-card :externalContact="$externalContact"/>
+            @endforeach
+        </div>
     </div>
+    <div class="tableContainer {{ $viewType != "table" ? "hidden" : "" }}">
+    <table class="w-full border-collapse">
+        <thead class="bg-[#edecec] dark:bg-neutral-900 dark:text-white">
+            <tr class="border-b border-[#AFAFAF] text-center">
+                <th class="p-2 w-3/12">Persona de contacte</th>
+                <th class="w-1/12"> Empresa o departament</th>
+                <th class="w-2/12">Contacte</th>
+                <th class="w-2/12">Tipus de contacte</th>
+                <th class="w-2/12">Motiu de contacte</th>
+                <th class="w-2/12">Estat</th>
+                <th class="w-3/12" >Accions</th>
+            </tr>
+        </thead>
+        <tbody class="resultContainer">
+            @if ($viewType == "table")
+                @foreach ($externalContacts as $externalContact )
+                <x-external-contact-table :externalContact="$externalContact"/>
+                @endforeach
+            @endif
+        </tbody>
+    </table>
+</div>
 </div>
 <x-filter-card :type="'external-contacts'"/>
 <div class="pagination">
