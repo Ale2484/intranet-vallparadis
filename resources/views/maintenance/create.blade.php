@@ -18,7 +18,7 @@
         <p class="text-[#AFAFAF] mb-7">Afegeix un nou manteniment al sistema</p>
     </div>
     <!-- Formulario -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] text-[#0F172A]">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5  text-[#0F172A] min-w-max w-full sm:w-[60%]">
         <form action="{{ route('maintenance.store') }}" method="POST">
             @csrf
             @method("POST")
