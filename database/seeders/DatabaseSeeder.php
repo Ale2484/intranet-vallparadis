@@ -24,7 +24,9 @@ class DatabaseSeeder extends Seeder
             //UniformityRenovationSeeder::class,
             CourseSeeder::class,
             CourseUserSeeder::class,
-            CourseScheduleSeeder::class
+            CourseScheduleSeeder::class,
+            MaintenanceSeeder::class,
+            RrhhTopicSeeder::class
 
         ]);
         // User::factory(10)->create();

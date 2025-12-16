@@ -21,7 +21,7 @@
             <span class="ml-2">Responsable</span>
         </div>
         <div class="overflow-hidden break-words whitespace-normal break-all">
-            {{ Str::limit($maintenance->description, 500) }}
+            {{ Str::limit($maintenance->responsible, 500) }}
         </div>
     </div>
     
