@@ -3,9 +3,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 
-@theme {
-  --color-neutral-850: #1b1b1b;
-}
+/* @theme {
+  --color-neutral-900: #1b1b1b;
+} */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';

@@ -134,7 +134,7 @@
                                 <p class="text-md font-semibold dark:text-white">Horari semanal:</p>
                                 @if (count($schedules) > 0)
                                     @foreach ($schedules as $schedule )
-                                        <div class="w-full flex flex-row items-center justify-between p-2 border border-[#AFAFAF] bg-[#f6f8fc] rounded-lg dark:bg-neutral-900 dark:border-neutral-600">
+                                        <div class="w-full flex flex-row items-center justify-between p-2 border border-[#AFAFAF] bg-[#f6f8fc] rounded-lg dark:bg-neutral-950 dark:border-neutral-600">
                                             <p class="dark:text-white">{{ $schedule->day_of_week ?? " - " }}</p>
                                             <p class="text-[#FF7E13] font-semibold">{{ $schedule->start_time ? substr($schedule->start_time, 0,5) :" - " }} - {{ $schedule->end_time ? substr($schedule->end_time, 0,5) :" - " }}</p>
                                         </div>
@@ -172,7 +172,7 @@
                                     </svg>
                                     <p class="mr-2 {{ $user->pivot->certificate == "ENTREGAT" ? "text-green-600" : "text-red-600" }}">{{ $user->pivot->certificate }}</p>
                                 </div>
-                                <div class="border border-[#AFAFAF] bg-white rounded-[15px] dark:bg-neutral-900 dark:border-neutral-600 p-2">
+                                <div class="border border-[#AFAFAF] bg-white rounded-[15px] dark:bg-neutral-950 dark:border-neutral-600 p-2">
                                     <div class="flex items-center">
                                         <div class="flex items-center gap-2">
                                             <div class="w-15 h-15 bg-gray-200 rounded-full">
