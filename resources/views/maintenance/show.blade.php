@@ -28,8 +28,8 @@
     </div>
     <!-- Especificaciones -->
     <div class="gap-5 justify-center text-[#0F172A] w-1/1 flex flex-col items-center">
-        <div class="w-4/5 flex flex-row gap-5">
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] flex flex-col gap-3 min-w-min">
+        <div class="w-4/5 flex flex-col lg:flex-row gap-5">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 lg:w-[50%] flex flex-col gap-3 min-w-min">
                 <div class="flex gap-5 items-center">
                     <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                         <svg class="w-7 h-7 text-[#FF7E13]">
@@ -43,7 +43,7 @@
                 </div>
             </div>
     
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[50%] flex flex-col gap-3 min-w-min">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 lg:w-[50%] flex flex-col gap-3 min-w-min">
                 <div class="flex gap-5 items-center">
                     <div class="flex items-center p-2 bg-[#ffe7de] rounded-lg">
                         <svg class="w-7 h-7 text-[#FF7E13]">
