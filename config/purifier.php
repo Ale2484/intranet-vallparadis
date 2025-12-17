@@ -102,9 +102,9 @@ return [
             ['u', 'Inline', 'Inline', 'Common'],
         ],
         'quill' => [
-            'HTML.Allowed' => 'p,h1,h2,strong,b,em,i,u,ol,ul,li,span[style],br',
+            'HTML.Allowed' => 'p[style][class],h1[style][class],h2[style][class],strong[style][class],b[style][class],em[style][class],i[style][class],u[style][class],ol[style][class],ul[style][class],li[style][class],span[style][class],br',
             'Attr.AllowedClasses' => ['ql-align-right','ql-align-center','ql-align-justify', 'ql-font-serif', 'ql-font-monospace'],
-            'CSS.AllowedProperties' => 'text-align,font-family',
+            'CSS.AllowedProperties' => 'background-color, color'
         ],
 
     ],

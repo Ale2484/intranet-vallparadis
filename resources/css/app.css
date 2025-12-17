@@ -39,7 +39,7 @@
 }
 /* Notifications */
 .notification {
-    @apply fixed top-20 right-5 p-4 rounded-lg text-[16px] shadow-lg opacity-0 transform translate-x-full transition-all duration-500;
+    @apply fixed top-24 right-5 p-4 rounded-lg text-[16px] shadow-lg opacity-0 transform translate-x-full transition-all duration-500;
 }
 
 .notification.success {
@@ -77,6 +77,21 @@
 .rich-editor-container * {
     all : revert;
     margin: 2px;
+}
+.ql-align-center{
+    @apply text-center;
+}
+.ql-align-right{
+    @apply text-right;
+}
+.ql-align-justify{
+    @apply text-justify;
+}
+.ql-font-serif{
+    @apply font-serif;
+}
+.ql-font-monospace{
+    @apply font-mono;
 }
 .dark .ql-toolbar.ql-snow span {
     @apply text-white

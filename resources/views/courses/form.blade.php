@@ -224,6 +224,33 @@
                         <input type="time" name="schedules[{{ $day }}][end_time]" id="schedules[{{ $day }}][end_time]" value="{{ old("schedules" . $day . "end_time", isset($schedules[$day]["end_time"]) ? \Carbon\Carbon::parse($schedules[$day]["end_time"])->format("H:i") : '') }}" class="w-24 border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
                     </td>
                 @endforeach
+              </tr>
+
+              <tr>
+                <th class="text-center">Inici:</th>
+                @foreach ($daysOfWeek as $day)
+                  <td>
+                    <input type="time"
+                           name="schedules[{{ $day }}][start_time]"
+                           id="schedules[{{ $day }}][start_time]"
+                           value="{{ old('schedules'.$day.'start_time', isset($schedules[$day]['start_time']) ? \Carbon\Carbon::parse($schedules[$day]['start_time'])->format('H:i') : '') }}"
+                           class="w-24 border-1 border-[#AFAFAF] p-2 rounded-lg mb-3 block mx-auto">
+                  </td>
+                @endforeach
+              </tr>
+
+              <tr>
+                <th class="text-center">Final:</th>
+                @foreach ($daysOfWeek as $day)
+                  <td>
+                    <input type="time"
+                           name="schedules[{{ $day }}][end_time]"
+                           id="schedules[{{ $day }}][end_time]"
+                           value="{{ old('schedules'.$day.'end_time', isset($schedules[$day]['end_time']) ? \Carbon\Carbon::parse($schedules[$day]['end_time'])->format('H:i') : '') }}"
+                           class="w-24 border-1 border-[#AFAFAF] p-2 rounded-lg mb-3 block mx-auto">
+                  </td>
+                @endforeach
+              </tr>
             </table>
         </div>
         <div class="flex flex-row justify-between gap-5 dark:text-white">

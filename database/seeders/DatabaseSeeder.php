@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             CourseSeeder::class,
             CourseUserSeeder::class,
             CourseScheduleSeeder::class,
+            ComplementaryServiceSeeder::class,
             GeneralServiceSeeder::class,
             MaintenanceSeeder::class,
             RrhhTopicSeeder::class

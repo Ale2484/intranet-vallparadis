@@ -16,6 +16,7 @@ use App\Http\Controllers\RRHHTopicController;
 use App\Http\Controllers\RRHHTrackingController;
 use App\Http\Controllers\RRHHDocsController;
 use App\Http\Controllers\CenterDocumentsController;
+use App\Http\Controllers\ComplementaryServiceController;
 use App\Http\Controllers\ExternalContactController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MaintenanceTrackingController;
@@ -127,6 +128,15 @@ Route::middleware("auth")->group(function () {
     // Documentos del centro
     Route::get("/centers/{center}/documents", [CenterDocumentsController::class, "index"])->name("centers.documents");
     Route::post("/centers/{center}/documents/store", [CenterDocumentsController::class, "store"])->name("centers.documents.store");
+
+    // Servicios complementarios
+    Route::resource("complementary-services", ComplementaryServiceController::class);
+    Route::patch("/complementary-services/{complementaryService}/activate", [ComplementaryServiceController::class, "activate"])->name('complementary-services.activate');    
+    Route::patch("/complementary-services/{complementaryService}/deactivate", [ComplementaryServiceController::class, "deactivate"])->name('complementary-services.deactivate');
+    Route::post("/complementary-services/search", [ComplementaryServiceController::class, "search"])->name("complementary-services.search");
+    Route::post("/complementary-services/filter", [ComplementaryServiceController::class, "filter"])->name("complementary-services.filter");
+    Route::post("/complementary-services/{complementaryService}/upload-file", [ComplementaryServiceController::class, "uploadFile"])->name("complementary-services.documents.store");
+    Route::get("/complementary-services/documents/{baseName}/", [ComplementaryServiceController::class, "downloadFile"])->name("complementary-services.documents.download");
     
     // Temas RRHH
     Route::resource("rrhh", RRHHTopicController::class)->except(["destroy","update","edit"]);
