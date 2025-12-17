@@ -6,6 +6,7 @@ use App\Models\Center;
 use App\Models\ComplementaryService;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Mews\Purifier\Facades\Purifier;
 
 class ComplementaryServiceController extends Controller
 {
@@ -109,6 +110,7 @@ class ComplementaryServiceController extends Controller
             "schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["schedules"] = Purifier::clean($validated["schedules"], "quill");
         ComplementaryService::create($validated);
 
         return redirect()->route("complementary-services.index")->with("success", "Servei complementari creat correctament");
@@ -147,6 +149,7 @@ class ComplementaryServiceController extends Controller
             "schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["schedules"] = Purifier::clean($validated["schedules"], "quill");
         $complementaryService->update($validated);
         return redirect()->route("complementary-services.index")->with("success", "Servei complementari modificat correctament");
     }
