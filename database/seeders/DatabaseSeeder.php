@@ -26,7 +26,9 @@ class DatabaseSeeder extends Seeder
             CourseUserSeeder::class,
             CourseScheduleSeeder::class,
             ComplementaryServiceSeeder::class,
-            GeneralServiceSeeder::class
+            GeneralServiceSeeder::class,
+            MaintenanceSeeder::class,
+            RrhhTopicSeeder::class
 
         ]);
         // User::factory(10)->create();

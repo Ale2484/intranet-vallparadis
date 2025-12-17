@@ -86,7 +86,7 @@
                         <div class="flex w-1/2 flex-row items-center gap-2">
                             <div class="p-2 rounded-lg mb-2 flex flex-row items-center justify-center bg-[#ffe7de] text-[#FF7E13] w-12 h-12">
                                 <svg class="w-8 h-8">
-                                    <use xlink:href="#icon-cog-8-tooth"></use>
+                                    <use xlink:href="#icon-services"></use>
                                 </svg>
                             </div>
                             <div>

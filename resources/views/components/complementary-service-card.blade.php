@@ -4,7 +4,7 @@
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
                 <svg class="w-8 h-8 text-[#FF7E13]">
-                    <use xlink:href="#icon-cog-8-tooth"></use>
+                    <use xlink:href="#icon-services"></use>
                 </svg>
             </div>
             <a href="{{ route("complementary-services.show", $complementaryService) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $complementaryService->name }}</a>

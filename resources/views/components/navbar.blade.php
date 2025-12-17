@@ -1,5 +1,5 @@
 <!-- Menu lateral -->
-<nav id="sidebar" class="bg-white h-full p-5 shadow-sm hidden md:flex flex-col items-start fixed top-0 left-0 z-10 w-20 transition-[width] duration-300 dark:bg-neutral-850 dark:border-r dark:border-neutral-600">
+<nav id="sidebar" class="bg-white h-full p-5 shadow-sm hidden md:flex flex-col items-start fixed top-0 left-0 z-10 w-20 transition-[width] duration-300 dark:bg-neutral-900 border-r border-transparent dark:border-neutral-600">
     <ul class="flex flex-col gap-3">
         <li class="mb-5 pt-1 flex items-end justify-end">
             <button id="toggleMenu" class="p-2 group cursor-pointer">
@@ -67,7 +67,7 @@
         <li>
             <a href="{{ route("complementary-services.index") }}" class="{{ request()->is('complementary-services*') ? "menu-option-selected" : "menu-option" }}">
             <svg class="w-7 h-7">
-                <use xlink:href="#icon-cog-8-tooth"></use>
+                <use xlink:href="#icon-services"></use>
             </svg>
                 <span class="menu-text hidden text-nowrap">Serveis complementaris</span>
             </a>
@@ -77,7 +77,7 @@
 </nav>
 
 <!-- Menu superior -->
-<div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm md:pl-28 dark:bg-neutral-850 dark:border dark:border-neutral-600">
+<div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm md:pl-28 dark:bg-neutral-900 border border-transparent dark:border-neutral-600">
     <button id="toggleMenu" class="p-2 group cursor-pointer md:hidden">
         <svg class="w-7 h-7 text-[#FF7E13]">
             <use xlink:href="#icon-no-line-arrow"></use>

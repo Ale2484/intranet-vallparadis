@@ -62,7 +62,7 @@
 </div>
 <div class="tableContainer {{ $viewType != "table" ? "hidden" : "" }}">
     <table class="w-full border-collapse">
-        <thead class="bg-[#edecec] dark:bg-neutral-900 dark:text-white">
+        <thead class="bg-[#edecec] dark:bg-neutral-950 dark:text-white">
             <tr class="border-b border-[#AFAFAF] text-center">
                 <th class="p-2 w-3/12">Curs</th>
                 <th class="w-1/12">Participants</th>
