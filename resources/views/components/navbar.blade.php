@@ -69,18 +69,23 @@
 </nav>
 
 <!-- Menu superior -->
-<div class="bg-white flex flex-row items-center gap-2 w-full p-2 shadow-sm md:pl-28 dark:bg-neutral-900 border border-transparent dark:border-neutral-600">
-    <button id="toggleMenu" class="p-2 group cursor-pointer md:hidden">
+<div class="bg-white flex flex-row items-center justify-between gap-2 w-full p-2 shadow-sm md:pl-28 dark:bg-neutral-900 border border-transparent dark:border-neutral-600">
+    <button id="toggleMenu" class="p-2 group cursor-pointer bg-[#ffe7de] rounded-lg md:hidden">
         <svg class="w-7 h-7 text-[#FF7E13]">
             <use xlink:href="#icon-no-line-arrow"></use>
         </svg>
     </button>
-    <a href="{{ route("dashboard") }}">
-        <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10 hidden md:block">
-        <img src="{{ asset("images/logo.svg") }}" alt="vallparadis-logo" class="w-10 mr-10 md:hidden">
-    </a>
+    <button class="hidden">
+            <svg class="w-6 h-6 dark:text-neutral-400">
+                <use xlink:href="#icon-search"></use>
+            </svg>
+    </button>
 
-    <form action="#" method="post" class="w-[65%] flex items-center gap-2 border border-[#E6E5DE] rounded-lg h-10 bg-[#FFF9F6] p-5 dark:bg-neutral-800 dark:border-neutral-600">
+    <a href="{{ route("dashboard") }}" class="text-center absolute left-[45%] md:static md:text-left">
+        <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10 hidden md:block">
+        <img src="{{ asset("images/logo.svg") }}" alt="vallparadis-logo" class="w-10 md:hidden">
+    </a>
+    <form action="#" method="post" class="w-[65%] hidden items-center gap-2 border border-[#E6E5DE] rounded-lg h-10 md:flex bg-[#FFF9F6] p-5 dark:bg-neutral-800 dark:border-neutral-600">
         @csrf
         <button type="submit" class="cursor-pointer">
             <svg class="w-6 h-6 dark:text-neutral-400">
@@ -91,9 +96,9 @@
         <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class="pl-2 w-full h-10 outline-0 dark:text-slate-400">
     </form>
 
-    <div class="w-[25%] flex flex-row items-center justify-end gap-5 px-5">
+    <div class="w-auo md:w-[25%] flex flex-row items-center justify-end gap-5 px-2 md:px-5">
         <!-- Cambiar de modo -->
-        <button type="button" id="theme-toggle" class="mr-5 cursor-pointer">
+        <button type="button" id="theme-toggle" class="mr-5 cursor-pointer hidden">
             <svg class="w-7 h-7 text-slate-500 block dark:hidden">
                 <use xlink:href="#icon-moon"></use>
             </svg>
