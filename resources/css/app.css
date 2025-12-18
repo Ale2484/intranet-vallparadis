@@ -187,3 +187,7 @@
 @media(min-width: 768px) {
     
 }
+
+:root {
+    --test: #999999;
+}
