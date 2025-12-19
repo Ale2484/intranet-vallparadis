@@ -106,7 +106,7 @@
 
     <div class="w-auo md:w-[25%] flex flex-row items-center justify-end gap-5 px-2 md:px-5">
         <!-- Cambiar de modo -->
-        <button type="button" id="theme-toggle" class="mr-5 cursor-pointer hidden">
+        <button type="button" id="theme-toggle" class="mr-5 cursor-pointer">
             <svg class="w-7 h-7 text-slate-500 block dark:hidden">
                 <use xlink:href="#icon-moon"></use>
             </svg>
