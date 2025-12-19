@@ -9,7 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
           [{ "header": "1" }, { "header": "2" }, {"font": []}],
           [{ "list": "ordered" }, { "list": "bullet" }],
           ["bold", "italic", "underline"],
-          [{ "align": [] }]
+          [{ "align": [] }],
+          [{"background": []}],
+          [{"color": []}]
         ]
       },
       placeholder: 'Escriu aquí el personal i els seus horaris...',

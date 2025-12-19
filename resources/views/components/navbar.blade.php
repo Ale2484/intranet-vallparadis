@@ -64,6 +64,14 @@
                 <span class="menu-text hidden text-nowrap">Serveis generals</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route("complementary-services.index") }}" class="{{ request()->is('complementary-services*') ? "menu-option-selected" : "menu-option" }}">
+            <svg class="w-7 h-7">
+                <use xlink:href="#icon-services"></use>
+            </svg>
+                <span class="menu-text hidden text-nowrap">Serveis complementaris</span>
+            </a>
+        </li>
 
     </ul>
 </nav>
