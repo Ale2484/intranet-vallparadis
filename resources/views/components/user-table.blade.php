@@ -1,7 +1,11 @@
 <tr class="mb-10 bg-white border-b border-[#AFAFAF] text-[#0F172A] hover:bg-[#eeeeee65] hover:transition-all dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700">
     <td class="flex items-center gap-2 p-3">
-        <div class="bg-gray-200 rounded-full h-10 w-10 flex items-center justify-center">
-            <minidenticon-svg username="{{ md5($user->id) }}" class="w-8 h-8"></minidenticon-svg>
+        <div class="bg-gray-200 rounded-full h-10 w-10 flex items-center justify-center aspect-square">
+            @if (!$user->profile_photo_path)
+                <minidenticon-svg username="{{ md5($user->id) }}" class="w-10 h-10"></minidenticon-svg>
+            @else
+                <img src="{{ asset("storage/" . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="rounded-full w-10 h-10 object-cover">
+            @endif
         </div>
         <a href="{{ route('users.show', $user) }}" class="text-[#012F4A] font-bold text-[16px] dark:text-white">{{ $user->name }}</a>
     </td>

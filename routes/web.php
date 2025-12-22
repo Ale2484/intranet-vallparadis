@@ -61,6 +61,7 @@ Route::middleware("auth")->group(function () {
     Route::patch('/users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
     Route::post("/users/search", [UserController::class, "search"])->name('users.search');
     Route::post("/users/filter", [UserController::class, "filter"])->name('users.filter');
+    Route::post("/users/update-profile-photo/{user}", [UserController::class, "updateProfilePhoto"])->name('users.updateProfilePhoto');
     Route::post("/logout", [UserController::class, "logout"])->name("users.logout");
     Route::get("/logout", function () {
         if (Auth::check()) {return redirect()->route("dashboard");}

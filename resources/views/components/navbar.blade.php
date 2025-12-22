@@ -112,7 +112,13 @@
 
         <div class="flex flex-row items-center gap-5 ">
             <a href="{{ route("users.show", auth()->user()->id) }}" class="flex items-center gap-5">
-                <minidenticon-svg username="{{ md5(auth()->user()->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+                @if (!auth()->user()->profile_photo_path)
+                    <minidenticon-svg username="{{ md5(auth()->user()->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+                @else
+                    <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
+                        <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="{{ auth()->user()->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
+                    </div>
+                @endif
                 <div class="hidden lg:block">
                     <p class="font-bold dark:text-white">{{ auth()->user()->name}}</p>
                 </div>

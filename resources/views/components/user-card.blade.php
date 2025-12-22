@@ -5,7 +5,11 @@
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
                         {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
                         <!-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> -->
-                        <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                        @if (!$user->profile_photo_path)
+                            <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                        @else
+                            <img src="{{ asset("storage/" . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="rounded-full w-16 h-16 object-cover">
+                        @endif
                     </div>
                     <div class="flex items-center">
                         <a href="{{ route("users.show", $user) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $user->name }}</a>
