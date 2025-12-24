@@ -8,18 +8,16 @@
   @vite('resources/css/app.css')
   <title>Login - Vallparadis</title>
 </head>
-<body class="bg-[#FFF9F6]">
+<body class="bg-[#FFF9F6] px-5">
   @include('partials.icons')
   @include('partials.notifications')
-
-
   <div class="flex flex-col items-center justify-center h-screen">
-    <form action="{{ route("login") }}" method="post" class="bg-white rounded-3xl border-1 border-[#AFAFAF] p-10 shadow-2xl w-[30%] min-w-[300px] max-w-[500px]">
+    <form action="{{ route("login") }}" method="post" class="bg-white rounded-3xl border-1 border-[#AFAFAF] p-10 shadow-2xl w-full md:w-[40%] md:min-w-[400px]">
       @csrf
       <div class="flex justify-center mb-5">
         <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10">
       </div>
-      <h2 class="text-3xl font-bold mb-6 text-center text-[#012F4A]">Intranet Vallparadis<h2>
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-[#012F4A]">Intranet Vallparadis<h2>
       <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-3">  
           <div class="flex items-center gap-2">
