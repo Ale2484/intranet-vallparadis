@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         function enableMenu(){
             sidebar.classList.remove("w-20");
             sidebar.classList.remove("hidden");
-            sidebar.classList.add("w-64");
+            sidebar.classList.add("w-72");
             toggleButtons.forEach(btn => btn.querySelector('svg').classList.add("rotate-180"));
             setTimeout(() => {
                 menuTexts.forEach(text => text.classList.remove("hidden"));
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         function disableMenu(){
             sidebar.classList.add("w-20");
-            sidebar.classList.remove("w-64");
+            sidebar.classList.remove("w-72");
             sidebar.classList.add("hidden");
             toggleButtons.forEach(btn => btn.querySelector('svg').classList.remove("rotate-180"));
         
