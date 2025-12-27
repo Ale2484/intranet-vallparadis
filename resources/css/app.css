@@ -125,6 +125,15 @@
     @apply border-b-0
 }
 
+/* Input */
+  .range-input {
+    @apply w-full h-1 rounded-full appearance-none bg-orange-200 cursor-pointer;
+  }
+
+  .range-input::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 rounded-full bg-orange-500 cursor-pointer;
+  }
+
 /* 
 .simple-container{
     @apply border border-[#AFAFAF] bg-white rounded-[15px] p-5;

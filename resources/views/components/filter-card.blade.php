@@ -1,4 +1,4 @@
-<div id="filterContainer" data-element-type="{{ $type }}" class="w-screen h-screen bg-black/20 z-20 fixed inset-0 hidden">
+<div id="filterContainer" data-element-type="{{ $type }}" class="w-screen h-screen bg-black/20 z-20 dark:bg-white/20 fixed inset-0 hidden">
     <div class="w-full h-full flex flex-col items-center justify-center">
         <div class=" w-[40%] min-w-[450px] bg-white rounded-lg flex flex-col">
             <div class="flex items-center justify-between bg-orange-500 rounded-t-lg p-3">

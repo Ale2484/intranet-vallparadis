@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("title", "Mostrar l'usuari")
 @section('main')
-<div class="min-w-fit w-full md:w-2/3 mx-auto flex flex-col mb-7 gap-5">
+<div class="md:min-w-fit w-full md:w-2/3 mx-auto flex flex-col mb-7 gap-5">
     <!-- Header -->
     <div class="w-full flex flex-row mb-8 justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
@@ -28,12 +28,100 @@
             <!-- Información principal -->
             <div class="border-b border-b-gray-600">
                 <div class="flex items-center gap-4 mb-6">
-                    <!-- Avatar -->
                     <div>
-                        <div class="bg-gray-200 w-20 h-20 rounded-full">
+                        <div class="bg-gray-200 w-20 h-20 rounded-full relative">
                             {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
                             {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                            <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                            @if (!$user->profile_photo_path)
+                                <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                            @else
+                                <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="rounded-full w-20 h-20 object-cover">
+                            @endif
+
+                            @if ($user->id)
+                                @if ($user->id == auth()->user()->id)
+                                    <button data-modal-id="profile-photo-modal"
+                                        class="open-modal-button absolute bottom-0 right-0 bg-white rounded-full p-1 border cursor-pointer border-gray-300 hover:bg-gray-300 dark:bg-neutral-800 dark:hover:bg-neutral-900 dark:border-white transition-all">
+                                        <svg class="w-5 h-5 dark:text-white">
+                                            <use xlink:href="#icon-camera"></use>
+                                        </svg>
+                                    </button>
+                                    {{-- Modal para cambiar la foto de perfil --}}
+                                    <div id="profile-photo-modal" class="w-screen h-full bg-black/20 z-20 dark:bg-white/20 fixed inset-0 hidden">
+                                        <div class="w-full h-full flex flex-col items-center justify-center px-5 md:px-0">
+                                            <div class="w-full md:w-[40%] md:min-w-[400px] bg-white rounded-lg flex flex-col p-5 dark:bg-neutral-800 dark:border-neutral-600">
+                                                <div class="w-full flex items-center justify-between">
+                                                    <h3 class="font-semibold text-2xl mb-1 dark:text-white">Canviar foto de perfil</h3>
+                                                    <button class="close-modal-button cursor-pointer">
+                                                        <svg class="w-7 h-7 text-[#011020] dark:text-white ml-2 md:ml-0">
+                                                            <use xlink:href="#icon-cross"></use>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div id="select-profile-photo" class="pl-2">
+                                                    <p class="mb-3 text-gray-500 dark:text-neutral-300">Tria una opció per actualitzar la teva foto de perfil</p>
+                                                    <div class="flex flex-col md:flex-row items-stretch gap-2 text-[#011020]">
+                                                        <form id="profile-photo-form" action="{{ route("users.updateProfilePhoto", $user->id) }}" method="post" enctype="multipart/form-data" class="w-2/2 md:w-1/2">
+                                                            @csrf
+                                                            <input type="file" name="profile_photo" id="profile_photo_file_input" class="hidden" accept="image/png, image/jpeg, image/jpg">
+                                                            <button type="button" id="upload-photo-button" class="w-full flex flex-col items-center justify-center border border-[#AFAFAF] rounded-lg p-5 hover:bg-gray-100 dark:hover:bg-neutral-700 transition-all cursor-pointer">
+                                                                <div class="rounded-full bg-[#fef5eb] p-5 mb-2">
+                                                                    <svg class="w-10 h-10 text-[#FF7E13]">
+                                                                        <use xlink:href="#icon-camera"></use>
+                                                                    </svg>
+                                                                </div>
+                                                                <p class="font-bold text-[19px] mb-2 dark:text-white">Pujar una imatge</p>
+                                                                <p class="text-sm dark:text-white">Selecciona una foto des del teu dispositiu</p>
+                                                            </button>
+                                                        </form>
+                                                        <button data-change-content-to="show-canvas-modal" data-hidden-content="select-profile-photo" class="w-2/2 md:w-1/2 flex flex-col items-center justify-center border border-[#AFAFAF] rounded-lg p-5 hover:bg-gray-100 dark:hover:bg-neutral-700 transition-all cursor-pointer">
+                                                            <div class="rounded-full bg-[#fef5eb] p-5 mb-2">
+                                                                <svg class="w-10 h-10 text-[#FF7E13]">
+                                                                    <use xlink:href="#icon-paint-brush"></use>
+                                                                </svg>
+                                                            </div>
+                                                            <p class="font-bold text-[19px] mb-2 dark:text-white">Dibuixar</p>
+                                                            <p class="text-sm dark:text-white">Crea una imatge personalitzada dibuixant</p>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div id="show-canvas-modal" class="w-full flex flex-col items-center justify-center hidden">
+                                                    <form id="canvas-form" action="{{ route("users.updateProfilePhoto", $user->id) }}" method="post" enctype="multipart/form-data" class="w-full flex flex-col items-center justify-center">
+                                                        @csrf
+                                                        <input type="hidden" name="profile_photo" id="profile_photo_data">
+                                                        <p class="w-full text-left mb-3 text-gray-500 dark:text-neutral-300">Dibuixa la teva pròpia foto de perfil</p>
+                                                        <div class="w-full bg-[#fef5eb] p-2 rounded-lg border border-[#FF7E13] flex flex-col md:flex-row items-start md:items-center justify-center gap-5">
+                                                            <div class="flex items-center gap-2">
+                                                                <label for="colorPicker">Color</label>
+                                                                <input type="color" id="colorPicker" value="#000000" class="rounded-lg h-10">
+                                                            </div>
+                                                            <div class="flex items-center gap-2">
+                                                                <label for="brushSize">Gruix</label>
+                                                                <input type="range" id="brushSize" min="1" max="20" value="3" class="range-input">
+                                                            </div>
+                                                            <button type="button" id="clearCanvas" class="bg-red-500 text-white p-2 rounded-lg flex items-center cursor-pointer gap-2">
+                                                                <svg class="w-5 h-5">
+                                                                    <use xlink:href="#icon-trash"></use>
+                                                                </svg>
+                                                                <p>Esborrar</p>
+                                                            </button>
+                                                        </div>
+                                                        <canvas id="canvas" width="200" height="200" class="mt-5 border border-dashed cursor-crosshair rounded-full bg-gray-200"></canvas>
+                                                        <div class="w-full flex items-end justify-end mt-5">
+                                                            <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+                                                                <svg id="draw-profile-photo-button" class="w-6 h-6">
+                                                                    <use xlink:href="#icon-check-circle"></use>
+                                                                </svg>
+                                                                <p>Guardar la nova imatge</p>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endif
                         </div>
                     </div>
                     

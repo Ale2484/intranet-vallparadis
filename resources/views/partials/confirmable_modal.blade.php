@@ -1,6 +1,6 @@
 <div id="confirmable-modal" class="w-screen h-screen bg-black/20 dark:bg-white/20 z-20 fixed inset-0 hidden">
-    <div class="w-full h-full flex flex-col items-center justify-center">
-        <div class=" w-4/12 p-3 bg-white rounded-lg flex flex-col gap-3 dark:bg-neutral-800">
+    <div class="w-full h-full px-5 md:px-0 flex flex-col items-center justify-center">
+        <div class="w-full md:w-4/12 md:min-w-[450px] p-3 bg-white rounded-lg flex flex-col gap-3 dark:bg-neutral-800">
             <div class="flex items-center gap-3">
                 <div class="w-12 h-12 bg-[#fef5eb] rounded-full flex items-center justify-center text-[#FF7E13]">
                     <svg class="w-9 h-9">
