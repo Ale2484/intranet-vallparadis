@@ -16,7 +16,9 @@ class ComplementaryServiceController extends Controller
     public function index()
     {
         $complementaryServices = ComplementaryService::orderBy("created_at", "desc")->paginate($this->paginateNumber);
-        return view("complementary-services.index", compact("complementaryServices"));
+
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        return view("complementary-services.index", compact("complementaryServices", "viewType"));
     }
 
     public function search(Request $request)
@@ -28,8 +30,15 @@ class ComplementaryServiceController extends Controller
         $searchValue = $request->searchValue;
         $searchComplementaryServices = ComplementaryService::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchComplementaryServices)) {
-            foreach ($searchComplementaryServices as $complementaryService) {
-                $htmlContent .= view("components.complementary-service-card", compact("complementaryService"))->render();
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($searchComplementaryServices as $complementaryService) {
+                    $htmlContent .= view("components.complementary-service-card", compact("complementaryService"))->render();
+                }
+            } else {
+                foreach ($searchComplementaryServices as $complementaryService) {
+                    $htmlContent .= view("components.complementary-service-table", compact("complementaryService"))->render();
+                }
             }
             // Se obtiene la paginacion
             $pagination = $searchComplementaryServices->links()->render();
@@ -77,8 +86,15 @@ class ComplementaryServiceController extends Controller
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
-        foreach ($complementaryServices as $complementaryService) {
-            $htmlContent .= view("components.complementary-service-card", compact("complementaryService"))->render();
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        if ($viewType == "card") {
+            foreach ($complementaryServices as $complementaryService) {
+                $htmlContent .= view("components.complementary-service-card", compact("complementaryService"))->render();
+            }
+        } else {
+            foreach ($complementaryServices as $complementaryService) {
+                $htmlContent .= view("components.complementary-service-table", compact("complementaryService"))->render();
+            }
         }
         $pagination = $complementaryServices->links()->render();
 

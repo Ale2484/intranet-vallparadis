@@ -8,9 +8,11 @@
 
     {{-- Enlaces --}}
     <div class="flex items-center gap-3">
+        @if ($courses->isNotEmpty())
         <a href="{{ route("courses.exportAll") }}" class="bg-green-600 text-white rounded-lg p-2 font-bold" >
             Exportar cursos
-        </a>
+        </a>            
+        @endif
         <a href="{{ route("courses.create") }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
             <svg class="w-6 h-6 text-white">
                 <use xlink:href="#icon-plus"></use>
@@ -36,7 +38,7 @@
     </div>
     <!-- Filtros -->
     <div class="flex flex-row justify-between gap-2">
-        <button data-modal-id="filterContainer" class="open-modal-button bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+        <button data-modal-id="filterContainer" class="open-modal-button bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]  dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-adjustments-horizontal"></use>
             </svg>
@@ -44,7 +46,7 @@
         </button>
     </div>
     {{-- Cambiar vista --}}
-    <button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]">
+    <button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]  dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
         <svg class="w-6 h-6">
             <use xlink:href="#icon-{{ $viewType == "card" ? "table" : "square"  }}"></use>
         </svg>

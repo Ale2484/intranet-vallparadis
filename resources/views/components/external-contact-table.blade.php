@@ -31,7 +31,7 @@
     </td>
     <td class="px-3">
         <div class="flex items-center justify-center gap-2 p-2">
-            <a href="{{ route('external-contacts.edit', $externalContact) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border w-24 border-[#AFAFAF] dark:bg-neutral-700 dark:text-white dark:hover:bg-neutral-600">Editar</a>
+            <a href="{{ route('external-contacts.edit', $externalContact) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border w-24 border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">Editar</a>
             <form action="{{ $externalContact->is_active ? route('external-contacts.deactivate', $externalContact) : route('external-contacts.activate', $externalContact) }}" method="post" class="w-full sm:w-full md:w-auto lg:w-auto">
                 @csrf
                 @method('PATCH')

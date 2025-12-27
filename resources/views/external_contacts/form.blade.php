@@ -52,14 +52,14 @@
 
         <div>
             <div class="flex items-center gap-2 mb-2">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-phone"></use>
                 </svg>
-                <label for="phone" class="font-medium text-gray-700 flex items-center gap-2">
+                <label for="phone" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
                     Telèfon
                 </label>
             </div>
-            <input type="text" name="phone" id="phone" placeholder="Telèfon del contacte" value="{{ old('phone', $externalContact->phone) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('phone') border-red-500 @enderror" pattern="^\+\d{2,3}\s\d{9}$"  title="El número de telèfon ha de tenir el format +00 000000000 o +000 000000000">
+            <input type="text" name="phone" id="phone" placeholder="Telèfon del contacte" value="{{ old('phone', $externalContact->phone) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('phone') border-red-500 @enderror" pattern="^\+\d{2,3}\s\d{9}$"  title="El número de telèfon ha de tenir el format +00 000000000 o +000 000000000">
             @error('phone')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -67,14 +67,14 @@
         
         <div>
             <div class="flex items-center gap-2 mb-2">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-center"></use>
                 </svg>
-                <label for="center_id" class="font-medium text-gray-700 flex items-center gap-2">
+                <label for="center_id" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
                     Centre *
                 </label>
             </div>
-            <select name="center_id" id="center_id" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('center_id') border-red-500 @enderror" required>
+            <select name="center_id" id="center_id" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none dark:text-white dark:bg-neutral-800 focus:ring-2 focus:ring-orange-500 @error('center_id') border-red-500 @enderror" required>
                 <option value="">Selecciona un centre</option>
                 @foreach($centers as $center)
                     <option value="{{ $center->id }}" {{ old('center_id', $externalContact->center_id) == $center->id ? 'selected' : '' }}>{{ $center->name }}</option>
@@ -87,14 +87,14 @@
 
         <div>
             <div class="flex items-center gap-2 mb-2">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-category"></use>
                 </svg>
-                <label for="category" class="font-medium text-gray-700 flex items-center gap-2">
+                <label for="category" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
                     Categoria *
                 </label>
             </div>
-            <select name="category" id="category" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('category') border-red-500 @enderror" required>
+            <select name="category" id="category" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('category') border-red-500 @enderror" required>
                 <option value="">Selecciona una categoria</option>
                 <option value="assistencial" {{ old('category', $externalContact->category) == 'assistencial' ? 'selected' : '' }}>Assistencial</option>
                 <option value="serveis generals" {{ old('category', $externalContact->category) == 'serveis generals' ? 'selected' : '' }}>Serveis Generals</option>
@@ -106,14 +106,14 @@
 
         <div class="md:col-span-2">
             <div class="flex items-center gap-2 mb-2">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-desc"></use>
                 </svg>
-                <label for="reason" class="text-sm font-medium text-gray-700 flex items-center gap-2">
+                <label for="reason" class="text-sm font-medium text-gray-700 flex items-center gap-2 dark:text-white">
                     Motiu *
                 </label>
             </div>
-            <input type="text" name="reason" id="reason" placeholder="Motiu del contacte" value="{{ old('reason', $externalContact->reason) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('reason') border-red-500 @enderror" required>
+            <input type="text" name="reason" id="reason" placeholder="Motiu del contacte" value="{{ old('reason', $externalContact->reason) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('reason') border-red-500 @enderror" required>
             @error('reason')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -121,14 +121,14 @@
 
         <div class="md:col-span-2">
             <div class="flex items-center gap-2 mb-2">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-eye"></use>
                 </svg>
-                <label for="observations" class="font-medium text-gray-700 flex items-center gap-2">
+                <label for="observations" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
                     Observacions
                 </label>
             </div>
-            <textarea name="observations" id="observations" rows="4" placeholder="Observacions addicionals" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('observations') border-red-500 @enderror">{{ old('observations', $externalContact->observations) }}</textarea>
+            <textarea name="observations" id="observations" rows="4" placeholder="Observacions addicionals" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('observations') border-red-500 @enderror">{{ old('observations', $externalContact->observations) }}</textarea>
             @error('observations')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -136,14 +136,14 @@
 
         <div class="md:col-span-2">
             <div class="flex items-center gap-2 mb-2">
-                <svg class="w-6 h-6">
+                <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-check-circle"></use>
                 </svg>
-                <label for="is_active" class="font-medium text-gray-700 flex items-center gap-2">
+                <label for="is_active" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
                     Estat
                 </label>
             </div>
-            <select name="is_active" id="is_active" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 @error('is_active') border-red-500 @enderror">
+            <select name="is_active" id="is_active" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none dark:text-white dark:bg-neutral-800 focus:ring-2 focus:ring-orange-500 @error('is_active') border-red-500 @enderror">
                 <option value="1" {{ old('is_active', $externalContact->is_active) == 1 ? 'selected' : '' }}>Actiu</option>
                 <option value="0" {{ old('is_active', $externalContact->is_active) == 0 ? 'selected' : '' }}>Inactiu</option>
             </select>
