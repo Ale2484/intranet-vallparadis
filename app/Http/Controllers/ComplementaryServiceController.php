@@ -116,7 +116,6 @@ class ComplementaryServiceController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "type" => "required|string",
             "name" => "required|string",
             "manager_name" => "required|string",
@@ -125,6 +124,7 @@ class ComplementaryServiceController extends Controller
             "schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["center_id"] = auth()->user()->center;
         ComplementaryService::create($validated);
 
         return redirect()->route("complementary-services.index")->with("success", "Servei complementari creat correctament");
@@ -154,7 +154,6 @@ class ComplementaryServiceController extends Controller
     public function update(Request $request, ComplementaryService $complementaryService)
     {
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "type" => "required|string",
             "name" => "required|string",
             "manager_name" => "required|string",
@@ -163,6 +162,7 @@ class ComplementaryServiceController extends Controller
             "schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["center_id"] = auth()->user()->center;
         $complementaryService->update($validated);
         return redirect()->route("complementary-services.index")->with("success", "Servei complementari modificat correctament");
     }

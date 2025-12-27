@@ -11,21 +11,12 @@
         <div>
             <label for="center_id" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6 dark:text-neutral-400">
-                    <use xlink:href="#icon-center"></use>
+                    <use xlink:href="#icon-cog-6-tooth"></use>
                 </svg>
-                Centre: *
+                Nom del servei: *
             </label>
-            <select name="center_id" id="center_id" class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white dark:bg-neutral-800 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-blue-500 @error('center_id') border-red-500 @enderror" required>
-                <option value="" {{ old("center_id", $generalService->center_id) ? "" : "selected" }} hidden>Selecciona un centre</option>
-                @if (count($centers) > 0 )
-                    @foreach ($centers as $center)
-                        <option value="{{ $center->id }}" {{ old("center_id", $generalService->center_id) == $center->id ? "selected" : "" }} >{{ $center->name }}</option>
-                    @endforeach
-                @else
-                    <option value="" disabled>No hi ha centres</option>
-                @endif
-            </select>
-            @error("center_id")
+            <input type="text" name="name" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white dark:bg-neutral-800 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-blue-500 @error('name') border-red-500 @enderror" value="{{ old("name", $generalService->name) }}" placeholder="Introdueix un nom per al servei" required>
+            @error("name")
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
@@ -44,19 +35,6 @@
                 <option value="cuina" {{ old("type", $generalService->type) == "cuina" ? "selected" : ""}}>Cuina</option>
             </select>
             @error("type")
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-            @enderror
-        </div>
-        <!-- Nom del servei -->
-        <div class="md:col-span-2">
-            <label for="name" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
-                <svg class="w-6 h-6 dark:text-neutral-400">
-                    <use xlink:href="#icon-cog-6-tooth"></use>
-                </svg>
-                Nom del servei: *
-            </label>
-            <input type="text" name="name" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white dark:bg-neutral-800 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-blue-500 @error('name') border-red-500 @enderror" value="{{ old("name", $generalService->name) }}" placeholder="Introdueix un nom per al servei" required>
-            @error("name")
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>

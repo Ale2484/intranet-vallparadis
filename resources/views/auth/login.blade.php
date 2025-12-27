@@ -12,7 +12,7 @@
   @include('partials.icons')
   @include('partials.notifications')
   <div class="flex flex-col items-center justify-center h-screen">
-    <form action="{{ route("login") }}" method="post" class="bg-white rounded-3xl border-1 border-[#AFAFAF] p-10 shadow-2xl w-full md:w-[40%] md:min-w-[400px]">
+    <form action="{{ route("login") }}" method="post" class="bg-white rounded-3xl border-1 border-[#AFAFAF] p-10 shadow-2xl w-full md:w-[40%] md:min-w-[400px] min-w-[200px] max-w-[550px]">
       @csrf
       <div class="flex justify-center mb-5">
         <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10">
@@ -38,7 +38,7 @@
             <p class="font-bold text-[#012F4A]">Contrasenya * </p>
           </div>
           <div class="relative">
-            <input type="password" name="password" id="password" placeholder="La teva contrasenya" required class="w-full border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF]">
+            <input type="password" name="password" id="password" placeholder="La teva contrasenya" required class="w-full border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] pr-10">
             
             <button type="button" data-id-input="password" class="absolute top-2 right-3 togglePassword">
                 <svg class=" w-6 h-6 text-gray-700 cursor-pointer hover:text-[#FF7E13] transition-all">

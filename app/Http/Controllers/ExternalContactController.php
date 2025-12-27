@@ -111,7 +111,6 @@ class ExternalContactController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "category" => 'required|in:assistencial,"serveis generals"',
             "reason" => "required|string|max:255",
             "company_or_department" => "required|string|max:255",
@@ -121,7 +120,7 @@ class ExternalContactController extends Controller
             "observations" => "nullable|string",
             "is_active" => "boolean"
         ]);
-
+        $validated["center_id"] = auth()->user()->center;
         ExternalContact::create($validated);
 
         return redirect()->route("external-contacts.index")->with("success", "Contacte creat correctament.");
@@ -141,7 +140,6 @@ class ExternalContactController extends Controller
     public function update(Request $request, ExternalContact $externalContact)
     {
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "category" => 'required|in:assistencial,"serveis generals"',
             "reason" => "required|string|max:255",
             "company_or_department" => "required|string|max:255",
@@ -151,7 +149,7 @@ class ExternalContactController extends Controller
             "observations" => "nullable|string",
             "is_active" => "boolean"
         ]);
-
+        $validated["center_id"] = auth()->user()->center;
         $externalContact->update($validated);
 
         return redirect()->route("external-contacts.index")->with("success", "Contacte actualitzat correctament.");
