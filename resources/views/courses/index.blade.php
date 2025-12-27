@@ -8,9 +8,11 @@
 
     {{-- Enlaces --}}
     <div class="flex items-center gap-3">
+        @if ($courses->isNotEmpty())
         <a href="{{ route("courses.exportAll") }}" class="bg-green-600 text-white rounded-lg p-2 font-bold" >
             Exportar cursos
-        </a>
+        </a>            
+        @endif
         <a href="{{ route("courses.create") }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
             <svg class="w-6 h-6 text-white">
                 <use xlink:href="#icon-plus"></use>
