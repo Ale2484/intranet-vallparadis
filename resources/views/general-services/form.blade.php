@@ -11,7 +11,7 @@
         <div>
             <label for="center_id" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6 dark:text-neutral-400">
-                    <use xlink:href="#icon-cog-6-tooth"></use>
+                    <use xlink:href="#icon-pencil"></use>
                 </svg>
                 Nom del servei: *
             </label>

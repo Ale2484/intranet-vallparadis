@@ -36,12 +36,11 @@ class MaintenanceController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "center" => "required|string",
             "topic" => "required|string",
             "responsible" => "required|string",
             "description" => "required|string",
         ]);
-
+        $validated["center"] = auth()->user()->center;
         Maintenance::create($validated);
         
         return redirect()->route("maintenance.index")->with("success", "Manteniment creat correctament");

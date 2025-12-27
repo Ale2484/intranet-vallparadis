@@ -38,13 +38,13 @@ class RRHHTopicController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "center" => "required|string",
             "user_affected" => "required|string",
             "derivative" => "required|string",
             "description" => "required|string",
             "topic" => "required|string",
         ]);
         $validated["user_register"] = auth()->user()->id;
+        $validated["center"] = auth()->user()->center;
 
 
         RRHHTopic::create($validated);

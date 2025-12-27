@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "Nou centre")
+@section("title", "Nou manteniment")
 @section("main")
 <div class="w-full flex flex-col items-center justify-center">
     
@@ -22,18 +22,6 @@
         <form action="{{ route('maintenance.store') }}" method="POST">
             @csrf
             @method("POST")
-            
-            <div class="flex items-center gap-3 mb-3 font-semibold">
-                <svg class="w-6 h-6">
-                    <use xlink:href="#icon-center"></use>
-                </svg>
-                <label for="center">Nom del centre * </label>
-            </div>
-            <select name="center" id="center" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5">
-                @foreach ($centers as $center)
-                    <option value="{{ $center->id }}">{{ $center->name }}</option>
-                @endforeach
-            </select>
              <div class="flex items-center gap-3 mb-3 font-semibold">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-chat-bubble-bottom-center"></use>
@@ -44,11 +32,11 @@
 
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <svg class="w-6 h-6">
-                    <use xlink:href="#icon-d20"></use>
+                    <use xlink:href="#icon-user"></use>
                 </svg>
                 <label for="responsible">Responsable *</label>
             </div>
-            <textarea name="responsible" id="responsible" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" placeholder="Introdueix el derivat del manteniment"></textarea>
+            <textarea name="responsible" id="responsible" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" placeholder="Introdueix el derivat del manteniment"></textarea>
 
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <svg class="w-6 h-6">
