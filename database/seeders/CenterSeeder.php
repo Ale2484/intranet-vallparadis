@@ -16,7 +16,6 @@ class CenterSeeder extends Seeder
     {
         DB::table("centers")->insert([
             [
-                "id" => 1,
                 "name" => "Centre Sant Pere Vallparadís",
                 "email" => "santpere@vallparadis.org",
                 "address" => "Carrer de Sant Pere, 12, Terrassa",
@@ -25,7 +24,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(29),
             ],
             [
-                "id" => 2,
                 "name" => "Centre Can Palet",
                 "email" => "canpalet@vallparadis.org",
                 "address" => "Carrer del Castell, 45, Terrassa",
@@ -34,7 +32,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(26),
             ],
             [
-                "id" => 3,
                 "name" => "Vallparadís Ca n'Anglada",
                 "email" => "cnanglada@vallparadis.org",
                 "address" => "Plaça d'Europa, 3, Terrassa",
@@ -43,7 +40,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(23),
             ],
             [
-                "id" => 4,
                 "name" => "Centre Les Fonts",
                 "email" => "lesfonts@vallparadis.org",
                 "address" => "Carrer de les Fonts, 7, Terrassa",
@@ -52,7 +48,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(20),
             ],
             [
-                "id" => 5,
                 "name" => "Sant Llorenç Vallparadís",
                 "email" => "santllorenc@vallparadis.org",
                 "address" => "Avinguda del Vallès, 88, Terrassa",
@@ -61,7 +56,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(17),
             ],
             [
-                "id" => 6,
                 "name" => "Centre Can Roca",
                 "email" => "canroca@vallparadis.org",
                 "address" => "Carrer de Can Roca, 21, Terrassa",
@@ -70,7 +64,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(14),
             ],
             [
-                "id" => 7,
                 "name" => "Ca l'Estruch",
                 "email" => "cale_struch@vallparadis.org",
                 "address" => "Carrer de l'Estruch, 5, Terrassa",
@@ -79,7 +72,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(11),
             ],
             [
-                "id" => 8,
                 "name" => "Vallparadís Torrebonica",
                 "email" => "torrebonica@vallparadis.org",
                 "address" => "Passeig de la Torrebonica, 2, Terrassa",
@@ -88,7 +80,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(8),
             ],
             [
-                "id" => 9,
                 "name" => "Centre Can Rull",
                 "email" => "canrull@vallparadis.org",
                 "address" => "Carrer del Rull, 14, Terrassa",
@@ -97,7 +88,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(5),
             ],
             [
-                "id" => 10,
                 "name" => "Vallparadís Les Arenes",
                 "email" => "lesarenes@vallparadis.org",
                 "address" => "Carrer de les Arenes, 9, Terrassa",
@@ -106,7 +96,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(2),
             ],
             [
-                "id" => 11,
                 "name" => "Centre Sant Quirze",
                 "email" => "santquirze@vallparadis.org",
                 "address" => "Carrer de Sant Quirze, 10, Terrassa",
@@ -115,7 +104,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(31),
             ],
             [
-                "id" => 12,
                 "name" => "Vallparadís Can Anglada",
                 "email" => "cananglada@vallparadis.org",
                 "address" => "Carrer de Can Anglada, 7, Terrassa",
@@ -124,7 +112,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(30),
             ],
             [
-                "id" => 13,
                 "name" => "Centre La Maurina",
                 "email" => "lamaurina@vallparadis.org",
                 "address" => "Carrer de la Maurina, 3, Terrassa",
@@ -133,7 +120,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(29),
             ],
             [
-                "id" => 14,
                 "name" => "Vallparadís Sant Llorenç",
                 "email" => "santllorenc2@vallparadis.org",
                 "address" => "Avinguda del Vallès, 50, Terrassa",
@@ -142,7 +128,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(27),
             ],
             [
-                "id" => 15,
                 "name" => "Centre Can Rull",
                 "email" => "canrull2@vallparadis.org",
                 "address" => "Carrer del Rull, 20, Terrassa",
@@ -151,7 +136,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(26),
             ],
             [
-                "id" => 16,
                 "name" => "Vallparadís Torre del Palau",
                 "email" => "torredelpalau@vallparadis.org",
                 "address" => "Passeig del Palau, 8, Terrassa",
@@ -160,7 +144,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(25),
             ],
             [
-                "id" => 17,
                 "name" => "Centre Ca n'Aurell",
                 "email" => "canaurell@vallparadis.org",
                 "address" => "Carrer de Ca n'Aurell, 15, Terrassa",
@@ -169,7 +152,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(24),
             ],
             [
-                "id" => 18,
                 "name" => "Vallparadís Les Arenes",
                 "email" => "lesarenes2@vallparadis.org",
                 "address" => "Carrer de les Arenes, 12, Terrassa",
@@ -178,7 +160,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(23),
             ],
             [
-                "id" => 19,
                 "name" => "Centre La Gripia",
                 "email" => "lagripia@vallparadis.org",
                 "address" => "Carrer de la Gripia, 4, Terrassa",
@@ -187,7 +168,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(22),
             ],
             [
-                "id" => 20,
                 "name" => "Vallparadís Can Palet Nord",
                 "email" => "canpaletnord@vallparadis.org",
                 "address" => "Carrer del Nord, 6, Terrassa",
@@ -196,7 +176,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(21),
             ],
             [
-                "id" => 21,
                 "name" => "Centre Can Boada",
                 "email" => "canboada@vallparadis.org",
                 "address" => "Carrer de Can Boada, 2, Terrassa",
@@ -205,7 +184,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(20),
             ],
             [
-                "id" => 22,
                 "name" => "Vallparadís Sant Jaume",
                 "email" => "santjaume@vallparadis.org",
                 "address" => "Carrer de Sant Jaume, 9, Terrassa",
@@ -214,7 +192,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(19),
             ],
             [
-                "id" => 23,
                 "name" => "Centre Les Arenes Sud",
                 "email" => "lesarenessud@vallparadis.org",
                 "address" => "Carrer de les Arenes, 18, Terrassa",
@@ -223,7 +200,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(18),
             ],
             [
-                "id" => 24,
                 "name" => "Vallparadís Can Roca Nord",
                 "email" => "canrocanord@vallparadis.org",
                 "address" => "Carrer de Can Roca, 30, Terrassa",
@@ -232,7 +208,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(17),
             ],
             [
-                "id" => 25,
                 "name" => "Centre Sant Llorenç Sud",
                 "email" => "santllorencsud@vallparadis.org",
                 "address" => "Avinguda del Vallès, 100, Terrassa",
@@ -241,7 +216,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(16),
             ],
             [
-                "id" => 26,
                 "name" => "Vallparadís La Maurina",
                 "email" => "lamaurina2@vallparadis.org",
                 "address" => "Carrer de la Maurina, 8, Terrassa",
@@ -250,7 +224,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(15),
             ],
             [
-                "id" => 27,
                 "name" => "Centre Can Rull Nord",
                 "email" => "canrullnord@vallparadis.org",
                 "address" => "Carrer del Rull, 25, Terrassa",
@@ -259,7 +232,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(14),
             ],
             [
-                "id" => 28,
                 "name" => "Vallparadís Sant Pere Nord",
                 "email" => "santperenord@vallparadis.org",
                 "address" => "Carrer de Sant Pere, 20, Terrassa",
@@ -268,7 +240,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(13),
             ],
             [
-                "id" => 29,
                 "name" => "Centre Torrebonica Sud",
                 "email" => "torrebonicasud@vallparadis.org",
                 "address" => "Passeig de la Torrebonica, 12, Terrassa",
@@ -277,7 +248,6 @@ class CenterSeeder extends Seeder
                 "updated_at" => now()->subDays(12),
             ],
             [
-                "id" => 30,
                 "name" => "Vallparadís Can Anglada Sud",
                 "email" => "canangladasud@vallparadis.org",
                 "address" => "Carrer de Can Anglada, 14, Terrassa",
