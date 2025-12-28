@@ -117,7 +117,6 @@ class GeneralServiceController extends Controller
     {
         // Se validan los datos que se envian por el form de creacion de centro
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "name" => "required|string",
             "type" => "required|in:cuina,neteja,bugaderia",
             "manager_name"=> "required|string",
@@ -126,6 +125,7 @@ class GeneralServiceController extends Controller
             "staff_and_schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["center_id"] = auth()->user()->center;
 
         $validated["staff_and_schedules"] = Purifier::clean($validated["staff_and_schedules"], "quill");
         
@@ -158,7 +158,6 @@ class GeneralServiceController extends Controller
     public function update(Request $request, GeneralService $generalService)
     {
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "name" => "required|string",
             "type" => "required|in:cuina,neteja,bugaderia",
             "manager_name"=> "required|string",
@@ -167,6 +166,7 @@ class GeneralServiceController extends Controller
             "staff_and_schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["center_id"] = auth()->user()->center;
         $validated["staff_and_schedules"] = Purifier::clean($validated["staff_and_schedules"], "quill");
 
         $generalService->update($validated);

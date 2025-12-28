@@ -68,19 +68,14 @@
         <div>
             <div class="flex items-center gap-2 mb-2">
                 <svg class="w-6 h-6 dark:text-neutral-400">
-                    <use xlink:href="#icon-center"></use>
+                    <use xlink:href="#icon-desc"></use>
                 </svg>
-                <label for="center_id" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
-                    Centre *
+                <label for="reason" class="text-sm font-medium text-gray-700 flex items-center gap-2 dark:text-white">
+                    Motiu *
                 </label>
             </div>
-            <select name="center_id" id="center_id" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg focus:outline-none dark:text-white dark:bg-neutral-800 focus:ring-2 focus:ring-orange-500 @error('center_id') border-red-500 @enderror" required>
-                <option value="">Selecciona un centre</option>
-                @foreach($centers as $center)
-                    <option value="{{ $center->id }}" {{ old('center_id', $externalContact->center_id) == $center->id ? 'selected' : '' }}>{{ $center->name }}</option>
-                @endforeach
-            </select>
-            @error('center_id')
+            <input type="text" name="reason" id="reason" placeholder="Motiu del contacte" value="{{ old('reason', $externalContact->reason) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('reason') border-red-500 @enderror" required>
+            @error('reason')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
@@ -100,21 +95,6 @@
                 <option value="serveis generals" {{ old('category', $externalContact->category) == 'serveis generals' ? 'selected' : '' }}>Serveis Generals</option>
             </select>
             @error('category')
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-            @enderror
-        </div>
-
-        <div class="md:col-span-2">
-            <div class="flex items-center gap-2 mb-2">
-                <svg class="w-6 h-6 dark:text-neutral-400">
-                    <use xlink:href="#icon-desc"></use>
-                </svg>
-                <label for="reason" class="text-sm font-medium text-gray-700 flex items-center gap-2 dark:text-white">
-                    Motiu *
-                </label>
-            </div>
-            <input type="text" name="reason" id="reason" placeholder="Motiu del contacte" value="{{ old('reason', $externalContact->reason) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('reason') border-red-500 @enderror" required>
-            @error('reason')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
