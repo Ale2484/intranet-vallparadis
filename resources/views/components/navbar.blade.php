@@ -61,7 +61,7 @@
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-conctact"></use>
             </svg>
-                <span class="menu-text hidden text-nowrap">Serveis generals</span>
+                <span class="menu-text hidden text-nowrap">Contactes externs</span>
             </a>
         </li>
         <li>

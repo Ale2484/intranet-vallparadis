@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("title", "Mostrar l'usuari")
 @section('main')
-<div class="md:min-w-fit w-full md:w-2/3 mx-auto flex flex-col mb-7 gap-5">
+<div class="md:min-w-fit w-full md:w-[80%] mx-auto flex flex-col mb-7 gap-5">
     <!-- Header -->
     <a href="{{ route('users.index') }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
         <svg class="w-6 h-6">
