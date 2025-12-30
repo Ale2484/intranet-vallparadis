@@ -11,7 +11,7 @@
         Nou centre
     </a>
 </div>
-<div class="flex flex-row gap-5">
+<div class="flex flex-row gap-2 md:gap-5">
     <!-- Barra de busqueda -->
     <form action="{{ route("centers.search") }}" method="post" data-type="centers" class="searchForm w-[95%] flex items-center gap-2 border border-[#E6E5DE] rounded-lg h-10 bg-white p-5 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
         @csrf
