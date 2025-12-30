@@ -15,7 +15,7 @@ class CenterDocumentsController extends Controller
 
         $documents = $center->documents()
             ->orderBy('created_at', 'desc')
-            ->paginate(4);
+            ->get();
         return view("centers.documents", compact("center", "documents"));
     }
 

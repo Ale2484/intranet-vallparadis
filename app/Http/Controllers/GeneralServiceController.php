@@ -9,26 +9,21 @@ use Mews\Purifier\Facades\Purifier;
 
 class GeneralServiceController extends Controller
 {
-    protected $paginateNumber = 21;
-
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $generalServices = GeneralService::orderBy("created_at", "desc")->paginate($this->paginateNumber);
+        $generalServices = GeneralService::orderBy("created_at", "desc")->get();
 
         $viewType = $_COOKIE['view_type'] ?? "card";
         return view("general-services.index", compact("generalServices", "viewType"));
     }
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchGeneralServices = GeneralService::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
+        $searchGeneralServices = GeneralService::where("name", "like" , "%$searchValue%")->get();
         if (!empty($searchGeneralServices)) {
             $viewType = $_COOKIE['view_type'] ?? "card";
             if ($viewType == "card") {
@@ -40,14 +35,11 @@ class GeneralServiceController extends Controller
                     $htmlContent .= view("components.general-services-table", compact("generalService"))->render();
                 }
             }
-            // Se obtiene la paginacion
-            $pagination = $searchGeneralServices->links()->render();
         }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
     public function filter(Request $request)
     {
-        $page = $request->input("page", 1);
         $order = $request->input("order", null);
         $status = $request->input("status", null);
         $query = GeneralService::query();
@@ -81,8 +73,7 @@ class GeneralServiceController extends Controller
                 break;
         }
 
-        // Se pagina la query
-        $generalServices = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $generalServices = $query->get();
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
@@ -96,9 +87,8 @@ class GeneralServiceController extends Controller
                 $htmlContent .= view("components.general-services-table", compact("generalService"))->render();
             }
         }
-        $pagination = $generalServices->links()->render();
 
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
     /**
      * Show the form for creating a new resource.

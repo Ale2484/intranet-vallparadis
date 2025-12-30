@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Formulario de busqueda
     const searchForm = document.querySelector(".searchForm");
-    // Div contenedor de la paginacion
-    const paginationContainer = document.querySelector(".pagination");
     // Tipo de elemento que se busca
     let elementType = "";
     // El ultimo valor de busqueda
@@ -11,16 +9,44 @@ document.addEventListener("DOMContentLoaded", () => {
     let searchInput = null;
     // Flag para saber si se ha aplicado un filtro
     let applyRadioFilter = false;
+
+    // Filtros
+    const filterModal = document.getElementById("filterContainer");
+    const orderFilters = filterModal.querySelectorAll("input[name='order']");
+    const statusFilters = filterModal.querySelectorAll("input[name='status']");
     
+    // Obtener cookie
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        let returnValue = null;
+        if (parts.length === 2) {
+            returnValue = parts.pop().split(';').shift();
+        }
+        return returnValue;
+    }
+
     if (searchForm) {
         // Input de busqueda
         searchInput = searchForm.querySelector("input[type='search']");
         elementType = searchForm.dataset.type;
+
+        // Se lee la cookie y se establece el estado
+        const storedOrderBy = getCookie(`${elementType}-orderBy`);
+        if (storedOrderBy) {
+            const radio = document.getElementById(storedOrderBy);
+            if (radio) radio.checked = true;
+        }
+        const storedStatus = getCookie(`${elementType}-status`);
+        if (storedStatus) {
+            const radio = document.getElementById(storedStatus);
+            if (radio) radio.checked = true;
+        }
+
         searchForm.addEventListener("submit", (event) => {
             event.preventDefault();
             fetchSearch(searchInput.value);
         });
-        // Cada segundo se verifica 
         setInterval(() => {
             // Si el valor del input de busqueda tiene algo y es diferente a la ultima busqueda entonces se vuelve a buscar
             if (searchInput.value != lastSearchValue && searchInput.value != "" ) {
@@ -30,31 +56,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 const selectedRadioFilter = document.querySelector("input[name='order']:checked");
                 if (selectedRadioFilter) {
                     applyRadioFilter = true;
-                    selectedRadioFilter.dispatchEvent(new Event("change"));
+                    fetchSearch();
                 }
             }
         }, 1000);
     }
-    // Si el div de la paginacion existe, entonces detecta sus clicks
-    if (paginationContainer) {
-        paginationContainer.addEventListener("click", (event) => {
-            // Se obtiene el enlace al que se quiere redireccionar
-            const link = event.target.closest("a");
-            if (link && searchInput != null && searchInput.value !== "") {
-                event.preventDefault();
-                // Se obtiene la pagina a la que quiere redireccionar
-                const page = link.getAttribute("href").split("page=")[1] || 1;
-                const searchInput = document.querySelector(".searchForm input[type='search']");
-                // Se envia al controller el valor de busqueda y la pagina en la que tiene que buscar
-                fetchSearch(searchInput.value, page);
-            }
+
+    orderFilters.forEach(filter => {
+        filter.addEventListener("change", () => {
+            document.cookie = `${elementType}-orderBy=${filter.id};path=/;max-age=31536000`;
+            fetchSearch(searchInput.value)
         });
-    }
-    async function fetchSearch(searchValue = "", page = 1) {
+    });
+
+    statusFilters.forEach(filter => {
+        filter.addEventListener("change", () => {
+            document.cookie = `${elementType}-status=${filter.id};path=/;max-age=31536000`;
+            fetchSearch(searchInput.value)
+        });
+    })
+    
+    async function fetchSearch(searchValue = "") {
+        const orderBy = document.querySelector("input[name='order']:checked").id;
+        const status = document.querySelector("input[name='status']:checked").id;
+
         const visibleResultContainer = Array.from(document.querySelectorAll(".resultContainer")).find(container => {
             return container.offsetParent !== null;
         });
-        const paginationContainer = document.querySelector(".pagination");
         const meta = document.querySelector('meta[name="csrf-token"]');
         const token = meta ? meta.getAttribute('content') : '';
         const loader = document.getElementById("loader");
@@ -68,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": token,
                 },
-                body: JSON.stringify({ searchValue, page })
+                body: JSON.stringify({searchValue, orderBy, status})
             });
             const data = await response.json();
             if (loader) {
@@ -85,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 visibleResultContainer.innerHTML = data.htmlContent || "<p class='dark:text-white'>No hi ha resultats</p>";
             }
 
-            paginationContainer.innerHTML = data.pagination || "";
             setTimeout(() => {
                 // Se hace scroll hasta la parte de arriba de la pagina
                 window.scrollTo({ top: 0, behavior: "smooth"});

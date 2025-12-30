@@ -9,13 +9,12 @@ use Illuminate\Http\Request;
 
 class RRHHTopicController extends Controller
 {
-    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $rrhhs = RRHHTopic::orderBy("created_at", "desc")->paginate($this->paginateNumber);
+        $rrhhs = RRHHTopic::orderBy("created_at", "desc")->get();
         return view("rrhh.index", compact("rrhhs"));
     }
 
@@ -98,25 +97,19 @@ class RRHHTopicController extends Controller
 
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchRRHHs = RRHHTopic::where("topic", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
+        $searchRRHHs = RRHHTopic::where("topic", "like" , "%$searchValue%")->get();
         if (!empty($searchRRHHs)) {
             foreach ($searchRRHHs as $rrhh) {
                 $htmlContent .= view("components.r-r-h-h-card", compact("rrhh"))->render();
             }
-            // Se obtiene la paginacion
-            $pagination = $searchRRHHs->links()->render();
         }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
     public function filter(Request $request)
     {
-        $page = $request->input("page", 1);
         $order = $request->input("order", null);
         $status = $request->input("status", null);
         $query = RRHHTopic::query();
@@ -150,16 +143,13 @@ class RRHHTopicController extends Controller
                 break;
         }
 
-        // Se pagina la query
-        $rrhhs = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $rrhhs = $query->get();
 
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
         foreach ($rrhhs as $rrhh) {
             $htmlContent .= view("components.r-r-h-h-card", compact("rrhh"))->render();
         }
-        $pagination = $rrhhs->links()->render();
 
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 }

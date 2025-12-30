@@ -15,7 +15,7 @@ class RRHHDocsController extends Controller
 
         $documents = $rrhh->documents()
             ->orderBy('created_at', 'desc')
-            ->paginate(6);
+            ->get();
         return view("rrhh.documents", compact("rrhh", "documents"));
     }
 

@@ -8,35 +8,22 @@ use Illuminate\Support\Facades\Log;
 
 class CenterController extends Controller
 {
-    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $centers = Center::orderBy("created_at", "desc")->paginate($this->paginateNumber);
-        $inactiveCenters = $centers->where("is_active", false)->count();
-        $activeCenters = $centers->count() - $inactiveCenters;
-
-        $activePercentage = ($activeCenters / $centers->count()) * 100; 
-        $inactivePercentage = ($inactiveCenters / $centers->count()) * 100;
-       
-        $activePercentage = round($activePercentage, 1);
-        $inactivePercentage = round($inactivePercentage, 1);
-        
+        $centers = Center::orderBy("created_at", "desc")->get();
 
         $viewType = $_COOKIE['view_type'] ?? "card";
-        return view("centers.index", compact("centers", "inactiveCenters", "activeCenters", "activePercentage", "inactivePercentage", "viewType"));
+        return view("centers.index", compact("centers",  "viewType"));
     }
     
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchCenters = Center::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
+        $searchCenters = Center::where("name", "like" , "%$searchValue%")->get();
         if (!empty($searchCenters)) {
             $viewType = $_COOKIE['view_type'] ?? "card";
             if ($viewType == "card") {
@@ -48,15 +35,12 @@ class CenterController extends Controller
                     $htmlContent .= view("components.center-table", compact("center"))->render();
                 }
             }
-            // Se obtiene la paginacion
-            $pagination = $searchCenters->links()->render();
         }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
     public function filter(Request $request)
     {
-        $page = $request->input("page", 1);
         $order = $request->input("order", null);
         $status = $request->input("status", null);
         $query = Center::query();
@@ -90,8 +74,7 @@ class CenterController extends Controller
                 break;
         }
 
-        // Se pagina la query
-        $centers = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $centers = $query->get();
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
@@ -105,9 +88,8 @@ class CenterController extends Controller
                 $htmlContent .= view("components.center-table", compact("center"))->render();
             }
         }
-        $pagination = $centers->links()->render();
 
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
     /**
      * Show the form for creating a new resource.

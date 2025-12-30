@@ -44,7 +44,4 @@
 </div>
 {{-- Modal de filtros --}}
 <x-filter-card :type="'maintenance'"/>
-<div class="pagination">
-    {{ $maintenances->links('pagination::tailwind') }}
-</div>
 @endsection

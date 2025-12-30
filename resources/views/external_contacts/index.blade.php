@@ -79,7 +79,4 @@
 </div>
 </div>
 <x-filter-card :type="'external-contacts'"/>
-<div class="pagination">
-    {{ $externalContacts->links('pagination::tailwind') }}
-</div>
 @endsection

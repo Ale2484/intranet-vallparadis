@@ -8,22 +8,17 @@ use Illuminate\Http\Request;
 
 class ExternalContactController extends Controller
 {
-    protected $paginateNumber = 21;
-
     public function index()
     {
-        $externalContacts = ExternalContact::orderBy("created_at", "desc")->paginate($this->paginateNumber);
+        $externalContacts = ExternalContact::orderBy("created_at", "desc")->get();
         $viewType = $_COOKIE['view_type'] ?? "card";
         return view("external_contacts.index", compact("externalContacts", "viewType"));
     }
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchExternalContacts = ExternalContact::where("contact_person", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
+        $searchExternalContacts = ExternalContact::where("contact_person", "like" , "%$searchValue%")->get();
         if (!empty($searchExternalContacts)) {
             $viewType = $_COOKIE['view_type'] ?? "card";
             if ($viewType == "card") {
@@ -36,15 +31,12 @@ class ExternalContactController extends Controller
                 }
             }
 
-            // Se obtiene la paginacion
-            $pagination = $searchExternalContacts->links()->render();
         }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
     public function filter(Request $request)
     {
-        $page = $request->input("page", 1);
         $order = $request->input("order", null);
         $status = $request->input("status", null);
         $query = ExternalContact::query();
@@ -78,8 +70,7 @@ class ExternalContactController extends Controller
                 break;
         }
 
-        // Se pagina la query
-        $externalContacts = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $externalContacts = $query->get();
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
@@ -95,9 +86,7 @@ class ExternalContactController extends Controller
             }
         }
 
-        $pagination = $externalContacts->links()->render();
-
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
 

@@ -15,7 +15,7 @@ class MaintenanceDocsController extends Controller
 
         $documents = $maintenance->documents()
             ->orderBy('created_at', 'desc')
-            ->paginate(6);
+            ->get();
         return view("maintenance.documents", compact("maintenance", "documents"));
     }
 

@@ -88,7 +88,4 @@
 </div>
 {{-- Modal de filtros --}}
 <x-filter-card :type="'users'"/>
-<div class="pagination">
-    {{ $users->links('pagination::tailwind') }}
-</div>
 @endsection
