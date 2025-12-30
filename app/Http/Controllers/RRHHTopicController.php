@@ -12,9 +12,16 @@ class RRHHTopicController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rrhhs = RRHHTopic::orderBy("created_at", "desc")->get();
+        $query = RRHHTopic::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $rrhhs = $query->orderBy("created_at", "desc")->get();
         return view("rrhh.index", compact("rrhhs"));
     }
 

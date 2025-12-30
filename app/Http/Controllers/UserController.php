@@ -13,49 +13,22 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $totalUsers = User::count();
-        
-        $orderBy = $_COOKIE["users-orderBy"] ?? "recent-first";
-        $status = $_COOKIE["users-status"] ?? "all";
-
         $query = User::query();
-
+        // Se obtiene el parametro status en la request, si existe se aplic el filtro
+        $status = $request->input("status");
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
 
-        switch ($orderBy) {
-            case "recent-first":
-                $query->orderBy("created_at", "desc");
-                break;
-            case "oldest-first":
-                $query->orderBy("created_at", "asc");
-                break;
-            case "az":
-                $query->orderBy("name", "asc");
-                break;
-            case "za":
-                $query->orderBy("name", "desc");
-                break;
-            case "last-modified":
-                $query->orderBy("updated_at", "desc");
-                break;
-            case "first-modified":
-                $query->orderBy("updated_at", "asc");
-                break;
-            default:
-                $query->orderBy("created_at", "desc");
-        }
+        $users = $query->orderBy("created_at", "desc")->get();
 
-        $users = $query->get();
-        
         $viewType = $_COOKIE["view_type"] ?? "card";
 
-        return view("users.index", compact("totalUsers", "users", "viewType"));
+        return view("users.index", compact( "users", "viewType"));
     }
 
     public function search(Request $request)

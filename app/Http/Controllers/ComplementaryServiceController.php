@@ -12,9 +12,18 @@ class ComplementaryServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $complementaryServices = ComplementaryService::orderBy("created_at", "desc")->get();
+        $query = ComplementaryService::query();
+
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+
+        $complementaryServices = $query->orderBy("created_at", "desc")->get();
 
         $viewType = $_COOKIE['view_type'] ?? "card";
         return view("complementary-services.index", compact("complementaryServices", "viewType"));

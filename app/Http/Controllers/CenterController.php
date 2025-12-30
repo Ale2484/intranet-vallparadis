@@ -11,9 +11,17 @@ class CenterController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $centers = Center::orderBy("created_at", "desc")->get();
+        $query = Center::query();
+        
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $centers = $query->orderBy("created_at", "desc")->get();
 
         $viewType = $_COOKIE['view_type'] ?? "card";
         return view("centers.index", compact("centers",  "viewType"));

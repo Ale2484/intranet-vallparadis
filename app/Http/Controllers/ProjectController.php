@@ -12,25 +12,20 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $totalProjects = Project::count();
-        // $activeProjects = Project::active()->count();
-        // $inactiveProjects = Project::inactive()->count();
-        
-        $projects = Project::with(['centerRelation', 'userRelation'])
-                          ->orderBy('created_at', 'desc')
-                          ->get();
+        $query = Project::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $projects = $query->with(['centerRelation', 'userRelation'])->orderBy('created_at', 'desc')->get();
 
         $viewType = $_COOKIE['view_type'] ?? "card";
 
-        return view("projects.index", compact(
-            'totalProjects', 
-            // 'activeProjects', 
-            // 'inactiveProjects',
-            'projects',
-            'viewType'
-        ));
+        return view("projects.index", compact("projects","viewType"));
     }
 
     public function search(Request $request)

@@ -11,9 +11,16 @@ class MaintenanceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $maintenances = Maintenance::orderBy("created_at", "desc")->get();
+        $query = Maintenance::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $maintenances = $query->orderBy("created_at", "desc")->get();
         return view("maintenance.index", compact("maintenances"));
     }
 

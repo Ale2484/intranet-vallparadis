@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class ExternalContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $externalContacts = ExternalContact::orderBy("created_at", "desc")->get();
+        $query = ExternalContact::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $externalContacts = $query->orderBy("created_at", "desc")->get();
         $viewType = $_COOKIE['view_type'] ?? "card";
         return view("external_contacts.index", compact("externalContacts", "viewType"));
     }

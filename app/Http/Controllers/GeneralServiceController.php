@@ -12,9 +12,16 @@ class GeneralServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $generalServices = GeneralService::orderBy("created_at", "desc")->get();
+        $query = GeneralService::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $generalServices = $query->orderBy("created_at", "desc")->get();
 
         $viewType = $_COOKIE['view_type'] ?? "card";
         return view("general-services.index", compact("generalServices", "viewType"));
