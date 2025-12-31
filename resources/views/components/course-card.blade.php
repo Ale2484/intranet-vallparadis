@@ -22,7 +22,7 @@
         </div>
         
         <div class="flex flex-row items-center gap-2 pl-2">
-            @if ($course->users->count()) 
+            @if ($course->users->count())
                 <a href="{{ route('courses.users', $course) }}" class="flex flex-row items-center gap-2 text-orange-500">
                     <svg class="w-7 h-7">
                         <use xlink:href="#icon-group-user"></use>

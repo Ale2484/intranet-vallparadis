@@ -11,7 +11,7 @@
         Nou centre
     </a>
 </div>
-<div class="flex flex-row gap-5">
+<div class="flex flex-row gap-2 md:gap-5">
     <!-- Barra de busqueda -->
     <form action="{{ route("centers.search") }}" method="post" data-type="centers" class="searchForm w-[95%] flex items-center gap-2 border border-[#E6E5DE] rounded-lg h-10 bg-white p-5 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
         @csrf
@@ -28,11 +28,11 @@
     </div>
     <!-- Filtros -->
     <div class="flex flex-row justify-between gap-2">
-        <button data-modal-id="filterContainer" class="open-modal-button bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
+        <button data-modal-id="filterContainer" class="open-modal-button bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-adjustments-horizontal"></use>
             </svg>
-            Filtres
+            <p class="hidden md:block">Filtres</p>
         </button>
     </div>
     {{-- Cambiar vista --}}

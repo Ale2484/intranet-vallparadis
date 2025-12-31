@@ -1,26 +1,98 @@
 @extends('layouts.app')
 @section("title", "Mostrar l'usuari")
 @section('main')
-<div class="md:min-w-fit w-full md:w-2/3 mx-auto flex flex-col mb-7 gap-5">
+<div class="md:min-w-fit w-full md:w-[80%] mx-auto flex flex-col mb-7 gap-5">
     <!-- Header -->
-    <div class="w-full flex flex-row mb-8 justify-between items-center">
-        <div class="w-fit flex flex-col gap-5">
-            <a href="{{ route('users.index') }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
-                <svg class="w-6 h-6">
-                    <use xlink:href="#icon-arrow-left"></use>
-                </svg>
-                Tornar a la gestió de professionals
-            </a>
-            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Detalls del professional</h1>
-            <p class="text-[#AFAFAF]" >Informació completa del professional</p>
+    <a href="{{ route('users.index') }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
+        <svg class="w-6 h-6">
+            <use xlink:href="#icon-arrow-left"></use>
+        </svg>
+        Tornar a la gestió de professionals
+    </a>
+    <div class="w-full flex items-center justify-between">
+        <h1 class="md:text-3xl text-2xl font-bold text-[#011020] dark:text-white">Detalls del professional</h1>
+        <div class="relative">
+            <button data-dropdown-content-id="userLinks" class="bg-[#FF7E13] hover:bg-[#FE712B] p-2 text-white rounded-lg flex items-center justify-center font-bold gap-2 cursor-pointer">
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-dots"></use>
+                    </svg>
+                    <p>Opcions</p>
+            </button>
+            <div id="userLinks" class="absolute top-12 right-0 min-w-60 bg-white shadow-lg border border-[#AFAFAF] p-2 rounded-lg dark:bg-neutral-800 z-1 hidden">
+                <a href="{{ route("users.edit", $user) }}"
+                    class="text-[#FF7E13] hover:bg-[#FE712B]/17 rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 transition-all w-full">
+                    <svg class="w-5 h-5">
+                        <use xlink:href="#icon-square-pen"></use>
+                    </svg>
+                    Editar
+                </a>
+                <a href="{{ route("trackings.index", $user->id) }}" class="text-[#FF7E13] rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 hover:bg-[#FE712B]/17 transition-all w-full">
+                    <svg class="w-5 h-5">
+                        <use xlink:href="#icon-link"></use>
+                    </svg>
+                    Seguiments
+                </a>
+                <a href="{{ route('user.uniformity.edit', $user) }}" class="text-[#FF7E13] rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 hover:bg-[#FE712B]/17 transition-all w-full">
+                    <svg class="w-5 h-5">
+                        <use xlink:href="#icon-sweater"></use>
+                    </svg>
+                    Editar uniformes
+                </a>
+                <a href="{{ route("evaluations.index", $user->id) }}" class="text-[#FF7E13] rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 hover:bg-[#FE712B]/17 transition-all">
+                    <svg class="w-5 h-5">
+                        <use xlink:href="#icon-academic-cap"></use>
+                    </svg>
+                    Evaluacions
+                </a>
+                <div class="w-full">
+                    {{-- Boton para abrir las opciones de exportar a excel --}}
+                    <button data-dropdown-content-id="exportOptions" class="text-green-600 rounded-lg p-2 font-semibold flex w-full items-center justify-between cursor-pointer hover:bg-green-700/16 transition-all">
+                        <div class="flex items-center gap-4">
+                            <svg class="w-5 h-5">
+                                <use xlink:href="#icon-excel"></use>
+                            </svg>
+                            Exportar excels
+                        </div>
+                            <svg class="w-5 h-5 rotate-90">
+                                <use xlink:href="#icon-no-line-arrow"></use>
+                            </svg>
+                    </button>
+                    <div id="exportOptions" class="pl-2 flex flex-col hidden">
+                        <a href="{{ route("exportLocker", $user->id) }}" class="text-green-600 rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 hover:bg-green-700/16 transition-all">
+                            <svg class="w-6 h-6">
+                                <use xlink:href="#icon-locker"></use>
+                            </svg>
+                            Taquilles
+                        </a>
+                        <a href="{{ route("exportUniformity", $user->id) }}" class="text-green-600 rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 hover:bg-green-700/16 transition-all">
+                            <svg class="w-6 h-6">
+                                <use xlink:href="#icon-sweater"></use>
+                            </svg>
+                            Uniformes
+                        </a>
+                        <a href="{{ route("exportUniformityRenovation", $user->id) }}" class="text-green-600 rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 hover:bg-green-700/16 transition-all">
+                            <svg class="w-6 h-6">
+                                <use xlink:href="#icon-sweater"></use>
+                            </svg>
+                            Renovacio uniformes
+                        </a>
+                    </div>
+                </div>
+                @if ($user->id == auth()->user()->id)
+                    <form action="{{ route("users.logout") }}" method="post" class="w-full">
+                        @csrf
+                        <button type="submit" class="text-red-600 hover:bg-red-700/16 w-full rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4">
+                                <svg class="w-5 h-5">
+                                    <use xlink:href="#icon-logout"></use>
+                                </svg>
+                                Tanca sessió
+                        </button>
+                    </form>
+                @endif
+            </div>
         </div>
-        <select id="redirectSelect" class="bg-green-600 text-white rounded-lg p-2 font-bold" >
-            <option value="">Exportar dades a Excel</option>
-            <option value="{{ route('exportLocker', $user->id) }}">Exportar taquillas</option>
-            <option value="{{ route('exportUniformity', $user->id) }}">Exportar uniformitat</option>
-            <option value="{{ route('exportUniformityRenovation', $user->id) }}">Exportar renovacio uniformitat</option>
-        </select>
     </div>
+    <p class="text-[#AFAFAF] mb-4" >Informació completa del professional</p>
 
     <div class="flex flex-col md:flex-row justify-between items-start gap-10 w-full">
         <!-- Información del Profesional -->
@@ -216,28 +288,6 @@
                     </div>
                 </div>
             </div>
-            <div class="flex items-center justify-end gap-5">
-                <a href="{{ route('users.edit', $user) }}" 
-                    class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-44">
-                    <svg class="w-6 h-6">
-                        <use xlink:href="#icon-square-pen"></use>
-                    </svg>
-                    Editar
-                </a>
-
-                @if ($user->id == auth()->user()->id)
-                <form action="{{ route("users.logout") }}" method="post" class="w-auto">
-                    @csrf
-                    <button type="submit" class="bg-red-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 w-44">
-                            <svg class="w-6 h-6">
-                                <use xlink:href="#icon-logout"></use>
-                            </svg>
-                            Tanca sessió
-                    </button>
-                </form>
-                @endif
-
-            </div>
         </div>
 
         <div class="md:w-2/7 w-full flex flex-col gap-5">
@@ -281,22 +331,6 @@
                 <div class="bg-[#fef5eb] p-5 border border-[#fed6aa] rounded-lg">
                     <p class="text-2xl font-bold text-[#FF7033]">{{ $user->locker}}</p>
                 </div>
-            </div>
-            <div>
-                <a href="{{ route("trackings.index", $user->id) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">
-                    <svg class="w-6 h-6">
-                        <use xlink:href="#icon-link"></use>
-                    </svg>
-                    Seguiments
-                </a>
-            </div>
-            <div class="items-start h-full">
-                <a href="{{ route("evaluations.index", $user->id) }}" class="bg-green-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-green-700 transition-all h-fit">
-                    <svg class="w-6 h-6">
-                        <use xlink:href="#icon-academic-cap"></use>
-                    </svg>
-                    Evaluacions
-                </a>
             </div>
         </div>
     </div>

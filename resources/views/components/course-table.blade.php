@@ -9,7 +9,13 @@
     </td>
 
     <td class="text-center px-3">
-        <p class="text-[#FF7E13] font-semibold">{{ $course->users->count() }}</p>
+        @if ($course->users->count() > 0)
+            <a href="{{ route('courses.users', $course) }}" class="text-[#FF7E13]">
+                {{ $course->users->count() }}
+            </a>
+        @else
+            <p class="text-neutral-400 font-semibold">{{ $course->users->count() }}</p>
+        @endif
     </td>
 
     <td class="text-center px-3">
