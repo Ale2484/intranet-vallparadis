@@ -11,10 +11,6 @@
     </td>
 
     <td class="text-center px-3">
-        <p>{{ $user->centerRelation->name ?? '-' }}</p>
-    </td>
-
-    <td class="text-center px-3">
         <p>{{ $user->role_label ?? $user->role }}</p>
     </td>
 

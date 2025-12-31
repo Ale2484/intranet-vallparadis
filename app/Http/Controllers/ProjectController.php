@@ -12,36 +12,27 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
-    protected $paginateNumber = 20;
-    public function index()
+    public function index(Request $request)
     {
-        $totalProjects = Project::count();
-        // $activeProjects = Project::active()->count();
-        // $inactiveProjects = Project::inactive()->count();
-        
-        $projects = Project::with(['centerRelation', 'userRelation'])
-                          ->orderBy('created_at', 'desc')
-                          ->paginate($this->paginateNumber);
+        $query = Project::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $projects = $query->with(['centerRelation', 'userRelation'])->orderBy('created_at', 'desc')->get();
 
         $viewType = $_COOKIE['view_type'] ?? "card";
 
-        return view("projects.index", compact(
-            'totalProjects', 
-            // 'activeProjects', 
-            // 'inactiveProjects',
-            'projects',
-            'viewType'
-        ));
+        return view("projects.index", compact("projects","viewType"));
     }
 
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchProjects = Project::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
+        $searchProjects = Project::where("name", "like" , "%$searchValue%")->get();
         if (!empty($searchProjects)) {
             $viewType = $_COOKIE['view_type'] ?? "card";
             if ($viewType == "card") {
@@ -53,15 +44,12 @@ class ProjectController extends Controller
                     $htmlContent .= view("components.project-table", compact("project"))->render();
                 }
             }
-            // Se obtiene la paginacion
-            $pagination = $searchProjects->links()->render();
         }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
     
     public function filter(Request $request)
     {
-        $page = $request->input("page", 1);
         $order = $request->input("order", null);
         $status = $request->input("status", null);
         $query = Project::query();
@@ -94,8 +82,7 @@ class ProjectController extends Controller
                 break;
         }
 
-        // Se pagina la query
-        $projects = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $projects = $query->get();
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
@@ -109,9 +96,8 @@ class ProjectController extends Controller
                 $htmlContent .= view("components.project-table", compact("project"))->render();
             }
         }
-        $pagination = $projects->links()->render();
 
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
     public function create()

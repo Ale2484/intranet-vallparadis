@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("users.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("users.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Professional actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("users.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] justify-between dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("users.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] justify-between dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Professional inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -71,7 +71,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#centresActius" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("centers.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Centres actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#centresInActius" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("centers.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Centres inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -114,16 +114,16 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Projectes
+                    <a href="{{ route("projects.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Projectes/Comissions actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("projects.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Comissions
+                    <a href="{{ route("projects.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Projectes/Comissions inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
@@ -158,7 +158,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("courses.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("courses.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Cursos actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -166,7 +166,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("courses.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("courses.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Cursos inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -194,7 +194,7 @@
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("general-services.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Nou servei general
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -202,7 +202,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("general-services.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Serveis generals actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -210,7 +210,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("general-services.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Serveis generals inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -244,7 +244,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("general-services.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("complementary-services.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Serveis actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -252,7 +252,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("general-services.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("complementary-services.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Serveis inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -370,7 +370,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("external-contacts.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("external-contacts.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Contactes actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -378,7 +378,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("external-contacts.index") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("external-contacts.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Contactes inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>

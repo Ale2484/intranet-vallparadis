@@ -172,7 +172,7 @@
                             @endforeach
                         </div>
                     @else
-                        <p>Actualment no hi ha fitxers pujats</p>
+                        <p class="dark:text-neutral-300">Actualment no hi ha fitxers pujats</p>
                     @endif
                 </div>
                 {{-- Apartado de observaciones --}}

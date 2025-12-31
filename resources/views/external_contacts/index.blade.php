@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="flex items-center flex-row gap-5">
+    <div class="flex items-center flex-row gap-2 md:gap-5">
         <!-- Barra de busqueda -->
         <form action="{{ route("external-contacts.search") }}" method="post" data-type="external-contacts" class="searchForm w-[95%] flex items-center gap-2 border-1 border-[#E6E5DE] rounded-lg h-10 bg-white p-5 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
             @csrf
@@ -37,7 +37,7 @@
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-adjustments-horizontal"></use>
                 </svg>
-                Filtres
+                <p class="hidden md:block">Filtres</p>
             </button>
         </div>
         {{-- Cambiar vista --}}
@@ -79,7 +79,4 @@
 </div>
 </div>
 <x-filter-card :type="'external-contacts'"/>
-<div class="pagination">
-    {{ $externalContacts->links('pagination::tailwind') }}
-</div>
 @endsection

@@ -8,14 +8,19 @@ use Illuminate\Http\Request;
 
 class MaintenanceController extends Controller
 {
-    protected $paginateNumber = 21;
-
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $maintenances = Maintenance::orderBy("created_at", "desc")->paginate($this->paginateNumber);
+        $query = Maintenance::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $maintenances = $query->orderBy("created_at", "desc")->get();
         return view("maintenance.index", compact("maintenances"));
     }
 
@@ -68,25 +73,19 @@ class MaintenanceController extends Controller
 
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchMaintenances = Maintenance::where("topic", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
+        $searchMaintenances = Maintenance::where("topic", "like" , "%$searchValue%")->get();
         if (!empty($searchMaintenances)) {
             foreach ($searchMaintenances as $maintenance) {
                 $htmlContent .= view("components.maintenance-card", compact("maintenance"))->render();
             }
-            // Se obtiene la paginacion
-            $pagination = $searchMaintenances->links()->render();
         }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
     public function filter(Request $request)
     {
-        $page = $request->input("page", 1);
         $order = $request->input("order", null);
         $status = $request->input("status", null);
         $query = Maintenance::query();
@@ -120,16 +119,14 @@ class MaintenanceController extends Controller
                 break;
         }
 
-        // Se pagina la query
-        $maintenances = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $maintenances = $query->get();
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
         foreach ($maintenances as $maintenance) {
             $htmlContent .= view("components.maintenance-card", compact("maintenance"))->render();
         }
-        $pagination = $maintenances->links()->render();
 
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 }

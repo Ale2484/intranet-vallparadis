@@ -1,3 +1,4 @@
+/*
 document.addEventListener("DOMContentLoaded", () => {
     const filterContainer = document.querySelector("#filterContainer");
 
@@ -6,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Radiobuttons de opciones de estados
     const statusRadios = document.querySelectorAll("input[name='status']");
     
-    const paginationContainer = document.querySelector(".pagination");
     const searchForm =  document.querySelector(".searchForm");
     let visibleResultContainer = null;
     const loader = document.getElementById("loader");
@@ -31,23 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
-    if (paginationContainer) {
-        paginationContainer.addEventListener("click", (event) => {
-            // Se obtiene el enlace al que se quiere redireccionar
-            const link = event.target.closest("a");
-            let searchInput = searchForm.querySelector("input[type='search']");
-
-            if (link && searchInput.value === "") {
-                event.preventDefault();
-                // Se obtiene la pagina a la que quiere redireccionar
-                const page = link.getAttribute("href").split("page=")[1] || 1;
-                getFilteredElements(page);
-            }
-        });
-    }
-
     // Funcion que se encarga de hacer la peticion
-    async function getFilteredElements(page=1){
+    async function getFilteredElements(){
         const meta = document.querySelector('meta[name="csrf-token"]');
         const token = meta ? meta.getAttribute("content") : "";
         const searchInput = searchForm.querySelector("input[type='search']");
@@ -66,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     "Content-Type": "application/json",
                     "X-CSRF-TOKEN": token,
                 },
-                // Se le pasa al controller el orden, el estado, y la pagina
-                body: JSON.stringify({order: selectedOrder, status: selectedStatus, page: page })
+                // Se le pasa al controller el orden, el estado
+                body: JSON.stringify({order: selectedOrder, status: selectedStatus })
             });
 
             const data = await response.json();
@@ -79,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 searchInput.value = "";
             }
             visibleResultContainer.innerHTML = data.htmlContent || "<p class='dark:text-white'>No hay resultados<p>";
-            paginationContainer.innerHTML = data.pagination || "";
             setTimeout(() => {
                 // Se hace scroll hasta la parte de arriba de la pagina
                 window.scrollTo({ top: 0, behavior: "smooth"});
@@ -92,3 +76,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+*/

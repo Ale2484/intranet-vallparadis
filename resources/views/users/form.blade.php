@@ -155,13 +155,6 @@
             @enderror
         </div>
     </div>
-    @if ($method == "PATCH")
-        <a href="{{ route('user.uniformity.edit', $user) }}" class="mt-5 bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
-            Editar uniformes
-
-        </a>
-    @endif
-
     <!-- Botones -->
     <div class="flex flex-row gap-4 justify-end mt-8 pt-6 border-t border-gray-200">
         <a href="{{ route('users.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
