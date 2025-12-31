@@ -121,7 +121,8 @@ Route::middleware("auth")->group(function () {
     Route::post("/general-services/filter", [GeneralServiceController::class, "filter"])->name("general-services.filter");
 
     //  Buscador
-    Route::post("/general-search", [GeneralSearchController::class, "generalSearch"])->name("general-search");
+    Route::get("/general-search", [GeneralSearchController::class, "generalSearch"])->name("general-search");
+    Route::post("/general-search", [GeneralSearchController::class, "generalSearch"])->name("general-search.index");
     // Contactos externos
     Route::resource("external-contacts", ExternalContactController::class);
     Route::patch("/external-contacts/{externalContact}/deactivate", [ExternalContactController::class, "deactivate"])->name("external-contacts.deactivate");
