@@ -23,11 +23,14 @@ class ProjectController extends Controller
                           ->orderBy('created_at', 'desc')
                           ->paginate($this->paginateNumber);
 
+        $viewType = $_COOKIE['view_type'] ?? "card";
+
         return view("projects.index", compact(
             'totalProjects', 
             // 'activeProjects', 
             // 'inactiveProjects',
-            'projects'
+            'projects',
+            'viewType'
         ));
     }
 
@@ -40,8 +43,15 @@ class ProjectController extends Controller
         $searchValue = $request->searchValue;
         $searchProjects = Project::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchProjects)) {
-            foreach ($searchProjects as $project) {
-                $htmlContent .= view("components.project-card", compact("project"))->render();
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($searchProjects as $project) {
+                    $htmlContent .= view("components.project-card", compact("project"))->render();
+                }
+            } else {
+                foreach ($searchProjects as $project) {
+                    $htmlContent .= view("components.project-table", compact("project"))->render();
+                }
             }
             // Se obtiene la paginacion
             $pagination = $searchProjects->links()->render();
@@ -89,8 +99,15 @@ class ProjectController extends Controller
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
-        foreach ($projects as $project) {
-            $htmlContent .= view("components.project-card", compact("project"))->render();
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        if ($viewType == "card") {
+            foreach ($projects as $project) {
+                $htmlContent .= view("components.project-card", compact("project"))->render();
+            }
+        } else {
+            foreach ($projects as $project) {
+                $htmlContent .= view("components.project-table", compact("project"))->render();
+            }
         }
         $pagination = $projects->links()->render();
 

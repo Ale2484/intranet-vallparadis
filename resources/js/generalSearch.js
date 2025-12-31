@@ -23,6 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function searchPost(searchText) {
-        //
+        return
     }
 });

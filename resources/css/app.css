@@ -1,9 +1,19 @@
 @import 'tailwindcss';
+@custom-variant light (&:where(:not(.dark), :not(.dark) *));
+@custom-variant dark (&:where(.dark, .dark *));
 
+
+/* @theme {
+  --color-neutral-900: #1b1b1b;
+} */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+
+*{
+    @apply transition-colors duration-500
+}
 
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
@@ -12,11 +22,11 @@
 
 /* Estilos del menu */
 .menu-option{
-    @apply p-2 rounded-lg mb-2 flex flex-row items-center justify-start w-full text-[#0F172A] hover:bg-[#fef5eb] hover:text-[#FF7E13];
+    @apply p-2 rounded-lg mb-2 flex flex-row items-center justify-start w-full text-[#0F172A] hover:bg-[#fef5eb] hover:text-[#FF7E13] transition-all dark:text-neutral-300 dark:hover:bg-neutral-700;
 }
 
 .menu-option-selected{
-    @apply p-2 rounded-lg mb-2 flex flex-row items-center justify-start w-full bg-[#fef5eb] text-[#FF7E13];
+    @apply p-2 rounded-lg mb-2 flex flex-row items-center justify-start w-full bg-[#fef5eb] text-[#FF7E13] dark:bg-neutral-700;
 }
 
 .menu-text{
@@ -24,12 +34,12 @@
 }
 
 .menu-option:hover .menu-text{
-    @apply ml-4 hover:bg-[#fef5eb] hover:text-[#FF7E13];
+    @apply ml-4 hover:text-[#FF7E13];
 
 }
 /* Notifications */
 .notification {
-    @apply fixed top-20 right-5 p-4 rounded-lg text-[16px] shadow-lg opacity-0 transform translate-x-full transition-all duration-500;
+    @apply fixed top-24 right-5 p-4 rounded-lg text-[16px] shadow-lg opacity-0 transform translate-x-full transition-all duration-500;
 }
 
 .notification.success {
@@ -50,13 +60,13 @@
     @apply opacity-50
 }
 .dragStartleft{
-    @apply bg-green-50 border-4 border-dashed border-green-600 
+    @apply bg-green-50 dark:bg-green-200 border-4 border-dashed border-green-600 
 }
 .dragStartRight > :not(.information-drop){
     @apply opacity-50
 }
 .dragStartRight{
-    @apply bg-red-50 border-4 border-dashed border-red-600
+    @apply bg-red-50 dark:bg-red-200 border-4 border-dashed border-red-600
 }
 
 /* Rich editor */
@@ -68,6 +78,61 @@
     all : revert;
     margin: 2px;
 }
+.ql-align-center{
+    @apply text-center;
+}
+.ql-align-right{
+    @apply text-right;
+}
+.ql-align-justify{
+    @apply text-justify;
+}
+.ql-font-serif{
+    @apply font-serif;
+}
+.ql-font-monospace{
+    @apply font-mono;
+}
+.dark .ql-toolbar.ql-snow span {
+    @apply text-white
+}
+.dark .ql-toolbar.ql-snow .ql-stroke {
+  @apply stroke-white
+}
+
+.dark .ql-toolbar.ql-snow .ql-fill {
+  @apply fill-white
+}
+
+.dark .ql-toolbar.ql-snow .ql-thin {
+  @apply stroke-white
+}
+.dark .ql-editor {
+    @apply text-white
+}
+.dark .ql-editor::before {
+    @apply text-white
+}
+
+
+
+/* Tabla */
+.tableContainer {
+    @apply border border-[#AFAFAF] rounded-lg mt-10 overflow-x-auto border-b
+}
+
+.tableContainer tbody tr:last-child {
+    @apply border-b-0
+}
+
+/* Input */
+  .range-input {
+    @apply w-full h-1 rounded-full appearance-none bg-orange-200 cursor-pointer;
+  }
+
+  .range-input::-webkit-slider-thumb {
+    @apply appearance-none w-4 h-4 rounded-full bg-orange-500 cursor-pointer;
+  }
 
 /* 
 .simple-container{

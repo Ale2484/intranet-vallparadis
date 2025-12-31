@@ -17,15 +17,20 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CenterSeeder::class,
+            ExternalContactSeeder::class,
             UserSeeder::class,
-            //UniformitySeeder::class,
+            EvaluationSeeder::class,
+            UniformitySeeder::class,
             ProjectSeeder::class,
-            //UniformityRenovationSeeder::class,
+            UniformityRenovationSeeder::class,
             CourseSeeder::class,
             CourseUserSeeder::class,
-            CourseScheduleSeeder::class
+            CourseScheduleSeeder::class,
+            ComplementaryServiceSeeder::class,
+            GeneralServiceSeeder::class,
+            MaintenanceSeeder::class,
+            RrhhTopicSeeder::class
 
         ]);
-        // User::factory(10)->create();
     }
 }

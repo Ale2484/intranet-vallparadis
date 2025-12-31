@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -20,12 +21,14 @@ class UserController extends Controller
         // $inactiveUsers = User::inactive()->count();
         
         $users = User::orderBy('created_at', 'desc')->paginate(21);
+        $viewType = $_COOKIE['view_type'] ?? "card";
 
         return view("users.index", compact(
             'totalUsers', 
         //    'activeUsers', 
         //    'inactiveUsers',
-            'users'
+            'users',
+            'viewType'
         ));
     }
 
@@ -38,8 +41,17 @@ class UserController extends Controller
         $searchValue = $request->searchValue;
         $searchUsers = User::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
         if (!empty($searchUsers)) {
-            foreach ($searchUsers as $user) {
-                $htmlContent .= view("components.user-card", compact("user"))->render();
+            // Se obtiene el tipo de vista
+            $viewType = $_COOKIE['view_type'] ?? "card";
+
+            if ($viewType == "card") {
+                foreach ($searchUsers as $user) {
+                    $htmlContent .= view("components.user-card", compact("user"))->render();
+                }
+            } else {
+                foreach ($searchUsers as $user) {
+                    $htmlContent .= view("components.user-table", compact("user"))->render();
+                }
             }
             // Se obtiene la paginacion
             $pagination = $searchUsers->links()->render();
@@ -88,8 +100,16 @@ class UserController extends Controller
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
-        foreach ($users as $user) {
-            $htmlContent .= view("components.user-card", compact("user"))->render();
+        // Se obtiene el tipo de vista
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        if ($viewType == "card") {
+            foreach ($users as $user) {
+                $htmlContent .= view("components.user-card", compact("user"))->render();
+            }
+        } else {
+            foreach ($users as $user) {
+                $htmlContent .= view("components.user-table", compact("user"))->render();
+            }
         }
         $pagination = $users->links()->render();
 
@@ -153,12 +173,6 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Professional actualitzat correctament.');
     }
 
-    public function destroy(User $user)
-    {
-        $user->delete();
-        return redirect()->route('users.index')->with('success', 'Professional eliminat correctament.');
-    }
-
     public function deactivate(User $user)
     {
         $user->update(['is_active' => false]);
@@ -171,16 +185,66 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Professional activat correctament.');
     }
 
+    public function updateProfilePhoto(Request $request, User $user) 
+    {
+        $error = null;
+        $path = null;
+
+        // Caso de archivo subido
+        if ($request->hasFile('profile_photo')) {
+            $file = $request->file('profile_photo');
+
+            if (!$file->isValid() || !in_array($file->extension(), ["jpg","jpeg","png","gif","bmp","webp"])) {
+                $error = "El fitxer ha de ser una imatge vàlida";
+            } elseif ($file->getSize() > 5120 * 1024) {
+                $error = "La imatge no pot pesar més de 5MB.";
+            } else {
+                $path = $file->store("profile_photos", "public");
+            }
+
+        // Caso de base64
+        } elseif ($request->input("profile_photo")) {
+            $data = $request->input("profile_photo");
+
+            if (strpos($data, "data:image") !== 0 || strpos($data, "base64,") === false) {
+                $error = "El fitxer ha de ser una imatge vàlida";
+            } else {
+                $data = explode('base64,', $data)[1];
+                $data = str_replace(" ", "+", $data);
+
+                $fileName = "profile_" . $user->id . "_" . time() . ".png";
+                $path = "profile_photos/" . $fileName;
+                Storage::disk("public")->put($path, base64_decode($data));
+            }
+
+        } else {
+            $error = "La imatge no pot pesar més de 5MB";
+        }
+
+        // Si hubo error, redirigir con mensaje
+        if ($error) {
+            return redirect()->back()->with('error', $error);
+        }
+
+        // Se elimina la foto antigua si existe
+        if ($user->profile_photo_path) {
+            Storage::disk('public')->delete($user->profile_photo_path);
+        }
+
+        $user->update(["profile_photo_path" => $path]);
+
+        return redirect()->back()->with("success", "Foto de perfil actualitzada correctament");
+    }
+
+
     public function showLoginForm()
     {
-        $centers = Center::all();
-        return view("auth.login", compact("centers"));
+        return view("auth.login");
     }
 
     public function login(Request $request)
     {
         $request->validate([
-            "center" => "required|exists:centers,id",
             "email" => "required",
             "password" => "required"
         ]);
