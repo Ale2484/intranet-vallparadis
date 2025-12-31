@@ -93,15 +93,16 @@
         <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10 hidden md:block">
         <img src="{{ asset("images/logo.svg") }}" alt="vallparadis-logo" class="w-10 md:hidden">
     </a>
-    <form action="#" method="post" class="w-[65%] hidden items-center gap-2 border border-[#E6E5DE] rounded-lg h-10 md:flex bg-[#FFF9F6] p-5 dark:bg-neutral-800 dark:border-neutral-600">
-        @csrf
+
+    <form action="{{ route("general-search") }}" method="get" id="general-search" class="w-[65%] relative hidden items-center gap-2 border border-[#E6E5DE] rounded-lg h-10 md:flex bg-[#FFF9F6] p-5 dark:bg-neutral-800 dark:border-neutral-600">
         <button type="submit" class="cursor-pointer">
             <svg class="w-6 h-6 dark:text-neutral-400">
                 <use xlink:href="#icon-search"></use>
             </svg>
         </button>
-
         <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class="pl-2 w-full h-10 outline-0 dark:text-slate-400">
+        <div id="general-results" class="bg-white rounded-b-lg border-b border-t-none border-2 border-x border-[#E6E5DE] w-full absolute top-9 right-0 px-3 pb-3 max-h-90 overflow-y-auto hidden">
+        </div>
     </form>
 
     <div class="w-auo md:w-[25%] flex flex-row items-center justify-end gap-5 px-2 md:px-5">
