@@ -44,7 +44,4 @@
 </div>
 {{-- Modal de filtros --}}
 <x-filter-card :type="'rrhh'"/>
-<div class="pagination">
-    {{ $rrhhs->links('pagination::tailwind') }}
-</div>
 @endsection

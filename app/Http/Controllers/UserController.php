@@ -13,68 +13,44 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    protected $paginateNumber = 21;
-    public function index()
+    public function index(Request $request)
     {
-        $totalUsers = User::count();
-        // $activeUsers = User::active()->count();
-        // $inactiveUsers = User::inactive()->count();
-        
-        $users = User::orderBy('created_at', 'desc')->paginate(21);
-        $viewType = $_COOKIE['view_type'] ?? "card";
-
-        return view("users.index", compact(
-            'totalUsers', 
-        //    'activeUsers', 
-        //    'inactiveUsers',
-            'users',
-            'viewType'
-        ));
-    }
-
-    public function search(Request $request)
-    {
-        $pagination = "";
-        $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
-        $searchValue = $request->searchValue;
-        $searchUsers = User::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
-        if (!empty($searchUsers)) {
-            // Se obtiene el tipo de vista
-            $viewType = $_COOKIE['view_type'] ?? "card";
-
-            if ($viewType == "card") {
-                foreach ($searchUsers as $user) {
-                    $htmlContent .= view("components.user-card", compact("user"))->render();
-                }
-            } else {
-                foreach ($searchUsers as $user) {
-                    $htmlContent .= view("components.user-table", compact("user"))->render();
-                }
-            }
-            // Se obtiene la paginacion
-            $pagination = $searchUsers->links()->render();
-        }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
-    }
-
-    public function filter(Request $request)
-    {
-        $page = $request->input("page", 1);
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
         $query = User::query();
-
-        // Se obtiene el filtro del estado y se añade a la query
+        // Se obtiene el parametro status en la request, si existe se aplic el filtro
+        $status = $request->input("status");
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
 
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        $users = $query->orderBy("created_at", "desc")->get();
+
+        $viewType = $_COOKIE["view_type"] ?? "card";
+
+        return view("users.index", compact( "users", "viewType"));
+    }
+
+    public function search(Request $request)
+    {
+        $htmlContent = "";
+        $searchValue = $request->searchValue;
+        $orderBy = $request->orderBy;
+        $status = $request->status;
+
+        $query = User::query();
+
+        if ($searchValue) {
+            $query->where("name", "like", "%$searchValue%");
+        }
+
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -93,27 +69,26 @@ class UserController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
 
-        // Se pagina la query
-        $users = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $users = $query->get();
 
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        // Se obtiene el tipo de vista
-        $viewType = $_COOKIE['view_type'] ?? "card";
-        if ($viewType == "card") {
-            foreach ($users as $user) {
-                $htmlContent .= view("components.user-card", compact("user"))->render();
-            }
-        } else {
-            foreach ($users as $user) {
-                $htmlContent .= view("components.user-table", compact("user"))->render();
+        if (!$users->isEmpty()) {
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($users as $user) {
+                    $htmlContent .= view("components.user-card", compact("user"))->render();
+                }
+            } else {
+                foreach ($users as $user) {
+                    $htmlContent .= view("components.user-table", compact("user"))->render();
+                }
             }
         }
-        $pagination = $users->links()->render();
-
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
     public function create()

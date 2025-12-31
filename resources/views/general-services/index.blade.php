@@ -89,9 +89,4 @@
 @endif
 {{-- Modal de filtros --}}
 <x-filter-card :type="'general-services'"/>
-<div class="pagination">
-    {{ $generalServices->links('pagination::tailwind') }}
-</div>
-
-
 @endsection

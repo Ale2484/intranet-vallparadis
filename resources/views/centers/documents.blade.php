@@ -115,7 +115,6 @@
                         </button>
                 </form>
             </div>
-            {{ $documents->links('pagination::tailwind') }}
         </div>
     </div>
 </div>

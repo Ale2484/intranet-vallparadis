@@ -76,7 +76,4 @@
 </div>
 {{-- Modal de filtros --}}
 <x-filter-card :type="'centers'"/>
-<div class="pagination">
-    {{ $centers->links('pagination::tailwind') }}
-</div>
 @endsection

@@ -125,7 +125,6 @@
             </div>
         @endforeach
     </div>
-    {{ $evaluations->links('pagination::tailwind') }}
     <div class="flex flex-col gap-5 h-100 overflow-y-scroll">
         @for ($i = 1; $i <= count($questionAverage); $i++)
             <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-row justify-between">

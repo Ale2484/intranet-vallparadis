@@ -90,9 +90,4 @@
 @endif
 {{-- Modal de filtros --}}
 <x-filter-card :type="'complementary-services'"/>
-<div class="pagination">
-    {{ $complementaryServices->links('pagination::tailwind') }}
-</div>
-
-
 @endsection

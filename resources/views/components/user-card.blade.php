@@ -46,9 +46,11 @@
                     <span class="ml-2 dark:text-white">{{ $user->phone ?? '+34 000 000 000' }}</span>
                 </div>
                 <div class="flex items-center text-[#011020]">
-                    <svg class="w-6 h-6 dark:text-neutral-400">
-                        <use xlink:href="#icon-mail"></use>
-                    </svg>
+                    <div class="aspect-square">
+                        <svg class="w-6 h-6 dark:text-neutral-400">
+                            <use xlink:href="#icon-mail"></use>
+                        </svg>
+                    </div>
                     <span class="ml-2 dark:text-white">{{ $user->email }}</span>
                 </div>
                 <div class="flex items-center text-[#011020]">
@@ -76,13 +78,15 @@
                 <form action="{{ route('users.deactivate', $user) }}" method="POST" class="w-full sm:w-full md:w-[50%] lg:w-[50%]">
                     @csrf
                     @method('PATCH')
-                    <button type="submit" 
+                    <button type="submit"
                             class="confirmable w-full text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all flex justify-center gap-3"
                             data-confirm-message="Estàs segur que vols desactivar aquest usuari?">
-                        <svg class="w-6 h-6">
-                            <use xlink:href="#icon-power"></use>
-                        </svg>
-                        Desactivar
+                            <div class="aspect-square">
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-power"></use>
+                                </svg>
+                            </div>
+                        <p>Desactivar</p>
                     </button>
                 </form>
             @else

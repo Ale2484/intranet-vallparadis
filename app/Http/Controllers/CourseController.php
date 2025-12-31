@@ -15,25 +15,28 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
-    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::orderBy("created_at", "desc")->paginate($this->paginateNumber);
+        $query = Course::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $courses = $query->orderBy("created_at", "desc")->get();
         $viewType = $_COOKIE['view_type'] ?? "card";
         return view("courses.index", compact("courses", "viewType"));
     }
 
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
+        $searchCourses = Course::where("name", "like" , "%$searchValue%")->get();
         if (!empty($searchCourses)) {
             // Se obtiene el tipo de vista
             $viewType = $_COOKIE['view_type'] ?? "card";
@@ -47,15 +50,12 @@ class CourseController extends Controller
                     $htmlContent .= view("components.course-table", compact("course"))->render();
                 }
             }
-            // Se obtiene la paginacion
-            $pagination = $searchCourses->links()->render();
         }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
     public function filter(Request $request)
     {
-        $page = $request->input("page", 1);
         $order = $request->input("order", null);
         $status = $request->input("status", null);
         $query = Course::query();
@@ -89,8 +89,7 @@ class CourseController extends Controller
                 break;
         }
 
-        // Se pagina la query
-        $courses = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $courses = $query->get();
 
         // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
         $htmlContent = "";
@@ -104,9 +103,8 @@ class CourseController extends Controller
                 $htmlContent .= view("components.course-table", compact("course"))->render();
             }
         }
-        $pagination = $courses->links()->render();
 
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
     /**
