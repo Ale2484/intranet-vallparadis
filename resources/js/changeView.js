@@ -1,45 +1,60 @@
 document.addEventListener("DOMContentLoaded", () =>{
     const changeViewButton = document.getElementById("changeView");
-    let resultContainers = document.querySelectorAll(".resultContainer");
-    // Se obtiene el buscador para reiniciarlo cuando se cambia la vista
     const searchForm = document.querySelector(".searchForm");
-    if (searchForm) {        
-        const searchInput = searchForm.querySelector("input[type='search']");
-    
+    if (searchForm) {
         if (changeViewButton) {
             changeViewButton.addEventListener("click", () => {
                 let selectedView = getCookie("view_type") || "card";
                 if (selectedView) {
-    
-                    // Se cambia la vista y el icono
-                    let useSvg = changeViewButton.querySelector("use");
                     if (selectedView == "card") {
-                        setViewCookie("table");
-                        useSvg.setAttribute("xlink:href", "#icon-square");
-                        searchInput.value = "";
+                        applyView("table");
                     } else{
-                        setViewCookie("card");
-                        useSvg.setAttribute("xlink:href", "#icon-table");
-                        searchInput.value = "";
+                        applyView("card");
                     }
-                    // Se itera por los resultContainers y se cambian las clases porque se ha cambiado de vista
-                    resultContainers.forEach(resultContainer => {
-                        // Se obtiene el div padre, el cual no tiene la clase resultContainer (es el padre del contenedor de las cosas)
-                        const parentDiv = resultContainer.closest("div:not(.resultContainer)");    
-                        parentDiv.classList.toggle("hidden");
-                    });
-                    
-                    setTimeout(() => {
-                        const selectedRadioFilter = document.querySelector("input[name='order']:checked");
-                        if (selectedRadioFilter) {
-                            selectedRadioFilter.dispatchEvent(new Event("change"));
-                        }
-                    }, 100);
                 }
             });
         }
     }
+    // Si se vuelve hacia atras
+    window.addEventListener("pageshow", (event) => {
+        const isBackForward = event.persisted ||
+            (window.performance && window.performance.getEntriesByType("navigation")[0].type === "back_forward");
 
+        if (isBackForward) {
+            const savedView = getCookie("view_type") || "card";
+            applyView(savedView);
+        }
+    });
+    // Function que aplica la vista que se le pasa
+    function applyView(view) {
+        let cardContainer = document.querySelector(".resultContainer");
+        const tableContainer = document.querySelector(".tableContainer");
+        if (cardContainer && tableContainer) {
+            cardContainer = cardContainer.closest("div:not(.resultContainer)")
+            if (view === "card") {
+                cardContainer.classList.remove("hidden");
+                tableContainer.classList.add("hidden");
+                if (changeViewButton) {
+                    changeViewButton.querySelector("use").setAttribute("xlink:href", "#icon-table");
+                }
+                setViewCookie("card");
+            } else {
+                cardContainer.classList.add("hidden");
+                tableContainer.classList.remove("hidden");
+                if (changeViewButton) {
+                    changeViewButton.querySelector("use").setAttribute("xlink:href", "#icon-square");
+                }
+                setViewCookie("table");
+            }
+            // Se llama al evento que detecta un cambio en el filtro para que se obtengan los elementos
+            setTimeout(() => {
+                const selectedRadioFilter = document.querySelector("input[name='order']:checked");
+                if (selectedRadioFilter) {
+                    selectedRadioFilter.dispatchEvent(new Event("change"));
+                }
+            }, 100);
+        }
+    }
     function setViewCookie(newView) {
         const days = 30;
         const expires = new Date(Date.now() + days * 864e5).toUTCString();
@@ -54,5 +69,5 @@ document.addEventListener("DOMContentLoaded", () =>{
         }
         return returnName;
     }
-
 });
+

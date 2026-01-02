@@ -37,11 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
             elementType = searchForm.dataset.type;
             searchForm.addEventListener("submit", (event) => {
                 event.preventDefault();
-                fetchSearch(searchInput.value);
+                if (searchInput.value.trim() != "") {
+                    fetchSearch(searchInput.value);
+                }
             });
             setInterval(() => {
                 // Si el valor del input de busqueda tiene algo y es diferente a la ultima busqueda entonces se vuelve a buscar
-                if (searchInput.value != lastSearchValue && searchInput.value != "" ) {
+                if (searchInput.value != lastSearchValue && searchInput.value.trim() != "" ) {
                     fetchSearch(searchInput.value);
                 } else if (searchInput.value == "" && applyRadioFilter === false && lastSearchValue !== "") {
                     // Si no hay nada escrito en la barra de busqueda, se muestran los elementos del filtro activo

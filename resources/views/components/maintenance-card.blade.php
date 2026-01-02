@@ -1,5 +1,5 @@
 <!-- Contenedor -->
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-fit mb-5 flex flex-col gap-5">
+<div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-fit mb-5 flex flex-col gap-5 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
     <div class="flex justify-between items-center border-b-1 border-b-[#AFAFAF] pb-5">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
@@ -7,7 +7,7 @@
                 <use xlink:href="#icon-wrench-screwdriver"></use>
             </svg>
             </div>
-            <a href="{{ route("maintenance.show", $maintenance) }}" class="text-[#012F4A] font-bold text-[20px]">{{ $maintenance->topic }}</a>
+            <a href="{{ route("maintenance.show", $maintenance) }}" class="text-[#012F4A] font-bold text-[20px] main-link">{{ $maintenance->topic }}</a>
         </div>
 
         <p class="w-20 border-1 p-1 text-center {{ $maintenance->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$maintenance->is_active ? "Actiu" : "Inactiu"}}</p>

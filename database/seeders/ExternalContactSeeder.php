@@ -24,8 +24,8 @@ class ExternalContactSeeder extends Seeder
                 "email" => "joan.perez@hospital.com",
                 "is_active" => true,
                 "observations" => "Contacte per a derivacions urgents.",
-                "created_at" => now(),
-                "updated_at" => now(),
+                "created_at" => now()->subDays(20),
+                "updated_at" => now()->subDays(19)
             ],
             [
                 "center_id" => 2,
@@ -37,8 +37,8 @@ class ExternalContactSeeder extends Seeder
                 "email" => "laura.garcia@ascensorsrapids.com",
                 "is_active" => true,
                 "observations" => "Revisió mensual i reparacions.",
-                "created_at" => now(),
-                "updated_at" => now(),
+                "created_at" => now()->subDays(18),
+                "updated_at" => now()->subDays(17)
             ],
             [
                 "center_id" => 3,
@@ -50,8 +50,8 @@ class ExternalContactSeeder extends Seeder
                 "email" => "marta.bosch@psicointegral.com",
                 "is_active" => true,
                 "observations" => "Suport per a pacients amb ansietat.",
-                "created_at" => now(),
-                "updated_at" => now(),
+                "created_at" => now()->subDays(14),
+                "updated_at" => now()->subDays(13)
             ],
             [
                 "center_id" => 4,
@@ -63,8 +63,8 @@ class ExternalContactSeeder extends Seeder
                 "email" => "pere.roca@neteja.com",
                 "is_active" => true,
                 "observations" => "Neteja diària d'oficines.",
-                "created_at" => now(),
-                "updated_at" => now(),
+                "created_at" => now()->subDays(12),
+                "updated_at" => now()->subDays(11)
             ],
             [
                 "center_id" => 5,
@@ -76,8 +76,8 @@ class ExternalContactSeeder extends Seeder
                 "email" => "carles.soler@infermeriaacasa.com",
                 "is_active" => true,
                 "observations" => "Atenció a pacients amb mobilitat reduïda.",
-                "created_at" => now(),
-                "updated_at" => now(),
+                "created_at" => now()->subDays(10),
+                "updated_at" => now()->subDays(9)
             ],
             [
                 "center_id" => 6,
@@ -89,8 +89,8 @@ class ExternalContactSeeder extends Seeder
                 "email" => "marc.vidal@seguretat.com",
                 "is_active" => true,
                 "observations" => "Vigilància 24h.",
-                "created_at" => now(),
-                "updated_at" => now(),
+                "created_at" => now()->subDays(8),
+                "updated_at" => now()->subDays(7)
             ],
             [
                 "center_id" => 7,
@@ -115,8 +115,8 @@ class ExternalContactSeeder extends Seeder
                 "email" => "clara.fuster@materialoficina.com",
                 "is_active" => true,
                 "observations" => "Entrega setmanal de material.",
-                "created_at" => now(),
-                "updated_at" => now(),
+                "created_at" => now()->subDays(6),
+                "updated_at" => now()->subDays(5)
             ],
             [
                 "center_id" => 9,
@@ -128,8 +128,8 @@ class ExternalContactSeeder extends Seeder
                 "email" => "eric.rovira@nutricio.com",
                 "is_active" => true,
                 "observations" => "Dietes personalitzades.",
-                "created_at" => now(),
-                "updated_at" => now(),
+                "created_at" => now()->subDays(4),
+                "updated_at" => now()->subDays(3)
             ],
             [
                 "center_id" => 10,
@@ -141,8 +141,8 @@ class ExternalContactSeeder extends Seeder
                 "email" => "jordi.noguera@residusnet.com",
                 "is_active" => false,
                 "observations" => "Recollida de residus especials.",
-                "created_at" => now(),
-                "updated_at" => now(),
+                "created_at" => now()->subDays(2),
+                "updated_at" => now()->subDays(1)
             ],
         ];
 

@@ -36,39 +36,22 @@ class CourseController extends Controller
     {
         $htmlContent = "";
         $searchValue = $request->searchValue;
-        $searchCourses = Course::where("name", "like" , "%$searchValue%")->get();
-        if (!empty($searchCourses)) {
-            // Se obtiene el tipo de vista
-            $viewType = $_COOKIE['view_type'] ?? "card";
+        $orderBy = $request->orderBy;
+        $status = $request->status;
 
-            if ($viewType == "card") {
-                foreach ($searchCourses as $course) {
-                    $htmlContent .= view("components.course-card", compact("course"))->render();
-                }
-            } else{
-                foreach ($searchCourses as $course) {
-                    $htmlContent .= view("components.course-table", compact("course"))->render();
-                }
-            }
-        }
-        return response()->json(["htmlContent" => $htmlContent]);
-    }
-
-    public function filter(Request $request)
-    {
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
         $query = Course::query();
 
-        // Se obtiene el filtro del estado y se añade a la query
+        if ($searchValue) {
+            $query->where("name", "like", "%$searchValue%");
+        }
+
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
 
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -87,23 +70,26 @@ class CourseController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
 
         $courses = $query->get();
 
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        $viewType = $_COOKIE['view_type'] ?? "card";
-        if ($viewType == "card") {
-            foreach ($courses as $course) {
-                $htmlContent .= view("components.course-card", compact("course"))->render();
-            }
-        } else{
-            foreach ($courses as $course) {
-                $htmlContent .= view("components.course-table", compact("course"))->render();
+        if ($courses->isNotEmpty()) {
+            // Se obtiene el tipo de vista
+            $viewType = $_COOKIE['view_type'] ?? "card";
+
+            if ($viewType == "card") {
+                foreach ($courses as $course) {
+                    $htmlContent .= view("components.course-card", compact("course"))->render();
+                }
+            } else{
+                foreach ($courses as $course) {
+                    $htmlContent .= view("components.course-table", compact("course"))->render();
+                }
             }
         }
-
         return response()->json(["htmlContent" => $htmlContent]);
     }
 

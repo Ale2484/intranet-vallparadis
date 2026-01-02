@@ -75,7 +75,7 @@ class UserController extends Controller
 
         $users = $query->get();
 
-        if (!$users->isEmpty()) {
+        if ($users->isNotEmpty()) {
             $viewType = $_COOKIE['view_type'] ?? "card";
             if ($viewType == "card") {
                 foreach ($users as $user) {

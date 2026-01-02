@@ -1,4 +1,4 @@
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5 dark:bg-neutral-800 dark:border-neutral-600">
+<div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5 dark:bg-neutral-800 dark:border-neutral-600 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
         <div>
             <div class="flex justify-between items-center mb-5">
                 <div class="flex flex-row justify-between gap-2">
@@ -12,7 +12,7 @@
                         @endif
                     </div>
                     <div class="flex items-center">
-                        <a href="{{ route("users.show", $user) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $user->name }}</a>
+                        <a href="{{ route("users.show", $user) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $user->name }}</a>
                     </div>
                 </div>
                 @if($user->is_active)

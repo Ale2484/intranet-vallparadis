@@ -1,15 +1,14 @@
 <!-- Contenedor -->
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600">
+<div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
     <div class="flex justify-between items-center mb-5">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
-            <svg class="w-8 h-8 text-[#FF7E13]">
-                <use xlink:href="#icon-book"></use>
-            </svg>
+                <svg class="w-8 h-8 text-[#FF7E13]">
+                    <use xlink:href="#icon-book"></use>
+                </svg>
             </div>
-            <a href="{{ route("courses.show", $course) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $course->name }}</a>
+            <a href="{{ route("courses.show", $course) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $course->name }}</a>
         </div>
-
         <p class="w-20 border-1 p-1 ml-3 text-center {{ $course->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$course->is_active ? "Actiu" : "Inactiu"}}</p>
     </div>
     <!-- Especificaciones -->

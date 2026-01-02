@@ -1,4 +1,4 @@
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600">
+<div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
     <div class="border-b-gray-600 border-b-1 pb-5">
         <div class="flex flex-row justify-between items-center w-full mb-2">
             <div class="flex flex-row justify-between gap-2 items-center">
@@ -15,7 +15,7 @@
                         </svg>
                     </div>
                 @endif
-                <a href="{{ route('projects.show', $project) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $project->name }}</a>
+                <a href="{{ route('projects.show', $project) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $project->name }}</a>
             </div>
             <p class="w-20 border p-1 text-center {{ $project->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$project->is_active ? "Actiu" : "Inactiu"}}</p>
         </div>
