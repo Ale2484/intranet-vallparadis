@@ -90,7 +90,7 @@
     </button>
 
     <a href="{{ route("dashboard") }}" class="text-center absolute left-[45%] md:static md:text-left">
-        <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10 hidden md:block">
+        <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="md:w-36 lg:w-56 mr-10 hidden md:block">
         <img src="{{ asset("images/logo.svg") }}" alt="vallparadis-logo" class="w-10 md:hidden">
     </a>
 

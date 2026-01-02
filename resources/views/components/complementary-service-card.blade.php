@@ -1,5 +1,5 @@
 <!-- Contenedor -->
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600">
+<div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
     <div class="flex justify-between items-center mb-5">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
@@ -7,7 +7,7 @@
                     <use xlink:href="#icon-services"></use>
                 </svg>
             </div>
-            <a href="{{ route("complementary-services.show", $complementaryService) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $complementaryService->name }}</a>
+            <a href="{{ route("complementary-services.show", $complementaryService) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $complementaryService->name }}</a>
         </div>
 
         <p class="w-20 border p-1 text-center {{ $complementaryService->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$complementaryService->is_active ? "Actiu" : "Inactiu"}}</p>

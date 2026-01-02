@@ -1,4 +1,4 @@
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
+<div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
     <div>
         <div class="flex justify-between items-center mb-5">
             <div class="flex flex-row justify-between gap-2">
@@ -10,7 +10,7 @@
                     </div>
                     <div class="flex flex-col items-start">
                         <p class="text-[#AFAFAF] text-xs md:text-sm font-semibold">{{ $externalContact->category ? strtoupper($externalContact->category) : ""}}</p>
-                        <a href="{{ route("external-contacts.show", $externalContact) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $externalContact->contact_person }}</a>
+                        <a href="{{ route("external-contacts.show", $externalContact) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $externalContact->contact_person }}</a>
                     </div>
                 </div>
             </div>

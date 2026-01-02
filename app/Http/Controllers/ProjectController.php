@@ -32,36 +32,22 @@ class ProjectController extends Controller
     {
         $htmlContent = "";
         $searchValue = $request->searchValue;
-        $searchProjects = Project::where("name", "like" , "%$searchValue%")->get();
-        if (!empty($searchProjects)) {
-            $viewType = $_COOKIE['view_type'] ?? "card";
-            if ($viewType == "card") {
-                foreach ($searchProjects as $project) {
-                    $htmlContent .= view("components.project-card", compact("project"))->render();
-                }
-            } else {
-                foreach ($searchProjects as $project) {
-                    $htmlContent .= view("components.project-table", compact("project"))->render();
-                }
-            }
-        }
-        return response()->json(["htmlContent" => $htmlContent]);
-    }
-    
-    public function filter(Request $request)
-    {
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
+        $orderBy = $request->orderBy;
+        $status = $request->status;
+
         $query = Project::query();
 
-        // Se obtiene el filtro del estado y se añade a la query
+        if ($searchValue) {
+            $query->where("name", "like", "%$searchValue%");
+        }
+
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -80,23 +66,23 @@ class ProjectController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
-
         $projects = $query->get();
 
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        $viewType = $_COOKIE['view_type'] ?? "card";
-        if ($viewType == "card") {
-            foreach ($projects as $project) {
-                $htmlContent .= view("components.project-card", compact("project"))->render();
-            }
-        } else {
-            foreach ($projects as $project) {
-                $htmlContent .= view("components.project-table", compact("project"))->render();
+        if ($projects->isNotEmpty()) {
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($projects as $project) {
+                    $htmlContent .= view("components.project-card", compact("project"))->render();
+                }
+            } else {
+                foreach ($projects as $project) {
+                    $htmlContent .= view("components.project-table", compact("project"))->render();
+                }
             }
         }
-
         return response()->json(["htmlContent" => $htmlContent]);
     }
 
