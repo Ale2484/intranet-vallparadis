@@ -50,7 +50,7 @@
                             <use xlink:href="#icon-desc"></use>
                         </svg>
                     </div>
-                    <p class="text-2xl font-bold text-[#011020]">Descripcio</p>
+                    <p class="text-2xl font-bold text-[#011020]">Descripció</p>
                 </div>
                 <div class="overflow-hidden break-words whitespace-normal break-all">
                     {{ $maintenance->description }}

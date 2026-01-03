@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ asset('images/logo.svg') }}" type="image/svg+xml">
 
   @vite('resources/css/app.css')
-  <title>Login - Vallparadis</title>
+  <title>Inici de sessió | Vallparadis</title>
 </head>
 <body class="bg-[#FFF9F6] px-5">
   @include('partials.icons')
@@ -17,17 +17,17 @@
       <div class="flex justify-center mb-5">
         <img src="{{ asset("images/vallparadis-logo.svg") }}" alt="vallparadis-logo" class="w-56 mr-10">
       </div>
-      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-[#012F4A]">Intranet Vallparadis<h2>
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-[#012F4A]">Intranet Vallparadis</h2>
       <div class="flex flex-col gap-4">
-        <div class="flex flex-col gap-3">  
+        <div class="flex flex-col gap-3">
           <div class="flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FF7E13" class="size-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
             </svg>
-            <p class="font-bold text-[#012F4A]">Correu electronic * </p>
+            <p class="font-bold text-[#012F4A]">Correu electrònic* </p>
           </div>
 
-          <input type="email" name="email" id="email" placeholder="Elteucorreu@gmail.com" required value="{{ old("email") }}" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF]">
+          <input type="email" name="email" id="email" placeholder="elteucorreu@gmail.com" required value="{{ old("email") }}" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF]">
         </div>
 
         <div class="flex flex-col gap-3">
@@ -35,7 +35,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#FF7E13" class="size-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
             </svg>
-            <p class="font-bold text-[#012F4A]">Contrasenya * </p>
+            <p class="font-bold text-[#012F4A]">Contrasenya* </p>
           </div>
           <div class="relative">
             <input type="password" name="password" id="password" placeholder="La teva contrasenya" required class="w-full border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] pr-10">

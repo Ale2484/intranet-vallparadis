@@ -51,7 +51,7 @@
                             <svg class="w-6 h-6">
                                 <use xlink:href="#icon-sweater"></use>
                             </svg>
-                            Renovacio uniformitats
+                            Renovació uniformitats
                         </a>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                     <use xlink:href="#icon-lens"></use>
                 </svg>
             </button>
-            <input type="search" name="search" id="search" placeholder="Buscar professionals..." class=" pl-2 w-full h-10 outline-0">
+            <input type="search" name="search" id="search" placeholder="Cercar professionals..." class=" pl-2 w-full h-10 outline-0">
         </form>
         <div class="w-12">
             @include("partials.loader")

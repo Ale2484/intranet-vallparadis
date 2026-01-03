@@ -25,23 +25,23 @@
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-cog-6-tooth"></use>
             </svg>
-            <p class="dark:text-white">{{ $generalService->type ? ucfirst($generalService->type) : "Aquest servei no te  tipus" }}</p>
+            <p class="dark:text-white">{{ $generalService->type ? ucfirst($generalService->type) : "Aquest servei no té tipus" }}</p>
         </div>
         
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-users"></use>
             </svg>
-            <p class="dark:text-white">{{ $generalService->manager_name ?? "Aquest servei no te encarregat" }}</p>
+            <p class="dark:text-white">{{ $generalService->manager_name ?? "Aquest servei no té encarregat" }}</p>
         </div>
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7 flex-shrink-0">
                 <use xlink:href="#icon-phone"></use>
             </svg>
-            <p class="dark:text-white">{{ $generalService->manager_phone ?? "Aquest servei no te numero de encarregat" }}</p>
+            <p class="dark:text-white">{{ $generalService->manager_phone ?? "Aquest servei no té número d'encarregat" }}</p>
         </div>
     </div>
-    <p class="text-sm my-4 dark:text-white">Creat: {{ $generalService->created_at->format("d/m/Y") }} | Actualizat: {{ $generalService->updated_at->format("d/m/Y") }}</p>
+    <p class="text-sm my-4 dark:text-white">Creat: {{ $generalService->created_at->format("d/m/Y") }} | Actualitzat: {{ $generalService->updated_at->format("d/m/Y") }}</p>
 
     <div class="flex flex-row gap-5 justify-end">
         <!-- Activar/Desactivar -->

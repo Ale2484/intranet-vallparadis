@@ -2,21 +2,21 @@
 @section("title", "Mostra el servei complementari")
 @section("main")
 <div class="w-full flex items-center justify-center">
-    <div class="w-[90%] flex flex-col items-center justify-center">   
+    <div class="w-[90%] flex flex-col items-center justify-center">
         <!-- Apartado superior -->
         <div class="w-full flex items-center justify-between">
             <div class="flex flex-col gap-3">
-                <a href="{{ route("complementary-services.index") }}" class="flex gap-3 text-[#AFAFAF]">
+                <a href="{{ route('complementary-services.index') }}" class="flex gap-3 text-[#AFAFAF]">
                     <svg class="w-6 h-6 ">
                         <use xlink:href="#icon-arrow-left"></use>
                     </svg>
                     Tornar a la gestió de serveis generals
                 </a>
         
-                <h1 class="text-3xl font-bold text-[#011020] dark:text-white">{{ $complementaryService->name }}</h1>        
+                <h1 class="text-3xl font-bold text-[#011020] dark:text-white">{{ $complementaryService->name }}</h1>
                 <p class="text-[#AFAFAF] mb-7">Informació completa del servei</p>
             </div>
-            <a href="{{ route("complementary-services.edit", $complementaryService) }}" class="bg-[#FF7E13] text-white rounded-lg p-[10px] font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+            <a href="{{ route('complementary-services.edit', $complementaryService) }}" class="bg-[#FF7E13] text-white rounded-lg p-[10px] font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-square-pen"></use>
                 </svg>
@@ -162,7 +162,7 @@
                                         <p class="font-semibold text-[#011020] dark:text-white">{{ $file->name }}</p>
                                         <p class="text-[#AFAFAF]">{{ $file->formatted_size }}</p>
                                     </div>
-                                    <a href="{{ route("complementary-services.documents.download", basename($file->path)) }}">
+                                    <a href="{{ route('complementary-services.documents.download', basename($file->path)) }}">
                                         <svg class="w-7 h-7 text-[#011020] dark:text-white cursor-pointer ml-2 hover:text-[#FF7E13] transition-all">
                                             <use xlink:href="#icon-download"></use>
                                         </svg>
@@ -175,15 +175,15 @@
                         <p class="dark:text-neutral-300">Actualment no hi ha fitxers pujats</p>
                     @endif
                 </div>
-                {{-- Apartado de observaciones --}}
-                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-flex-col min-w-[300px] dark:bg-neutral-800 dark:border-neutral-600">
+                {{-- Apartado de archivos --}}
+                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col min-w-[300px] dark:bg-neutral-800 dark:border-neutral-600">
                     <div class="flex items-center gap-3">
                     <svg class="w-8 h-8 text-[#FF7E13]">
                         <use xlink:href="#icon-desc"></use>
                     </svg>
                         <p class="font-semibold dark:text-white">Nou fitxer</p>
                     </div>
-                    <form action="{{ route("complementary-services.documents.store", $complementaryService) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('complementary-services.documents.store', $complementaryService) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <p class="my-2 text-sm dark:text-white">Afegeix un nou fitxer per al servei de {{ $complementaryService->name  }}</p>
                         <hr class="text-[#AFAFAF] my-4">

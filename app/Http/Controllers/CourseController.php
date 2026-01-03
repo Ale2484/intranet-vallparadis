@@ -267,7 +267,7 @@ class CourseController extends Controller
     {
         $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
         if ($courseUser && $courseUser->certificate == "PENDENT") {
-            $courseUser->update(["certificate" => "ENTREGAT"]);
+            $courseUser->update(["certificate" => "LLIURAT"]);
             return redirect()->route("courses.show", $course)->with("success", "Certificat lliurat correctament");
         } else{
             return back()->with("error", "Error en intentar donar el certificat a l'usuari seleccionat");
@@ -276,9 +276,9 @@ class CourseController extends Controller
     public function removeCertificate(Course $course, User $user)
     {
         $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
-        if ($courseUser && $courseUser->certificate == "ENTREGAT") {
+        if ($courseUser && $courseUser->certificate == "LLIURAT") {
             $courseUser->update(["certificate" => "PENDENT"]);
-            return redirect()->route("courses.show", $course)->with("success", "Certificat tret correctament");
+            return redirect()->route("courses.show", $course)->with("success", "Certificat retirat correctament");
         } else{
             return back()->with("error", "Error en intentar treure el certificat a l'usuari seleccionat");
         }

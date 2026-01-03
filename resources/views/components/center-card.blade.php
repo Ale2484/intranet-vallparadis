@@ -25,22 +25,22 @@
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-phone"></use>
             </svg>
-            <p class="dark:text-white">{{ $center->phone ?? "Aquest centre no te telefon" }}</p>
+            <p class="dark:text-white">{{ $center->phone ?? "Aquest centre no té telèfon" }}</p>
         </div>
 
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-mail"></use>
             </svg>
-            <p class="dark:text-white">{{ $center->email ?? "Aquest centre no te correu electronic" }}</p>
+            <p class="dark:text-white">{{ $center->email ?? "Aquest centre no té correu electrònic" }}</p>
         </div>
     </div>
-    <p class="text-sm dark:text-white">Creat: {{ $center->created_at->format("d/m/Y") }} | Actualizat: {{ $center->updated_at->format("d/m/Y") }}</p>
+    <p class="text-sm dark:text-white">Creat: {{ $center->created_at->format("d/m/Y") }} | Actualitzat: {{ $center->updated_at->format("d/m/Y") }}</p>
     
     <!-- Activar/Desactivar -->
     <div class="flex flex-row gap-5 justify-end">
         <div class="w-full sm:w-full md:w-auto md:max-w-full lg:w-auto flex gap-5 justify-end flex-col sm:flex-col sm:justify-center md:flex-row">
-            <a href="{{ route("centers.edit", $center) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
+            <a href="{{ route("centers.edit", $center) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-square-pen"></use>
                 </svg>

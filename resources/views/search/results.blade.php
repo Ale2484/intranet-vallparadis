@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section("title", "Resultats de la busqueda")
+@section("title", "Resultats de la cerca")
 @section('main')
 @php
     $searchGroups = [$searchUsers, $searchCenters, $searchProjects, $searchCourses, $searchGeneralServices, $searchComplementaryServices, $searchExternalContacts];

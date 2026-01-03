@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Nou servei")
 @section("main")
-<div class="w-full flex flex-col items-center justify-center">    
+<div class="w-full flex flex-col items-center justify-center">
     <!-- Apartado superior -->
     <div class="w-[60%] flex flex-col gap-5">
 

@@ -9,10 +9,10 @@
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
-                Tornar a la gestió de seguimients
+                Tornar a la gestió de seguiments
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Seguimient: {{ $tracking->topic }}</h1>
-            <p class="text-[#AFAFAF]" >Comentaris del seguimient seleccionat</p>
+            <h1 class="text-3xl font-bold text-[#011020]">Seguiment: {{ $tracking->topic }}</h1>
+            <p class="text-[#AFAFAF]" >Comentaris del seguiment seleccionat</p>
         </div>
         @unless($tracking->end_link)
             <form action="{{ route('trackings.deactivate', ['user' => $user->id, 'tracking' => $tracking->id]) }}" method="POST">
@@ -80,7 +80,7 @@
             <div class="flex flex-col justify-start w-5/8 gap-5 max-h-[495px] {{ $total<1 ? 'h-[150px]' : '' }} {{ $total==1 ? 'h-[340px]' : '' }} border border-[#AFAFAF] bg-white rounded-[15px] p-5">
                 <div class="flex flex-row justify-between items-center w-full">
                     <div class="text-2xl font-bold text-[#011020]">
-                        Historial de commentaris
+                        Historial de comentaris
                     </div>
                     <div class="text-[#FF7E13] text-1xl font-bold">
                         {{ $total }} comentaris
@@ -130,7 +130,7 @@
                             </div>
                         </div>
                         <div class="text-{{ $tracking->end_link ? 'red' : 'blue'}}-500">
-                            Fi del historial
+                            Fi de l'historial
                         </div>
                     </div>
                 </div>

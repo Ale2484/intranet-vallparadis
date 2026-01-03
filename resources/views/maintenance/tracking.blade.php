@@ -11,7 +11,7 @@
                 </svg>
                 Tornar al manteniment
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Seguimient de: {{ $maintenance->topic }}</h1>
+            <h1 class="text-3xl font-bold text-[#011020]">Seguiment de: {{ $maintenance->topic }}</h1>
             <p class="text-[#AFAFAF]" >Comentaris del manteniment</p>
         </div>
     </div>
@@ -22,7 +22,7 @@
             <div class="flex flex-col justify-start w-5/8 gap-5 max-h-[640px] {{ $total<1 ? 'h-[170px]' : '' }} {{ $total==1 ? 'h-[360px]' : '' }} border border-[#AFAFAF] bg-white rounded-[15px] p-5">
                 <div class="flex flex-row justify-between items-center w-full">
                     <div class="text-2xl font-bold text-[#011020]">
-                        Historial de commentaris
+                        Historial de comentaris
                     </div>
                     <div class="text-[#FF7E13] text-1xl font-bold">
                         {{ $total }} comentaris
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="text-zinc-500">
-                            Fi del historial
+                            Fi de l'historial
                         </div>
                     </div>
                 </div>

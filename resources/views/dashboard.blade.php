@@ -1,4 +1,5 @@
 @extends("layouts.app")
+@section("title", "Dashboard")
 @section("main")
 
 <h2 class="font-bold text-lg mb-5 text-[#011020] dark:text-white">APARTATS DEL SISTEMA</h2>
@@ -29,7 +30,7 @@
                 </li>
                 <li>
                     <a href="{{ route("users.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Professional actius
+                        Professionals actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
@@ -37,7 +38,7 @@
                 </li>
                 <li>
                     <a href="{{ route("users.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] justify-between dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Professional inactius
+                        Professionals inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
@@ -58,7 +59,7 @@
             </div>
     
             <p class="text-[20px] font-bold text-[#011020] dark:text-white">Centres</p>
-            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment del personal del centre</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels centres</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
@@ -100,8 +101,8 @@
     
             </div>
     
-            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Proyectes i comissions</p>
-            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment del personal del centre</p>
+            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Projectes i comissions</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels projectes i comissions</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
@@ -145,7 +146,7 @@
             </div>
     
             <p class="text-[20px] font-bold text-[#011020] dark:text-white">Cursos</p>
-            <p class="text-[#013148] text-sm dark:text-gray-400">Control gestió i seguiment dels cursos</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400">Control, gestió i seguiment dels cursos</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
@@ -189,7 +190,7 @@
             </div>
     
             <p class="text-[20px] font-bold text-[#011020] dark:text-white">Serveis generals</p>
-            <p class="text-[#013148] text-sm dark:text-gray-400">Control i seguiment del serveis del centre</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400">Control i seguiment dels serveis del centre</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
@@ -231,7 +232,7 @@
             </div>
     
             <p class="text-[20px] font-bold text-[#011020] dark:text-white">Serveis complementaris</p>
-            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment del serveis complementaris del centre</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels serveis complementaris del centre</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">

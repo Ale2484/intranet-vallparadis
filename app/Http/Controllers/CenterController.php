@@ -100,7 +100,7 @@ class CenterController extends Controller
         $validated = $request->validate([
             "name" => "required|string",
             "address" => "required|string",
-            "phone"=> "required|max:9",
+            "phone" => "nullable|string|max:15",
             "email" => "nullable|email|max:255",
             "is_active" => "required|boolean"
         ]);
@@ -158,6 +158,6 @@ class CenterController extends Controller
     public function activate(Center $center)
     {
         $center->update(["is_active" => true]);
-        return redirect()->route("centers.index")->with("success", "Centre deshabilitat correctament");
+        return redirect()->route("centers.index")->with("success", "Centre activat correctament");
     }
 }
