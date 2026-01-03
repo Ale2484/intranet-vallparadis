@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string("phone", 9)->nullable();
             // technical team --> equipo tecnico / magnament team --> equipo directivo / administration --> Administracion / professional --> usuario normal
-            $table->enum("role",["technical_team","management_team", "administration", "professional"])->default("professional");
+            $table->enum("role",["technical_team","management_team", "administration", "professional", "super_admin"])->default("professional");
             $table->unsignedBigInteger("center");
             $table->enum("status", ["active", "inactive", "substitute"]);
             //$table->string("cv", 255);

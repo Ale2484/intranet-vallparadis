@@ -84,7 +84,7 @@ class UserSeeder extends Seeder
                 "name" => "Jana Torres",
                 "email" => "jana.torres@gmail.com",
                 "phone" => "667890123",
-                "role" => "professional",
+                "role" => "super_admin",
                 "center" => "2",
                 "status" => "active",
                 "password" => Hash::make("123456"),

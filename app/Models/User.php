@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-
+use App\Models\Traits\BelongsToCenter;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    use BelongsToCenter;
 
     protected $fillable = [
         "name",
