@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\BelongsToCenter;
 
 class Course extends Model
 {
+    use BelongsToCenter;
     protected $table = "courses";
     protected $fillable = [
         "center_id",

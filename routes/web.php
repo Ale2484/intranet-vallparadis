@@ -41,14 +41,17 @@ Route::middleware("auth")->group(function () {
 
     // Cursos
     // Primero se establece el /courses/exportAll porque sino da problemas con la ruta /courses/show (se supoerpone)
-    Route::get("/courses/exportAll", [CourseController::class, "exportAllCourses"])->name('courses.exportAll');
-    Route::resource("courses", CourseController::class);
-    Route::patch("/courses/{course}/deactivate", [CourseController::class, "deactivate"])->name('courses.deactivate');
-    Route::patch("/courses/{course}/activate", [CourseController::class, "activate"])->name('courses.activate');
-    Route::get("/courses/{course}/users/", [CourseController::class, "showCourseUsers"])->name('courses.users');
-    Route::patch("/courses/{course}/{user}/giveCertificate", [CourseController::class, "giveCertificate"])->name('courses.giveCertificate');
-    Route::patch("/courses/{course}/{user}/removeCertificate", [CourseController::class, "removeCertificate"])->name('courses.removeCertificate');
-    Route::post("/courses/search", [CourseController::class, "search"])->name("courses.search");
+    Route::middleware("setCenterContext")->group(function () {
+        Route::get("/courses/exportAll", [CourseController::class, "exportAllCourses"])->name('courses.exportAll');
+        Route::resource("courses", CourseController::class);
+        Route::patch("/courses/{course}/deactivate", [CourseController::class, "deactivate"])->name('courses.deactivate');
+        Route::patch("/courses/{course}/activate", [CourseController::class, "activate"])->name('courses.activate');
+        Route::get("/courses/{course}/users/", [CourseController::class, "showCourseUsers"])->name('courses.users');
+        Route::patch("/courses/{course}/{user}/giveCertificate", [CourseController::class, "giveCertificate"])->name('courses.giveCertificate');
+        Route::patch("/courses/{course}/{user}/removeCertificate", [CourseController::class, "removeCertificate"])->name('courses.removeCertificate');
+        Route::post("/courses/search", [CourseController::class, "search"])->name("courses.search");
+    });
+
 
     //Usuarios
     Route::middleware("setCenterContext")->group(function () {
@@ -58,28 +61,33 @@ Route::middleware("auth")->group(function () {
         Route::post("/users/search", [UserController::class, "search"])->name('users.search');
         Route::post("/users/update-profile-photo/{user}", [UserController::class, "updateProfilePhoto"])->name('users.updateProfilePhoto');
         Route::post("/switch-center", [UserController::class, "switchCenter"])->name("users.switchCenter");
+        // Uniformes
+        Route::get("/users/{user}/uniformities/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
+        Route::patch("/users/{user}/uniformities/update", [UniformityController::class, "update"])->name('user.uniformity.update');
     });
     Route::post("/logout", [UserController::class, "logout"])->name("users.logout");
     Route::get("/logout", function () {
         if (Auth::check()) {return redirect()->route("dashboard");}
         return redirect()->route("login");
     });
-    // Uniformes
-    Route::get("/users/{user}/uniformities/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
-    Route::patch("/users/{user}/uniformities/update", [UniformityController::class, "update"])->name('user.uniformity.update');
 
     // Centros
-    Route::resource("centers", CenterController::class)->except("destroy");
-    Route::patch("/centers/{center}/deactivate", [CenterController::class, "deactivate"])->name("centers.deactivate");
-    Route::patch("/centers/{center}/activate", [CenterController::class, "activate"])->name("centers.activate");
-    Route::post("/centers/search", [CenterController::class, "search"])->name("centers.search");
+    Route::middleware("setCenterContext")->group(function () {
+        Route::resource("centers", CenterController::class)->except("destroy");
+        Route::patch("/centers/{center}/deactivate", [CenterController::class, "deactivate"])->name("centers.deactivate");
+        Route::patch("/centers/{center}/activate", [CenterController::class, "activate"])->name("centers.activate");
+        Route::post("/centers/search", [CenterController::class, "search"])->name("centers.search");
+    });
+
 
     // Proyectos
-    Route::resource('projects', ProjectController::class);
-    Route::patch('/projects/{project}/deactivate', [ProjectController::class, 'deactivate'])->name('projects.deactivate');
-    Route::patch('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');
-    Route::post("/projects/search", [ProjectController::class, "search"])->name("projects.search");
-    Route::delete('/project-documents/{document}', [ProjectController::class, 'deleteDocument'])->name('project-documents.destroy');
+    Route::middleware("setCenterContext")->group(function () {
+        Route::resource('projects', ProjectController::class);
+        Route::patch('/projects/{project}/deactivate', [ProjectController::class, 'deactivate'])->name('projects.deactivate');
+        Route::patch('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');
+        Route::post("/projects/search", [ProjectController::class, "search"])->name("projects.search");
+        Route::delete('/project-documents/{document}', [ProjectController::class, 'deleteDocument'])->name('project-documents.destroy');
+    });
 
     // Exportacion de taquillas
     Route::get("/exportAllLockers", [UserController::class, "exportAllLockers"])->name("exportAllLockers");
@@ -108,34 +116,42 @@ Route::middleware("auth")->group(function () {
     Route::post("/users/{user}/evaluations/store", [EvaluationController::class, "store"])->name("evaluations.store");
 
     // Servicios generales
-    Route::resource("general-services", GeneralServiceController::class);
-    Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
-    Route::patch("/general-services/{generalService}/activate", [GeneralServiceController::class, "activate"])->name('general-services.activate');
-    Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
-    Route::post("/general-services/{generalService}/add-observation", [GeneralServiceController::class, "addObservation"])->name("general-services.add-observation");
-    Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
+    Route::middleware("setCenterContext")->group(function () {
+        Route::resource("general-services", GeneralServiceController::class);
+        Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
+        Route::patch("/general-services/{generalService}/activate", [GeneralServiceController::class, "activate"])->name('general-services.activate');
+        Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
+        Route::post("/general-services/{generalService}/add-observation", [GeneralServiceController::class, "addObservation"])->name("general-services.add-observation");
+        Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
+    });
 
     //  Buscador
     Route::get("/general-search", [GeneralSearchController::class, "generalSearch"])->name("general-search");
     Route::post("/general-search", [GeneralSearchController::class, "generalSearch"])->name("general-search.index");
 
     // Contactos externos
-    Route::resource("external-contacts", ExternalContactController::class);
-    Route::patch("/external-contacts/{externalContact}/deactivate", [ExternalContactController::class, "deactivate"])->name("external-contacts.deactivate");
-    Route::patch("/external-contacts/{externalContact}/activate", [ExternalContactController::class, "activate"])->name("external-contacts.activate");
-    Route::post("/external-contacts/search", [ExternalContactController::class, "search"])->name("external-contacts.search");
+    Route::middleware("setCenterContext")->group(function () {
+        Route::resource("external-contacts", ExternalContactController::class);
+        Route::patch("/external-contacts/{externalContact}/deactivate", [ExternalContactController::class, "deactivate"])->name("external-contacts.deactivate");
+        Route::patch("/external-contacts/{externalContact}/activate", [ExternalContactController::class, "activate"])->name("external-contacts.activate");
+        Route::post("/external-contacts/search", [ExternalContactController::class, "search"])->name("external-contacts.search");
+    });
+
 
     // Documentos del centro
     Route::get("/centers/{center}/documents", [CenterDocumentsController::class, "index"])->name("centers.documents");
     Route::post("/centers/{center}/documents/store", [CenterDocumentsController::class, "store"])->name("centers.documents.store");
 
     // Servicios complementarios
-    Route::resource("complementary-services", ComplementaryServiceController::class);
-    Route::patch("/complementary-services/{complementaryService}/activate", [ComplementaryServiceController::class, "activate"])->name('complementary-services.activate');    
-    Route::patch("/complementary-services/{complementaryService}/deactivate", [ComplementaryServiceController::class, "deactivate"])->name('complementary-services.deactivate');
-    Route::post("/complementary-services/search", [ComplementaryServiceController::class, "search"])->name("complementary-services.search");
-    Route::post("/complementary-services/{complementaryService}/upload-file", [ComplementaryServiceController::class, "uploadFile"])->name("complementary-services.documents.store");
-    Route::get("/complementary-services/documents/{baseName}/", [ComplementaryServiceController::class, "downloadFile"])->name("complementary-services.documents.download");
+    Route::middleware("setCenterContext")->group(function () {
+        Route::resource("complementary-services", ComplementaryServiceController::class);
+        Route::patch("/complementary-services/{complementaryService}/activate", [ComplementaryServiceController::class, "activate"])->name('complementary-services.activate');
+        Route::patch("/complementary-services/{complementaryService}/deactivate", [ComplementaryServiceController::class, "deactivate"])->name('complementary-services.deactivate');
+        Route::post("/complementary-services/search", [ComplementaryServiceController::class, "search"])->name("complementary-services.search");
+        Route::post("/complementary-services/{complementaryService}/upload-file", [ComplementaryServiceController::class, "uploadFile"])->name("complementary-services.documents.store");
+        Route::get("/complementary-services/documents/{baseName}/", [ComplementaryServiceController::class, "downloadFile"])->name("complementary-services.documents.download");
+    });
+
 
     // Temas RRHH
     Route::resource("rrhh", RRHHTopicController::class)->except(["destroy","update","edit"]);
