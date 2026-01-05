@@ -117,7 +117,7 @@ class EvaluationController extends Controller
             ] + $validated
         );
         
-        return redirect()->route('evaluations.index', $user->id)->with('success', 'Evaluacio creada correctament.');
+        return redirect()->route('evaluations.index', $user->id)->with('success', 'Avaluació creada correctament.');
     }
 
     public function create(User $user)

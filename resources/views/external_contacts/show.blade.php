@@ -36,7 +36,7 @@
                 </svg>
             </div>
             <div>
-                <p class="text-[#AFAFAF] font-semibold">{{ $externalContact->category ? strtoupper($externalContact->category) : "Categoria no asignada"}}</p>
+                <p class="text-[#AFAFAF] font-semibold">{{ $externalContact->category ? strtoupper($externalContact->category) : "Categoria no assignada"}}</p>
                 <p class="text-3xl font-bold text-[#011020] dark:text-white">{{ $externalContact->contact_person }}</p>
             </div>
         </div>
@@ -68,7 +68,7 @@
                 </svg>
                 <div>
                     <p class="font-semibold">Telèfon:</p>
-                    <p>{{ $externalContact->phone ?? "Aquest contacte no te telèfon"}}</p>
+                    <p>{{ $externalContact->phone ?? "Aquest contacte no té telèfon"}}</p>
                 </div>
             </div>
             <hr class="text-[#AFAFAF] my-5">
@@ -78,7 +78,7 @@
                 </svg>
                 <div>
                     <p class="font-semibold">Email:</p>
-                    <p>{{ $externalContact->email ?? "Aquest contacte no te email"}}</p>
+                    <p>{{ $externalContact->email ?? "Aquest contacte no té email"}}</p>
                 </div>
             </div>
         </div>
@@ -97,7 +97,7 @@
                 </svg>
                 <div>
                     <p class="font-semibold">Empresa o departament:</p>
-                    <p>{{ $externalContact->company_or_department ?? "Aquest contacte no te empresa o deppartament"}}</p>
+                    <p>{{ $externalContact->company_or_department ?? "Aquest contacte no té empresa o departament"}}</p>
                 </div>
             </div>
             <hr class="text-[#AFAFAF] my-5">
@@ -107,7 +107,7 @@
                 </svg>
                 <div>
                     <p class="font-semibold">Observacions:</p>
-                    <p>{{ $externalContact->observations ?? "Aquest contacte no te observacions"}}</p>
+                    <p>{{ $externalContact->observations ?? "Aquest contacte no té observacions"}}</p>
                 </div>
             </div>
         </div>

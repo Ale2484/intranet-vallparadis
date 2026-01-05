@@ -48,7 +48,7 @@
         </div>
     </div>
     
-    <p class="text-sm">Creat: {{ $externalContact->created_at->format("d/m/Y") }} | Actualizat: {{ $externalContact->updated_at->format("d/m/Y") }}</p>
+    <p class="text-sm">Creat: {{ $externalContact->created_at->format("d/m/Y") }} | Actualitzat: {{ $externalContact->updated_at->format("d/m/Y") }}</p>
 
     <div class="flex flex-row gap-5 justify-end">
         <a href="{{ route('external-contacts.edit', $externalContact) }}" 

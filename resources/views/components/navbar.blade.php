@@ -100,12 +100,12 @@
                 <use xlink:href="#icon-search"></use>
             </svg>
         </button>
-        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class="pl-2 w-full h-10 outline-0 dark:text-slate-400">
+        <input type="search" name="search" id="search" placeholder="Cercar professionals, documents..." class="pl-2 w-full h-10 outline-0 dark:text-slate-400">
         <div id="general-results" class="bg-white rounded-b-lg border-b border-t-none border-2 border-x border-[#E6E5DE] w-full absolute top-9 right-0 px-3 pb-3 max-h-90 overflow-y-auto hidden">
         </div>
     </form>
 
-    <div class="w-auo md:w-[25%] flex flex-row items-center justify-end gap-5 px-2 md:px-5">
+    <div class="w-auto md:w-[25%] flex flex-row items-center justify-end gap-5 px-2 md:px-5">
         <!-- Cambiar de modo -->
         <button type="button" id="theme-toggle" class="mr-5 cursor-pointer">
             <svg class="w-7 h-7 text-slate-500 block dark:hidden">

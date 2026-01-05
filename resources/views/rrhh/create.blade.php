@@ -10,7 +10,7 @@
             <svg class="w-6 h-6 ">
                 <use xlink:href="#icon-arrow-left"></use>
             </svg>
-            Tornar a la gestió de Temas pendents
+            Tornar a la gestió de temes pendents
         </a>
 
         <h1 class="text-3xl font-bold text-[#011020]">Nou tema pendent</h1>
@@ -26,7 +26,7 @@
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-user"></use>
                 </svg>
-                <label for="user_affected">Profesional afectat * </label>
+                <label for="user_affected">Professional afectat * </label>
             </div>
             <select name="user_affected" id="user_affected" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5">
                 @foreach ($users as $user)
@@ -54,9 +54,9 @@
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-desc"></use>
                 </svg>
-                <label for="description">Descripcio</label>
+                <label for="description">Descripció</label>
             </div>
-            <textarea name="description" id="description" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" placeholder="Introdueix una descripcio"></textarea>
+            <textarea name="description" id="description" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" placeholder="Introdueix una descripció"></textarea>
 
             <div class="flex justify-end gap-5 mt-5">
                 <a href="{{ route("rrhh.index") }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">Cancel·lar</a>

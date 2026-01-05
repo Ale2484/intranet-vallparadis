@@ -42,7 +42,7 @@
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-adjustments-horizontal"></use>
             </svg>
-            <p class="hidden md:block">Filtes</p>
+            <p class="hidden md:block">Filtres</p>
         </button>
     </div>
     {{-- Cambiar vista --}}

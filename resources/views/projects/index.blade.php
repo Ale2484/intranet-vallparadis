@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section("title", "Veure els projectes/comisions")
+@section("title", "Veure els projectes/comissions")
 @section('main')
 <div>
     <!-- Header -->
@@ -23,7 +23,7 @@
                 </svg>
             </button>
         
-            <input type="search" name="search" id="search" placeholder="Buscar projectes o comissions..." class=" pl-2 w-full h-10 outline-0">
+            <input type="search" name="search" id="search" placeholder="Cercar projectes o comissions..." class=" pl-2 w-full h-10 outline-0">
         </form>
         <div class="w-12">
             @include("partials.loader")

@@ -68,7 +68,7 @@ class MaintenanceController extends Controller
     public function activate(Maintenance $maintenance)
     {
         $maintenance->update(["is_active" => true]);
-        return redirect()->route("maintenance.index")->with("success", "Manteniment deshabilitat correctament");
+        return redirect()->route("maintenance.index")->with("success", "Manteniment activat correctament");
     }
 
     public function search(Request $request)

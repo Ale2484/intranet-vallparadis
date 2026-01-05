@@ -2,7 +2,7 @@
 @section("title", "Veure els centres")
 @section("main")
 <div class="flex items-center justify-between mb-7">
-    <h1 class="text-3xl font-bold text-[#011020]">Gestió de Temes pendents RRHH: </h1>
+    <h1 class="text-3xl font-bold text-[#011020]">Gestió de temes pendents RRHH: </h1>
 
     <a  href="{{ route("rrhh.create") }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
         <svg class="w-6 h-6 text-white">
@@ -21,7 +21,7 @@
             </svg>
         </button>
     
-        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class=" pl-2 w-full h-10 outline-0">
+        <input type="search" name="search" id="search" placeholder="Cercar professionals, documents...." class=" pl-2 w-full h-10 outline-0">
     </form>
     <div class="w-12">
         @include("partials.loader")

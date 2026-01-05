@@ -59,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 const dataURL = canvas.toDataURL("image/png");
                 
                 profilePhotoData.value = dataURL;
-                console.log("Se envia el form")
                 canvasForm.submit();
             });
         }

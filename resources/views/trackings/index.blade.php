@@ -11,8 +11,8 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Seguimient de {{ $user->name }}</h1>
-            <p class="text-[#AFAFAF]" >Seguimient del professional seleccionat</p>
+            <h1 class="text-3xl font-bold text-[#011020]">Seguiment de {{ $user->name }}</h1>
+            <p class="text-[#AFAFAF]" >Seguiment del professional seleccionat</p>
         </div>
     </div>
     <!-- Info Usuario -->
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-rog gap-3 items-center">
+                        <div class="flex flex-row gap-3 items-center">
                             <svg class="w-6 h-6">
                                 <use xlink:href="#icon-chat-text"></use>
                             </svg>
@@ -127,7 +127,7 @@
                             <label for="open">Tipus de seguiment</label>
                             <select name="open" id="open" class="border border-[#AFAFAF] bg-white rounded-lg p-2" >
                                 <option value="0">Restringit</option>
-                                <option value="1">Public</option>
+                                <option value="1">Públic</option>
                             </select>
                         </div>
                     </div>

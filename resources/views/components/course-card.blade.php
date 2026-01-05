@@ -32,7 +32,7 @@
                 <svg class="w-7 h-7">
                     <use xlink:href="#icon-group-user"></use>
                 </svg>
-                <p>Aquest curs no te participants</p>
+                <p>Aquest curs no té participants</p>
             @endif
         </div>
         
@@ -40,13 +40,13 @@
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-role"></use>
             </svg>
-            <p class="dark:text-white">{{ $course->type ?? "Aquest curs no te tipus" }}</p>
+            <p class="dark:text-white">{{ $course->type ?? "Aquest curs no té tipus" }}</p>
         </div>
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-computer-desktop"></use>
             </svg>
-            <p class="dark:text-white">{{ $course->modality ? ucfirst($course->modality) : "Aquest curs no te una modalitat electronic" }}</p>
+            <p class="dark:text-white">{{ $course->modality ? ucfirst($course->modality) : "Aquest curs no té modalitat" }}</p>
         </div>
     </div>
     <p class="text-sm ml-3 my-4 dark:text-white">Inici: {{ $course->start_date ? date("d/m/Y", strtotime($course->start_date)) : " - " }} | Fi: {{ $course->end_date ? date("d/m/Y", strtotime($course->end_date)) : " - " }}</p>

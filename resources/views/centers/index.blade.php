@@ -21,7 +21,7 @@
             </svg>
         </button>
     
-        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class=" pl-2 w-full h-10 outline-0">
+        <input type="search" name="search" id="search" placeholder="Cercar centres..." class=" pl-2 w-full h-10 outline-0">
     </form>
     <div class="w-12">
         @include("partials.loader")

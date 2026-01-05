@@ -1,7 +1,7 @@
 @extends("layouts.app")
-@section("title", "Editar el servei")
+@section("title", "Edita el servei")
 @section("main")
-<div class="w-full flex flex-col items-center justify-center">    
+<div class="w-full flex flex-col items-center justify-center">
     <!-- Apartado superior -->
     <div class="md:w-[60%] w-full flex flex-col gap-5">
         <a href="{{ route("complementary-services.index") }}" class="flex gap-3 text-[#AFAFAF]">

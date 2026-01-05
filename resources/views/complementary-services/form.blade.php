@@ -10,9 +10,9 @@
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-pencil"></use>
                 </svg>
-                Nom del servei: *
+                Nom del servei*
             </label>
-            <input type="text" name="name" id="name" class="border shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('name') border-red-600 @enderror" value="{{ old("name", $complementaryService->name) }}" placeholder="Introdueix un nom per al servei" required>
+            <input type="text" name="name" id="name" class="border shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('name') border-red-600 @enderror" value="{{ old('name', $complementaryService->name) }}" placeholder="Introdueix un nom per al servei" required>
             @error("name")
                 <p class="text-red-500 mt-1">{{ $message }}</p>
             @enderror
@@ -23,9 +23,9 @@
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-cog-6-tooth"></use>
                 </svg>
-                Tipus: *
+                Tipus*
             </label>
-            <input type="text" name="type" id="type" placeholder="Introdueix un tipus" value="{{ old("type", $complementaryService->type) }}" required class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full h-10 dark:text-white @error('type')border-red-600 focus:ring-orange-500 @enderror">
+            <input type="text" name="type" id="type" placeholder="Introdueix un tipus" value="{{ old("type", $complementaryService->type) }}" required class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full h-10 dark:text-white @error('type') border-red-600 focus:ring-orange-500 @enderror">
             @error("type")
                 <p class="text-red-500 mt-1">{{ $message }}</p>
             @enderror
@@ -40,7 +40,7 @@
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-user"></use>
                 </svg>
-                Nom de l'encarregat: *
+                Nom de l'encarregat*
             </label>
             <input type="text" name="manager_name" id="manager_name" class="border shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('manager_name') border-red-600 @enderror" value="{{ old("manager_name", $complementaryService->manager_name) }}" placeholder="Nom de l'encarregat" required>
             @error("manager_name")
@@ -53,9 +53,9 @@
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-mail"></use>
                 </svg>
-                Email de l'encarregat: *
+                Correu electrònic de l'encarregat*
             </label>
-            <input type="email" name="manager_email" id="manager_email" class="border shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('manager_email') border-red-600 @enderror" value="{{ old("manager_email", $complementaryService->manager_email) }}" placeholder="Email de l'encarregat" required>
+            <input type="email" name="manager_email" id="manager_email" class="border shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('manager_email') border-red-600 @enderror" value="{{ old("manager_email", $complementaryService->manager_email) }}" placeholder="Correu electrònic de l'encarregat" required>
             @error("manager_email")
                 <p class="text-red-500 mt-1">{{ $message }}</p>
             @enderror
@@ -66,7 +66,7 @@
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-phone"></use>
                 </svg>
-                Telefon de l'encarregat:
+                Telèfon de l'encarregat
             </label>
             <input type="text" name="manager_phone" id="manager_phone" class="border shadow-sm h-10 p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('manager_phone') border-red-600 @enderror" value="{{ old("manager_phone", $complementaryService->manager_phone) }}" placeholder="Telefon de l'encarregat">
             @error("manager_phone")
@@ -79,7 +79,7 @@
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-check-circle"></use>
                 </svg>
-                Estat del servei: *
+                Estat del servei*
             </label>
             <select name="is_active" id="is_active" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full h-10 dark:text-white dark:bg-neutral-800 @error('is_active') border-red-600 focus:ring-orange-500 @enderror" required>
                 <option value="1" {{ old("is_active", $complementaryService->is_active) == 1 ? "selected" : "" }}>Actiu</option>

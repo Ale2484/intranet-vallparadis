@@ -20,13 +20,13 @@ class UniformityRenovationExport implements FromCollection, WithHeadings, WithMa
     {
         return $this->uniformityRenovation;
     }
-    // Añadir primera fila 
+    // Añadir primera fila
     public function headings(): array
     {
         return [
             "Data de renovació",
-            "Entregat per",
-            "Entregat a",
+            "Lliurat per",
+            "Lliurat a",
             "Mida Samarreta",
             "Mida Pantaló",
             "Mida Sabates",

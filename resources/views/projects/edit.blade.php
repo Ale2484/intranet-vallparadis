@@ -22,7 +22,7 @@
             'action' => route('projects.update', $project),
             'method' => 'PATCH',
             'project' => $project,
-            'submitText' => 'Actualitzar projecte/comission'
+            'submitText' => 'Actualitzar projecte/comissió'
         ])
     </div>
 </div>

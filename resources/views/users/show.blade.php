@@ -42,7 +42,7 @@
                     <svg class="w-5 h-5">
                         <use xlink:href="#icon-academic-cap"></use>
                     </svg>
-                    Evaluacions
+                    Avaluacions
                 </a>
                 <div class="w-full">
                     {{-- Boton para abrir las opciones de exportar a excel --}}
@@ -74,7 +74,7 @@
                             <svg class="w-6 h-6">
                                 <use xlink:href="#icon-sweater"></use>
                             </svg>
-                            Renovacio uniformes
+                            Renovació uniformes
                         </a>
                     </div>
                 </div>
@@ -283,7 +283,7 @@
                     <div class="flex-1">
                         <p class="text-gray-600 mb-1 dark:text-white">Centre</p>
                         <p class="text-gray-900 font-semibold dark:text-white">
-                            {{ $user->centerRelation ? $user->centerRelation->name : "Aquest usuari no te centre asociat" }}
+                            {{ $user->centerRelation ? $user->centerRelation->name : "Aquest usuari no te centre associat" }}
                         </p>
                     </div>
                 </div>
@@ -297,7 +297,7 @@
                     <svg class="w-9 h-9 {{ $user->is_active ? "text-green-600 dark:text-green-500" : "text-red-600 dark:text-red-500" }}">
                         <use xlink:href="#icon-check-circle"></use>
                     </svg>
-                    <p class="text-xl font-semibold text-[#012F4A] dark:text-white">Seguretat i accéss</p>
+                    <p class="text-xl font-semibold text-[#012F4A] dark:text-white">Seguretat i accés</p>
                 </div>
                 <p class="font-semibold {{ $user->is_active ? "text-green-600 dark:text-green-500" : "text-red-600 dark:text-red-500" }}">Compte {{ $user->is_active ? "actiu" : "inactiu"}}</p>
             </div>
@@ -327,7 +327,7 @@
             </div>
             {{-- Taquilla --}}
             <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3 dark:bg-neutral-800 dark:border-neutral-600">
-                <p class="text-xl font-semibold text-[#012F4A] dark:text-white">Numero de taquilla</p>
+                <p class="text-xl font-semibold text-[#012F4A] dark:text-white">Número de taquilla</p>
                 <div class="bg-[#fef5eb] p-5 border border-[#fed6aa] rounded-lg">
                     <p class="text-2xl font-bold text-[#FF7033]">{{ $user->locker}}</p>
                 </div>

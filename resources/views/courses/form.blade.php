@@ -12,7 +12,7 @@
                         <svg class="w-6 h-6 dark:text-neutral-400">
                             <use xlink:href="#icon-document"></use>
                         </svg>
-                        <p class="dark:text-white">Nombre:</p>
+                        <p class="dark:text-white">Nom:</p>
                     </div>
                 </div>
                 <div>
@@ -68,7 +68,7 @@
                     <select name="modality" id="modality" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('modality') border-red-600 @enderror" required>
                         <option value="presencial" {{ old("modality", $course->modality) == "presencial" ? "selected" : "" }}>Presencial</option>
                         <option value="online" {{ old("modality", $course->modality) == "online" ? "selected" : "" }}>Online</option>
-                        <option value="mixt" {{ old("modality", $course->modality) == "mixed" ? "selected" : "" }}>Mixte</option>
+                        <option value="mixt" {{ old("modality", $course->modality) == "mixt" ? "selected" : "" }}>Mixt</option>
                     </select>
                     @error("modality")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -88,7 +88,7 @@
                 @error("code")
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
-            </div>y
+            </div>
         </div>
         {{-- Contenedor de 2 --}}
         <div class="flex flex-col gap-5 mb-1">
