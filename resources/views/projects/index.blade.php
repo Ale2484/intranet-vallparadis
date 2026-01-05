@@ -60,11 +60,11 @@
         <table class="w-full border-collapse">
             <thead class="bg-[#edecec] dark:bg-neutral-950 dark:text-white">
                 <tr class="border-b border-[#AFAFAF] text-center">
-                    <th class="p-2">Projecte</th>
+                    <th class="p-2">Projecte/Comissió</th>
                     <th>Responsable</th>
                     <th>Tipus</th>
                     <th>Documents</th>
-                    <th>Creat</th>
+                    <th>Data d'inici</th>
                     <th>Estat</th>
                     <th>Accions</th>
                 </tr>

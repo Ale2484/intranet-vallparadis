@@ -3,7 +3,7 @@
         <div class="flex flex-row justify-between items-center w-full mb-2">
             <div class="flex flex-row justify-between gap-2 items-center">
                 @if($project->type_label == "Projecte")
-                    <div class="bg-green-200 rounded-lg p-2 flex items-center justify-center">
+                    <div class="bg-green-600/16 rounded-lg p-2 flex items-center justify-center">
                         <svg class="w-8 h-8 text-green-600">
                             <use xlink:href="#icon-folder"></use>
                         </svg>
@@ -15,7 +15,10 @@
                         </svg>
                     </div>
                 @endif
-                <a href="{{ route('projects.show', $project) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $project->name }}</a>
+                <div class="flex flex-col items-start">
+                    <p class="text-[#AFAFAF] text-xs md:text-sm font-semibold">{{ $project->type_label ? Str::upper($project->type_label) : ""}}</p>
+                    <a href="{{ route('projects.show', $project) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $project->name }}</a>
+                </div>
             </div>
             <p class="w-20 border p-1 text-center {{ $project->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$project->is_active ? "Actiu" : "Inactiu"}}</p>
         </div>
@@ -25,7 +28,13 @@
                 <svg class="w-7 h-7">
                     <use xlink:href="#icon-user"></use>
                 </svg>
-                <span class="ml-2 dark:text-white">{{ $project->userRelation->name ?? 'Usuari no assignat' }}</span>
+                <span class="ml-2 dark:text-white">{{ $project->userRelation->name ?? "Usuari no assignat" }}</span>
+            </div>
+            <div class="flex items-center">
+                <svg class="w-7 h-7">
+                    <use xlink:href="#icon-folder"></use>
+                </svg>
+                <p class="ml-2 dark:text-white">{{ $project->type_label }}</p>
             </div>
             <div class="flex items-center">
                 <svg class="w-7 h-7">
@@ -34,8 +43,17 @@
                 <p class="ml-2 dark:text-white">{{ $project->documents_count }} Documents adjunts</p>
             </div>
             <div class="flex items-center">
+                <svg class="w-7 h-7">
+                    <use xlink:href="#icon-calendar"></use>
+                </svg>
+                <p class="ml-2 dark:text-white">{{ $project->start->format("d/m/Y") }}</p>
+            </div>
+            <div class="flex items-center">
                 <p class="ml-2 text-sm dark:text-white">
                     Creat: {{ $project->created_at->format("d/m/Y") }}
+                </p>
+                <p class="ml-2 text-sm dark:text-white">
+                    Actualizat: {{ $project->updated_at->format("d/m/Y") }}
                 </p>
             </div>
         </div>
