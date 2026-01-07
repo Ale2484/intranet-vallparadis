@@ -114,7 +114,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <!-- {{ Str::limit($comment->comment, 500) }} -->
+                                    {{-- {{ Str::limit($comment->comment, 500) }} --}}
                                     {{ $comment->comment }}
                                 </div>
                             </div>
