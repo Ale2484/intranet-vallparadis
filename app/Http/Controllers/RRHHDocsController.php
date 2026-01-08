@@ -43,7 +43,7 @@ class RRHHDocsController extends Controller
         foreach ($request->file('documents') as $file) {
 
             // Guardar archivo en storage/app/public/center-documents
-            $path = $file->store('rrhh-documents', 'public');
+            $path = $file->store('rrhh-documents', 'private');
 
             // Crear DOCUMENTO usando relación morph
             $rrhh->documents()->create([

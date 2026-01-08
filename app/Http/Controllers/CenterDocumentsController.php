@@ -37,7 +37,7 @@ class CenterDocumentsController extends Controller
         foreach ($request->file('documents') as $file) {
 
             // Guardar archivo en storage/app/public/center-documents
-            $path = $file->store('center-documents', 'public');
+            $path = $file->store('center-documents', 'private');
 
             // Crear DOCUMENTO usando relación morph
             $center->documents()->create([

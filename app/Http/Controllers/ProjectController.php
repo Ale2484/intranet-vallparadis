@@ -194,7 +194,7 @@ class ProjectController extends Controller
     {
         // Eliminar documentos asociados
         foreach ($project->documents as $document) {
-            Storage::delete('public/' . $document->path);
+            Storage::delete('private/' . $document->path);
             $document->delete();
         }
 
@@ -221,7 +221,7 @@ class ProjectController extends Controller
     {
         foreach ($documents as $document) {
             // Guardar el archivo
-            $path = $document->store('project-documents', 'public');
+            $path = $document->store('project-documents', 'private');
             
             // Crear registro en la base de datos
             ProjectDocument::create([
@@ -237,7 +237,7 @@ class ProjectController extends Controller
      */
     public function deleteDocument(ProjectDocument $document)
     {
-        Storage::delete('public/' . $document->path);
+        Storage::delete('private/' . $document->path);
         $document->delete();
         
         return back()->with('success', 'Document eliminat correctament.');

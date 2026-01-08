@@ -55,8 +55,8 @@ class ProjectDocument extends Model
     // Método para obtener el tamaño del archivo
     public function getFileSize()
     {
-        if (Storage::disk('public')->exists($this->path)) {
-            return Storage::disk('public')->size($this->path);
+        if (Storage::disk('private')->exists($this->path)) {
+            return Storage::disk('private')->size($this->path);
         }
         return 0;
     }

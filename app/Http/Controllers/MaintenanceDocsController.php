@@ -35,7 +35,7 @@ class MaintenanceDocsController extends Controller
         foreach ($request->file('documents') as $file) {
 
             // Guardar archivo en storage/app/public/center-documents
-            $path = $file->store('maintenance-documents', 'public');
+            $path = $file->store('maintenance-documents', 'private');
 
             // Crear DOCUMENTO usando relación morph
             $maintenance->documents()->create([

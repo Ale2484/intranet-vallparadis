@@ -173,7 +173,7 @@ class ComplementaryServiceController extends Controller
         if ($request->hasFile("files")) {
             foreach ($request->file("files") as $file) {
                 $modifiedFileName = now()->format('y_m_d') . "_" . $file->getClientOriginalName();
-                $path = $file->store("center-documents", "public");
+                $path = $file->store("center-documents", "private");
     
                 $complementaryService->documents()->create([
                     "name" => $modifiedFileName,
