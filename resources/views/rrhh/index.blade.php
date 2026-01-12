@@ -79,6 +79,7 @@
             </tbody>
         </table>
     </div>
+</div>
 {{-- Modal de filtros --}}
 <x-filter-card :type="'rrhh'"/>
 @endsection
