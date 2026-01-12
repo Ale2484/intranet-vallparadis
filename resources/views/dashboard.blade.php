@@ -280,24 +280,24 @@
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Nou professional
+                    <a href="{{ route("maintenance.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Nou Tema pendent
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Nou professional
+                    <a href="{{ route("maintenance.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Temes actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Nou professional
+                    <a href="{{ route("maintenance.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Temes inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
@@ -322,24 +322,24 @@
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Nou professional
+                    <a href="{{ route("rrhh.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Nou Manteniment
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Nou professional
+                    <a href="{{ route("rrhh.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Manteniments actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="google.com" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Nou professional
+                    <a href="{{ route("rrhh.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Manteniments inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
