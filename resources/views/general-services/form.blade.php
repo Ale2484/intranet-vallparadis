@@ -74,9 +74,9 @@
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-phone"></use>
                 </svg>
-                Telefon de l'encarregat:
+                Telèfon de l'encarregat:
             </label>
-            <input type="text" name="manager_phone" id="manager_phone" class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white dark:bg-neutral-800 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-blue-500 @error('manager_phone') border-red-500 @enderror" value="{{ old("manager_phone", $generalService->manager_phone) }}" placeholder="Telefon de l'encarregat">
+            <input type="text" name="manager_phone" id="manager_phone" class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white dark:bg-neutral-800 dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-blue-500 @error('manager_phone') border-red-500 @enderror" value="{{ old("manager_phone", $generalService->manager_phone) }}" placeholder="Telèfon de l'encarregat">
             @error("manager_phone")
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror

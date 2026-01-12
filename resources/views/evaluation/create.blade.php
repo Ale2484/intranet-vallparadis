@@ -11,8 +11,8 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Evaluacios de {{ $user->name }}</h1>
-            <p class="text-[#AFAFAF]" >Evaluacions del professional seleccionat</p>
+            <h1 class="text-3xl font-bold text-[#011020]">Avaluacions de {{ $user->name }}</h1>
+            <p class="text-[#AFAFAF]" >Avaluacions del professional seleccionat</p>
         </div>
     </div>
     <form action="{{ route('evaluations.store', $user->id) }}" method="POST">
@@ -54,7 +54,7 @@
                     Cancel·lar
                 </a>
                 <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
-                    Crea evaluació
+                    Crea avaluació
                 </button>
             </div>
         </div>

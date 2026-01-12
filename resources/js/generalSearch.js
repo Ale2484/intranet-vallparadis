@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
     let publicSearchForm = document.getElementById("general-search");
     let generalResultContainer = document.getElementById("general-results");
     if (publicSearchForm) {

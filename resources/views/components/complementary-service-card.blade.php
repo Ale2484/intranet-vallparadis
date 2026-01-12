@@ -25,23 +25,23 @@
             <svg class="w-7 h-7 dark:text-neutral-400">
                 <use xlink:href="#icon-cog-6-tooth"></use>
             </svg>
-            <p class="dark:text-white">{{ $complementaryService->type ? ucfirst($complementaryService->type) : "Aquest servei no te  tipus" }}</p>
+            <p class="dark:text-white">{{ $complementaryService->type ? ucfirst($complementaryService->type) : "Aquest servei no té tipus" }}</p>
         </div>
         
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7 dark:text-neutral-400">
                 <use xlink:href="#icon-users"></use>
             </svg>
-            <p class="dark:text-white">{{ $complementaryService->manager_name ?? "Aquest servei no te encarregat" }}</p>
+            <p class="dark:text-white">{{ $complementaryService->manager_name ?? "Aquest servei no té encarregat" }}</p>
         </div>
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7 dark:text-neutral-400">
                 <use xlink:href="#icon-phone"></use>
             </svg>
-            <p class="dark:text-white">{{ $complementaryService->manager_phone ?? "Aquest servei no te numero de encarregat" }}</p>
+            <p class="dark:text-white">{{ $complementaryService->manager_phone ?? "Aquest servei no té telèfon de l'encarregat" }}</p>
         </div>
     </div>
-    <p class="text-sm my-4 dark:text-white">Creat: {{ $complementaryService->created_at->format("d/m/Y") }} | Actualizat: {{ $complementaryService->updated_at->format("d/m/Y") }}</p>
+    <p class="text-sm my-4 dark:text-white">Creat: {{ $complementaryService->created_at->format("d/m/Y") }} | Actualitzat: {{ $complementaryService->updated_at->format("d/m/Y") }}</p>
 
     <div class="flex flex-row gap-5 justify-end">
         <!-- Activar/Desactivar -->

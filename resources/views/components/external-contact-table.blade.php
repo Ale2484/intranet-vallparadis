@@ -22,7 +22,7 @@
         <p>{{ $externalContact->category ? ucfirst($externalContact->category) : "-" }}</p>
     </td>
     <td class="text-center px-3">
-        <p>{{ $externalContact->reason ?? "Aquest contacte no té motiu de contacte" }}</p>
+        <p>{{ $externalContact->reason ?? "Aquest contacte no té motiu" }}</p>
     </td>
     <td class="text-center px-3">
         <div class="flex items-center justify-center">

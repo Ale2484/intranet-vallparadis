@@ -15,14 +15,14 @@
         
                 <h1 class="text-3xl font-bold text-[#011020] dark:text-white">{{ $course->name }}</h1>
         
-                <h1 class="text-lg font-bold text-[#FF7E13]">Codi: {{ $course->code ?? "Aquest curs no te codi" }}</h1>
+                <h1 class="text-lg font-bold text-[#FF7E13]">Codi: {{ $course->code ?? "Aquest curs no té codi" }}</h1>
                 <p class="text-[#AFAFAF] mb-7">Informació completa del curs</p>
             </div>
             <a href="{{ route("courses.edit", $course) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all py-3">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-square-pen"></use>
                 </svg>
-                Editar el curs                
+                Editar el curs
             </a>
         </div>
         <!-- Contenedor principal -->
@@ -30,7 +30,7 @@
             <div class="lg:w-[55%] w-full flex flex-col gap-3">
                 {{-- Contenedor secundario --}}
                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600">
-                    <p class="text-[20px] font-bold text-[#011020] mb-5 dark:text-white">Informació del general:</p>
+                    <p class="text-[20px] font-bold text-[#011020] mb-5 dark:text-white">Informació general:</p>
 
                     {{-- Contenedor 2 elementos --}}
                     <div class="w-full flex flex-col md:flex-row items-center mb-5">
@@ -131,7 +131,7 @@
                                 </svg>
                             </div>
                             <div class="w-[80%] flex flex-col gap-3">
-                                <p class="text-md font-semibold dark:text-white">Horari semanal:</p>
+                                <p class="text-md font-semibold dark:text-white">Horari setmanal:</p>
                                 @if (count($schedules) > 0)
                                     @foreach ($schedules as $schedule )
                                         <div class="w-full flex flex-row items-center justify-between p-2 border border-[#AFAFAF] bg-[#f6f8fc] rounded-lg dark:bg-neutral-950 dark:border-neutral-600">
@@ -140,7 +140,7 @@
                                         </div>
                                     @endforeach
                                 @else
-                                <p class="dark:text-white">Aquest curs encara no te horari</p>
+                                <p class="dark:text-white">Aquest curs encara no té horari</p>
                                 @endif
                             </div>
                         </div>
@@ -168,9 +168,9 @@
                             <div>
                                 <div class="flex items-center justify-end gap-2 text-sm md:text-base">
                                     <svg width="10" height="10">
-                                        <circle cx="5" cy="5" r="5" class="{{ $user->pivot->certificate == "ENTREGAT" ? "fill-green-600" : "fill-red-600" }}"/>
+                                        <circle cx="5" cy="5" r="5" class="{{ $user->pivot->certificate == "LLIURAT" ? "fill-green-600" : "fill-red-600" }}"/>
                                     </svg>
-                                    <p class="mr-2 {{ $user->pivot->certificate == "ENTREGAT" ? "text-green-600" : "text-red-600" }}">{{ $user->pivot->certificate }}</p>
+                                    <p class="mr-2 {{ $user->pivot->certificate == "LLIURAT" ? "text-green-600" : "text-red-600" }}">{{ $user->pivot->certificate }}</p>
                                 </div>
                                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] dark:bg-neutral-950 dark:border-neutral-600 p-2">
                                     <div class="flex items-center">
@@ -190,11 +190,11 @@
                                         <form action="{{ route("courses.giveCertificate", ["course" => $course, "user" => $user]) }}" method="post" class="flex items-center justify-center w-full md:w-[50%]">
                                             @csrf
                                             @method("PATCH")
-                                            <button type="submit" @disabled($user->pivot->certificate == "ENTREGAT") class="w-full bg-white text-[#FF7E13] border border-[#FF7E13] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-100 disabled:border-gray-400 disabled:opacity-30">
+                                            <button type="submit" @disabled($user->pivot->certificate == "LLIURAT") class="w-full bg-white text-[#FF7E13] border border-[#FF7E13] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-100 disabled:border-gray-400 disabled:opacity-30">
                                                 <svg class="w-6 h-6 ">
                                                     <use xlink:href="#icon-plus"></use>
                                                 </svg>
-                                                Entregar certificat
+                                                Lliurar certificat
                                             </button>
                                         </form>
                                     
@@ -225,7 +225,7 @@
                             @endif
                         </div>
                     @else
-                        <p>Aquest curs no te usuaris inscrits</p>                        
+                        <p>Aquest curs no té usuaris inscrits</p>
                     @endif
                 </div>
             </div>

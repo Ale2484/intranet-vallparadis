@@ -29,7 +29,7 @@
     <div class="flex flex-row gap-5 justify-end">
         <div class="w-full items-center flex gap-5 justify-between flex-col md:flex-row">            
             
-            <p class="text-sm">Creat: {{ $maintenance->created_at->format("d/m/Y") }} | Actualizat: {{ $maintenance->updated_at->format("d/m/Y") }}</p>
+            <p class="text-sm">Creat: {{ $maintenance->created_at->format("d/m/Y") }} | Actualitzat: {{ $maintenance->updated_at->format("d/m/Y") }}</p>
             <form action="{{ $maintenance->is_active ? route("maintenance.deactivate", $maintenance) : route("maintenance.activate", $maintenance) }}" method="post">
                 @csrf
                 @method("PATCH")

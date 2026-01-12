@@ -100,8 +100,8 @@
                                 <input type="text" id="type" name="type" class="border border-[#AFAFAF] bg-white rounded-lg p-2">
                             </div>
                             <div class="flex flex-col gap-1">
-                                <label for="description">Descripcio</label>
-                                <textarea name="description" id="description" cols="30" rows="3" class="border border-[#AFAFAF] bg-white rounded-[15px] p-3 min-h-13 max-h-55" placeholder="Afegir una decripcio"></textarea>
+                                <label for="description">Descripció</label>
+                                <textarea name="description" id="description" cols="30" rows="3" class="border border-[#AFAFAF] bg-white rounded-[15px] p-3 min-h-13 max-h-55" placeholder="Afegir una descripció"></textarea>
                             </div>
                             <label for="documents">Document</label>
                             <input type="file" 
@@ -111,7 +111,7 @@
                                 accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
                         </div>
                         <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
-                            Afegir Document
+                            Afegir document
                         </button>
                 </form>
             </div>

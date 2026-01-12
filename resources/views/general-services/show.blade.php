@@ -2,7 +2,7 @@
 @section("title", "Mostra el servei general")
 @section("main")
 <div class="w-full flex items-center justify-center">
-    <div class="w-[90%] flex flex-col items-center justify-center">   
+    <div class="w-[90%] flex flex-col items-center justify-center">
         <!-- Apartado superior -->
         <div class="w-full flex items-center justify-between">
             <div class="flex flex-col gap-3">
@@ -13,7 +13,7 @@
                     Tornar a la gestió de serveis generals
                 </a>
         
-                <h1 class="text-3xl font-bold text-[#011020] dark:text-white">{{ $generalService->name }}</h1>        
+                <h1 class="text-3xl font-bold text-[#011020] dark:text-white">{{ $generalService->name }}</h1>
                 <p class="text-[#AFAFAF] mb-7">Informació completa del servei</p>
             </div>
             <a href="{{ route("general-services.edit", $generalService) }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all py-3">
@@ -28,7 +28,7 @@
             <div class="lg:w-[55%] w-full flex flex-col gap-3">
                 {{-- Contenedor secundario --}}
                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600">
-                    <p class="text-[20px] font-bold text-[#011020] dark:text-white mb-5">Dades del encarregat:</p>
+                    <p class="text-[20px] font-bold text-[#011020] dark:text-white mb-5">Dades de l'encarregat:</p>
 
                     {{-- Contenedor 2 elementos --}}
                     <div class="w-full flex flex-col md:flex-row items-center mb-5">
@@ -41,7 +41,7 @@
                             </div>
                             <div>
                                 <p class="text-md dark:text-white">Nom:</p>
-                                <p class="font-semibold dark:text-white">{{ $generalService->manager_name ?? "Aquest servei no te encarregat" }}</p>
+                                <p class="font-semibold dark:text-white">{{ $generalService->manager_name ?? "Aquest servei no té encarregat" }}</p>
                             </div>
                         </div>
                         {{-- Elemento --}}
@@ -53,7 +53,7 @@
                             </div>
                             <div>
                                 <p class="text-md dark:text-white">Correu:</p>
-                                <p class="font-semibold dark:text-white">{{ $generalService->manager_email ?? "L'encarregat no te correu" }}</p>
+                                <p class="font-semibold dark:text-white">{{ $generalService->manager_email ?? "L'encarregat no té correu" }}</p>
                             </div>
                         </div>
                     </div>
@@ -68,8 +68,8 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-md dark:text-white">Telefon:</p>
-                                <p class="font-semibold dark:text-white">{{ $generalService->manager_phone ?? "L'encarregat no te telefon" }}</p>
+                                <p class="text-md dark:text-white">Telèfon:</p>
+                                <p class="font-semibold dark:text-white">{{ $generalService->manager_phone ?? "L'encarregat no té telèfon" }}</p>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                             </div>
                             <div>
                                 <p class="text-md dark:text-white">Tipus de servei:</p>
-                                <p class="font-semibold dark:text-white">{{ ucfirst($generalService->type) ?? "Aquest servei no te tipus"}}</p>
+                                <p class="font-semibold dark:text-white">{{ ucfirst($generalService->type) ?? "Aquest servei no té tipus"}}</p>
                             </div>
                         </div>
                         {{-- Elemento --}}
@@ -104,7 +104,7 @@
                             </div>
                             <div>
                                 <p class="text-md dark:text-white">Centre associat:</p>
-                                <p class="font-semibold dark:text-white">{{ $generalService->center->name ?? "Aquest servei no te un centre associat" }}</p>
+                                <p class="font-semibold dark:text-white">{{ $generalService->center->name ?? "Aquest servei no té un centre associat" }}</p>
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                             </div>
                             <div class="w-[80%] flex flex-col">
                                 <p class="text-md font-semibold dark:text-white">Descripció:</p>
-                                <p class="dark:text-white">{{$generalService->description ?? "Aquest servei no te descripció"}}</p>
+                                <p class="dark:text-white">{{$generalService->description ?? "Aquest servei no té descripció"}}</p>
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@
 
                     {{-- Contenedor elemento --}}
                     <div class="rich-editor-container dark:text-white">
-                        {!! $generalService->staff_and_schedules ? $generalService->staff_and_schedules : "Aquest servei no te usuaris ni horaris" !!}
+                        {!! $generalService->staff_and_schedules ? $generalService->staff_and_schedules : "Aquest servei no té usuaris ni horaris" !!}
                     </div>
                 </div>
             </div>
@@ -190,7 +190,7 @@
                     </div>
                     <form action="{{ route("general-services.add-observation", $generalService) }}" method="POST">
                         @csrf
-                        <p class="my-2 text-sm dark:text-white">Afegeix una nova observacio per al servei de {{ $generalService->name  }}</p>
+                        <p class="my-2 text-sm dark:text-white">Afegeix una nova observació per al servei de {{ $generalService->name  }}</p>
                         <hr class="text-[#AFAFAF] my-4">
                         <label for="observation" class="font-semibold dark:text-white">Afegir nova observació:</label>
                         <textarea name="observation" id="observation" placeholder="Introdueix una nova observació" class="resize-none border-1 shadow-sm h-24 p-2 rounded-lg border-[#AFAFAF] w-full mb-4 mt-2 bg-white dark:bg-neutral-950 dark:border-neutral-600 dark:text-white @error('observation') border-red-600 @enderror"></textarea>

@@ -23,11 +23,11 @@
     </td>
 
     <td class="text-center px-3">
-        <p>{{ $course->modality ? ucfirst($course->modality) : "Aquest curs no te una modalitat electronic"}}</p>
+        <p>{{ $course->modality ? ucfirst($course->modality) : "Aquest curs no té modalitat"}}</p>
     </td>
 
     <td class="text-center px-3">
-        <p>{{ $course->start_date ? date("d/m/Y", strtotime($course->start_date)) : " Sense data d'inici"}}</p>
+        <p>{{ $course->start_date ? date("d/m/Y", strtotime($course->start_date)) : "Sense data d'inici"}}</p>
     </td>
 
     <td class="text-center px-3">

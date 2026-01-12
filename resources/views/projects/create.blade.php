@@ -12,7 +12,7 @@
                 Tornar a la gestió de projectes/comissions
             </a>
             <h1 class="text-3xl font-bold text-[#011020] ">Nou projecte/comissió</h1>
-            <p class="text-[#AFAFAF]" >Afegeix un nou projecte/comission al sistema</p>
+            <p class="text-[#AFAFAF]" >Afegeix un nou projecte/comissió al sistema</p>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
             'action' => route('projects.store', $project),
             'method' => 'POST',
             'project' => $project,
-            'submitText' => 'Crea projecte/comission'
+            'submitText' => 'Crea projecte/comissió'
         ])
     </div>
 </div>

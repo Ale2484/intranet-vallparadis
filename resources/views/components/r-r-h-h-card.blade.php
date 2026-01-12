@@ -16,7 +16,7 @@
     <div class="flex flex-col gap-3 text-[#0F172A]">
         <div class="flex gap-4 border-b-1 border-b-[#AFAFAF] pb-5 pt-2">
             <div class="flex flex-col gap-4 w-full">
-                <h2 class="text-[#012F4A] font-bold text-[20px]">Profesional afectat</h2>
+                <h2 class="text-[#012F4A] font-bold text-[20px]">Professional afectat</h2>
                 <div class="flex gap-10 items-center">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
                         <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}"></minidenticon-svg>
@@ -44,7 +44,7 @@
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-desc"></use>
                 </svg>
-                <h2 class="text-[#012F4A] font-bold text-[20px]">Descripcio</h2>
+                <h2 class="text-[#012F4A] font-bold text-[20px]">Descripció</h2>
             </div>
             <div class="overflow-hidden break-words whitespace-normal break-all">
                 {{ Str::limit($rrhh->description, 500) }}
@@ -56,7 +56,7 @@
     <div class="flex flex-row gap-5 justify-end">
         <div class="w-full items-center flex gap-5 justify-between flex-col md:flex-row">            
             
-            <p class="text-sm">Creat: {{ $rrhh->created_at->format("d/m/Y") }} | Actualizat: {{ $rrhh->updated_at->format("d/m/Y") }}</p>
+            <p class="text-sm">Creat: {{ $rrhh->created_at->format("d/m/Y") }} | Actualitzat: {{ $rrhh->updated_at->format("d/m/Y") }}</p>
             <form action="{{ $rrhh->is_active ? route("rrhh.deactivate", $rrhh) : route("rrhh.activate", $rrhh) }}" method="post">
                 @csrf
                 @method("PATCH")

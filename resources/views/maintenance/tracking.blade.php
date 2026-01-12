@@ -11,8 +11,8 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Seguimient de {{ $maintenance->topic }}</h1>
-            <p class="text-[#AFAFAF]" >Seguimient del professional seleccionat</p>
+            <h1 class="text-3xl font-bold text-[#011020]">Seguiment de: {{ $maintenance->topic }}</h1>
+            <p class="text-[#AFAFAF]" >Comentaris del manteniment</p>
         </div>
     </div>
     

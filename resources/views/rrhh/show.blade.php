@@ -11,7 +11,7 @@
                 <svg class="w-6 h-6 ">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
-                Tornar a la gestió de temas pendents
+                Tornar a la gestió de temes pendents
             </a>
             <h1 class="text-3xl font-bold text-[#011020]">Detalls de {{ $rrhh->topic }}</h1>
     
@@ -35,7 +35,7 @@
                         <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}"></minidenticon-svg>
                     </div>
                     <div>
-                        <p>Profesional afectat</p>
+                        <p>Professionals afectat</p>
                         <p class="text-2xl font-bold text-[#011020]">{{ $rrhh->userAffectedRelation->name }}</p>
                         <div>
                             <div class="flex items-center text-[#011020] justify-between">
@@ -55,7 +55,7 @@
                         <minidenticon-svg username="{{ md5($rrhh->userRegisterRelation->id) }}"></minidenticon-svg>
                     </div>
                     <div>
-                        <p>Profesional registrador</p>
+                        <p>Professional registrador</p>
                         <p class="text-2xl font-bold text-[#011020]">{{ $rrhh->userRegisterRelation->name }}</p>
                         <div>
                             <div class="flex items-center text-[#011020] justify-between">
@@ -91,7 +91,7 @@
                             <use xlink:href="#icon-desc"></use>
                         </svg>
                     </div>
-                    <p class="text-2xl font-bold text-[#011020]">Descripcio</p>
+                    <p class="text-2xl font-bold text-[#011020]">Descripció</p>
                 </div>
                 <div class="overflow-hidden break-words whitespace-normal break-all">
                     {{ $rrhh->description }}

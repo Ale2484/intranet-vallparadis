@@ -99,7 +99,7 @@ class RRHHTopicController extends Controller
     public function activate(RRHHTopic $rrhh)
     {
         $rrhh->update(["is_active" => true]);
-        return redirect()->route("rrhh.index")->with("success", "Tema pendent deshabilitat correctament");
+        return redirect()->route("rrhh.index")->with("success", "Tema pendent activat correctament");
     }
 
     public function search(Request $request)
