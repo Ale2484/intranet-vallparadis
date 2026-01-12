@@ -35,7 +35,50 @@
             Filtres
         </button>
     </div>
-</div>
+        <button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-{{ $viewType == "card" ? "table" : "square" }}"></use>
+                </svg>
+        </button>
+    </div>
+<!-- temas rrhh -->
+
+<div class="w-full {{ $viewType != "card" ? "hidden" : "" }}">
+        <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            @if ($viewType == "card")
+                @foreach ($rrhhs as $rrhh )
+                    <x-r-r-h-h-card :rrhh="$rrhh"/>
+                @endforeach
+            @endif
+        </div>
+    </div>
+    <div class="tableContainer {{ $viewType != "table" ? "hidden" : "" }}">
+        <table class="w-full border-collapse">
+            <thead class="bg-[#edecec] dark:bg-neutral-950 dark:text-white">
+                <tr class="border-b border-[#AFAFAF] text-center">
+                    <th class="p-2">Tema pendent</th>
+                    <th>Professional registrador</th>
+                    <th>Profesional afectat</th>
+                    <th>Derivat</th>
+                    <th>Estat</th>
+                    <th>Accions</th>
+                </tr>
+            </thead>
+            <tbody class="resultContainer">
+                @if ($viewType == "table")
+                    @if($rrhhs->isNotEmpty())
+                        @foreach ($rrhhs as $rrhh )
+                            <x-r-r-h-h-table :rrhh="$rrhh"/>
+                        @endforeach
+                    @else
+                        <tr>
+                            <td colspan="6" class="bg-white p-5 text-center text-[#011020] font-semibold dark:bg-neutral-800 dark:text-white">No s'han trobat serveis generals.</td>
+                        </tr>
+                    @endif
+                @endif
+            </tbody>
+        </table>
+    </div>
 <!-- Centros -->
 <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
 @foreach ($rrhhs as $rrhh )

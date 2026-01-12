@@ -117,11 +117,11 @@ class MaintenanceController extends Controller
             $viewType = $_COOKIE['view_type'] ?? "card";
             if ($viewType == "card") {
                 foreach ($maintenances as $maintenance) {
-                    $htmlContent .= view("components.maintenance", compact("maintenance"))->render();
+                    $htmlContent .= view("components.maintenance-card", compact("maintenance"))->render();
                 }
             } else {
                 foreach ($maintenances as $maintenance) {
-                    $htmlContent .= view("components.maintenance", compact("maintenance"))->render();
+                    $htmlContent .= view("components.maintenance-table", compact("maintenance"))->render();
                 }
             }
         }

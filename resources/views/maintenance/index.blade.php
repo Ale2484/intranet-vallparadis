@@ -43,8 +43,6 @@
 </div>
 <!-- mantenimientos -->
 
-
-{{ $viewType }}
 <div class="w-full {{ $viewType != "card" ? "hidden" : "" }}">
         <div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             @if ($viewType == "card")
