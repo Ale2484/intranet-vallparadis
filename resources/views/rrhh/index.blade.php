@@ -58,7 +58,7 @@
                 <tr class="border-b border-[#AFAFAF] text-center">
                     <th class="p-2">Tema pendent</th>
                     <th>Professional registrador</th>
-                    <th>Profesional afectat</th>
+                    <th>Professional afectat</th>
                     <th>Derivat</th>
                     <th>Estat</th>
                     <th>Accions</th>
