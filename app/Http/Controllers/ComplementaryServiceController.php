@@ -173,7 +173,7 @@ class ComplementaryServiceController extends Controller
         if ($request->hasFile("files")) {
             foreach ($request->file("files") as $file) {
                 $modifiedFileName = now()->format('y_m_d') . "_" . $file->getClientOriginalName();
-                $path = $file->store("center-documents", "private");
+                $path = $file->store("complementary-service-documents", "private");
     
                 $complementaryService->documents()->create([
                     "name" => $modifiedFileName,
@@ -191,7 +191,7 @@ class ComplementaryServiceController extends Controller
     public function downloadFile($baseName)
     {
         $document = Document::where("path", "like", "%$baseName")->firstOrFail();
-        $filePath = storage_path("app/public/" . $document->path);
+        $filePath = storage_path("app/private/" . $document->path);
         if (file_exists($filePath)) {
             return response()->download($filePath, $document->name);
         } else {
