@@ -79,12 +79,6 @@
             </tbody>
         </table>
     </div>
-<!-- Centros -->
-<div class="resultContainer w-full mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-@foreach ($rrhhs as $rrhh )
-    <x-r-r-h-h-card :rrhh="$rrhh"/>
-@endforeach
-</div>
 {{-- Modal de filtros --}}
 <x-filter-card :type="'rrhh'"/>
 @endsection
