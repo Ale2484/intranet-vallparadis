@@ -275,12 +275,12 @@
             </div>
     
             <p class="text-[20px] font-bold text-[#011020] dark:text-white">Temes pendents RRHH</p>
-            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment del personal del centre</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels Temas pendents RRHH</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="{{ route("maintenance.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("rrhh.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Nou Tema pendent
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -288,7 +288,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("maintenance.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("rrhh.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Temes actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -296,7 +296,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("maintenance.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("rrhh.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Temes inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -317,12 +317,12 @@
             </div>
     
             <p class="text-[20px] font-bold text-[#011020] dark:text-white">Manteniment</p>
-            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment del personal del centre</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels manteniments del centre</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="{{ route("rrhh.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("maintenance.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Nou Manteniment
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -330,7 +330,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("rrhh.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("maintenance.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Manteniments actius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
@@ -338,7 +338,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route("rrhh.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                    <a href="{{ route("maintenance.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
                         Manteniments inactius
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
