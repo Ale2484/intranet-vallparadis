@@ -33,7 +33,13 @@
             <div class="bg-gray-200 w-20 h-20 rounded-full">
                 {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
                 {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                @if (!$user->profile_photo_path)
+                    <minidenticon-svg username="{{ md5($user->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+                @else
+                    <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
+                        <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
+                    </div>
+                @endif
             </div>
             <div class="flex flex-col justify-between">
                 <div class="text-[#AFAFAF]">
@@ -55,7 +61,13 @@
             <div class="bg-gray-200 w-20 h-20 rounded-full">
                 {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
                 {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                <minidenticon-svg username="{{ md5($tracking->registerRelation->id) }}"></minidenticon-svg>
+                @if (!$tracking->registerRelation->profile_photo_path)
+                    <minidenticon-svg username="{{ md5($tracking->registerRelation->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+                @else
+                    <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
+                        <img src="{{ asset('storage/' . $tracking->registerRelation->profile_photo_path) }}" alt="{{ $tracking->registerRelation->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
+                    </div>
+                @endif
             </div>
             <div class="flex flex-col justify-between">
                 <div class="text-[#AFAFAF]">
@@ -93,7 +105,14 @@
                                 <div class="bg-{{ $tracking->end_link ? 'red' : 'blue'}}-100 w-14 h-14 rounded-full border-3 border-{{ $tracking->end_link ? 'red' : 'blue'}}-300">
                                     {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
                                     {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                    <minidenticon-svg username="{{ md5($comment->userRelation->id) }}"></minidenticon-svg>
+
+                                    @if (!$comment->userRelation->profile_photo_path)
+                                        <minidenticon-svg username="{{ md5($comment->userRelation->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+                                    @else
+                                        <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
+                                            <img src="{{ asset('storage/' . $comment->userRelation->profile_photo_path) }}" alt="{{ $comment->userRelation->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="min-h-[125px] h-full flex justify-center">
                                     <div class="bg-{{ $tracking->end_link ? 'red' : 'blue'}}-300 p-0.5 h-full"></div>

@@ -33,7 +33,13 @@
                         <div class="flex flex-row gap-5">
                             <div class="flex flex-col">
                                 <div class="bg-zinc-100 w-14 h-14 rounded-full border-3 border-zinc-300">
-                                    <minidenticon-svg username="{{ md5($comment->userRelation->id) }}"></minidenticon-svg>
+                                    @if (!$comment->userRelation->profile_photo_path)
+                                        <minidenticon-svg username="{{ md5($comment->userRelation->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+                                    @else
+                                        <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
+                                            <img src="{{ asset('storage/' . $comment->userRelation->profile_photo_path) }}" alt="{{ $comment->userRelation->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="min-h-[125px] h-full flex justify-center">
                                     <div class="bg-zinc-300 p-0.5 h-full"></div>

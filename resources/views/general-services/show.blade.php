@@ -157,7 +157,13 @@
                                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col dark:bg-neutral-950 dark:border-neutral-600">
                                     <div class="flex gap-2 max-w-full items-start">
                                         <div class="md:w-16 md:h-16 w-10 h-10  aspect-square bg-gray-200 rounded-full sticky">
-                                            <minidenticon-svg username="{{ md5($observation->user_id) }}"></minidenticon-svg>
+                                            @if (!$observation->user_id->profile_photo_path)
+                                                <minidenticon-svg username="{{ md5($observation->user_id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+                                            @else
+                                                <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
+                                                    <img src="{{ asset('storage/' . $observation->user_id->profile_photo_path) }}" alt="{{ $observation->user_id->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="w-full">
                                             <div class="w-full flex items-center justify-between mb-2">

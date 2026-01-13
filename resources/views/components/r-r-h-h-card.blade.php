@@ -19,7 +19,13 @@
                 <h2 class="text-[#012F4A] dark:text-white font-bold text-[20px]">Professional afectat</h2>
                 <div class="flex gap-10 items-center">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square dark:text-white">
-                        <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}"></minidenticon-svg>
+                        @if (!$rrhh->userAffectedRelation->profile_photo_path)
+                            <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+                        @else
+                            <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
+                                <img src="{{ asset('storage/' . $rrhh->userAffectedRelation->profile_photo_path) }}" alt="{{ $rrhh->userAffectedRelation->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
+                            </div>
+                        @endif
                     </div>
                     {{ $rrhh->userAffectedRelation->name }}
                 </div>
