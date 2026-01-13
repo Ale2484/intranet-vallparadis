@@ -275,7 +275,7 @@
             </div>
     
             <p class="text-[20px] font-bold text-[#011020] dark:text-white">Temes pendents RRHH</p>
-            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels Temas pendents RRHH</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels temes pendents RRHH</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
