@@ -49,14 +49,7 @@
                             <p class="font-bold text-lg">Usuari assignat</p>
                         </div>
                         <div class="flex items-center">
-
-                            @if (!$project->userRelation->profile_photo_path)
-                                <minidenticon-svg username="{{ md5($project->userRelation->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
-                            @else
-                                <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
-                                    <img src="{{ asset('storage/' . $project->userRelation->profile_photo_path) }}" alt="{{ $project->userRelation->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
-                                </div>
-                            @endif
+                            <minidenticon-svg username="{{ md5($project->userRelation->id) }}" class="w-16 h-16 bg-gray-200 rounded-full"></minidenticon-svg>
                             <div class="ml-2">
                                 <p class="text-xl font-bold text-[#011020] dark:text-white mb-1">{{ $project->userRelation->name ?? 'No assignat' }}</p>
                                 <p class="text-[#AFAFAF] text-sm">{{ $project->userRelation->email ?? '' }}</p>
@@ -201,13 +194,7 @@
                     @foreach ($asignedUsers as $user)
                         <div class="flex gap-5 border border-[#AFAFAF] bg-white rounded-[15px] p-5 mb-5 items-center dark:bg-neutral-800 dark:border-neutral-600">
                             <div class="w-12 h-12 bg-gray-200 rounded-full">
-                                @if (!$user->profile_photo_path)
-                                    <minidenticon-svg username="{{ md5($user->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
-                                @else
-                                    <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
-                                        <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
-                                    </div>
-                                @endif
+                                <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
                             </div>
                             <div class="flex flex-col text-[#5E6468] dark:text-white">
                                 <label for="user_{{ $user->id }}">{{ $user->name }}</label>

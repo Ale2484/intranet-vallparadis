@@ -74,13 +74,7 @@
                             <div class="bg-gray-200 w-12 h-12 rounded-full">
                                 {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
                                 {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                @if (!$evaluation->evaluator->profile_photo_path)
-                                    <minidenticon-svg username="{{ md5($evaluation->evaluator) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
-                                @else
-                                    <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
-                                        <img src="{{ asset('storage/' . $evaluation->evaluator->profile_photo_path) }}" alt="{{ $evaluation->evaluator->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
-                                    </div>
-                                @endif
+                                <minidenticon-svg username="{{ md5($evaluation->evaluator) }}"></minidenticon-svg>
                             </div>
                         </div>
                         <div class="flex flex-col">

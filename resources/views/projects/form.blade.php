@@ -123,13 +123,7 @@
                     <div class="flex items-center flex-row gap-2 border-1 mb-4 rounded-lg p-2 border-[#AFAFAF]">
                         <input type="checkbox" name="users[]" value="{{ $user->id }}" id="user_{{ $user->id }}"  @if(in_array($user->id, $assignedUsers->pluck('id')->toArray())) checked @endif>
                         <div class="w-12 h-12 bg-gray-200 rounded-full">
-                            @if (!$user->profile_photo_path)
-                                <minidenticon-svg username="{{ md5($user->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
-                            @else
-                                <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
-                                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
-                                </div>
-                            @endif
+                            <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
                         </div>
                         <div class="flex flex-col text-[#5E6468]">
                             <label for="user_{{ $user->id }}">

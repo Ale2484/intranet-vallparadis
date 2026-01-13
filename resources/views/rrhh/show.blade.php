@@ -32,13 +32,7 @@
             <div class="border border-[#AFAFAF] bg-white dark:bg-neutral-800 rounded-[15px] p-5 lg:w-[50%] min-w-min dark:border-neutral-600">
                 <div class="flex gap-5 items-center ">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
-                        @if (!$rrhh->userAffectedRelation->profile_photo_path)
-                            <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
-                        @else
-                            <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
-                                <img src="{{ asset('storage/' . $rrhh->userAffectedRelation->profile_photo_path) }}" alt="{{ $rrhh->userAffectedRelation->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
-                            </div>
-                        @endif
+                        <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}"></minidenticon-svg>
                     </div>
                     <div>
                         <p>Professionals afectat</p>
@@ -58,13 +52,7 @@
             <div class="border border-[#AFAFAF] bg-white dark:bg-neutral-800 rounded-[15px] p-5 lg:w-[50%] min-w-min dark:border-neutral-600">
                 <div class="flex gap-5 items-center ">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
-                        @if (!$rrhh->userRegisterRelation->profile_photo_path)
-                            <minidenticon-svg username="{{ md5($rrhh->userRegisterRelation->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
-                        @else
-                            <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
-                                <img src="{{ asset('storage/' . $rrhh->userRegisterRelation->profile_photo_path) }}" alt="{{ $rrhh->userRegisterRelation->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
-                            </div>
-                        @endif
+                        <minidenticon-svg username="{{ md5($rrhh->userRegisterRelation->id) }}"></minidenticon-svg>
                     </div>
                     <div>
                         <p>Professional registrador</p>

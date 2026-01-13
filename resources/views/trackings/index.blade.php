@@ -20,13 +20,7 @@
         <div class="bg-gray-200 w-20 h-20 rounded-full">
             {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
             {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-            @if (!$user->profile_photo_path)
-                <minidenticon-svg username="{{ md5($user->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
-            @else
-                <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
-                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
-                </div>
-            @endif
+            <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
         </div>
         <div>
             <div class="text-2xl font-bold">
@@ -61,13 +55,7 @@
                                     <div class="bg-gray-200 w-12 h-12 rounded-full">
                                         {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
                                         {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                        @if (!$tracking->register->profile_photo_path)
-                                            <minidenticon-svg username="{{ md5($tracking->register->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
-                                        @else
-                                            <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
-                                                <img src="{{ asset('storage/' . $tracking->register->profile_photo_path) }}" alt="{{ $tracking->register->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
-                                            </div>
-                                        @endif
+                                        <minidenticon-svg username="{{ md5($tracking->register) }}"></minidenticon-svg>
                                     </div>
                                 </div>
                                 <div class="w-full">
