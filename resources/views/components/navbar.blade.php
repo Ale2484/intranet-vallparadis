@@ -72,6 +72,22 @@
                 <span class="menu-text hidden text-nowrap">Serveis complementaris</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route("rrhh.index") }}" class="{{ request()->is('rrhh*') ? "menu-option-selected" : "menu-option" }}">
+            <svg class="w-7 h-7">
+                <use xlink:href="#icon-group-user"></use>
+            </svg>
+                <span class="menu-text hidden text-nowrap">Temas pendents RRHH</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route("maintenance.index") }}" class="{{ request()->is('maintenance*') ? "menu-option-selected" : "menu-option" }}">
+            <svg class="w-7 h-7">
+                <use xlink:href="#icon-wrench-screwdriver"></use>
+            </svg>
+                <span class="menu-text hidden text-nowrap">Manteniments</span>
+            </a>
+        </li>
 
     </ul>
 </nav>
