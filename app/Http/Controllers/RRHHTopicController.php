@@ -159,48 +159,4 @@ class RRHHTopicController extends Controller
         return response()->json(["htmlContent" => $htmlContent]);
     }
 
-    // public function filter(Request $request)
-    // {
-    //     $order = $request->input("order", null);
-    //     $status = $request->input("status", null);
-    //     $query = RRHHTopic::query();
-
-    //     // Se obtiene el filtro del estado y se añade a la query
-    //     if ($status == "active") {
-    //         $query->where("is_active", true);
-    //     } elseif ($status == "inactive") {
-    //         $query->where("is_active", false);
-    //     }
-
-    //     // Se comprueba que tipo de orden se envia y se añade a la query
-    //     switch ($order) {
-    //         case "recent-first":
-    //             $query->orderBy("created_at", "desc");
-    //             break;
-    //         case "oldest-first":
-    //             $query->orderBy("created_at", "asc");
-    //             break;
-    //         case "az":
-    //             $query->orderBy("topic", "asc");
-    //             break;
-    //         case "za":
-    //             $query->orderBy("topic", "desc");
-    //             break;
-    //         case "last-modified":
-    //             $query->orderBy("updated_at", "desc");
-    //             break;
-    //         case "first-modified":
-    //             $query->orderBy("updated_at", "asc");
-    //             break;
-    //     }
-
-    //     $rrhhs = $query->get();
-
-    //     $htmlContent = "";
-    //     foreach ($rrhhs as $rrhh) {
-    //         $htmlContent .= view("components.r-r-h-h-card", compact("rrhh"))->render();
-    //     }
-
-    //     return response()->json(["htmlContent" => $htmlContent]);
-    // }
 }
