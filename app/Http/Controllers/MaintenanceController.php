@@ -20,8 +20,9 @@ class MaintenanceController extends Controller
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
+        $viewType = $_COOKIE['view_type'] ?? "card";
         $maintenances = $query->orderBy("created_at", "desc")->get();
-        return view("maintenance.index", compact("maintenances"));
+        return view("maintenance.index", compact("maintenances", "viewType"));
     }
 
     /**
@@ -75,30 +76,20 @@ class MaintenanceController extends Controller
     {
         $htmlContent = "";
         $searchValue = $request->searchValue;
-        $searchMaintenances = Maintenance::where("topic", "like" , "%$searchValue%")->get();
-        if (!empty($searchMaintenances)) {
-            foreach ($searchMaintenances as $maintenance) {
-                $htmlContent .= view("components.maintenance-card", compact("maintenance"))->render();
-            }
-        }
-        return response()->json(["htmlContent" => $htmlContent]);
-    }
-
-    public function filter(Request $request)
-    {
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
+        $orderBy = $request->orderBy;
+        $status = $request->status;
         $query = Maintenance::query();
 
-        // Se obtiene el filtro del estado y se añade a la query
+        if ($searchValue) {
+            $query->where("topic", "like", "%$searchValue%");
+        }
+
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
-
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -117,16 +108,24 @@ class MaintenanceController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
-
         $maintenances = $query->get();
 
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        foreach ($maintenances as $maintenance) {
-            $htmlContent .= view("components.maintenance-card", compact("maintenance"))->render();
+        if ($maintenances->isNotEmpty()) {
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($maintenances as $maintenance) {
+                    $htmlContent .= view("components.maintenance-card", compact("maintenance"))->render();
+                }
+            } else {
+                foreach ($maintenances as $maintenance) {
+                    $htmlContent .= view("components.maintenance-table", compact("maintenance"))->render();
+                }
+            }
         }
-
         return response()->json(["htmlContent" => $htmlContent]);
     }
+
 }
