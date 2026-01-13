@@ -222,6 +222,47 @@
         </div>
         <a href="{{ route("general-services.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-neutral-800 dark:border-neutral-500 dark:text-white">
+        <div class="flex flex-col items-start w-full">
+            <div class="bg-cyan-50 rounded-lg p-2 mb-3">
+                <svg class="w-8 h-8 text-cyan-600">
+                    <use xlink:href="#icon-conctact"></use>
+                </svg>
+            </div>
+    
+            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Contactes externs</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels contactes externs del centre</p>
+    
+            <!-- Opciones -->
+            <ul class="my-5 w-full">
+                <li>
+                    <a href="{{ route("external-contacts.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Nou contacte extern
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-no-line-arrow"></use>
+                    </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route("external-contacts.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Contactes actius
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-no-line-arrow"></use>
+                    </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route("external-contacts.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Contactes inactius
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-no-line-arrow"></use>
+                    </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <a href="{{ route("external-contacts.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
+    </div>
     <!-- Container -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-neutral-800 dark:border-neutral-600">
         <div class="flex flex-col items-start w-full">
@@ -349,11 +390,12 @@
         </div>
         <a href="{{ route("maintenance.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
+    
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-neutral-800 dark:border-neutral-500 dark:text-white">
         <div class="flex flex-col items-start w-full">
-            <div class="bg-cyan-50 rounded-lg p-2 mb-3">
-                <svg class="w-8 h-8 text-cyan-600">
-                    <use xlink:href="#icon-conctact"></use>
+            <div class="bg-sky-50 rounded-lg p-2 mb-3">
+                <svg class="w-8 h-8 text-sky-600">
+                    <use xlink:href="#icon-desc"></use>
                 </svg>
             </div>
     

@@ -31,7 +31,7 @@ class ExternalContactController extends Controller
         $query = ExternalContact::query();
 
         if ($searchValue) {
-            $query->where("name", "like", "%$searchValue%");
+            $query->where("contact_person", "like", "%$searchValue%");
         }
 
         if ($status == "active") {
