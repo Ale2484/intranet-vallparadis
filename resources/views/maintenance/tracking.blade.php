@@ -35,11 +35,11 @@
                             <div class="flex flex-row gap-5">
                                 <div>
                                     <div class="bg-gray-200 w-12 h-12 rounded-full">
-                                        @if (!$tracking->user->profile_photo_path)
-                                            <minidenticon-svg username="{{ md5($tracking->user->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+                                        @if (!$tracking->userRelation->profile_photo_path)
+                                            <minidenticon-svg username="{{ md5($tracking->userRelation->id) }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
                                         @else
                                             <div class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full">
-                                                <img src="{{ asset('storage/' . $tracking->user->profile_photo_path) }}" alt="{{ $tracking->user->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
+                                                <img src="{{ asset('storage/' . $tracking->userRelation->profile_photo_path) }}" alt="{{ $tracking->userRelation->name }}" class="md:w-16 md:h-16 w-10 h-10 aspect-square bg-gray-200 rounded-full object-cover">
                                             </div>
                                         @endif
                                     </div>
