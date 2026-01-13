@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
             "Serveis generals" : "/general-services/",
             "Contactes externs" : "/external-contacts/",
             "Serveis complementaris" : "/complementary-services/",
+            "Temas pendents RRHH" : "/rrhh/",
+            "Manteniments" : "/maintenance/",
         }
         for (let title in data) {
             const elements = data[title];
@@ -61,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     resultContent += `<p class="text-[#012F4A] font-bold mt-2">${title}:</p>`;
                 }
                 limitedElements.forEach(element => {
-                    let elementName = element.name || element.contact_person;
+                    let elementName = element.name || element.contact_person || element.topic;
                     let url = elementTypes[title] + element.id;
                     resultContent += `<a href="${url}" class="block border-b border-[#E6E5DE] p-2 pl-5">${elementName}</a>`;
                     hasContent = true;
