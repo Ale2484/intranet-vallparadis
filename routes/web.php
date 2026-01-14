@@ -22,6 +22,7 @@ use App\Http\Controllers\ExternalContactController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MaintenanceTrackingController;
 use App\Http\Controllers\MaintenanceDocsController;
+use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -157,5 +158,6 @@ Route::middleware("auth")->group(function () {
     Route::patch("/maintenance/{maintenance}/deactivate", [MaintenanceController::class, "deactivate"])->name("maintenance.deactivate");
     Route::patch("/maintenance/{maintenance}/activate", [MaintenanceController::class, "activate"])->name("maintenance.activate");
 
-
+    // documentos
+    Route::get("/*/{document}", [DocumentController::class, "download"])->name("doc.download");
 });
