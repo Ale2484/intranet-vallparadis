@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class CommentsTrackingController extends Controller
 {
-    public function store(Request $request, User $user, MaintenanceTracking $tracking)
+    public function store(Request $request, User $user, Tracking $tracking)
     {
         $validated = $request->validate([
             'comment' => 'required|string'

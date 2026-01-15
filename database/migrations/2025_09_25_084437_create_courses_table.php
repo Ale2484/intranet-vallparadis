@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text("description")->nullable();
             $table->boolean("is_active")->default(true);
             $table->unsignedBigInteger("assistant");
-            
+
             $table->date("start_date");
             $table->date("end_date");
 
@@ -30,7 +30,7 @@ return new class extends Migration
 
             $table->foreign("center_id")->references("id")->on("centers");
             $table->foreign("assistant")->references("id")->on("users");
-            
+
         });
     }
 

@@ -108,7 +108,7 @@
                             <use xlink:href="#icon-plus"></use>
                         </svg>
                         <div class="font-bold">
-                            Nou seguiment 
+                            Nou seguiment
                         </div>
                     </div>
                     <div class="text-[#5E6468]">

@@ -32,7 +32,11 @@
                     <div class="flex w-full justify-between">
                         <div class="flex items-center gap-2">
                             <div class="w-15 h-15 bg-gray-200 rounded-full">
-                                <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                @if (!$user->profile_photo_path)
+                                    <minidenticon-svg username="{{ md5($user->id) }}" class="w-15 h-15 bg-gray-200 rounded-full"></minidenticon-svg>
+                                @else
+                                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="w-15 h-15 bg-gray-200 rounded-full object-cover">
+                                @endif
                             </div>
                             <div>
                                 <a href="{{ route("users.show" , $user) }}" class="font-semibold dark:text-white">{{$user->name ?? " - "}}</a>
