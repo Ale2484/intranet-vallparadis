@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     const uploadButton = document.querySelector("button[type='button'][data-file-input-id][data-show-uploaded-files-id].upload-file-button");
-    console.log(uploadButton);
     if (uploadButton) {
         const fileInputId = document.getElementById(uploadButton.dataset.fileInputId);
         const showUploadedFiles = document.getElementById(uploadButton.dataset.showUploadedFilesId);

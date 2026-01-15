@@ -46,7 +46,7 @@
                 </svg>
                 Telèfon
             </label>
-            <input type="text" name="phone" id="phone" placeholder="Telefon de l'usuari" value="{{ old('phone', $user->phone) }}"  class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 @error('phone') border-red-500 @enderror" maxlength="9">
+            <input type="text" name="phone" id="phone" placeholder="Telèfon de l'usuari" value="{{ old('phone', $user->phone) }}"  class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 @error('phone') border-red-500 @enderror" maxlength="9">
             @error('phone')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -131,7 +131,7 @@
                 </svg>
                 Taquilla *
             </label>
-            <input type="text" name="locker" id="locker" value="{{ old('locker', $user->locker) }}" placeholder="Nombre de taquilla"
+            <input type="text" name="locker" id="locker" value="{{ old('locker', $user->locker) }}" placeholder="Número de taquilla"
                     class="w-full px-3 py-2 border border-gray-300 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('locker') border-red-500 @enderror"
                     required>
             @error('locker')
@@ -155,13 +155,6 @@
             @enderror
         </div>
     </div>
-    @if ($method == "PATCH")
-        <a href="{{ route('user.uniformity.edit', $user) }}" class="mt-5 bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
-            Editar uniformes
-
-        </a>
-    @endif
-
     <!-- Botones -->
     <div class="flex flex-row gap-4 justify-end mt-8 pt-6 border-t border-gray-200">
         <a href="{{ route('users.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">

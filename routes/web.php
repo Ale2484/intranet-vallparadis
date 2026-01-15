@@ -10,6 +10,7 @@ use App\Http\Controllers\UniformityRenovationController;
 use App\Http\Controllers\CommentsTrackingController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\GeneralSearchController;
 use App\Http\Controllers\GeneralServiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\RRHHTopicController;
@@ -49,7 +50,6 @@ Route::middleware("auth")->group(function () {
     Route::patch("/courses/{course}/{user}/giveCertificate", [CourseController::class, "giveCertificate"])->name('courses.giveCertificate');
     Route::patch("/courses/{course}/{user}/removeCertificate", [CourseController::class, "removeCertificate"])->name('courses.removeCertificate');
     Route::post("/courses/search", [CourseController::class, "search"])->name("courses.search");
-    Route::post("/courses/filter", [CourseController::class, "filter"])->name("courses.filter");
     // Uniformes
     Route::get("/users/{user}/uniformities/edit", [UniformityController::class, "edit"])->name('user.uniformity.edit');
     Route::patch("/users/{user}/uniformities/update", [UniformityController::class, "update"])->name('user.uniformity.update');
@@ -60,7 +60,7 @@ Route::middleware("auth")->group(function () {
     Route::patch('/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate');
     Route::patch('/users/{user}/activate', [UserController::class, 'activate'])->name('users.activate');
     Route::post("/users/search", [UserController::class, "search"])->name('users.search');
-    Route::post("/users/filter", [UserController::class, "filter"])->name('users.filter');
+    Route::post("/users/update-profile-photo/{user}", [UserController::class, "updateProfilePhoto"])->name('users.updateProfilePhoto');
     Route::post("/logout", [UserController::class, "logout"])->name("users.logout");
     Route::get("/logout", function () {
         if (Auth::check()) {return redirect()->route("dashboard");}
@@ -72,14 +72,12 @@ Route::middleware("auth")->group(function () {
     Route::patch("/centers/{center}/deactivate", [CenterController::class, "deactivate"])->name("centers.deactivate");
     Route::patch("/centers/{center}/activate", [CenterController::class, "activate"])->name("centers.activate");
     Route::post("/centers/search", [CenterController::class, "search"])->name("centers.search");
-    Route::post("/centers/filter", [CenterController::class, "filter"])->name("centers.filter");
 
-    // Proyectos  
+    // Proyectos
     Route::resource('projects', ProjectController::class);
     Route::patch('/projects/{project}/deactivate', [ProjectController::class, 'deactivate'])->name('projects.deactivate');
     Route::patch('/projects/{project}/activate', [ProjectController::class, 'activate'])->name('projects.activate');
     Route::post("/projects/search", [ProjectController::class, "search"])->name("projects.search");
-    Route::post("/projects/filter", [ProjectController::class, "filter"])->name("projects.filter");
     Route::delete('/project-documents/{document}', [ProjectController::class, 'deleteDocument'])->name('project-documents.destroy');
 
     // Exportacion de taquillas
@@ -116,14 +114,16 @@ Route::middleware("auth")->group(function () {
     Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
     Route::post("/general-services/{generalService}/add-observation", [GeneralServiceController::class, "addObservation"])->name("general-services.add-observation");
     Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
-    Route::post("/general-services/filter", [GeneralServiceController::class, "filter"])->name("general-services.filter");
 
+    //  Buscador
+    Route::get("/general-search", [GeneralSearchController::class, "generalSearch"])->name("general-search");
+    Route::post("/general-search", [GeneralSearchController::class, "generalSearch"])->name("general-search.index");
+    
     // Contactos externos
     Route::resource("external-contacts", ExternalContactController::class);
     Route::patch("/external-contacts/{externalContact}/deactivate", [ExternalContactController::class, "deactivate"])->name("external-contacts.deactivate");
     Route::patch("/external-contacts/{externalContact}/activate", [ExternalContactController::class, "activate"])->name("external-contacts.activate");
     Route::post("/external-contacts/search", [ExternalContactController::class, "search"])->name("external-contacts.search");
-    Route::post("/external-contacts/filter", [ExternalContactController::class, "filter"])->name("external-contacts.filter");
 
     // Documentos del centro
     Route::get("/centers/{center}/documents", [CenterDocumentsController::class, "index"])->name("centers.documents");
@@ -134,37 +134,26 @@ Route::middleware("auth")->group(function () {
     Route::patch("/complementary-services/{complementaryService}/activate", [ComplementaryServiceController::class, "activate"])->name('complementary-services.activate');    
     Route::patch("/complementary-services/{complementaryService}/deactivate", [ComplementaryServiceController::class, "deactivate"])->name('complementary-services.deactivate');
     Route::post("/complementary-services/search", [ComplementaryServiceController::class, "search"])->name("complementary-services.search");
-    Route::post("/complementary-services/filter", [ComplementaryServiceController::class, "filter"])->name("complementary-services.filter");
     Route::post("/complementary-services/{complementaryService}/upload-file", [ComplementaryServiceController::class, "uploadFile"])->name("complementary-services.documents.store");
     Route::get("/complementary-services/documents/{baseName}/", [ComplementaryServiceController::class, "downloadFile"])->name("complementary-services.documents.download");
     
     // Temas RRHH
     Route::resource("rrhh", RRHHTopicController::class)->except(["destroy","update","edit"]);
-
     Route::get("rrhh/{rrhh}/tracking", [RRHHTrackingController::class, "index"])->name('rrhh.tracking');
     Route::post("rrhh/{rrhh}/tracking/store", [RRHHTrackingController::class, "store"])->name('rrhh.tracking.store');
-    
     Route::get("rrhh/{rrhh}/docs", [RRHHDocsController::class, "index"])->name('rrhh.docs');
     Route::post("rrhh/{rrhh}/docs/store", [RRHHDocsController::class, "Store"])->name('rrhh.docs.store');
-
     Route::post("/rrhh/search", [RRHHTopicController::class, "search"])->name("rrhh.search");
-    Route::post("/rrhh/filter", [RRHHTopicController::class, "filter"])->name("rrhh.filter");
-
     Route::patch("/rrhh/{rrhh}/deactivate", [RRHHTopicController::class, "deactivate"])->name("rrhh.deactivate");
     Route::patch("/rrhh/{rrhh}/activate", [RRHHTopicController::class, "activate"])->name("rrhh.activate");
     
     // mantenimiento
     Route::resource("maintenance", MaintenanceController::class)->except(["destroy","update","edit"]);
-
     Route::get("maintenance/{maintenance}/tracking", [MaintenanceTrackingController::class, "index"])->name('maintenance.tracking');
     Route::post("maintenance/{maintenance}/tracking/store", [MaintenanceTrackingController::class, "store"])->name('maintenance.tracking.store');
-    
     Route::get("maintenance/{maintenance}/docs", [MaintenanceDocsController::class, "index"])->name('maintenance.docs');
     Route::post("maintenance/{maintenance}/docs/store", [MaintenanceDocsController::class, "Store"])->name('maintenance.docs.store');
-
     Route::post("/maintenance/search", [MaintenanceController::class, "search"])->name("maintenance.search");
-    Route::post("/maintenance/filter", [MaintenanceController::class, "filter"])->name("maintenance.filter");
-
     Route::patch("/maintenance/{maintenance}/deactivate", [MaintenanceController::class, "deactivate"])->name("maintenance.deactivate");
     Route::patch("/maintenance/{maintenance}/activate", [MaintenanceController::class, "activate"])->name("maintenance.activate");
 

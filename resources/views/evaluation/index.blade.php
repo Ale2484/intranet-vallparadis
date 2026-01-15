@@ -12,7 +12,7 @@
                 Tornar a la gestió de professionals
             </a>
             <h1 class="text-3xl font-bold text-[#011020]">Evaluacios de {{ $user->name }}</h1>
-            <p class="text-[#AFAFAF]" >Evaluacions del professional seleccionat</p>
+            <p class="text-[#AFAFAF]" >Avaluacions del professional seleccionat</p>
         </div>
     </div>
     
@@ -48,17 +48,17 @@
                 </svg>
             </div>
             <div class="flex flex-col gap-2 font-bold text-xl">
-                <p>Ultima avaluacio</p>
+                <p>Ultima avaluació</p>
                 <p>{{ number_format($lastScore*(100/3), 2, '.', '') }}</p>
             </div>
         </div>
 
-        <a href="{{ route('evaluations.create', $user->id) }}" 
+        <a href="{{ route('evaluations.create', $user->id) }}"
             class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-plus"></use>
             </svg>
-            Nova avaluacio
+            Nova avaluació
         </a>
     </div>
     <div class="font-bold text-xl">
@@ -125,7 +125,6 @@
             </div>
         @endforeach
     </div>
-    {{ $evaluations->links('pagination::tailwind') }}
     <div class="flex flex-col gap-5 h-100 overflow-y-scroll">
         @for ($i = 1; $i <= count($questionAverage); $i++)
             <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-row justify-between">
@@ -147,7 +146,7 @@
         <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col w-3/5 gap-5">
             <div class="flex flex-row justify-between items-start">
                 <div class="flex flex-col gap-2">
-                    <div class="text-2xl font-bold">Detalls de l’evaluacio</div>
+                    <div class="text-2xl font-bold">Detalls de l'avaluació</div>
                     <div class="flex felx-row gap-2">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-calendar"></use>
@@ -163,7 +162,7 @@
             </div>
             <div class="flex flex-row justify-between items-center">
                 <div class="flex flex-col gap-3 font-bold">
-                    <div class="text-xl">Puntuacion general</div>
+                    <div class="text-xl">Puntuació general</div>
                     <div class="text-2xl text-green-600">{{ number_format($evaluation->average_score*(100/3), 2, '.', '') }}/100</div>
                 </div>
                 <div class="flex items-center justify-center">
@@ -199,7 +198,7 @@
                 </div>
             </div>
             <div class="flex flex-col gap-3">
-                <div class="text-xl font-bold">Respuestas</div>
+                <div class="text-xl font-bold">Respostes</div>
                 <div class="flex flex-col gap-5 h-64 overflow-y-scroll">
                     @for ($i = 1; $i <= count($questionAverage); $i++)
                         <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-row justify-between">

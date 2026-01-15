@@ -19,9 +19,10 @@ class DatabaseSeeder extends Seeder
             CenterSeeder::class,
             ExternalContactSeeder::class,
             UserSeeder::class,
-            //UniformitySeeder::class,
+            EvaluationSeeder::class,
+            UniformitySeeder::class,
             ProjectSeeder::class,
-            //UniformityRenovationSeeder::class,
+            UniformityRenovationSeeder::class,
             CourseSeeder::class,
             CourseUserSeeder::class,
             CourseScheduleSeeder::class,
@@ -31,6 +32,5 @@ class DatabaseSeeder extends Seeder
             RrhhTopicSeeder::class
 
         ]);
-        // User::factory(10)->create();
     }
 }

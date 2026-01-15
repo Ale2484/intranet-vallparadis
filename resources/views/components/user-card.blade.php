@@ -1,14 +1,18 @@
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5 dark:bg-neutral-800 dark:border-neutral-600">
+<div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5 dark:bg-neutral-800 dark:border-neutral-600 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
         <div>
             <div class="flex justify-between items-center mb-5">
                 <div class="flex flex-row justify-between gap-2">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
                         {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
                         <!-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> -->
-                        <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                        @if (!$user->profile_photo_path)
+                            <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                        @else
+                            <img src="{{ asset("storage/" . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="rounded-full w-16 h-16 object-cover">
+                        @endif
                     </div>
                     <div class="flex items-center">
-                        <a href="{{ route("users.show", $user) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $user->name }}</a>
+                        <a href="{{ route("users.show", $user) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $user->name }}</a>
                     </div>
                 </div>
                 @if($user->is_active)
@@ -42,9 +46,11 @@
                     <span class="ml-2 dark:text-white">{{ $user->phone ?? '+34 000 000 000' }}</span>
                 </div>
                 <div class="flex items-center text-[#011020]">
-                    <svg class="w-6 h-6 dark:text-neutral-400">
-                        <use xlink:href="#icon-mail"></use>
-                    </svg>
+                    <div class="aspect-square">
+                        <svg class="w-6 h-6 dark:text-neutral-400">
+                            <use xlink:href="#icon-mail"></use>
+                        </svg>
+                    </div>
                     <span class="ml-2 dark:text-white">{{ $user->email }}</span>
                 </div>
                 <div class="flex items-center text-[#011020]">
@@ -72,13 +78,15 @@
                 <form action="{{ route('users.deactivate', $user) }}" method="POST" class="w-full sm:w-full md:w-[50%] lg:w-[50%]">
                     @csrf
                     @method('PATCH')
-                    <button type="submit" 
+                    <button type="submit"
                             class="confirmable w-full text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all flex justify-center gap-3"
                             data-confirm-message="Estàs segur que vols desactivar aquest usuari?">
-                        <svg class="w-6 h-6">
-                            <use xlink:href="#icon-power"></use>
-                        </svg>
-                        Desactivar
+                            <div class="aspect-square">
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-power"></use>
+                                </svg>
+                            </div>
+                        <p>Desactivar</p>
                     </button>
                 </form>
             @else

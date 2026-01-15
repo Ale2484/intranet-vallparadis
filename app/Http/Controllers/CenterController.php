@@ -8,68 +8,43 @@ use Illuminate\Support\Facades\Log;
 
 class CenterController extends Controller
 {
-    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $centers = Center::orderBy("created_at", "desc")->paginate($this->paginateNumber);
-        $inactiveCenters = $centers->where("is_active", false)->count();
-        $activeCenters = $centers->count() - $inactiveCenters;
-
-        $activePercentage = ($activeCenters / $centers->count()) * 100; 
-        $inactivePercentage = ($inactiveCenters / $centers->count()) * 100;
-       
-        $activePercentage = round($activePercentage, 1);
-        $inactivePercentage = round($inactivePercentage, 1);
-        
-
-        $viewType = $_COOKIE['view_type'] ?? "card";
-        return view("centers.index", compact("centers", "inactiveCenters", "activeCenters", "activePercentage", "inactivePercentage", "viewType"));
-    }
-    
-    public function search(Request $request)
-    {
-        $pagination = "";
-        $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
-        $searchValue = $request->searchValue;
-        $searchCenters = Center::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
-        if (!empty($searchCenters)) {
-            $viewType = $_COOKIE['view_type'] ?? "card";
-            if ($viewType == "card") {
-                foreach ($searchCenters as $center) {
-                    $htmlContent .= view("components.center-card", compact("center"))->render();
-                }
-            } else {
-                foreach ($searchCenters as $center) {
-                    $htmlContent .= view("components.center-table", compact("center"))->render();
-                }
-            }
-            // Se obtiene la paginacion
-            $pagination = $searchCenters->links()->render();
-        }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
-    }
-
-    public function filter(Request $request)
-    {
-        $page = $request->input("page", 1);
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
         $query = Center::query();
-
-        // Se obtiene el filtro del estado y se añade a la query
+        
+        $status = $request->input("status");
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
+        $centers = $query->orderBy("created_at", "desc")->get();
 
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        return view("centers.index", compact("centers",  "viewType"));
+    }
+    
+    public function search(Request $request)
+    {
+        $htmlContent = "";
+        $searchValue = $request->searchValue;
+        $orderBy = $request->orderBy;
+        $status = $request->status;
+        $query = Center::query();
+
+        if ($searchValue) {
+            $query->where("name", "like", "%$searchValue%");
+        }
+
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -88,26 +63,24 @@ class CenterController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
+        $centers = $query->get();
 
-        // Se pagina la query
-        $centers = $query->paginate($this->paginateNumber, ["*"], "page", $page);
-
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        $viewType = $_COOKIE['view_type'] ?? "card";
-        if ($viewType == "card") {
-            foreach ($centers as $center) {
-                $htmlContent .= view("components.center-card", compact("center"))->render();
-            }
-        } else {
-            foreach ($centers as $center) {
-                $htmlContent .= view("components.center-table", compact("center"))->render();
+        if ($centers->isNotEmpty()) {
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($centers as $center) {
+                    $htmlContent .= view("components.center-card", compact("center"))->render();
+                }
+            } else {
+                foreach ($centers as $center) {
+                    $htmlContent .= view("components.center-table", compact("center"))->render();
+                }
             }
         }
-        $pagination = $centers->links()->render();
-
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
     /**
      * Show the form for creating a new resource.
@@ -127,7 +100,7 @@ class CenterController extends Controller
         $validated = $request->validate([
             "name" => "required|string",
             "address" => "required|string",
-            "phone"=> "required|max:9",
+            "phone" => "nullable|string|max:15",
             "email" => "nullable|email|max:255",
             "is_active" => "required|boolean"
         ]);
@@ -185,6 +158,6 @@ class CenterController extends Controller
     public function activate(Center $center)
     {
         $center->update(["is_active" => true]);
-        return redirect()->route("centers.index")->with("success", "Centre deshabilitat correctament");
+        return redirect()->route("centers.index")->with("success", "Centre activat correctament");
     }
 }

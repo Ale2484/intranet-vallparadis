@@ -12,68 +12,42 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
-    protected $paginateNumber = 20;
-    public function index()
+    public function index(Request $request)
     {
-        $totalProjects = Project::count();
-        // $activeProjects = Project::active()->count();
-        // $inactiveProjects = Project::inactive()->count();
-        
-        $projects = Project::with(['centerRelation', 'userRelation'])
-                          ->orderBy('created_at', 'desc')
-                          ->paginate($this->paginateNumber);
-
-        $viewType = $_COOKIE['view_type'] ?? "card";
-
-        return view("projects.index", compact(
-            'totalProjects', 
-            // 'activeProjects', 
-            // 'inactiveProjects',
-            'projects',
-            'viewType'
-        ));
-    }
-
-    public function search(Request $request)
-    {
-        $pagination = "";
-        $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
-        $searchValue = $request->searchValue;
-        $searchProjects = Project::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
-        if (!empty($searchProjects)) {
-            $viewType = $_COOKIE['view_type'] ?? "card";
-            if ($viewType == "card") {
-                foreach ($searchProjects as $project) {
-                    $htmlContent .= view("components.project-card", compact("project"))->render();
-                }
-            } else {
-                foreach ($searchProjects as $project) {
-                    $htmlContent .= view("components.project-table", compact("project"))->render();
-                }
-            }
-            // Se obtiene la paginacion
-            $pagination = $searchProjects->links()->render();
-        }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
-    }
-    
-    public function filter(Request $request)
-    {
-        $page = $request->input("page", 1);
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
         $query = Project::query();
-
-        // Se obtiene el filtro del estado y se añade a la query
+        $status = $request->input("status");
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        $projects = $query->with(['centerRelation', 'userRelation'])->orderBy('created_at', 'desc')->get();
+
+        $viewType = $_COOKIE['view_type'] ?? "card";
+
+        return view("projects.index", compact("projects","viewType"));
+    }
+
+    public function search(Request $request)
+    {
+        $htmlContent = "";
+        $searchValue = $request->searchValue;
+        $orderBy = $request->orderBy;
+        $status = $request->status;
+
+        $query = Project::query();
+
+        if ($searchValue) {
+            $query->where("name", "like", "%$searchValue%");
+        }
+
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -92,26 +66,24 @@ class ProjectController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
+        $projects = $query->get();
 
-        // Se pagina la query
-        $projects = $query->paginate($this->paginateNumber, ["*"], "page", $page);
-
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        $viewType = $_COOKIE['view_type'] ?? "card";
-        if ($viewType == "card") {
-            foreach ($projects as $project) {
-                $htmlContent .= view("components.project-card", compact("project"))->render();
-            }
-        } else {
-            foreach ($projects as $project) {
-                $htmlContent .= view("components.project-table", compact("project"))->render();
+        if ($projects->isNotEmpty()) {
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($projects as $project) {
+                    $htmlContent .= view("components.project-card", compact("project"))->render();
+                }
+            } else {
+                foreach ($projects as $project) {
+                    $htmlContent .= view("components.project-table", compact("project"))->render();
+                }
             }
         }
-        $pagination = $projects->links()->render();
-
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
     public function create()

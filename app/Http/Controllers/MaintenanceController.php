@@ -8,15 +8,21 @@ use Illuminate\Http\Request;
 
 class MaintenanceController extends Controller
 {
-    protected $paginateNumber = 21;
-
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $maintenances = Maintenance::orderBy("created_at", "desc")->paginate($this->paginateNumber);
-        return view("maintenance.index", compact("maintenances"));
+        $query = Maintenance::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        $maintenances = $query->orderBy("created_at", "desc")->get();
+        return view("maintenance.index", compact("maintenances", "viewType"));
     }
 
     /**
@@ -36,12 +42,11 @@ class MaintenanceController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "center" => "required|string",
             "topic" => "required|string",
             "responsible" => "required|string",
             "description" => "required|string",
         ]);
-
+        $validated["center"] = auth()->user()->center;
         Maintenance::create($validated);
         
         return redirect()->route("maintenance.index")->with("success", "Manteniment creat correctament");
@@ -64,43 +69,27 @@ class MaintenanceController extends Controller
     public function activate(Maintenance $maintenance)
     {
         $maintenance->update(["is_active" => true]);
-        return redirect()->route("maintenance.index")->with("success", "Manteniment deshabilitat correctament");
+        return redirect()->route("maintenance.index")->with("success", "Manteniment activat correctament");
     }
 
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchMaintenances = Maintenance::where("topic", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
-        if (!empty($searchMaintenances)) {
-            foreach ($searchMaintenances as $maintenance) {
-                $htmlContent .= view("components.maintenance-card", compact("maintenance"))->render();
-            }
-            // Se obtiene la paginacion
-            $pagination = $searchMaintenances->links()->render();
-        }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
-    }
-
-    public function filter(Request $request)
-    {
-        $page = $request->input("page", 1);
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
+        $orderBy = $request->orderBy;
+        $status = $request->status;
         $query = Maintenance::query();
 
-        // Se obtiene el filtro del estado y se añade a la query
+        if ($searchValue) {
+            $query->where("topic", "like", "%$searchValue%");
+        }
+
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
-
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -119,18 +108,24 @@ class MaintenanceController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
+        $maintenances = $query->get();
 
-        // Se pagina la query
-        $maintenances = $query->paginate($this->paginateNumber, ["*"], "page", $page);
-
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        foreach ($maintenances as $maintenance) {
-            $htmlContent .= view("components.maintenance-card", compact("maintenance"))->render();
+        if ($maintenances->isNotEmpty()) {
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($maintenances as $maintenance) {
+                    $htmlContent .= view("components.maintenance-card", compact("maintenance"))->render();
+                }
+            } else {
+                foreach ($maintenances as $maintenance) {
+                    $htmlContent .= view("components.maintenance-table", compact("maintenance"))->render();
+                }
+            }
         }
-        $pagination = $maintenances->links()->render();
-
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
+
 }

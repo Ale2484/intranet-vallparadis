@@ -18,7 +18,7 @@ class TrackingController extends Controller
         $total=$trackings->count();
 
         return view("trackings.index", compact(
-            'trackings', 
+            'trackings',
             'user',
             "total"
         ));

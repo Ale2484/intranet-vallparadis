@@ -9,58 +9,43 @@ use Mews\Purifier\Facades\Purifier;
 
 class GeneralServiceController extends Controller
 {
-    protected $paginateNumber = 21;
-
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $generalServices = GeneralService::orderBy("created_at", "desc")->paginate($this->paginateNumber);
+        $query = GeneralService::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $generalServices = $query->orderBy("created_at", "desc")->get();
 
         $viewType = $_COOKIE['view_type'] ?? "card";
         return view("general-services.index", compact("generalServices", "viewType"));
     }
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchGeneralServices = GeneralService::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
-        if (!empty($searchGeneralServices)) {
-            $viewType = $_COOKIE['view_type'] ?? "card";
-            if ($viewType == "card") {
-                foreach ($searchGeneralServices as $generalService) {
-                    $htmlContent .= view("components.general-services-card", compact("generalService"))->render();
-                }
-            } else {
-                foreach ($searchGeneralServices as $generalService) {
-                    $htmlContent .= view("components.general-services-table", compact("generalService"))->render();
-                }
-            }
-            // Se obtiene la paginacion
-            $pagination = $searchGeneralServices->links()->render();
-        }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
-    }
-    public function filter(Request $request)
-    {
-        $page = $request->input("page", 1);
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
+        $orderBy = $request->orderBy;
+        $status = $request->status;
+
         $query = GeneralService::query();
 
-        // Se obtiene el filtro del estado y se añade a la query
+        if ($searchValue) {
+            $query->where("name", "like", "%$searchValue%");
+        }
+
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
 
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -79,26 +64,25 @@ class GeneralServiceController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
 
-        // Se pagina la query
-        $generalServices = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $generalServices = $query->get();
 
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        $viewType = $_COOKIE['view_type'] ?? "card";
-        if ($viewType == "card") {
-            foreach ($generalServices as $generalService) {
-                $htmlContent .= view("components.general-services-card", compact("generalService"))->render();
-            }
-        } else {
-            foreach ($generalServices as $generalService) {
-                $htmlContent .= view("components.general-services-table", compact("generalService"))->render();
+        if ($generalServices->isNotEmpty()) {
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($generalServices as $generalService) {
+                    $htmlContent .= view("components.general-services-card", compact("generalService"))->render();
+                }
+            } else {
+                foreach ($generalServices as $generalService) {
+                    $htmlContent .= view("components.general-services-table", compact("generalService"))->render();
+                }
             }
         }
-        $pagination = $generalServices->links()->render();
-
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
     /**
      * Show the form for creating a new resource.
@@ -117,7 +101,6 @@ class GeneralServiceController extends Controller
     {
         // Se validan los datos que se envian por el form de creacion de centro
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "name" => "required|string",
             "type" => "required|in:cuina,neteja,bugaderia",
             "manager_name"=> "required|string",
@@ -126,6 +109,7 @@ class GeneralServiceController extends Controller
             "staff_and_schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["center_id"] = auth()->user()->center;
 
         $validated["staff_and_schedules"] = Purifier::clean($validated["staff_and_schedules"], "quill");
         
@@ -158,7 +142,6 @@ class GeneralServiceController extends Controller
     public function update(Request $request, GeneralService $generalService)
     {
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "name" => "required|string",
             "type" => "required|in:cuina,neteja,bugaderia",
             "manager_name"=> "required|string",
@@ -167,6 +150,7 @@ class GeneralServiceController extends Controller
             "staff_and_schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["center_id"] = auth()->user()->center;
         $validated["staff_and_schedules"] = Purifier::clean($validated["staff_and_schedules"], "quill");
 
         $generalService->update($validated);

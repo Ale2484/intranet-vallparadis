@@ -1,15 +1,14 @@
 <!-- Contenedor -->
-<div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600">
+<div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
     <div class="flex justify-between items-center mb-5">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
-            <svg class="w-8 h-8 text-[#FF7E13]">
-                <use xlink:href="#icon-book"></use>
-            </svg>
+                <svg class="w-8 h-8 text-[#FF7E13]">
+                    <use xlink:href="#icon-book"></use>
+                </svg>
             </div>
-            <a href="{{ route("courses.show", $course) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white">{{ $course->name }}</a>
+            <a href="{{ route("courses.show", $course) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $course->name }}</a>
         </div>
-
         <p class="w-20 border-1 p-1 ml-3 text-center {{ $course->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$course->is_active ? "Actiu" : "Inactiu"}}</p>
     </div>
     <!-- Especificaciones -->
@@ -22,7 +21,7 @@
         </div>
         
         <div class="flex flex-row items-center gap-2 pl-2">
-            @if ($course->users->count()) 
+            @if ($course->users->count())
                 <a href="{{ route('courses.users', $course) }}" class="flex flex-row items-center gap-2 text-orange-500">
                     <svg class="w-7 h-7">
                         <use xlink:href="#icon-group-user"></use>
@@ -33,7 +32,7 @@
                 <svg class="w-7 h-7">
                     <use xlink:href="#icon-group-user"></use>
                 </svg>
-                <p>Aquest curs no te participants</p>
+                <p>Aquest curs no té participants</p>
             @endif
         </div>
         
@@ -41,19 +40,19 @@
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-role"></use>
             </svg>
-            <p class="dark:text-white">{{ $course->type ?? "Aquest curs no te tipus" }}</p>
+            <p class="dark:text-white">{{ $course->type ?? "Aquest curs no té tipus" }}</p>
         </div>
         <div class="flex flex-row items-center gap-2 pl-2">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-computer-desktop"></use>
             </svg>
-            <p class="dark:text-white">{{ $course->modality ? ucfirst($course->modality) : "Aquest curs no te una modalitat electronic" }}</p>
+            <p class="dark:text-white">{{ $course->modality ? ucfirst($course->modality) : "Aquest curs no té modalitat" }}</p>
         </div>
     </div>
     <p class="text-sm ml-3 my-4 dark:text-white">Inici: {{ $course->start_date ? date("d/m/Y", strtotime($course->start_date)) : " - " }} | Fi: {{ $course->end_date ? date("d/m/Y", strtotime($course->end_date)) : " - " }}</p>
     <div class="flex flex-row gap-5 justify-end">
         <!-- Activar/Desactivar -->
-        <div class="w-full sm:w-full md:w-auto lg:w-auto flex gap-5 justify-end flex-col sm:flex-col sm:justify-center md:flex-row">
+        <div class="w-full sm:w-full md:w-auto md:max-w-full lg:w-auto flex gap-5 justify-end flex-col sm:flex-col sm:justify-center md:flex-row">
             <a href="{{ route("courses.edit", $course) }}" class="flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-square-pen"></use>

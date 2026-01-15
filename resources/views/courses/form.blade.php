@@ -6,44 +6,21 @@
     <div class="flex flex-col gap-5">
         {{-- Contenedor de 2 --}}
         <div class="flex flex-row gap-5 items-start mb-1">
-            <div class="w-1/2 flex flex-col gap-2">
+            <div class="w-full flex flex-col gap-2">
                 <div class="flex flex-row">
                     <div class="flex flex-row items-center gap-2">
                         <svg class="w-6 h-6 dark:text-neutral-400">
-                            <use xlink:href="#icon-center"></use>
+                            <use xlink:href="#icon-document"></use>
                         </svg>
-                        <p class="dark:text-white">Centre:</p>
+                        <p class="dark:text-white">Nom:</p>
                     </div>
                 </div>
                 <div>
-                    <select name="center_id" id="center_id" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:bg-neutral-800 dark:border-neutral-600 dark:text-white @error('center_id') border-red-600 @enderror" required>
-                        <option value="" {{ old("center_id", $course->center_id) ? "" : "selected" }} hidden>Selecciona un centre</option>
-                        @if (count($centers) > 0 )
-                            @foreach ($centers as $center)
-                                <option value="{{ $center->id }}" {{ old("center_id", $course->center_id) == $center->id ? "selected" : "" }} >{{ $center->name }}</option>
-                            @endforeach
-                        @else
-                            <option value="" disabled>No hi ha centres</option>
-                        @endif
-                    </select>
-                    @error("center_id")
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-            </div>
-            <div class="w-1/2 flex flex-col gap-2">
-                <div class="flex flex-row">
-                    <div class="flex flex-row items-center gap-2">
-                        <svg class="w-6 h-6 dark:text-neutral-400">
-                            <use xlink:href="#icon-key"></use>
-                        </svg>
-                        <p class="dark:text-white">Codi:</p>
-                    </div>
-                </div>
-                <input type="text" name="code" id="code" placeholder="Introdueix el codi del curs" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:bg-neutral-800 dark:border-neutral-600 dark:text-white @error('code') border-red-600 @enderror" value="{{ old("code", $course->code) }}" required>
-                @error("code")
+                <input type="text" name="name" id="name" placeholder="Introdueix el nombre del curs" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('name') border-red-600 @enderror" value="{{ old("name", $course->name) }}" required>
+                @error("name")
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
+                </div>
             </div>
         </div>
         {{-- Contenedor de 2 --}}
@@ -91,7 +68,7 @@
                     <select name="modality" id="modality" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('modality') border-red-600 @enderror" required>
                         <option value="presencial" {{ old("modality", $course->modality) == "presencial" ? "selected" : "" }}>Presencial</option>
                         <option value="online" {{ old("modality", $course->modality) == "online" ? "selected" : "" }}>Online</option>
-                        <option value="mixt" {{ old("modality", $course->modality) == "mixed" ? "selected" : "" }}>Mixte</option>
+                        <option value="mixt" {{ old("modality", $course->modality) == "mixt" ? "selected" : "" }}>Mixt</option>
                     </select>
                     @error("modality")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -102,13 +79,13 @@
                 <div class="flex flex-row">
                     <div class="flex flex-row items-center gap-2">
                         <svg class="w-6 h-6 dark:text-neutral-400">
-                            <use xlink:href="#icon-document"></use>
+                            <use xlink:href="#icon-key"></use>
                         </svg>
-                        <p class="dark:text-white">Nombre:</p>
+                        <p class="dark:text-white">Codi:</p>
                     </div>
                 </div>
-                <input type="text" name="name" id="name" placeholder="Introdueix el nombre del curs" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('name') border-red-600 @enderror" value="{{ old("name", $course->name) }}" required>
-                @error("name")
+                <input type="text" name="code" id="code" placeholder="Introdueix el codi del curs" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:bg-neutral-800 dark:border-neutral-600 dark:text-white @error('code') border-red-600 @enderror" value="{{ old("code", $course->code) }}" required>
+                @error("code")
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
@@ -210,20 +187,6 @@
                         <th>{{ $day }}</th>
                     @endforeach
                 </tr>
-                <tr>
-                    <th>Inici:</th>
-                    @foreach ($daysOfWeek as $day )
-                        <td>
-                            <input type="time" name="schedules[{{ $day }}][start_time]" id="schedules[{{ $day }}][start_time]" value="{{ old("schedules" . $day . "start_time", isset($schedules[$day]["start_time"]) ? \Carbon\Carbon::parse($schedules[$day]["start_time"])->format("H:i") : '') }}" class="w-24 border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
-                        </td>
-                    @endforeach
-                </tr>
-                <th>Final:</th>
-                @foreach ($daysOfWeek as $day )
-                    <td>
-                        <input type="time" name="schedules[{{ $day }}][end_time]" id="schedules[{{ $day }}][end_time]" value="{{ old("schedules" . $day . "end_time", isset($schedules[$day]["end_time"]) ? \Carbon\Carbon::parse($schedules[$day]["end_time"])->format("H:i") : '') }}" class="w-24 border-1 border-[#AFAFAF] p-2 rounded-lg mb-3">
-                    </td>
-                @endforeach
               </tr>
 
               <tr>

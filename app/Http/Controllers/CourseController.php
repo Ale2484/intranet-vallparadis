@@ -15,60 +15,43 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class CourseController extends Controller
 {
-    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::orderBy("created_at", "desc")->paginate($this->paginateNumber);
+        $query = Course::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $courses = $query->orderBy("created_at", "desc")->get();
         $viewType = $_COOKIE['view_type'] ?? "card";
         return view("courses.index", compact("courses", "viewType"));
     }
 
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchCourses = Course::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
-        if (!empty($searchCourses)) {
-            // Se obtiene el tipo de vista
-            $viewType = $_COOKIE['view_type'] ?? "card";
+        $orderBy = $request->orderBy;
+        $status = $request->status;
 
-            if ($viewType == "card") {
-                foreach ($searchCourses as $course) {
-                    $htmlContent .= view("components.course-card", compact("course"))->render();
-                }
-            } else{
-                foreach ($searchCourses as $course) {
-                    $htmlContent .= view("components.course-table", compact("course"))->render();
-                }
-            }
-            // Se obtiene la paginacion
-            $pagination = $searchCourses->links()->render();
-        }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
-    }
-
-    public function filter(Request $request)
-    {
-        $page = $request->input("page", 1);
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
         $query = Course::query();
 
-        // Se obtiene el filtro del estado y se añade a la query
+        if ($searchValue) {
+            $query->where("name", "like", "%$searchValue%");
+        }
+
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
 
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -87,26 +70,27 @@ class CourseController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
 
-        // Se pagina la query
-        $courses = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $courses = $query->get();
 
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        $viewType = $_COOKIE['view_type'] ?? "card";
-        if ($viewType == "card") {
-            foreach ($courses as $course) {
-                $htmlContent .= view("components.course-card", compact("course"))->render();
-            }
-        } else{
-            foreach ($courses as $course) {
-                $htmlContent .= view("components.course-table", compact("course"))->render();
+        if ($courses->isNotEmpty()) {
+            // Se obtiene el tipo de vista
+            $viewType = $_COOKIE['view_type'] ?? "card";
+
+            if ($viewType == "card") {
+                foreach ($courses as $course) {
+                    $htmlContent .= view("components.course-card", compact("course"))->render();
+                }
+            } else{
+                foreach ($courses as $course) {
+                    $htmlContent .= view("components.course-table", compact("course"))->render();
+                }
             }
         }
-        $pagination = $courses->links()->render();
-
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
     /**
@@ -115,12 +99,11 @@ class CourseController extends Controller
     public function create()
     {
         $course = new Course();
-        $centers = Center::all();
         $users = User::all();
         $daysOfWeek = ["Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"];
         // Se pasa el registeredUsers a coleccion porque sino cuando se usan algunos metodos especificos da problemas
         $registeredUsers = collect([]);
-        return view("courses.create", compact("course", "centers", "users", "registeredUsers", "daysOfWeek"));
+        return view("courses.create", compact("course", "users", "registeredUsers", "daysOfWeek"));
     }
 
     /**
@@ -129,18 +112,19 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            "center_id" => "required|exists:centers,id",
+            "name" => "required|string",
             "code" => "required|string",
             "hours" => "required|numeric",
             "type" => "required|string",
             "modality" => "required|string",
-            "name" => "required|string",
             "description" => "nullable",
             "start_date" => "required|date",
             "end_date" => "required|date",
             "assistant" => "required|exists:users,id",
             "is_active" => "required|boolean",
         ]);
+        $validate["center_id"] = auth()->user()->center;
+        // Se crea el curso
         $newCourse = Course::create($validate);
 
         if (!empty($request->userIds)) {
@@ -197,14 +181,13 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        $centers = Center::all();
         $users = User::all();
         $daysOfWeek = ["Dilluns", "Dimarts", "Dimecres", "Dijous", "Divendres", "Dissabte", "Diumenge"];
         $schedules = $course->schedule()->get()->keyBy('day_of_week')->toArray();
 
         // Se obtienen todos los usuarios registrados en el curso
         $registeredUsers = $course->users;
-        return view("courses.edit", compact("course", "centers", "users", "registeredUsers", "daysOfWeek", "schedules"));
+        return view("courses.edit", compact("course", "users", "registeredUsers", "daysOfWeek", "schedules"));
     }
 
     /**
@@ -213,18 +196,19 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         $validate = $request->validate([
-            "center_id" => "required|exists:centers,id",
+            "name" => "required|string",
             "code" => "required|string",
             "hours" => "required|numeric|max:90000.99",
             "type" => "required|string",
             "modality" => "required|string",
-            "name" => "required|string",
             "description" => "nullable",
             "start_date" => "required|date",
             "end_date" => "required|date",
             "assistant" => "required|exists:users,id",
             "is_active" => "required|boolean",
         ]);
+        $validate["center_id"] = auth()->user()->center;
+
         $course->update($validate);
         
         // Se obtienen los usuarios pasados en la request incluyendo los usuarios que ya estaban inscritos en el curso
@@ -283,7 +267,7 @@ class CourseController extends Controller
     {
         $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
         if ($courseUser && $courseUser->certificate == "PENDENT") {
-            $courseUser->update(["certificate" => "ENTREGAT"]);
+            $courseUser->update(["certificate" => "LLIURAT"]);
             return redirect()->route("courses.show", $course)->with("success", "Certificat lliurat correctament");
         } else{
             return back()->with("error", "Error en intentar donar el certificat a l'usuari seleccionat");
@@ -292,9 +276,9 @@ class CourseController extends Controller
     public function removeCertificate(Course $course, User $user)
     {
         $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
-        if ($courseUser && $courseUser->certificate == "ENTREGAT") {
+        if ($courseUser && $courseUser->certificate == "LLIURAT") {
             $courseUser->update(["certificate" => "PENDENT"]);
-            return redirect()->route("courses.show", $course)->with("success", "Certificat tret correctament");
+            return redirect()->route("courses.show", $course)->with("success", "Certificat retirat correctament");
         } else{
             return back()->with("error", "Error en intentar treure el certificat a l'usuari seleccionat");
         }

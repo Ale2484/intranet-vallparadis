@@ -9,49 +9,46 @@ use Illuminate\Http\Request;
 
 class ComplementaryServiceController extends Controller
 {
-    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $complementaryServices = ComplementaryService::orderBy("created_at", "desc")->paginate($this->paginateNumber);
-        return view("complementary-services.index", compact("complementaryServices"));
-    }
-
-    public function search(Request $request)
-    {
-        $pagination = "";
-        $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
-        $searchValue = $request->searchValue;
-        $searchComplementaryServices = ComplementaryService::where("name", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
-        if (!empty($searchComplementaryServices)) {
-            foreach ($searchComplementaryServices as $complementaryService) {
-                $htmlContent .= view("components.complementary-service-card", compact("complementaryService"))->render();
-            }
-            // Se obtiene la paginacion
-            $pagination = $searchComplementaryServices->links()->render();
-        }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
-    }
-    public function filter(Request $request)
-    {
-        $page = $request->input("page", 1);
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
         $query = ComplementaryService::query();
 
-        // Se obtiene el filtro del estado y se añade a la query
+        $status = $request->input("status");
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
 
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        $complementaryServices = $query->orderBy("created_at", "desc")->get();
+
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        return view("complementary-services.index", compact("complementaryServices", "viewType"));
+    }
+
+    public function search(Request $request)
+    {
+        $htmlContent = "";
+        $searchValue = $request->searchValue;
+        $orderBy = $request->orderBy;
+        $status = $request->status;
+
+        $query = ComplementaryService::query();
+
+        if ($searchValue) {
+            $query->where("name", "like", "%$searchValue%");
+        }
+
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -70,19 +67,24 @@ class ComplementaryServiceController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
 
-        // Se pagina la query
-        $complementaryServices = $query->paginate($this->paginateNumber, ["*"], "page", $page);
-
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        foreach ($complementaryServices as $complementaryService) {
-            $htmlContent .= view("components.complementary-service-card", compact("complementaryService"))->render();
+        $complementaryServices = $query->get();
+        if ($complementaryServices->isNotEmpty()) {
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($complementaryServices as $complementaryService) {
+                    $htmlContent .= view("components.complementary-service-card", compact("complementaryService"))->render();
+                }
+            } else {
+                foreach ($complementaryServices as $complementaryService) {
+                    $htmlContent .= view("components.complementary-service-table", compact("complementaryService"))->render();
+                }
+            }
         }
-        $pagination = $complementaryServices->links()->render();
-
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
     /**
      * Show the form for creating a new resource.
@@ -100,7 +102,6 @@ class ComplementaryServiceController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "type" => "required|string",
             "name" => "required|string",
             "manager_name" => "required|string",
@@ -109,6 +110,7 @@ class ComplementaryServiceController extends Controller
             "schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["center_id"] = auth()->user()->center;
         ComplementaryService::create($validated);
 
         return redirect()->route("complementary-services.index")->with("success", "Servei complementari creat correctament");
@@ -138,7 +140,6 @@ class ComplementaryServiceController extends Controller
     public function update(Request $request, ComplementaryService $complementaryService)
     {
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "type" => "required|string",
             "name" => "required|string",
             "manager_name" => "required|string",
@@ -147,6 +148,7 @@ class ComplementaryServiceController extends Controller
             "schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
+        $validated["center_id"] = auth()->user()->center;
         $complementaryService->update($validated);
         return redirect()->route("complementary-services.index")->with("success", "Servei complementari modificat correctament");
     }

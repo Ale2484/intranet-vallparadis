@@ -9,14 +9,21 @@ use Illuminate\Http\Request;
 
 class RRHHTopicController extends Controller
 {
-    protected $paginateNumber = 21;
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $rrhhs = RRHHTopic::orderBy("created_at", "desc")->paginate($this->paginateNumber);
-        return view("rrhh.index", compact("rrhhs"));
+        $query = RRHHTopic::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $viewType = $_COOKIE['view_type'] ?? "card";
+        $rrhhs = $query->orderBy("created_at", "desc")->get();
+        return view("rrhh.index", compact("rrhhs", "viewType"));
     }
 
     /**
@@ -38,13 +45,13 @@ class RRHHTopicController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "center" => "required|string",
             "user_affected" => "required|string",
             "derivative" => "required|string",
             "description" => "required|string",
             "topic" => "required|string",
         ]);
         $validated["user_register"] = auth()->user()->id;
+        $validated["center"] = auth()->user()->center;
 
 
         RRHHTopic::create($validated);
@@ -93,43 +100,27 @@ class RRHHTopicController extends Controller
     public function activate(RRHHTopic $rrhh)
     {
         $rrhh->update(["is_active" => true]);
-        return redirect()->route("rrhh.index")->with("success", "Tema pendent deshabilitat correctament");
+        return redirect()->route("rrhh.index")->with("success", "Tema pendent activat correctament");
     }
 
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchRRHHs = RRHHTopic::where("topic", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
-        if (!empty($searchRRHHs)) {
-            foreach ($searchRRHHs as $rrhh) {
-                $htmlContent .= view("components.r-r-h-h-card", compact("rrhh"))->render();
-            }
-            // Se obtiene la paginacion
-            $pagination = $searchRRHHs->links()->render();
-        }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
-    }
-
-    public function filter(Request $request)
-    {
-        $page = $request->input("page", 1);
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
+        $orderBy = $request->orderBy;
+        $status = $request->status;
         $query = RRHHTopic::query();
 
-        // Se obtiene el filtro del estado y se añade a la query
+        if ($searchValue) {
+            $query->where("topic", "like", "%$searchValue%");
+        }
+
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
-
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -148,18 +139,24 @@ class RRHHTopicController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
+        $rrhhs = $query->get();
 
-        // Se pagina la query
-        $rrhhs = $query->paginate($this->paginateNumber, ["*"], "page", $page);
-
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        foreach ($rrhhs as $rrhh) {
-            $htmlContent .= view("components.r-r-h-h-card", compact("rrhh"))->render();
+        if ($rrhhs->isNotEmpty()) {
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($rrhhs as $rrhh) {
+                    $htmlContent .= view("components.r-r-h-h-card", compact("rrhh"))->render();
+                }
+            } else {
+                foreach ($rrhhs as $rrhh) {
+                    $htmlContent .= view("components.r-r-h-h-table", compact("rrhh"))->render();
+                }
+            }
         }
-        $pagination = $rrhhs->links()->render();
-
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
+
 }

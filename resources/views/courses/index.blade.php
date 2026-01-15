@@ -8,9 +8,11 @@
 
     {{-- Enlaces --}}
     <div class="flex items-center gap-3">
+        @if ($courses->isNotEmpty())
         <a href="{{ route("courses.exportAll") }}" class="bg-green-600 text-white rounded-lg p-2 font-bold" >
             Exportar cursos
         </a>
+        @endif
         <a href="{{ route("courses.create") }}" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
             <svg class="w-6 h-6 text-white">
                 <use xlink:href="#icon-plus"></use>
@@ -20,7 +22,7 @@
     </div>
 </div>
 
-<div class="flex items-center flex-row gap-5">
+<div class="flex items-center flex-row gap-2 md:gap-5">
     <!-- Barra de busqueda -->
     <form action="{{ route("courses.search") }}" method="post" data-type="courses" class="searchForm w-full flex items-center gap-2 border border-[#E6E5DE] rounded-lg h-10 bg-white p-5 dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
         @csrf
@@ -36,15 +38,15 @@
     </div>
     <!-- Filtros -->
     <div class="flex flex-row justify-between gap-2">
-        <button data-modal-id="filterContainer" class="open-modal-button bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+        <button data-modal-id="filterContainer" class="open-modal-button bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]  dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-adjustments-horizontal"></use>
             </svg>
-            Filtres
+            <p class="hidden md:block">Filtres</p>
         </button>
     </div>
     {{-- Cambiar vista --}}
-    <button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]">
+    <button id="changeView" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border border-[#AFAFAF]  dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
         <svg class="w-6 h-6">
             <use xlink:href="#icon-{{ $viewType == "card" ? "table" : "square"  }}"></use>
         </svg>
@@ -85,9 +87,4 @@
 
 {{-- Modal de filtros --}}
 <x-filter-card :type="'courses'"/>
-<div class="pagination">
-    {{ $courses->links('pagination::tailwind') }}
-</div>
-
-
 @endsection

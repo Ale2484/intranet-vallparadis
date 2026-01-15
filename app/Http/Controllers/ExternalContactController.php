@@ -8,56 +8,39 @@ use Illuminate\Http\Request;
 
 class ExternalContactController extends Controller
 {
-    protected $paginateNumber = 21;
-
-    public function index()
+    public function index(Request $request)
     {
-        $externalContacts = ExternalContact::orderBy("created_at", "desc")->paginate($this->paginateNumber);
+        $query = ExternalContact::query();
+        $status = $request->input("status");
+        if ($status == "active") {
+            $query->where("is_active", true);
+        } elseif ($status == "inactive") {
+            $query->where("is_active", false);
+        }
+        $externalContacts = $query->orderBy("created_at", "desc")->get();
         $viewType = $_COOKIE['view_type'] ?? "card";
         return view("external_contacts.index", compact("externalContacts", "viewType"));
     }
     public function search(Request $request)
     {
-        $pagination = "";
         $htmlContent = "";
-        // Se obtiene la pagina, sino, se usa la pagina 1
-        $page = $request->input("page", 1);
         $searchValue = $request->searchValue;
-        $searchExternalContacts = ExternalContact::where("contact_person", "like" , "%$searchValue%")->paginate($this->paginateNumber, ["*"], "page", $page);
-        if (!empty($searchExternalContacts)) {
-            $viewType = $_COOKIE['view_type'] ?? "card";
-            if ($viewType == "card") {
-                foreach ($searchExternalContacts as $externalContact) {
-                    $htmlContent .= view("components.external-contact-card", compact("externalContact"))->render();
-                }
-            } else{
-                foreach ($searchExternalContacts as $externalContact) {
-                    $htmlContent .= view("components.external-contact-table", compact("externalContact"))->render();
-                }
-            }
+        $orderBy = $request->orderBy;
+        $status = $request->status;
 
-            // Se obtiene la paginacion
-            $pagination = $searchExternalContacts->links()->render();
-        }
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
-    }
-
-    public function filter(Request $request)
-    {
-        $page = $request->input("page", 1);
-        $order = $request->input("order", null);
-        $status = $request->input("status", null);
         $query = ExternalContact::query();
 
-        // Se obtiene el filtro del estado y se añade a la query
+        if ($searchValue) {
+            $query->where("contact_person", "like", "%$searchValue%");
+        }
+
         if ($status == "active") {
             $query->where("is_active", true);
         } elseif ($status == "inactive") {
             $query->where("is_active", false);
         }
 
-        // Se comprueba que tipo de orden se envia y se añade a la query
-        switch ($order) {
+        switch ($orderBy) {
             case "recent-first":
                 $query->orderBy("created_at", "desc");
                 break;
@@ -76,28 +59,25 @@ class ExternalContactController extends Controller
             case "first-modified":
                 $query->orderBy("updated_at", "asc");
                 break;
+            default:
+                $query->orderBy("created_at", "desc");
         }
 
-        // Se pagina la query
-        $externalContacts = $query->paginate($this->paginateNumber, ["*"], "page", $page);
+        $externalContacts = $query->get();
+        if ($externalContacts->isNotEmpty()) {
+            $viewType = $_COOKIE['view_type'] ?? "card";
+            if ($viewType == "card") {
+                foreach ($externalContacts as $externalContact) {
+                    $htmlContent .= view("components.external-contact-card", compact("externalContact"))->render();
+                }
+            } else{
+                foreach ($externalContacts as $externalContact) {
+                    $htmlContent .= view("components.external-contact-table", compact("externalContact"))->render();
+                }
+            }
 
-        // Lo mismo que con search, se obtienen los cursos que se obtienen en la query
-        $htmlContent = "";
-        $viewType = $_COOKIE['view_type'] ?? "card";
-        if ($viewType == "card") {
-            foreach ($externalContacts as $externalContact) {
-                $htmlContent .= view("components.external-contact-card", compact("externalContact"))->render();
-            }
-            
-        } else {
-            foreach ($externalContacts as $externalContact) {
-                $htmlContent .= view("components.external-contact-table", compact("externalContact"))->render();
-            }
         }
-
-        $pagination = $externalContacts->links()->render();
-
-        return response()->json(["htmlContent" => $htmlContent, "pagination" => $pagination]);
+        return response()->json(["htmlContent" => $htmlContent]);
     }
 
 
@@ -111,7 +91,6 @@ class ExternalContactController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "category" => 'required|in:assistencial,"serveis generals"',
             "reason" => "required|string|max:255",
             "company_or_department" => "required|string|max:255",
@@ -121,7 +100,7 @@ class ExternalContactController extends Controller
             "observations" => "nullable|string",
             "is_active" => "boolean"
         ]);
-
+        $validated["center_id"] = auth()->user()->center;
         ExternalContact::create($validated);
 
         return redirect()->route("external-contacts.index")->with("success", "Contacte creat correctament.");
@@ -141,7 +120,6 @@ class ExternalContactController extends Controller
     public function update(Request $request, ExternalContact $externalContact)
     {
         $validated = $request->validate([
-            "center_id" => "required|exists:centers,id",
             "category" => 'required|in:assistencial,"serveis generals"',
             "reason" => "required|string|max:255",
             "company_or_department" => "required|string|max:255",
@@ -151,7 +129,7 @@ class ExternalContactController extends Controller
             "observations" => "nullable|string",
             "is_active" => "boolean"
         ]);
-
+        $validated["center_id"] = auth()->user()->center;
         $externalContact->update($validated);
 
         return redirect()->route("external-contacts.index")->with("success", "Contacte actualitzat correctament.");
