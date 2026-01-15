@@ -94,12 +94,14 @@
                     @foreach ($comments as $comment )
                         <div class="flex flex-row gap-5">
                             <div class="flex flex-col w-min">
-                                <div class="bg-{{ $tracking->end_link ? 'red' : 'blue'}}-100 w-14 h-14 rounded-full border-3 border-{{ $tracking->end_link ? 'red' : 'blue'}}-300">
-                                    @if (!$comment->userRelation->profile_photo_path)
-                                        <minidenticon-svg username="{{ md5($comment->userRelation->id) }}" class="w-14 h-14 bg-gray-200 rounded-full"></minidenticon-svg>
-                                    @else
-                                        <img src="{{ asset('storage/' . $comment->userRelation->profile_photo_path) }}" alt="{{ $comment->userRelation->name }}" class="w-14 h-14 bg-gray-200 rounded-full object-cover">
-                                    @endif
+                                <div class="w-14 h-14 rounded-full aspect-square">
+                                    <div class="w-14 h-14 aspect-square">
+                                        @if (!$comment->userRelation->profile_photo_path)
+                                            <minidenticon-svg username="{{ md5($comment->userRelation->id) }}" class="w-14 h-14  border-3 bg-gray-200 rounded-full aspect-square"></minidenticon-svg>
+                                        @else
+                                            <img src="{{ asset('storage/' . $comment->userRelation->profile_photo_path) }}" alt="{{ $comment->userRelation->name }}" class=" border-3 w-14 h-14 bg-gray-200 rounded-full aspect-square object-cover">
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="min-h-[125px] h-full flex justify-center">
                                     <div class="bg-{{ $tracking->end_link ? 'red' : 'blue'}}-300 p-0.5 h-full"></div>
