@@ -22,19 +22,12 @@
             </div>
             <p class="w-20 border p-1 text-center {{ $project->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$project->is_active ? "Actiu" : "Inactiu"}}</p>
         </div>
-        
         <div class="mt-3 ml-5 space-y-5 text-[#011020] dark:text-neutral-400">
             <div class="flex items-center">
                 <svg class="w-7 h-7">
                     <use xlink:href="#icon-user"></use>
                 </svg>
                 <span class="ml-2 dark:text-white">{{ $project->userRelation->name ?? "Usuari no assignat" }}</span>
-            </div>
-            <div class="flex items-center">
-                <svg class="w-7 h-7">
-                    <use xlink:href="#icon-folder"></use>
-                </svg>
-                <p class="ml-2 dark:text-white">{{ $project->type_label }}</p>
             </div>
             <div class="flex items-center">
                 <svg class="w-7 h-7">

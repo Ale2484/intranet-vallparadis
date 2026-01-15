@@ -2,11 +2,10 @@
 @section("title", "Mostra el centre")
 @section("main")
 <div class="w-full flex flex-col items-center justify-center gap-10">
-    
     <!-- Apartado superior -->
     <div class="w-4/5 flex justify-between items-center">
         <div class="flex flex-col gap-3">
-    
+
             <a href="{{ route("rrhh.index") }}" class="flex gap-3 text-[#AFAFAF]">
                 <svg class="w-6 h-6 ">
                     <use xlink:href="#icon-arrow-left"></use>
@@ -14,7 +13,7 @@
                 Tornar a la gestió de temes pendents
             </a>
             <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Detalls de {{ $rrhh->topic }}</h1>
-    
+
             <p class="text-[#AFAFAF]">Informació completa del tema pendent</p>
         </div>
 
@@ -32,7 +31,11 @@
             <div class="border border-[#AFAFAF] bg-white dark:bg-neutral-800 rounded-[15px] p-5 lg:w-[50%] min-w-min dark:border-neutral-600">
                 <div class="flex gap-5 items-center ">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
-                        <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}"></minidenticon-svg>
+                        @if (!$rrhh->userAffectedRelation->profile_photo_path)
+                            <minidenticon-svg username="{{ md5($rrhh->userAffectedRelation->id) }}"></minidenticon-svg>
+                        @else
+                            <img src="{{ asset('storage/' . $rrhh->userAffectedRelation->profile_photo_path) }}" alt="{{ $rrhh->userAffectedRelation->name }}" class="w-16 h-16 bg-gray-200 rounded-full object-cover">
+                        @endif
                     </div>
                     <div>
                         <p>Professionals afectat</p>
@@ -48,11 +51,15 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="border border-[#AFAFAF] bg-white dark:bg-neutral-800 rounded-[15px] p-5 lg:w-[50%] min-w-min dark:border-neutral-600">
                 <div class="flex gap-5 items-center ">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
-                        <minidenticon-svg username="{{ md5($rrhh->userRegisterRelation->id) }}"></minidenticon-svg>
+                        @if (!$rrhh->userAffectedRelation->profile_photo_path)
+                            <minidenticon-svg username="{{ md5($rrhh->userRegisterRelation->id) }}"></minidenticon-svg>
+                        @else
+                            <img src="{{ asset('storage/' . $rrhh->userRegisterRelation->profile_photo_path) }}" alt="{{ $rrhh->userRegisterRelation->name }}" class="w-16 h-16 bg-gray-200 rounded-full object-cover">
+                        @endif
                     </div>
                     <div>
                         <p>Professional registrador</p>

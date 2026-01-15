@@ -72,9 +72,11 @@
                     <div class="flex flex-row gap-3">
                         <div>
                             <div class="bg-gray-200 w-12 h-12 rounded-full">
-                                {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                <minidenticon-svg username="{{ md5($evaluation->evaluator) }}"></minidenticon-svg>
+                                @if (!$evaluation->evaluatorRelation->profile_photo_path)
+                                    <minidenticon-svg username="{{ md5($evaluation->evaluatorRelation->id) }}"></minidenticon-svg>
+                                @else
+                                    <img src="{{ asset('storage/' . $evaluation->evaluatorRelation->profile_photo_path) }}" alt="{{ $evaluation->evaluatorRelation->name }}" class="w-12 h-12 bg-gray-200 rounded-full object-cover">
+                                @endif
                             </div>
                         </div>
                         <div class="flex flex-col">
@@ -103,12 +105,12 @@
                             </svg>
                         </div>
                         <div class="overflow-hidden break-words whitespace-normal break-all">
-                            {{ Str::limit($evaluation->comment, 100) }}
+                            {{ $evaluation->comment != "" ? Str::limit($evaluation->comment, 100) : "Aquesta avaluació no té comentari"  }}
                         </div>
                     </div>
                 </div>
                 <div class="p-5 flex flex-row justify-between">
-                    <a href="{{ route('evaluations.index', $user->id) }}" 
+                    <a href="{{ route('evaluations.index', $user->id) }}"
                         class="bg-green-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-green-700 transition-all h-fit">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-clip"></use>
@@ -225,7 +227,7 @@
                     Observacions
                 </div>
                 <div class="overflow-hidden break-words whitespace-normal break-all">
-                    {{ $evaluation->comment }}
+                    {{ $evaluation->comment ?? "Aquesta evaluació no té comentari" }}
                 </div>
             </div>
             <div class="text-xl">
