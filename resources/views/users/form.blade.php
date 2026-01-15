@@ -156,7 +156,7 @@
         </div>
     </div>
     <!-- Botones -->
-    <div class="flex flex-row gap-4 justify-end mt-8 pt-6 border-t border-gray-200">
+    <div class="flex flex-col-reverse md:flex-row gap-4 justify-end mt-8 pt-6 border-t border-gray-200">
         <a href="{{ route('users.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
             Cancel·lar
         </a>
