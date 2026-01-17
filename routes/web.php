@@ -22,6 +22,7 @@ use App\Http\Controllers\ExternalContactController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MaintenanceTrackingController;
 use App\Http\Controllers\MaintenanceDocsController;
+use App\Http\Controllers\MaintenanceCommentController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -151,6 +152,10 @@ Route::middleware("auth")->group(function () {
     Route::resource("maintenance", MaintenanceController::class)->except(["destroy","update","edit"]);
     Route::get("maintenance/{maintenance}/tracking", [MaintenanceTrackingController::class, "index"])->name('maintenance.tracking');
     Route::post("maintenance/{maintenance}/tracking/store", [MaintenanceTrackingController::class, "store"])->name('maintenance.tracking.store');
+
+    Route::get("maintenance/{maintenance}/tracking/{tracking}", [MaintenanceTrackingController::class, "show"])->name('maintenance.tracking.show');
+    Route::post("maintenance/{maintenance}/tracking/{tracking}/store", [MaintenanceCommentController::class, "store"])->name('maintenance.comment.store');
+
     Route::get("maintenance/{maintenance}/docs", [MaintenanceDocsController::class, "index"])->name('maintenance.docs');
     Route::post("maintenance/{maintenance}/docs/store", [MaintenanceDocsController::class, "Store"])->name('maintenance.docs.store');
     Route::post("/maintenance/search", [MaintenanceController::class, "search"])->name("maintenance.search");

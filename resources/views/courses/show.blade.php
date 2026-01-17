@@ -38,12 +38,12 @@
                         <div class="flex w-2/2 md:w-1/2 flex-row items-center gap-2">
                             <div class="p-2 rounded-lg mb-2 flex flex-row items-center justify-center bg-[#ffe7de] text-[#FF7E13] w-12 h-12">
                                 <svg class="w-8 h-8">
-                                    <use xlink:href="#icon-center"></use>
+                                    <use xlink:href="#icon-user"></use>
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-md dark:text-white">Centre:</p>
-                                <p class="font-semibold dark:text-white">{{ $course->center->name ?? "Error en obtenir el centre" }}</p>
+                                <p class="text-md dark:text-white">Assistent</p>
+                                <p class="font-semibold dark:text-white">{{ $course->assistantRelation->name ?? "Error en obtenir el assistent" }}</p>
                             </div>
                         </div>
                         {{-- Elemento --}}
@@ -71,7 +71,7 @@
                             </div>
                             <div>
                                 <p class="text-md dark:text-white">Modalitat:</p>
-                                <p class="font-semibold dark:text-white">{{ $course->modality ?? "Error en obtenir la modalitat" }}</p>
+                                <p class="font-semibold dark:text-white">{{ $course->modality ? ucfirst($course->modality) : "Error en obtenir la modalitat" }}</p>
                             </div>
                         </div>
                         {{-- Elemento --}}
@@ -176,7 +176,11 @@
                                     <div class="flex items-center">
                                         <div class="flex items-center gap-2">
                                             <div class="w-15 h-15 bg-gray-200 rounded-full">
-                                                <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                                @if (!$user->profile_photo_path)
+                                                    <minidenticon-svg username="{{ md5($user->id) }}" class="w-15 h-15 bg-gray-200 rounded-full"></minidenticon-svg>
+                                                @else
+                                                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="w-15 h-15 bg-gray-200 rounded-full object-cover">
+                                                @endif
                                             </div>
                                             <div>
                                                 <a href="{{ route("users.show" , $user) }}" class="font-semibold dark:text-white">{{$user->name ?? " - "}}</a>

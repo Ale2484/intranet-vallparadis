@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Maintenance;
+use App\Models\MaintenanceComment;
 use App\Models\MaintenanceTracking;
 use Illuminate\Http\Request;
 
@@ -13,12 +14,12 @@ class MaintenanceTrackingController extends Controller
      */
     public function index(Maintenance $maintenance)
     {
-        $comments=MaintenanceTracking::where('maintenance', $maintenance->id)->get()->sortByDesc('created_at');
-        $total=$comments->count();
+        $trackings=MaintenanceTracking::where('maintenance', $maintenance->id)->get()->sortByDesc('created_at');
+        $total=$trackings->count();
 
         return view("maintenance.tracking", compact(
-            "maintenance",
-            "comments",
+            'trackings', 
+            'maintenance',
             "total"
         ));
     }
@@ -28,16 +29,28 @@ class MaintenanceTrackingController extends Controller
     public function store(Request $request, Maintenance $maintenance)
     {
         $validated = $request->validate([
-            'comment' => 'required|string'
+            'topic' => 'required|string|max:255'
         ]);
 
         
         MaintenanceTracking::create([
-            'user' => auth()->user()->id,
             'maintenance' => $maintenance->id,
-            'description'=> $validated['comment']
+            'user' => auth()->user()->id,
+            'topic' => $validated['topic'],
         ]);
         
-        return redirect()->route('maintenance.tracking', $maintenance->id)->with('success', 'Comentari creat correctament.');
+        return redirect()->route('maintenance.tracking', $maintenance->id)->with('success', 'Seguiment creat correctament.');
+    }
+    public function show(Maintenance $maintenance, MaintenanceTracking $tracking)
+    {
+        $comments=MaintenanceComment::where('maintenance', $tracking->id)->get()->sortByDesc('created_at');
+        $total=$comments->count();
+
+        return view("maintenance.comment", compact(
+            "maintenance",
+            "tracking",
+            "comments",
+            "total"
+        ));
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monitorings_maintenances', function (Blueprint $table) {
+        Schema::create('comments_maintenances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("maintenance");
             $table->timestamps();
             $table->unsignedBigInteger("user");
-            $table->string("topic");
+            $table->string("description");
 
-            $table->foreign("maintenance")->references("id")->on("maintenances");
+            $table->foreign("maintenance")->references("id")->on("monitorings_maintenances");
             $table->foreign("user")->references("id")->on("users");
         });
+
     }
 
     /**
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('monitoring__maintenance');
+        Schema::dropIfExists('comments_maintenances');
     }
 };
