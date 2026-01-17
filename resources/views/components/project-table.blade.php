@@ -1,7 +1,7 @@
 <tr data-clickable-element="true" class="mb-10 bg-white border-b border-[#AFAFAF] text-[#0F172A] hover:bg-[#eeeeee65] hover:transition-all dark:bg-neutral-800 dark:border-neutral-600 dark:text-white dark:hover:bg-neutral-700 cursor-pointer">
     <td class="flex items-center gap-2 p-3">
-        <div class="bg-[#ffe7de] rounded-lg p-2">
-            <svg class="w-8 h-8 text-[#FF7E13]"><use xlink:href="#icon-folder"></use></svg>
+        <div class="{{  $project->type_label == "Projecte" ? "bg-green-600/16" : "bg-[#ffe7de]" }} rounded-lg p-2">
+            <svg class="w-8 h-8 {{  $project->type_label == "Projecte" ? "text-green-600" : "text-[#FF7E13]" }}"><use xlink:href="#icon-folder"></use></svg>
         </div>
         <a href="{{ route('projects.show', $project) }}" class="text-[#012F4A] font-bold text-[16px] dark:text-white main-link">{{ $project->name }}</a>
     </td>
@@ -19,7 +19,7 @@
     </td>
 
     <td class="text-center px-3">
-        <p>{{ $project->created_at ? $project->created_at->format('d/m/Y') : '' }}</p>
+        <p>{{ $project->created_at ? $project->start->format('d/m/Y') : '' }}</p>
     </td>
 
     <td class="text-center px-3">

@@ -46,7 +46,7 @@
                 </svg>
                 Telèfon
             </label>
-            <input type="text" name="phone" id="phone" placeholder="Telefon de l'usuari" value="{{ old('phone', $user->phone) }}"  class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 @error('phone') border-red-500 @enderror" maxlength="9">
+            <input type="text" name="phone" id="phone" placeholder="Telèfon de l'usuari" value="{{ old('phone', $user->phone) }}"  class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 @error('phone') border-red-500 @enderror" maxlength="9">
             @error('phone')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -130,7 +130,7 @@
                 </svg>
                 Taquilla *
             </label>
-            <input type="text" name="locker" id="locker" value="{{ old('locker', $user->locker) }}" placeholder="Nombre de taquilla"
+            <input type="text" name="locker" id="locker" value="{{ old('locker', $user->locker) }}" placeholder="Número de taquilla"
                     class="w-full px-3 py-2 border border-gray-300 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('locker') border-red-500 @enderror"
                     required>
             @error('locker')

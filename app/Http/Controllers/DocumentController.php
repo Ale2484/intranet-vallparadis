@@ -14,7 +14,7 @@ class DocumentController extends Controller
         if (Storage::disk("local")->exists($document->file_path)) {
             return Storage::disk("local")->download($document->file_path);
         } else{
-            return back()->with("error", "El archivo no existe");
+            return back()->with("error", "El fitxer no existeix");
         }
     }
 }

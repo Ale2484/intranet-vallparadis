@@ -75,6 +75,22 @@
                 <span class="menu-text hidden text-nowrap">Serveis complementaris</span>
             </a>
         </li>
+        <li>
+            <a href="{{ route("rrhh.index") }}" class="{{ request()->is('rrhh*') ? "menu-option-selected" : "menu-option" }}">
+            <svg class="w-7 h-7">
+                <use xlink:href="#icon-group-user"></use>
+            </svg>
+                <span class="menu-text hidden text-nowrap">Temas pendents RRHH</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route("maintenance.index") }}" class="{{ request()->is('maintenance*') ? "menu-option-selected" : "menu-option" }}">
+            <svg class="w-7 h-7">
+                <use xlink:href="#icon-wrench-screwdriver"></use>
+            </svg>
+                <span class="menu-text hidden text-nowrap">Manteniments</span>
+            </a>
+        </li>
 
     </ul>
 </nav>
@@ -103,7 +119,7 @@
                 <use xlink:href="#icon-search"></use>
             </svg>
         </button>
-        <input type="search" name="search" id="search" placeholder="Buscar professionals , documents...." class="pl-2 w-full h-10 outline-0 dark:text-slate-400">
+        <input type="search" name="search" id="search" placeholder="Cercar professionals, documents..." class="pl-2 w-full h-10 outline-0 dark:text-slate-400">
         <div id="general-results" class="bg-white rounded-b-lg border-b border-t-none border-2 border-x border-[#E6E5DE] w-full absolute top-9 right-0 px-3 pb-3 max-h-90 overflow-y-auto hidden">
         </div>
     </form>

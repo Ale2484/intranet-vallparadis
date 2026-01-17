@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section("title", "Veure els projectes/comisions")
+@section("title", "Veure els projectes/comissions")
 @section('main')
 <div>
     <!-- Header -->
@@ -23,7 +23,7 @@
                 </svg>
             </button>
         
-            <input type="search" name="search" id="search" placeholder="Buscar projectes o comissions..." class=" pl-2 w-full h-10 outline-0">
+            <input type="search" name="search" id="search" placeholder="Cercar projectes o comissions..." class=" pl-2 w-full h-10 outline-0">
         </form>
         <div class="w-12">
             @include("partials.loader")
@@ -60,11 +60,11 @@
         <table class="w-full border-collapse">
             <thead class="bg-[#edecec] dark:bg-neutral-950 dark:text-white">
                 <tr class="border-b border-[#AFAFAF] text-center">
-                    <th class="p-2">Projecte</th>
+                    <th class="p-2">Projecte/Comissió</th>
                     <th>Responsable</th>
                     <th>Tipus</th>
                     <th>Documents</th>
-                    <th>Creat</th>
+                    <th>Data d'inici</th>
                     <th>Estat</th>
                     <th>Accions</th>
                 </tr>

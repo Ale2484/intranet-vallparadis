@@ -12,7 +12,7 @@
             <svg class="w-6 h-6 ">
                 <use xlink:href="#icon-arrow-left"></use>
             </svg>
-            Tornar a la gestió de usuaris
+            Tornar a la gestió d'usuaris
         </a>
 
         <h1 class="text-3xl font-bold text-[#011020]">Editar l'uniforme</h1>
@@ -53,7 +53,7 @@
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <label for="shoes">Sabates</label>
             </div>
-            <input type="number" name="shoes" id="shoes" step="0.5" min="30" max="50" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" value="{{ old("shoes", $uniformity->shoes) }}" placeholder="Introdueix un numero de sabates">
+            <input type="number" name="shoes" id="shoes" step="0.5" min="30" max="50" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" value="{{ old("shoes", $uniformity->shoes) }}" placeholder="Introdueix un número de sabates">
         
             <div class="flex items-center gap-3 mb-3 font-semibold">
                 <label for="userRenewal">Usuari que entrega el material</label>

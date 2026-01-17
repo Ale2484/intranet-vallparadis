@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section("title", "Resultats de la busqueda")
+@section("title", "Resultats de la cerca")
 @section('main')
 @php
-    $searchGroups = [$searchUsers, $searchCenters, $searchProjects, $searchCourses, $searchGeneralServices, $searchComplementaryServices, $searchExternalContacts];
+    $searchGroups = [$searchUsers, $searchCenters, $searchProjects, $searchCourses, $searchGeneralServices, $searchComplementaryServices, $searchExternalContacts, $searchMaintenances, $searchRrhhs];
 @endphp
 <a href="{{ route("dashboard") }}" class="flex gap-3 text-[#AFAFAF] mb-5">
     <svg class="w-6 h-6">
@@ -77,6 +77,26 @@
     <div class="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         @foreach($searchExternalContacts as $externalContact)
             <x-external-contact-card :externalContact="$externalContact"/>
+        @endforeach
+    </div>
+@endif
+
+{{-- RRHH --}}
+@if ($searchRrhhs->isNotEmpty())
+    <h1 class="w-full mt-7 text-3xl font-bold text-[#011020] dark:text-white">Temes pendents RRHH:</h1>
+    <div class="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        @foreach($searchRrhhs as $rrhh)
+            <x-r-r-h-h-card :rrhh="$rrhh"/>
+        @endforeach
+    </div>
+@endif
+
+{{-- Mantenimiento --}}
+@if ($searchMaintenances->isNotEmpty())
+    <h1 class="w-full mt-7 text-3xl font-bold text-[#011020] dark:text-white">Manteniments:</h1>
+    <div class="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        @foreach($searchMaintenances as $maintenance)
+            <x-maintenance-card :maintenance="$maintenance"/>
         @endforeach
     </div>
 @endif

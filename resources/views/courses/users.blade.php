@@ -22,9 +22,9 @@
         @foreach ($courseUsers as $user )
             <div class="lg:hidden flex items-center gap-2 w-full justify-end">
                 <svg width="10" height="10">
-                    <circle cx="5" cy="5" r="5" class="{{ $user->pivot->certificate == "ENTREGAT" ? "fill-green-600" : "fill-red-600" }}"/>
+                    <circle cx="5" cy="5" r="5" class="{{ $user->pivot->certificate == "LLIURAT" ? "fill-green-600" : "fill-red-600" }}"/>
                 </svg>
-                <p class="{{ $user->pivot->certificate == "ENTREGAT" ? "text-green-600" : "text-red-600" }}">{{ $user->pivot->certificate }}</p>
+                <p class="{{ $user->pivot->certificate == "LLIURAT" ? "text-green-600" : "text-red-600" }}">{{ $user->pivot->certificate }}</p>
             </div>
             <div class="w-full border border-[#AFAFAF] bg-white rounded-[15px] p-5 text-[#0F172A] dark:bg-neutral-800 dark:border-neutral-600 mb-5">
                 <div class="flex flex-col md:flex-row items-center justify-between">
@@ -32,7 +32,11 @@
                     <div class="flex w-full justify-between">
                         <div class="flex items-center gap-2">
                             <div class="w-15 h-15 bg-gray-200 rounded-full">
-                                <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                @if (!$user->profile_photo_path)
+                                    <minidenticon-svg username="{{ md5($user->id) }}" class="w-15 h-15 bg-gray-200 rounded-full"></minidenticon-svg>
+                                @else
+                                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="w-15 h-15 bg-gray-200 rounded-full object-cover">
+                                @endif
                             </div>
                             <div>
                                 <a href="{{ route("users.show" , $user) }}" class="font-semibold dark:text-white">{{$user->name ?? " - "}}</a>
@@ -42,9 +46,9 @@
 
                         <div class="hidden items-center gap-2 lg:flex">
                             <svg width="10" height="10">
-                                <circle cx="5" cy="5" r="5" class="{{ $user->pivot->certificate == "ENTREGAT" ? "fill-green-600" : "fill-red-600" }}"/>
+                                <circle cx="5" cy="5" r="5" class="{{ $user->pivot->certificate == "LLIURAT" ? "fill-green-600" : "fill-red-600" }}"/>
                             </svg>
-                            <p class="mr-10 {{ $user->pivot->certificate == "ENTREGAT" ? "text-green-600" : "text-red-600" }}">{{ $user->pivot->certificate }}</p>
+                            <p class="mr-10 {{ $user->pivot->certificate == "LLIURAT" ? "text-green-600" : "text-red-600" }}">{{ $user->pivot->certificate }}</p>
                         </div>
                     </div>
 
@@ -53,11 +57,11 @@
                             <form action="{{ route("courses.giveCertificate", ["course" => $course, "user" => $user]) }}" method="post" class="flex items-center justify-center w-full md:w-auto">
                                 @csrf
                                 @method("PATCH")
-                                <button type="submit" @disabled($user->pivot->certificate == "ENTREGAT") class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-100 disabled:border-gray-400 disabled:opacity-30 w-full mt-5 md:w-auto md:mt-0">
+                                <button type="submit" @disabled($user->pivot->certificate == "LLIURAT") class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all disabled:cursor-not-allowed disabled:bg-gray-400 disabled:text-gray-100 disabled:border-gray-400 disabled:opacity-30 w-full mt-5 md:w-auto md:mt-0">
                                     <svg class="w-6 h-6 ">
                                         <use xlink:href="#icon-plus"></use>
                                     </svg>
-                                    Entregar certificat
+                                    Lliurar certificat
                                 </button>
                             </form>
                             <form action="{{ route("courses.removeCertificate", ["course" => $course, "user" => $user]) }}" method="post" class="flex items-center justify-center w-full md:w-auto">

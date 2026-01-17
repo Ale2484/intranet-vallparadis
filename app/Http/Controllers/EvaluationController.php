@@ -30,15 +30,15 @@ class EvaluationController extends Controller
                 }
             }
         }
-        
+
         if($total>0){
-            for ($i=1; $i <= 20 ; $i++) { 
+            for ($i=1; $i <= 20 ; $i++) {
                 $key = "p".$i;
                 $questionAverage[$key]/=$total;
             }
         }
 
-        $evaluations=Evaluation::where('user', $user->id)->orderBy('created_at', 'desc')->paginate(4);
+        $evaluations=Evaluation::where('user', $user->id)->orderBy('created_at', 'desc')->get();
 
         $questions = [
             "Realitza una correcta atenció a l'usuari",
@@ -117,7 +117,7 @@ class EvaluationController extends Controller
             ] + $validated
         );
         
-        return redirect()->route('evaluations.index', $user->id)->with('success', 'Evaluacio creada correctament.');
+        return redirect()->route('evaluations.index', $user->id)->with('success', 'Avaluació creada correctament.');
     }
 
     public function create(User $user)

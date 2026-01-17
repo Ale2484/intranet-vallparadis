@@ -1,5 +1,5 @@
 <!-- Contenedor -->
-<div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-fit mb-5 flex flex-col gap-5 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
+<div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5 dark:bg-neutral-800 dark:border-neutral-600 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
     <div class="flex justify-between items-center border-b-1 border-b-[#AFAFAF] pb-5">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
@@ -7,29 +7,29 @@
                 <use xlink:href="#icon-wrench-screwdriver"></use>
             </svg>
             </div>
-            <a href="{{ route("maintenance.show", $maintenance) }}" class="text-[#012F4A] font-bold text-[20px] main-link">{{ $maintenance->topic }}</a>
+            <a href="{{ route("maintenance.show", $maintenance) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $maintenance->topic }}</a>
         </div>
 
         <p class="w-20 border-1 p-1 text-center {{ $maintenance->is_active ? "bg-green-200 text-green-600 border-green-600 rounded-lg" : "bg-red-200 text-red-600 border-red-600 rounded-lg" }}">{{$maintenance->is_active ? "Actiu" : "Inactiu"}}</p>
     </div>
     <!-- Especificaciones -->
-    <div class="flex flex-col gap-3 text-[#0F172A] border-b-1 border-b-[#AFAFAF] pb-5">
-        <div class="flex items-center text-[#011020]">
+    <div class="flex flex-col gap-3 text-[#0F172A] dark:text-neutral-400 border-b-1 border-b-[#AFAFAF] pb-5">
+        <div class="flex items-center">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-worker"></use>
             </svg>
             <span class="ml-2">Responsable</span>
         </div>
-        <div class="overflow-hidden break-words whitespace-normal break-all">
+        <div class="overflow-hidden break-words whitespace-normal break-all dark:text-white">
             {{ Str::limit($maintenance->responsible, 500) }}
         </div>
     </div>
     
     <!-- Activar/Desactivar -->
-    <div class="flex flex-row gap-5 justify-end">
+    <div class="flex flex-row gap-5 justify-end dark:text-white">
         <div class="w-full items-center flex gap-5 justify-between flex-col md:flex-row">            
             
-            <p class="text-sm">Creat: {{ $maintenance->created_at->format("d/m/Y") }} | Actualizat: {{ $maintenance->updated_at->format("d/m/Y") }}</p>
+            <p class="text-sm">Creat: {{ $maintenance->created_at->format("d/m/Y") }} | Actualitzat: {{ $maintenance->updated_at->format("d/m/Y") }}</p>
             <form action="{{ $maintenance->is_active ? route("maintenance.deactivate", $maintenance) : route("maintenance.activate", $maintenance) }}" method="post">
                 @csrf
                 @method("PATCH")

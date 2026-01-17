@@ -42,9 +42,9 @@
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-desc"></use>
                 </svg>
-                <label for="description">Descripcio</label>
+                <label for="description">Descripció</label>
             </div>
-            <textarea name="description" id="description" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" placeholder="Introdueix una descripcio"></textarea>
+            <textarea name="description" id="description" class="border-1 shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full mb-5" placeholder="Introdueix una descripció"></textarea>
 
             <div class="flex justify-end gap-5 mt-5">
                 <a href="{{ route("maintenance.index") }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">Cancel·lar</a>

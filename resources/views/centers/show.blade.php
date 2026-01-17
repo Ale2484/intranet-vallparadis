@@ -23,7 +23,7 @@
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-square-pen"></use>
                 </svg>
-                Editar el centre
+                Edita el centre
             </a>
             <a href="{{ route("centers.documents", $center) }}" class="bg-cyan-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-cyan-700 transition-all">
                 <svg class="w-6 h-6">
@@ -66,7 +66,7 @@
                 </svg>
                 <div>
                     <p class="font-semibold dark:text-white">Telèfon:</p>
-                    <p class="dark:text-white">{{ $center->phone ?? "Aquest centre no te telèfon"}}</p>
+                    <p class="dark:text-white">{{ $center->phone ?? "Aquest centre no té telèfon"}}</p>
                 </div>
             </div>
             <hr class="text-[#AFAFAF] my-5">
@@ -75,8 +75,8 @@
                     <use xlink:href="#icon-mail"></use>
                 </svg>
                 <div>
-                    <p class="font-semibold dark:text-white">Email:</p>
-                    <p class="dark:text-white">{{ $center->email ?? "Aquest centre no te email"}}</p>
+                    <p class="font-semibold dark:text-white">Correu electrònic:</p>
+                    <p class="dark:text-white">{{ $center->email ?? "Aquest centre no té correu electrònic"}}</p>
                 </div>
             </div>
         </div>

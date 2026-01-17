@@ -109,7 +109,7 @@ class UserController extends Controller
             'locker_password' => 'required|string',
             'password' => 'required|min:8',
         ]);
-        $validated["center"]=1;
+        $validated["center"]= auth()->user()->center;
 
         $validated['password'] = Hash::make($validated['password']);
         $validated['is_active'] = true;

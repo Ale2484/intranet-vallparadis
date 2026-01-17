@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Si aun no esta añadido el id del usuario al input se añade
                     if (!addedUsers.includes(userId)) {
                         if (userIdsInput.value) {
-                            userIdsInput.value += "," + userId;                            
+                            userIdsInput.value += "," + userId;
                         } else{
                             userIdsInput.value = userId;
                         }

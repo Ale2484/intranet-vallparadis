@@ -13,7 +13,7 @@
     </td>
 
     <td class="text-center px-3">
-        <p>{{ $generalService->type ? ucfirst($generalService->type) : "Aquest servei no te tipus" }}</p>
+        <p>{{ $generalService->type ? ucfirst($generalService->type) : "Aquest servei no té tipus" }}</p>
     </td>
 
     <td class="text-center px-3">

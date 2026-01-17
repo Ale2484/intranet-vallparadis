@@ -18,7 +18,7 @@ class CourseUserSeeder extends Seeder
                 "id" => 1,
                 "user_id" => 1,
                 "course_id" => 1,
-                "certificate" => "ENTREGAT",
+                "certificate" => "LLIURAT",
                 "created_at" => now()->subDays(30),
                 "updated_at" => now()->subDays(25),
             ],
@@ -250,7 +250,7 @@ class CourseUserSeeder extends Seeder
                 "id" => 30,
                 "user_id" => 29,
                 "course_id" => 10,
-                "certificate" => "ENTREGAT",
+                "certificate" => "LLIURAT",
                 "created_at" => now()->subDays(1),
                 "updated_at" => now(),
             ]

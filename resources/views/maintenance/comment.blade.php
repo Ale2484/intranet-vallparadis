@@ -5,14 +5,14 @@
     <!-- Header -->
     <div class="w-full flex flex-row justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
-            <a href="{{ route('rrhh.show', $rrhh) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
+            <a href="{{ route('maintenance.tracking', $maintenance) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
-                Tornar al tema pendent
+                Tornar al llistat de seguiments
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Seguiment de: {{ $rrhh->topic }}</h1>
-            <p class="text-[#AFAFAF]" >Comentaris del tema pendent</p>
+            <h1 class="text-3xl font-bold text-[#011020]">Seguimient: {{ $tracking->topic }} del manteniment: {{ $maintenance->topic }}</h1>
+            <p class="text-[#AFAFAF]" >Comentaris del seguiment</p>
         </div>
     </div>
     <div class="flex flex-col gap-5">
@@ -22,7 +22,7 @@
             <div class="flex flex-col justify-start w-5/8 gap-5 max-h-[640px] {{ $total<1 ? 'h-[170px]' : '' }} {{ $total==1 ? 'h-[360px]' : '' }} border border-[#AFAFAF] bg-white rounded-[15px] p-5">
                 <div class="flex flex-row justify-between items-center w-full">
                     <div class="text-2xl font-bold text-[#011020]">
-                        Historial de comentaris
+                        Historial de commentaris
                     </div>
                     <div class="text-[#FF7E13] text-1xl font-bold">
                         {{ $total }} comentaris
@@ -70,12 +70,12 @@
                             </div>
                         </div>
                         <div class="text-zinc-500">
-                            Fi de l'historial
+                            Fi del historial
                         </div>
                     </div>
                 </div>
             </div>
-            @unless ($rrhh->end_link)
+            @unless ($maintenance->end_link)
                 <!-- Formulario -->
                 <div class="flex flex-col justify-center w-1/4 h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5 gap-5 max-h-[640px] min-w-min">
                     <div class="pb-3 border-b-1 border-[#AFAFAF] flex flex-col gap-2">
@@ -88,10 +88,10 @@
                             </div>
                         </div>
                         <div class="text-[#5E6468]">
-                            Afegeix un comentari nou dins del tema pendent: {{ $rrhh->topic }}
+                            Afegeix un comentari nou dins del manteniment: {{ $maintenance->topic }}
                         </div>
                     </div>
-                    <form action="{{ route('rrhh.tracking.store', $rrhh) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7">
+                    <form action="{{ route('maintenance.comment.store', ['maintenance' => $maintenance->id, 'tracking' => $tracking->id]) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7">
                         @csrf
                         @method("POST")
                         <div class="flex flex-col gap-3">

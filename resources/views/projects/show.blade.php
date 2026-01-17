@@ -13,7 +13,7 @@
             </a>
             <h1 class="text-3xl font-bold text-[#011020] mb-2 dark:text-white">Informació completa {{ $project->type_label == "del projecte" ? "projecte" : "de la comissió" }}  {{ $project->name }}</h1>
             <div class="flex gap-2 items-center">
-                <p class="dark:text-white">Informació completa del projecte/comissio</p>
+                <p class="dark:text-white">Informació completa del projecte/comissió</p>
                 @if($project->type_label == "Projecte")
                     <div class="border p-1 text-center bg-green-200 text-green-600 border-green-600 rounded-lg w-20">
                         Projecte
@@ -25,7 +25,7 @@
                 @endif
             </div>
         </div>
-        <a href="{{ route('projects.edit', $project) }}" 
+        <a href="{{ route('projects.edit', $project) }}"
             class="w-fit  bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all py-3">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-square-pen"></use>
@@ -34,7 +34,7 @@
         </a>
     </div>
     <div class="flex flex-col gap-5 w-full">
-        <div class="w-full flex flex-col md:flex-row justify-beetwen gap-5 md:gap-10">
+        <div class="w-full flex flex-col md:flex-row justify-between gap-5 md:gap-10">
             <!-- Tarjeta de información básica -->
             <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-1 dark:bg-neutral-800 dark:border-neutral-600">
                 <div>
@@ -49,7 +49,11 @@
                             <p class="font-bold text-lg">Usuari assignat</p>
                         </div>
                         <div class="flex items-center">
-                            <minidenticon-svg username="{{ md5($project->userRelation->id) }}" class="w-16 h-16 bg-gray-200 rounded-full"></minidenticon-svg>
+                            @if (!$project->userRelation->profile_photo_path)
+                                <minidenticon-svg username="{{ md5($project->userRelation->id) }}" class="w-16 h-16 bg-gray-200 rounded-full"></minidenticon-svg>
+                            @else
+                                <img src="{{ asset('storage/' . $project->userRelation->profile_photo_path) }}" alt="{{ $project->userRelation->name }}" class="w-16 h-16 bg-gray-200 rounded-full object-cover">
+                            @endif
                             <div class="ml-2">
                                 <p class="text-xl font-bold text-[#011020] dark:text-white mb-1">{{ $project->userRelation->name ?? 'No assignat' }}</p>
                                 <p class="text-[#AFAFAF] text-sm">{{ $project->userRelation->email ?? '' }}</p>
@@ -194,7 +198,11 @@
                     @foreach ($asignedUsers as $user)
                         <div class="flex gap-5 border border-[#AFAFAF] bg-white rounded-[15px] p-5 mb-5 items-center dark:bg-neutral-800 dark:border-neutral-600">
                             <div class="w-12 h-12 bg-gray-200 rounded-full">
-                                <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                @if (!$user->profile_photo_path)
+                                    <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                @else
+                                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="w-12 h-12 bg-gray-200 rounded-full object-cover">
+                                @endif
                             </div>
                             <div class="flex flex-col text-[#5E6468] dark:text-white">
                                 <label for="user_{{ $user->id }}">{{ $user->name }}</label>
@@ -210,17 +218,6 @@
                 @endif
             </div>
         </div>
-
-        {{-- <div class="w-full flex justify-end gap-3">
-            <a href="{{ route('projects.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
-                Cancel·lar
-            </a>
-            <a href="{{ route('projects.edit', $project) }}" 
-                class="w-fit  bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all py-3">
-                
-                {{ $project->type_label == "Comissió" ? "Editar la comissió" : "Editar el projecte" }}
-            </a>
-        </div> --}}
     </div>
 </div>
 @endsection

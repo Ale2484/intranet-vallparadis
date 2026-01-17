@@ -12,7 +12,7 @@
                 Tornar a la gestió de professionals
             </a>
             <h1 class="text-3xl font-bold text-[#011020]">Evaluacios de {{ $user->name }}</h1>
-            <p class="text-[#AFAFAF]" >Evaluacions del professional seleccionat</p>
+            <p class="text-[#AFAFAF]" >Avaluacions del professional seleccionat</p>
         </div>
     </div>
     
@@ -48,17 +48,17 @@
                 </svg>
             </div>
             <div class="flex flex-col gap-2 font-bold text-xl">
-                <p>Ultima avaluacio</p>
+                <p>Ultima avaluació</p>
                 <p>{{ number_format($lastScore*(100/3), 2, '.', '') }}</p>
             </div>
         </div>
 
-        <a href="{{ route('evaluations.create', $user->id) }}" 
+        <a href="{{ route('evaluations.create', $user->id) }}"
             class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-plus"></use>
             </svg>
-            Nova avaluacio
+            Nova avaluació
         </a>
     </div>
     <div class="font-bold text-xl">
@@ -72,9 +72,11 @@
                     <div class="flex flex-row gap-3">
                         <div>
                             <div class="bg-gray-200 w-12 h-12 rounded-full">
-                                {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                <minidenticon-svg username="{{ md5($evaluation->evaluator) }}"></minidenticon-svg>
+                                @if (!$evaluation->evaluatorRelation->profile_photo_path)
+                                    <minidenticon-svg username="{{ md5($evaluation->evaluatorRelation->id) }}"></minidenticon-svg>
+                                @else
+                                    <img src="{{ asset('storage/' . $evaluation->evaluatorRelation->profile_photo_path) }}" alt="{{ $evaluation->evaluatorRelation->name }}" class="w-12 h-12 bg-gray-200 rounded-full object-cover">
+                                @endif
                             </div>
                         </div>
                         <div class="flex flex-col">
@@ -103,12 +105,12 @@
                             </svg>
                         </div>
                         <div class="overflow-hidden break-words whitespace-normal break-all">
-                            {{ Str::limit($evaluation->comment, 100) }}
+                            {{ $evaluation->comment != "" ? Str::limit($evaluation->comment, 100) : "Aquesta avaluació no té comentari"  }}
                         </div>
                     </div>
                 </div>
                 <div class="p-5 flex flex-row justify-between">
-                    <a href="{{ route('evaluations.index', $user->id) }}" 
+                    <a href="{{ route('evaluations.index', $user->id) }}"
                         class="bg-green-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-green-700 transition-all h-fit">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-clip"></use>
@@ -146,7 +148,7 @@
         <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col w-3/5 gap-5">
             <div class="flex flex-row justify-between items-start">
                 <div class="flex flex-col gap-2">
-                    <div class="text-2xl font-bold">Detalls de l’evaluacio</div>
+                    <div class="text-2xl font-bold">Detalls de l'avaluació</div>
                     <div class="flex felx-row gap-2">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-calendar"></use>
@@ -162,7 +164,7 @@
             </div>
             <div class="flex flex-row justify-between items-center">
                 <div class="flex flex-col gap-3 font-bold">
-                    <div class="text-xl">Puntuacion general</div>
+                    <div class="text-xl">Puntuació general</div>
                     <div class="text-2xl text-green-600">{{ number_format($evaluation->average_score*(100/3), 2, '.', '') }}/100</div>
                 </div>
                 <div class="flex items-center justify-center">
@@ -198,7 +200,7 @@
                 </div>
             </div>
             <div class="flex flex-col gap-3">
-                <div class="text-xl font-bold">Respuestas</div>
+                <div class="text-xl font-bold">Respostes</div>
                 <div class="flex flex-col gap-5 h-64 overflow-y-scroll">
                     @for ($i = 1; $i <= count($questionAverage); $i++)
                         <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-row justify-between">
@@ -225,7 +227,7 @@
                     Observacions
                 </div>
                 <div class="overflow-hidden break-words whitespace-normal break-all">
-                    {{ $evaluation->comment }}
+                    {{ $evaluation->comment ?? "Aquesta evaluació no té comentari" }}
                 </div>
             </div>
             <div class="text-xl">

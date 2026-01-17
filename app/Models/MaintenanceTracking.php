@@ -9,7 +9,7 @@ class MaintenanceTracking extends Model
     protected $fillable = [
         "maintenance",
         "user",
-        "description",
+        "topic",
     ];
     protected $table = "monitorings_maintenances";
 

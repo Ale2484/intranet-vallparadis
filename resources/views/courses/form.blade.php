@@ -12,7 +12,7 @@
                         <svg class="w-6 h-6 dark:text-neutral-400">
                             <use xlink:href="#icon-document"></use>
                         </svg>
-                        <p class="dark:text-white">Nombre:</p>
+                        <p class="dark:text-white">Nom:</p>
                     </div>
                 </div>
                 <div>
@@ -68,7 +68,7 @@
                     <select name="modality" id="modality" class="border shadow-sm p-2 rounded-lg border-[#AFAFAF] w-full dark:text-white @error('modality') border-red-600 @enderror" required>
                         <option value="presencial" {{ old("modality", $course->modality) == "presencial" ? "selected" : "" }}>Presencial</option>
                         <option value="online" {{ old("modality", $course->modality) == "online" ? "selected" : "" }}>Online</option>
-                        <option value="mixt" {{ old("modality", $course->modality) == "mixed" ? "selected" : "" }}>Mixte</option>
+                        <option value="mixt" {{ old("modality", $course->modality) == "mixt" ? "selected" : "" }}>Mixt</option>
                     </select>
                     @error("modality")
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -88,7 +88,7 @@
                 @error("code")
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
-            </div>y
+            </div>
         </div>
         {{-- Contenedor de 2 --}}
         <div class="flex flex-col gap-5 mb-1">
@@ -229,7 +229,11 @@
                             @foreach ($registeredUsers as $user )
                                 <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2 mb-3 dark:bg-neutral-800 dark:border-neutral-600" data-id="{{ $user->id ?? "" }}" draggable="true">
                                     <div class="w-15 h-15 bg-gray-200 rounded-full">
-                                        <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                        @if (!$user->profile_photo_path)
+                                            <minidenticon-svg username="{{ md5($user->id) }}" class="w-15 h-15 bg-gray-200 rounded-full"></minidenticon-svg>
+                                        @else
+                                            <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="w-15 h-15 bg-gray-200 rounded-full object-cover">
+                                        @endif
                                     </div>
                                     <div>
                                         <p class="user-name font-semibold dark:text-white">{{$user->name ?? " - "}}</p>
@@ -261,7 +265,11 @@
                                 @if (!$registeredUsers->contains($user))
                                     <div class="user-item border border-[#AFAFAF] bg-white rounded-[15px] p-2 flex items-center w-full gap-2 mb-3 dark:bg-neutral-800" data-id="{{ $user->id ?? "" }}" draggable="true">
                                         <div class="w-15 h-15 aspect-square bg-gray-200 rounded-full">
-                                            <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                                            @if (!$user->profile_photo_path)
+                                                <minidenticon-svg username="{{ md5($user->id) }}" class="w-15 h-15 bg-gray-200 rounded-full"></minidenticon-svg>
+                                            @else
+                                                <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="w-15 h-15 bg-gray-200 rounded-full object-cover">
+                                            @endif
                                         </div>
                                         <div>
                                             <p class="user-name font-semibold">{{$user->name ?? " - "}}</p>
