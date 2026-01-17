@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Traits\BelongsToCenter;
 class ExternalContact extends Model
 {
     use HasFactory;
+    use BelongsToCenter;
 
     protected $fillable = [
         'center_id',

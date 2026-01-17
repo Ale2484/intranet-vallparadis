@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             ComplementaryServiceSeeder::class,
             GeneralServiceSeeder::class,
             MaintenanceSeeder::class,
-            RrhhTopicSeeder::class
+            //RrhhTopicSeeder::class
 
         ]);
     }

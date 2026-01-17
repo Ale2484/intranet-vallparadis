@@ -144,6 +144,7 @@
                 </div>
             </div>
             @unless ($tracking->end_link)
+                @if($tracking->open || auth()->user()->role === "equip_directiu")
                 <!-- Formulario -->
                 <div class="flex flex-col justify-center w-1/4 h-[495px] border border-[#AFAFAF] bg-white rounded-[15px] p-5 gap-5 dark:bg-neutral-800 dark:border-neutral-600">
                     <div class="pb-3 border-b-1 border-[#AFAFAF] flex flex-col gap-2">
@@ -173,6 +174,7 @@
                         </button>
                     </form>
                 </div>
+                @endif
             @endunless
         </div>
     </div>

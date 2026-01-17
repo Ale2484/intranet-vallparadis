@@ -24,6 +24,8 @@
                 <span class="menu-text hidden">Professionals</span>
             </a>
         </li>
+        @if (auth()->user()->role == "equip_directiu" || auth()->user()->role == "administracio")
+
         <li>
             <a href="{{ route("centers.index") }}" class="{{ request()->is('centers*') ? "menu-option-selected" : "menu-option" }}">
                 <svg class="w-7 h-7">
@@ -32,6 +34,7 @@
                 <span class="menu-text hidden">Centres</span>
             </a>
         </li>
+        @endif
         <li>
             <a href="{{ route("projects.index") }}" class="{{ request()->is('projects*') ? "menu-option-selected" : "menu-option" }}">
             <svg class="w-7 h-7">
@@ -48,14 +51,16 @@
                 <span class="menu-text hidden text-nowrap">Cursos</span>
             </a>
         </li>
-        <li>
-            <a href="{{ route("general-services.index") }}" class="{{ request()->is('general-services*') ? "menu-option-selected" : "menu-option" }}">
-                <svg class="w-7 h-7">
-                    <use xlink:href="#icon-knife"></use>
-                </svg>
-                <span class="menu-text hidden text-nowrap">Serveis generals</span>
-            </a>
-        </li>
+        @if (auth()->user()->role == "equip_directiu" || auth()->user()->role == "administracio")
+            <li>
+                <a href="{{ route("general-services.index") }}" class="{{ request()->is('general-services*') ? "menu-option-selected" : "menu-option" }}">
+                    <svg class="w-7 h-7">
+                        <use xlink:href="#icon-knife"></use>
+                    </svg>
+                    <span class="menu-text hidden text-nowrap">Serveis generals</span>
+                </a>
+            </li>
+        @endif
         <li>
             <a href="{{ route("external-contacts.index") }}" class="{{ request()->is('external-contacts*') ? "menu-option-selected" : "menu-option" }}">
             <svg class="w-7 h-7">
@@ -72,14 +77,16 @@
                 <span class="menu-text hidden text-nowrap">Serveis complementaris</span>
             </a>
         </li>
-        <li>
-            <a href="{{ route("rrhh.index") }}" class="{{ request()->is('rrhh*') ? "menu-option-selected" : "menu-option" }}">
-            <svg class="w-7 h-7">
-                <use xlink:href="#icon-group-user"></use>
-            </svg>
-                <span class="menu-text hidden text-nowrap">Temas pendents RRHH</span>
-            </a>
-        </li>
+        @if (auth()->user()->role == "equip_directiu")
+            <li>
+                <a href="{{ route("rrhh.index") }}" class="{{ request()->is('rrhh*') ? "menu-option-selected" : "menu-option" }}">
+                <svg class="w-7 h-7">
+                    <use xlink:href="#icon-group-user"></use>
+                </svg>
+                    <span class="menu-text hidden text-nowrap">Temes pendents RRHH</span>
+                </a>
+            </li>
+        @endif
         <li>
             <a href="{{ route("maintenance.index") }}" class="{{ request()->is('maintenance*') ? "menu-option-selected" : "menu-option" }}">
             <svg class="w-7 h-7">
@@ -121,17 +128,41 @@
         </div>
     </form>
 
-    <div class="w-auto md:w-[25%] flex flex-row items-center justify-end gap-5 px-2 md:px-5">
-        <!-- Cambiar de modo -->
-        <button type="button" id="theme-toggle" class="mr-5 cursor-pointer">
-            <svg class="w-7 h-7 text-slate-500 block dark:hidden">
-                <use xlink:href="#icon-moon"></use>
-            </svg>
-            <svg class="w-7 h-7 text-yellow-200 hidden dark:block">
-                <use xlink:href="#icon-sun"></use>
-            </svg>
-        </button>
-
+    <div class="w-auo md:w-[25%] flex flex-row items-center justify-end gap-5 px-2 md:px-5">
+        <div class=" w-auto flex items-center gap-2 relative">
+            <button data-dropdown-content-id="navbarLinks" class="bg-[#FF7E13] hover:bg-[#FE712B] p-2 text-white rounded-lg flex items-center justify-center font-bold gap-2 mr-5 cursor-pointer">
+                <svg class="w-4 h-4 md:w-6 md:h-6">
+                    <use xlink:href="#icon-dots"></use>
+                </svg>
+            </button>
+            <div id="navbarLinks" class="absolute top-12 right-0 min-w-70 bg-white shadow-lg border border-[#AFAFAF] p-2 rounded-lg dark:bg-neutral-800 z-1 hidden">
+                <!-- Cambiar de modo -->
+                <button type="button" id="theme-toggle" class="flex items-center w-full cursor-pointer dark:hover:bg-yellow-600/16 hover:bg-slate-600/16 rounded-lg p-2">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-7 h-7 text-slate-500 block dark:hidden">
+                            <use xlink:href="#icon-moon"></use>
+                        </svg>
+                        <p class="text-slate-500 dark:hidden">Fosc</p>
+                    </div>
+                    <div class="flex items-center rounded-lg font-semibold cursor-pointer gap-4 w-full">
+                        <svg class="w-7 h-7 text-yellow-600 hidden dark:block">
+                            <use xlink:href="#icon-sun"></use>
+                        </svg>
+                        <p class="text-yellow-600 hidden dark:block">Clar</p>
+                    </div>
+                </button>
+                @if (auth()->user()->role == "equip_directiu")
+                    <form action="{{ route("users.switchCenter") }}" method="post" class="mt-2">
+                        @csrf
+                        <select name="center_id" class="border border-[#AFAFAF] dark:bg-neutral-800 dark:text-white rounded-lg w-full cursor-pointer p-2" onchange="this.form.submit()">
+                            @foreach ($selectable_centers as $center)
+                                <option value="{{ $center->id }}" {{ session("active_center_id") == $center->id ? "selected" : "" }}>{{ $center->name }}</option>
+                            @endforeach
+                        </select>
+                    </form>
+                @endif
+            </div>
+        </div>
         <div class="flex flex-row items-center gap-5 ">
             <a href="{{ route("users.show", auth()->user()->id) }}" class="flex items-center gap-5">
                 @if (!auth()->user()->profile_photo_path)
