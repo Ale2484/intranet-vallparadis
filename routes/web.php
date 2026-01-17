@@ -73,7 +73,7 @@ Route::middleware("auth")->group(function () {
     });
 
     // Centros
-    Route::middleware("checkSuperAdmin")->group(function () {
+    Route::middleware("checkMagnamentOrAdministration")->group(function () {
         Route::resource("centers", CenterController::class)->except("destroy");
         Route::patch("/centers/{center}/deactivate", [CenterController::class, "deactivate"])->name("centers.deactivate");
         Route::patch("/centers/{center}/activate", [CenterController::class, "activate"])->name("centers.activate");
@@ -118,13 +118,14 @@ Route::middleware("auth")->group(function () {
 
     // Servicios generales
     Route::middleware("setCenterContext")->group(function () {
-        Route::resource("general-services", GeneralServiceController::class);
-        Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
-        Route::patch("/general-services/{generalService}/activate", [GeneralServiceController::class, "activate"])->name('general-services.activate');
-        Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
-        Route::post("/general-services/{generalService}/add-observation", [GeneralServiceController::class, "addObservation"])->name("general-services.add-observation");
-        Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
-    });
+        Route::middleware("checkMagnamentOrAdministration")->group(function () {
+            Route::resource("general-services", GeneralServiceController::class);
+            Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
+            Route::patch("/general-services/{generalService}/activate", [GeneralServiceController::class, "activate"])->name('general-services.activate');
+            Route::patch("/general-services/{generalService}/deactivate", [GeneralServiceController::class, "deactivate"])->name('general-services.deactivate');
+            Route::post("/general-services/{generalService}/add-observation", [GeneralServiceController::class, "addObservation"])->name("general-services.add-observation");
+            Route::post("/general-services/search", [GeneralServiceController::class, "search"])->name("general-services.search");
+        });    });
 
     //  Buscador
     Route::get("/general-search", [GeneralSearchController::class, "generalSearch"])->name("general-search");
@@ -140,8 +141,10 @@ Route::middleware("auth")->group(function () {
 
 
     // Documentos del centro
-    Route::get("/centers/{center}/documents", [CenterDocumentsController::class, "index"])->name("centers.documents");
-    Route::post("/centers/{center}/documents/store", [CenterDocumentsController::class, "store"])->name("centers.documents.store");
+    Route::middleware("checkMagnament")->group(function() {
+        Route::get("/centers/{center}/documents", [CenterDocumentsController::class, "index"])->name("centers.documents");
+        Route::post("/centers/{center}/documents/store", [CenterDocumentsController::class, "store"])->name("centers.documents.store");
+    });
 
     // Servicios complementarios
     Route::middleware("setCenterContext")->group(function () {
@@ -155,28 +158,33 @@ Route::middleware("auth")->group(function () {
 
 
     // Temas RRHH
-    Route::resource("rrhh", RRHHTopicController::class)->except(["destroy","update","edit"]);
-    Route::get("rrhh/{rrhh}/tracking", [RRHHTrackingController::class, "index"])->name('rrhh.tracking');
-    Route::post("rrhh/{rrhh}/tracking/store", [RRHHTrackingController::class, "store"])->name('rrhh.tracking.store');
-    Route::get("rrhh/{rrhh}/docs", [RRHHDocsController::class, "index"])->name('rrhh.docs');
-    Route::post("rrhh/{rrhh}/docs/store", [RRHHDocsController::class, "Store"])->name('rrhh.docs.store');
-    Route::post("/rrhh/search", [RRHHTopicController::class, "search"])->name("rrhh.search");
-    Route::patch("/rrhh/{rrhh}/deactivate", [RRHHTopicController::class, "deactivate"])->name("rrhh.deactivate");
-    Route::patch("/rrhh/{rrhh}/activate", [RRHHTopicController::class, "activate"])->name("rrhh.activate");
+    Route::middleware("checkMagnament")->group(function () {
+        Route::resource("rrhh", RRHHTopicController::class)->except(["destroy","update","edit"]);
+        Route::get("rrhh/{rrhh}/tracking", [RRHHTrackingController::class, "index"])->name('rrhh.tracking');
+        Route::post("rrhh/{rrhh}/tracking/store", [RRHHTrackingController::class, "store"])->name('rrhh.tracking.store');
+        Route::get("rrhh/{rrhh}/docs", [RRHHDocsController::class, "index"])->name('rrhh.docs');
+        Route::post("rrhh/{rrhh}/docs/store", [RRHHDocsController::class, "Store"])->name('rrhh.docs.store');
+        Route::post("/rrhh/search", [RRHHTopicController::class, "search"])->name("rrhh.search");
+        Route::patch("/rrhh/{rrhh}/deactivate", [RRHHTopicController::class, "deactivate"])->name("rrhh.deactivate");
+        Route::patch("/rrhh/{rrhh}/activate", [RRHHTopicController::class, "activate"])->name("rrhh.activate");
+    });
 
     // mantenimiento
-    Route::resource("maintenance", MaintenanceController::class)->except(["destroy","update","edit"]);
-    Route::get("maintenance/{maintenance}/tracking", [MaintenanceTrackingController::class, "index"])->name('maintenance.tracking');
-    Route::post("maintenance/{maintenance}/tracking/store", [MaintenanceTrackingController::class, "store"])->name('maintenance.tracking.store');
+    Route::middleware("checkMagnamentOrAdministration")->group(function () {
+        Route::resource("maintenance", MaintenanceController::class)->except(["destroy","update","edit"]);
+        Route::get("maintenance/{maintenance}/tracking", [MaintenanceTrackingController::class, "index"])->name('maintenance.tracking');
+        Route::post("maintenance/{maintenance}/tracking/store", [MaintenanceTrackingController::class, "store"])->name('maintenance.tracking.store');
+    
+        Route::get("maintenance/{maintenance}/tracking/{tracking}", [MaintenanceTrackingController::class, "show"])->name('maintenance.tracking.show');
+        Route::post("maintenance/{maintenance}/tracking/{tracking}/store", [MaintenanceCommentController::class, "store"])->name('maintenance.comment.store');
+    
+        Route::get("maintenance/{maintenance}/docs", [MaintenanceDocsController::class, "index"])->name('maintenance.docs');
+        Route::post("maintenance/{maintenance}/docs/store", [MaintenanceDocsController::class, "Store"])->name('maintenance.docs.store');
+        Route::post("/maintenance/search", [MaintenanceController::class, "search"])->name("maintenance.search");
+        Route::patch("/maintenance/{maintenance}/deactivate", [MaintenanceController::class, "deactivate"])->name("maintenance.deactivate");
+        Route::patch("/maintenance/{maintenance}/activate", [MaintenanceController::class, "activate"])->name("maintenance.activate");
+    });
 
-    Route::get("maintenance/{maintenance}/tracking/{tracking}", [MaintenanceTrackingController::class, "show"])->name('maintenance.tracking.show');
-    Route::post("maintenance/{maintenance}/tracking/{tracking}/store", [MaintenanceCommentController::class, "store"])->name('maintenance.comment.store');
-
-    Route::get("maintenance/{maintenance}/docs", [MaintenanceDocsController::class, "index"])->name('maintenance.docs');
-    Route::post("maintenance/{maintenance}/docs/store", [MaintenanceDocsController::class, "Store"])->name('maintenance.docs.store');
-    Route::post("/maintenance/search", [MaintenanceController::class, "search"])->name("maintenance.search");
-    Route::patch("/maintenance/{maintenance}/deactivate", [MaintenanceController::class, "deactivate"])->name("maintenance.deactivate");
-    Route::patch("/maintenance/{maintenance}/activate", [MaintenanceController::class, "activate"])->name("maintenance.activate");
 
 
 });

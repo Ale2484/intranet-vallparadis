@@ -131,13 +131,17 @@
                             <label for="topic">Tema</label>
                             <input type="text" id="topic" name="topic" class="border border-[#AFAFAF] bg-white rounded-lg p-2">
                         </div>
+                        @if(auth()->user()->role === "equip_directiu")
                         <div class="flex flex-col gap-1">
                             <label for="open">Tipus de seguiment</label>
                             <select name="open" id="open" class="border border-[#AFAFAF] bg-white rounded-lg p-2" >
                                 <option value="0">Restringit</option>
-                                <option value="1">Públic</option>
+                                <option value="1" selected>Públic</option>
                             </select>
                         </div>
+                        @else
+                            <input type="hidden" name="open" value="1">
+                        @endif
                     </div>
                     <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
                         Nou seguiment

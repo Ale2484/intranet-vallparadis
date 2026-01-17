@@ -10,6 +10,7 @@ use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -109,7 +110,7 @@ class UserController extends Controller
             'locker_password' => 'required|string',
             'password' => 'required|min:8',
         ]);
-        $validated["center"]= auth()->user()->center;
+        $validated["center"]= Session::get("active_center_id");
 
         $validated['password'] = Hash::make($validated['password']);
         $validated['is_active'] = true;
@@ -142,7 +143,6 @@ class UserController extends Controller
             'locker_password' => 'required|string',
             'password' => 'required|min:8',
         ]);
-
         $user->update($validated);
 
         return redirect()->route('users.index')->with('success', 'Professional actualitzat correctament.');
