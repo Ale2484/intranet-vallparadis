@@ -6,6 +6,7 @@ use App\Models\Center;
 use App\Models\ComplementaryService;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ComplementaryServiceController extends Controller
 {
@@ -110,7 +111,8 @@ class ComplementaryServiceController extends Controller
             "schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
-        $validated["center_id"] = auth()->user()->center;
+        $validated["center_id"] = Session::get("active_center_id");
+
         ComplementaryService::create($validated);
 
         return redirect()->route("complementary-services.index")->with("success", "Servei complementari creat correctament");

@@ -6,6 +6,7 @@ use App\Models\RRHHTopic;
 use App\Models\Center;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class RRHHTopicController extends Controller
 {
@@ -51,7 +52,7 @@ class RRHHTopicController extends Controller
             "topic" => "required|string",
         ]);
         $validated["user_register"] = auth()->user()->id;
-        $validated["center"] = auth()->user()->center;
+        $validated["center"] = Session::get("active_center_id");
 
 
         RRHHTopic::create($validated);

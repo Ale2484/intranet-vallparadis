@@ -46,7 +46,7 @@
             </svg>
             <div>
                 <p class="font-semibold text-[#5E6468] dark:text-neutral-300">Motiu de contacte</p>
-                <p class="text-[#011020] dark:text-white">{{ $externalContact->reason }}</p>
+                <p class="text-[#011020] dark:text-white">{{ $externalContact->reason ?? "Aquest contacte extern no té motiu de contacte" }}</p>
             </div>
         </div>
     </div>

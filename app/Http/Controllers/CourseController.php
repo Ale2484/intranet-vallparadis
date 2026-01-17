@@ -11,6 +11,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 
 class CourseController extends Controller
@@ -123,7 +124,7 @@ class CourseController extends Controller
             "assistant" => "required|exists:users,id",
             "is_active" => "required|boolean",
         ]);
-        $validate["center_id"] = auth()->user()->center;
+        $validate["center_id"] = Session::get("active_center_id");
         // Se crea el curso
         $newCourse = Course::create($validate);
 
@@ -207,7 +208,6 @@ class CourseController extends Controller
             "assistant" => "required|exists:users,id",
             "is_active" => "required|boolean",
         ]);
-        $validate["center_id"] = auth()->user()->center;
 
         $course->update($validate);
         

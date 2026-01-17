@@ -88,14 +88,13 @@
                 </svg>
                 Rol *
             </label>
-            <select name="role" id="role" 
+            <select name="role" id="role"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 @error('role') border-red-500 @enderror"
                     required>
                 <option value="">Selecciona un rol</option>
-                <option value="technical_team" {{ old('role', $user->role) == 'technical_team' ? 'selected' : '' }}>Equip Tècnic</option>
-                <option value="management_team" {{ old('role', $user->role) == 'management_team' ? 'selected' : '' }}>Equip Directiu</option>
-                <option value="administration" {{ old('role', $user->role) == 'administration' ? 'selected' : '' }}>Administració</option>
-                <option value="professional" {{ old('role', $user->role) == 'professional' ? 'selected' : '' }}>Professional</option>
+                <option value="responsable_equip_tecnic" {{ old('role', $user->role) == 'responsable_equip_tecnic' ? 'selected' : '' }}>Equip Tècnic</option>
+                <option value="equip_directiu" {{ old('role', $user->role) == 'equip_directiu' ? 'selected' : '' }}>Equip Directiu</option>
+                <option value="administracio" {{ old('role', $user->role) == 'administracio' ? 'selected' : '' }}>Administració</option>
             </select>
             @error('role')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

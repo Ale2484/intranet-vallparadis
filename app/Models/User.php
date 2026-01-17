@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-
+use App\Models\Traits\BelongsToCenter;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    use BelongsToCenter;
 
     protected $fillable = [
         "name",
@@ -57,10 +58,9 @@ class User extends Authenticatable
     public function getRoleLabelAttribute()
     {
         $roles = [
-            "technical_team" => "Equip Tècnic",
-            "management_team" => "Equip Directiu",
-            "administration" => "Administració",
-            "professional" => "Professional"
+            "responsable_equip_tecnic" => "Equip Tècnic",
+            "equip_directiu" => "Equip Directiu",
+            "administracio" => "Administració",
         ];
 
         return $roles[$this->role] ?? $this->role;
