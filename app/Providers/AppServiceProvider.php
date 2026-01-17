@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('components.navbar', function ($view) {
             $centers = [];
-            if (Auth::check() && Auth::user()->role == "super_admin") {
+            if (Auth::check() && Auth::user()->role == "equip_directiu") {
                 $centers = Center::all();
             }
             $view->with("selectable_centers", $centers);

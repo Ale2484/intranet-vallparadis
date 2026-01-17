@@ -24,6 +24,8 @@
                 <span class="menu-text hidden">Professionals</span>
             </a>
         </li>
+        @if (auth()->user()->role == "equip_directiu" || auth()->user()->role == "administracio")
+
         <li>
             <a href="{{ route("centers.index") }}" class="{{ request()->is('centers*') ? "menu-option-selected" : "menu-option" }}">
                 <svg class="w-7 h-7">
@@ -32,6 +34,7 @@
                 <span class="menu-text hidden">Centres</span>
             </a>
         </li>
+        @endif
         <li>
             <a href="{{ route("projects.index") }}" class="{{ request()->is('projects*') ? "menu-option-selected" : "menu-option" }}">
             <svg class="w-7 h-7">
@@ -128,7 +131,7 @@
                         <p class="text-yellow-600 hidden dark:block">Clar</p>
                     </div>
                 </button>
-                @if (auth()->user()->role == "super_admin")
+                @if (auth()->user()->role == "equip_directiu")
                     <form action="{{ route("users.switchCenter") }}" method="post" class="mt-2">
                         @csrf
                         <select name="center_id" class="border border-[#AFAFAF] dark:bg-neutral-800 dark:text-white rounded-lg w-full cursor-pointer p-2" onchange="this.form.submit()">

@@ -18,7 +18,7 @@ class SetCentreContext
     {
         $user = $request->user();
         if ($user) {
-            if ($user->role == "super_admin") {
+            if ($user->role == "equip_directiu") {
                 if (!Session::has("active_center_id")) {
                     Session::put("active_center_id", $user->center);
                 }

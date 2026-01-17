@@ -72,7 +72,7 @@ Route::middleware("auth")->group(function () {
     });
 
     // Centros
-    Route::middleware("setCenterContext")->group(function () {
+    Route::middleware("checkSuperAdmin")->group(function () {
         Route::resource("centers", CenterController::class)->except("destroy");
         Route::patch("/centers/{center}/deactivate", [CenterController::class, "deactivate"])->name("centers.deactivate");
         Route::patch("/centers/{center}/activate", [CenterController::class, "activate"])->name("centers.activate");

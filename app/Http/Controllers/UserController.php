@@ -103,7 +103,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'phone' => 'nullable|string|max:9',
-            'role' => 'required|in:technical_team,management_team,administration,professional',
+            'role' => 'required|in:responsable_equip_tecnic,equip_directiu,administracio',
             'status' => 'required|in:active,inactive,substitute',
             'locker' => 'required|string',
             'locker_password' => 'required|string',
@@ -136,7 +136,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'phone' => 'nullable|string|max:9',
-            'role' => 'required|in:technical_team,management_team,administration,professional',
+            'role' => 'required|in:responsable_equip_tecnic,equip_directiu,administracio',
             'status' => 'required|in:active,inactive,substitute',
             'locker' => 'required|integer',
             'locker_password' => 'required|string',
@@ -248,7 +248,7 @@ class UserController extends Controller
         }
     }
     public function switchCenter(Request $request) {
-        if (auth()->user()->role == "super_admin") {
+        if (auth()->user()->role == "equip_directiu") {
             $request->validate([
                 "center_id" => "required|exists:centers,id"
             ]);

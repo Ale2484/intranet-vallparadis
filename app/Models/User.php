@@ -58,10 +58,9 @@ class User extends Authenticatable
     public function getRoleLabelAttribute()
     {
         $roles = [
-            "technical_team" => "Equip Tècnic",
-            "management_team" => "Equip Directiu",
-            "administration" => "Administració",
-            "professional" => "Professional"
+            "responsable_equip_tecnic" => "Equip Tècnic",
+            "equip_directiu" => "Equip Directiu",
+            "administracio" => "Administració",
         ];
 
         return $roles[$this->role] ?? $this->role;

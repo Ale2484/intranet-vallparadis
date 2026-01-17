@@ -48,6 +48,7 @@
 
         <a href="{{ route("users.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
+    @if (auth()->user()->role == "equip_directiu" || auth()->user()->role == "administracio")
     <!-- Container -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-neutral-800 dark:border-neutral-600">
         <div class="flex flex-col items-start w-full">
@@ -90,6 +91,7 @@
         </div>
         <a href="{{ route("centers.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
+    @endif
     <!-- Container -->
     <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 shadow-lg flex flex-col items-start justify-between min-w-[250px] dark:bg-neutral-800 dark:border-neutral-600">
         <div class="flex flex-col items-start w-full">
