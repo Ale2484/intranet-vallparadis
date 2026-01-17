@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("title", "Veure els seguiments")
 @section('main')
-<div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10">
+<div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10 dark:text-white">
     <!-- Header -->
     <div class="w-full flex flex-row justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
@@ -11,12 +11,12 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Evaluacios de {{ $user->name }}</h1>
+            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Evaluacios de {{ $user->name }}</h1>
             <p class="text-[#AFAFAF]" >Avaluacions del professional seleccionat</p>
         </div>
     </div>
     
-    <div class="w-full border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-row items-center justify-between">
+    <div class="w-full border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-row items-center justify-between dark:bg-neutral-800 dark:border-neutral-600">
         <div class="flex flex-row gap-3">
             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg h-fit w-fit">
                 <svg class="w-6 h-6">
@@ -67,7 +67,7 @@
     {{ $total<1 ? "No hi ha avaluacions" : "" }}
     <div class="flex flex-row flex-wrap justify-between">
         @foreach ($evaluations as $evaluation)
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] w-49/99 mb-5">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] w-49/99 mb-5 dark:bg-neutral-800 dark:border-neutral-600">
                 <div class="border-b-1 border-[#AFAFAF] flex flex-col gap-4 p-5 h-45">
                     <div class="flex flex-row gap-3">
                         <div>
@@ -129,7 +129,7 @@
     </div>
     <div class="flex flex-col gap-5 h-100 overflow-y-scroll">
         @for ($i = 1; $i <= count($questionAverage); $i++)
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-row justify-between">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-row justify-between dark:bg-neutral-800 dark:border-neutral-600">
                 <div>
                     {{ $questions[$i-1] }}
                 </div>
@@ -144,8 +144,8 @@
     </div>
 </div>
 @foreach ( $evaluations as $evaluation )
-    <div class="w-1/1 h-1/1 bg-[#000000]/40 fixed top-0 left-0 z-100 hidden flex items-center justify-center" id="eval-{{ $evaluation->id }}">
-        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col w-3/5 gap-5">
+    <div class="w-1/1 h-1/1 bg-[#000000]/40 fixed top-0 left-0 z-100 hidden flex items-center justify-center dark:text-white" id="eval-{{ $evaluation->id }}">
+        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col w-3/5 gap-5 dark:bg-neutral-800 dark:border-neutral-600">
             <div class="flex flex-row justify-between items-start">
                 <div class="flex flex-col gap-2">
                     <div class="text-2xl font-bold">Detalls de l'avaluació</div>
@@ -194,7 +194,7 @@
         
                     <!-- porcentaje -->
                     <div id="percent-text"
-                        class="absolute text-2xl font-semibold text-[#011020]">
+                        class="absolute text-2xl font-semibold text-[#011020] dark:text-white">
                         {{ number_format($percent, 2, '.', '' ) }}%
                     </div>
                 </div>
@@ -203,7 +203,7 @@
                 <div class="text-xl font-bold">Respostes</div>
                 <div class="flex flex-col gap-5 h-64 overflow-y-scroll">
                     @for ($i = 1; $i <= count($questionAverage); $i++)
-                        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-row justify-between">
+                        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-row justify-between dark:bg-neutral-800 dark:border-neutral-600">
                             <div class="w-2/3">
                                 {{ $questions[$i-1] }}
                             </div>
