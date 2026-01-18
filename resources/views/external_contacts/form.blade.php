@@ -65,6 +65,7 @@
             @enderror
         </div>
         
+        @if (auth()->user()->role === 'administracio' || auth()->user()->role === 'equip_directiu')
         <div>
             <div class="flex items-center gap-2 mb-2">
                 <svg class="w-6 h-6 dark:text-neutral-400">
@@ -74,13 +75,13 @@
                     Motiu *
                 </label>
             </div>
-            <input type="text" name="reason" id="reason" placeholder="Motiu del contacte" value="{{ old('reason', $externalContact->reason) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('reason') border-red-500 @enderror" required>
+            <input type="text" name="reason" id="reason" placeholder="Motiu del contacte" value="{{ old('reason', $externalContact->reason) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('reason') border-red-500 @enderror">
             @error('reason')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
-
-        <div>
+        @endif
+        <div class="{{ auth()->user()->role == "responsable_equip_tecnic" ? "col-span-2" : "" }}">
             <div class="flex items-center gap-2 mb-2">
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-category"></use>

@@ -6,6 +6,7 @@ use App\Models\Center;
 use App\Models\GeneralService;
 use Illuminate\Http\Request;
 use Mews\Purifier\Facades\Purifier;
+use Illuminate\Support\Facades\Session;
 
 class GeneralServiceController extends Controller
 {
@@ -109,7 +110,7 @@ class GeneralServiceController extends Controller
             "staff_and_schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
-        $validated["center_id"] = auth()->user()->center;
+        $validated["center_id"] = Session::get("active_center_id");
 
         $validated["staff_and_schedules"] = Purifier::clean($validated["staff_and_schedules"], "quill");
         
@@ -150,7 +151,6 @@ class GeneralServiceController extends Controller
             "staff_and_schedules" => "nullable|string",
             "is_active" => "required|boolean"
         ]);
-        $validated["center_id"] = auth()->user()->center;
         $validated["staff_and_schedules"] = Purifier::clean($validated["staff_and_schedules"], "quill");
 
         $generalService->update($validated);

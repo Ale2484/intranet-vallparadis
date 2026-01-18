@@ -29,7 +29,7 @@
 
 <body class="bg-[#FFF9F6] dark:bg-neutral-950">
     @include('partials.icons')
-    
+
     <header class="fixed top-0 left-0 flex items-start w-full h-auto z-10">
         <!-- Menu -->
         @include("components.navbar")
@@ -39,7 +39,7 @@
     <main class="md:pr-20 md:pl-36 pt-24 px-5">
         @yield("main")
     </main>
-    
+
     <footer class="px-24 mt-10">
         @include("components.footer")
     </footer>

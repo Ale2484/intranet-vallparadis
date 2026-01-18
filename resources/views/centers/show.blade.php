@@ -25,12 +25,14 @@
                 </svg>
                 Edita el centre
             </a>
-            <a href="{{ route("centers.documents", $center) }}" class="bg-cyan-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-cyan-700 transition-all">
-                <svg class="w-6 h-6">
-                    <use xlink:href="#icon-document"></use>
-                </svg>
-                Documents
-            </a>
+            @if (auth()->user()->role === "equip_directiu")
+                <a href="{{ route("centers.documents", $center) }}" class="bg-cyan-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-cyan-700 transition-all">
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-document"></use>
+                    </svg>
+                    Documents
+                </a>
+            @endif
         </div>
 
     </div>

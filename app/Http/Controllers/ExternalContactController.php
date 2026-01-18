@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ExternalContact;
 use App\Models\Center;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ExternalContactController extends Controller
 {
@@ -92,7 +93,6 @@ class ExternalContactController extends Controller
     {
         $validated = $request->validate([
             "category" => 'required|in:assistencial,"serveis generals"',
-            "reason" => "required|string|max:255",
             "company_or_department" => "required|string|max:255",
             "contact_person" => "required|string|max:255",
             "phone" => "nullable|regex:/^\+\d{2,3}\s?\d{9}$/",
@@ -100,7 +100,17 @@ class ExternalContactController extends Controller
             "observations" => "nullable|string",
             "is_active" => "boolean"
         ]);
-        $validated["center_id"] = auth()->user()->center;
+
+        if (auth()->user()->role === 'administracio' || auth()->user()->role === 'equip_directiu') {
+            $request->validate([
+                "reason" => "required|string|max:255",
+            ]);
+            $validated['reason'] = $request->reason;
+        } else {
+            $validated['reason'] = null;
+        }
+
+        $validated["center_id"] = Session::get("active_center_id");
         ExternalContact::create($validated);
 
         return redirect()->route("external-contacts.index")->with("success", "Contacte creat correctament.");
@@ -121,7 +131,6 @@ class ExternalContactController extends Controller
     {
         $validated = $request->validate([
             "category" => 'required|in:assistencial,"serveis generals"',
-            "reason" => "required|string|max:255",
             "company_or_department" => "required|string|max:255",
             "contact_person" => "required|string|max:255",
             "phone" => "nullable|regex:/^\+\d{2,3}\s\d{9}$/",
@@ -129,7 +138,16 @@ class ExternalContactController extends Controller
             "observations" => "nullable|string",
             "is_active" => "boolean"
         ]);
-        $validated["center_id"] = auth()->user()->center;
+
+        if (auth()->user()->role === 'administracio' || auth()->user()->role === 'equip_directiu') {
+            $request->validate([
+                "reason" => "required|string|max:255",
+            ]);
+            $validated['reason'] = $request->reason;
+        } else {
+            $validated['reason'] = null;
+        }
+        
         $externalContact->update($validated);
 
         return redirect()->route("external-contacts.index")->with("success", "Contacte actualitzat correctament.");

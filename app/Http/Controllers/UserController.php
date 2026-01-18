@@ -10,6 +10,7 @@ use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -103,13 +104,13 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'phone' => 'nullable|string|max:9',
-            'role' => 'required|in:technical_team,management_team,administration,professional',
+            'role' => 'required|in:responsable_equip_tecnic,equip_directiu,administracio',
             'status' => 'required|in:active,inactive,substitute',
             'locker' => 'required|string',
             'locker_password' => 'required|string',
             'password' => 'required|min:8',
         ]);
-        $validated["center"]= auth()->user()->center;
+        $validated["center"]= Session::get("active_center_id");
 
         $validated['password'] = Hash::make($validated['password']);
         $validated['is_active'] = true;
@@ -136,13 +137,12 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'phone' => 'nullable|string|max:9',
-            'role' => 'required|in:technical_team,management_team,administration,professional',
+            'role' => 'required|in:responsable_equip_tecnic,equip_directiu,administracio',
             'status' => 'required|in:active,inactive,substitute',
             'locker' => 'required|integer',
             'locker_password' => 'required|string',
             'password' => 'required|min:8',
         ]);
-
         $user->update($validated);
 
         return redirect()->route('users.index')->with('success', 'Professional actualitzat correctament.');
@@ -160,7 +160,7 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Professional activat correctament.');
     }
 
-    public function updateProfilePhoto(Request $request, User $user) 
+    public function updateProfilePhoto(Request $request, User $user)
     {
         $error = null;
         $path = null;
@@ -223,7 +223,6 @@ class UserController extends Controller
             "email" => "required",
             "password" => "required"
         ]);
-
         if(Auth::attempt(["email" => $request->email, "password" => $request->password])){
             return redirect()->route("dashboard")->with('success', 'Sessió iniciada correctament');
         } else{
@@ -236,7 +235,6 @@ class UserController extends Controller
         $users = User::all()->select("name","locker");
 
         return Excel::download(new UsersExport($users), 'taquillas.xlsx');
-        
     }
 
     public function exportLocker($userId)
@@ -247,6 +245,17 @@ class UserController extends Controller
             return Excel::download(new UsersExport($users), 'taquilla.xlsx');
         } else {
             Log::error('no se ha encontrado la taquilla');
+        }
+    }
+    public function switchCenter(Request $request) {
+        if (auth()->user()->role == "equip_directiu") {
+            $request->validate([
+                "center_id" => "required|exists:centers,id"
+            ]);
+            session(["active_center_id" => $request->center_id]);
+            return back()->with("success", "Centre canviat correctament");
+        } else {
+            return back()->with("error", "No tens permisos per canviar de centre");
         }
     }
 

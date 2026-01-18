@@ -31,9 +31,11 @@
         <!-- Info Usuario -->
         <div class="w-49/99 border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-row gap-5 items-center">
             <div class="bg-gray-200 w-20 h-20 rounded-full">
-                {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
-                {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+                @if (!$user->profile_photo_path)
+                    <minidenticon-svg username="{{ md5($user->id) }}" class="w-20 h-20 bg-gray-200 rounded-full"></minidenticon-svg>
+                @else
+                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="w-20 h-20 bg-gray-200 rounded-full object-cover">
+                @endif
             </div>
             <div class="flex flex-col justify-between">
                 <div class="text-[#AFAFAF]">
@@ -53,9 +55,11 @@
         <!-- info register -->
         <div class="w-49/99 border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-row gap-5 items-center">
             <div class="bg-gray-200 w-20 h-20 rounded-full">
-                {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
-                {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                <minidenticon-svg username="{{ md5($tracking->registerRelation->id) }}"></minidenticon-svg>
+                @if (!$tracking->registerRelation->profile_photo_path)
+                    <minidenticon-svg username="{{ md5($tracking->registerRelation->id) }}" class="w-20 h-20 bg-gray-200 rounded-full"></minidenticon-svg>
+                @else
+                    <img src="{{ asset('storage/' . $tracking->registerRelation->profile_photo_path) }}" alt="{{ $tracking->registerRelation->name }}" class="w-20 h-20 bg-gray-200 rounded-full object-cover">
+                @endif
             </div>
             <div class="flex flex-col justify-between">
                 <div class="text-[#AFAFAF]">
@@ -90,10 +94,14 @@
                     @foreach ($comments as $comment )
                         <div class="flex flex-row gap-5">
                             <div class="flex flex-col w-min">
-                                <div class="bg-{{ $tracking->end_link ? 'red' : 'blue'}}-100 w-14 h-14 rounded-full border-3 border-{{ $tracking->end_link ? 'red' : 'blue'}}-300">
-                                    {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                    {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                    <minidenticon-svg username="{{ md5($comment->userRelation->id) }}"></minidenticon-svg>
+                                <div class="w-14 h-14 rounded-full aspect-square">
+                                    <div class="w-14 h-14 aspect-square">
+                                        @if (!$comment->userRelation->profile_photo_path)
+                                            <minidenticon-svg username="{{ md5($comment->userRelation->id) }}" class="w-14 h-14  border-3 bg-gray-200 rounded-full aspect-square"></minidenticon-svg>
+                                        @else
+                                            <img src="{{ asset('storage/' . $comment->userRelation->profile_photo_path) }}" alt="{{ $comment->userRelation->name }}" class=" border-3 w-14 h-14 bg-gray-200 rounded-full aspect-square object-cover">
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="min-h-[125px] h-full flex justify-center">
                                     <div class="bg-{{ $tracking->end_link ? 'red' : 'blue'}}-300 p-0.5 h-full"></div>
@@ -114,7 +122,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <!-- {{ Str::limit($comment->comment, 500) }} -->
+                                    {{-- {{ Str::limit($comment->comment, 500) }} --}}
                                     {{ $comment->comment }}
                                 </div>
                             </div>
@@ -136,6 +144,7 @@
                 </div>
             </div>
             @unless ($tracking->end_link)
+                @if($tracking->open || auth()->user()->role === "equip_directiu")
                 <!-- Formulario -->
                 <div class="flex flex-col justify-center w-1/4 h-[495px] border border-[#AFAFAF] bg-white rounded-[15px] p-5 gap-5">
                     <div class="pb-3 border-b-1 border-[#AFAFAF] flex flex-col gap-2">
@@ -165,6 +174,7 @@
                         </button>
                     </form>
                 </div>
+                @endif
             @endunless
         </div>
     </div>

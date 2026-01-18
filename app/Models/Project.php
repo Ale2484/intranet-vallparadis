@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\BelongsToCenter;
 
 class Project extends Model
 {
+    use BelongsToCenter;
     use HasFactory;
 
     protected $fillable = [

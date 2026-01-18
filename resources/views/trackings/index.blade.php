@@ -17,10 +17,14 @@
     </div>
     <!-- Info Usuario -->
     <div class="w-full border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-row gap-5 items-center">
-        <div class="bg-gray-200 w-20 h-20 rounded-full">
-            {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
-            {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-            <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
+        <div class="bg-gray-200 w-20 h-20 rounded-full aspect-square">
+            @if (!$user->profile_photo_path)
+                <minidenticon-svg username="{{ md5($user->id) }}" class="w-20 h-20 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+            @else
+                <div class="w-20 h-20 aspect-square bg-gray-200 rounded-full">
+                    <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="w-20 h-20 aspect-square bg-gray-200 rounded-full object-cover">
+                </div>
+            @endif
         </div>
         <div>
             <div class="text-2xl font-bold">
@@ -53,9 +57,13 @@
                             <div class="flex flex-row gap-5">
                                 <div>
                                     <div class="bg-gray-200 w-12 h-12 rounded-full">
-                                        {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                        {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> --}}
-                                        <minidenticon-svg username="{{ md5($tracking->register) }}"></minidenticon-svg>
+                                        @if (!$tracking->registerRelation->profile_photo_path)
+                                            <minidenticon-svg username="{{ md5($tracking->registerRelation->id) }}" class="w-12 h-12 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
+                                        @else
+                                            <div class="w-12 h-12 aspect-square bg-gray-200 rounded-full">
+                                                <img src="{{ asset('storage/' . $tracking->registerRelation->profile_photo_path) }}" alt="{{ $tracking->registerRelation->name }}" class="w-12 h-12 aspect-square bg-gray-200 rounded-full object-cover">
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="w-full">
@@ -108,7 +116,7 @@
                             <use xlink:href="#icon-plus"></use>
                         </svg>
                         <div class="font-bold">
-                            Nou seguiment 
+                            Nou seguiment
                         </div>
                     </div>
                     <div class="text-[#5E6468]">
@@ -123,13 +131,17 @@
                             <label for="topic">Tema</label>
                             <input type="text" id="topic" name="topic" class="border border-[#AFAFAF] bg-white rounded-lg p-2">
                         </div>
+                        @if(auth()->user()->role === "equip_directiu")
                         <div class="flex flex-col gap-1">
                             <label for="open">Tipus de seguiment</label>
                             <select name="open" id="open" class="border border-[#AFAFAF] bg-white rounded-lg p-2" >
                                 <option value="0">Restringit</option>
-                                <option value="1">Públic</option>
+                                <option value="1" selected>Públic</option>
                             </select>
                         </div>
+                        @else
+                            <input type="hidden" name="open" value="1">
+                        @endif
                     </div>
                     <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
                         Nou seguiment
