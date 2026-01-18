@@ -407,7 +407,7 @@
                 </svg>
             </div>
     
-            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Contactes externs</p>
+            <p class="text-[20px] font-bold text-[#011020] dark:text-white">Documents</p>
             <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels contactes externs del centre</p>
     
             <!-- Opciones -->

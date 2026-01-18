@@ -18,6 +18,7 @@ use App\Http\Controllers\RRHHTrackingController;
 use App\Http\Controllers\RRHHDocsController;
 use App\Http\Controllers\CenterDocumentsController;
 use App\Http\Controllers\ComplementaryServiceController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ExternalContactController;
 use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MaintenanceTrackingController;
@@ -137,6 +138,13 @@ Route::middleware("auth")->group(function () {
         Route::patch("/external-contacts/{externalContact}/deactivate", [ExternalContactController::class, "deactivate"])->name("external-contacts.deactivate");
         Route::patch("/external-contacts/{externalContact}/activate", [ExternalContactController::class, "activate"])->name("external-contacts.activate");
         Route::post("/external-contacts/search", [ExternalContactController::class, "search"])->name("external-contacts.search");
+    });
+
+    // Documents
+    Route::middleware("setCenterContext")->group(function () {
+        Route::resource("documents", DocumentController::class);
+        Route::post("/documents/search", [DocumentController::class, "search"])->name("documents.search");
+        Route::get("/documents/download/{path}", [DocumentController::class, "download"])->where('path', '.*')->name("documents.download");
     });
 
 

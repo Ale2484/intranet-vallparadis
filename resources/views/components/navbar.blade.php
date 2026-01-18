@@ -70,6 +70,14 @@
             </a>
         </li>
         <li>
+            <a href="{{ route("documents.index") }}" class="{{ request()->is('documents*') ? "menu-option-selected" : "menu-option" }}">
+            <svg class="w-7 h-7">
+                <use xlink:href="#icon-document"></use>
+            </svg>
+                <span class="menu-text hidden text-nowrap">Documents</span>
+            </a>
+        </li>
+        <li>
             <a href="{{ route("complementary-services.index") }}" class="{{ request()->is('complementary-services*') ? "menu-option-selected" : "menu-option" }}">
             <svg class="w-7 h-7">
                 <use xlink:href="#icon-services"></use>
