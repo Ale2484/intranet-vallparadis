@@ -171,14 +171,22 @@ Route::middleware("auth")->group(function () {
     });
 
     // mantenimiento
-    Route::resource("maintenance", MaintenanceController::class)->except(["destroy","update","edit"]);
-    Route::get("maintenance/{maintenance}/tracking", [MaintenanceTrackingController::class, "index"])->name('maintenance.tracking');
-    Route::post("maintenance/{maintenance}/tracking/store", [MaintenanceTrackingController::class, "store"])->name('maintenance.tracking.store');
-    Route::get("maintenance/{maintenance}/docs", [MaintenanceDocsController::class, "index"])->name('maintenance.docs');
-    Route::post("maintenance/{maintenance}/docs/store", [MaintenanceDocsController::class, "Store"])->name('maintenance.docs.store');
-    Route::post("/maintenance/search", [MaintenanceController::class, "search"])->name("maintenance.search");
-    Route::patch("/maintenance/{maintenance}/deactivate", [MaintenanceController::class, "deactivate"])->name("maintenance.deactivate");
-    Route::patch("/maintenance/{maintenance}/activate", [MaintenanceController::class, "activate"])->name("maintenance.activate");
+    Route::middleware("checkMagnamentOrAdministration")->group(function () {
+        Route::resource("maintenance", MaintenanceController::class)->except(["destroy","update","edit"]);
+        Route::get("maintenance/{maintenance}/tracking", [MaintenanceTrackingController::class, "index"])->name('maintenance.tracking');
+        Route::post("maintenance/{maintenance}/tracking/store", [MaintenanceTrackingController::class, "store"])->name('maintenance.tracking.store');
+    
+        Route::get("maintenance/{maintenance}/tracking/{tracking}", [MaintenanceTrackingController::class, "show"])->name('maintenance.tracking.show');
+        Route::post("maintenance/{maintenance}/tracking/{tracking}/store", [MaintenanceCommentController::class, "store"])->name('maintenance.comment.store');
+    
+        Route::get("maintenance/{maintenance}/docs", [MaintenanceDocsController::class, "index"])->name('maintenance.docs');
+        Route::post("maintenance/{maintenance}/docs/store", [MaintenanceDocsController::class, "Store"])->name('maintenance.docs.store');
+        Route::post("/maintenance/search", [MaintenanceController::class, "search"])->name("maintenance.search");
+        Route::patch("/maintenance/{maintenance}/deactivate", [MaintenanceController::class, "deactivate"])->name("maintenance.deactivate");
+        Route::patch("/maintenance/{maintenance}/activate", [MaintenanceController::class, "activate"])->name("maintenance.activate");
+    });
 
 
+    // documentos
+    Route::get("/*/{document}", [DocumentController::class, "download"])->name("doc.download");
 });
