@@ -1,4 +1,4 @@
-<form action="{{ $action }}" method="POST" enctype="multipart/form-data dark:text-white">
+<form action="{{ $action }}" method="POST" enctype="multipart/form-data" class="dark:text-white">
     @csrf
     @isset($method)
         @method($method)
@@ -165,7 +165,7 @@
         </button>
         <div id="uploadedFiles" class="mb-5">
         </div>
-        <input type="file" name="files[]" id="files[]" class="hidden" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
+        <input type="file" name="documents[]" id="files[]" class="hidden" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
         
         <!-- Lista de documentos seleccionados -->
         <div id="selectedDocuments" class="mt-6 space-y-3 hidden">

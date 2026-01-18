@@ -42,8 +42,6 @@ class CenterDocumentsController extends Controller
             // Crear DOCUMENTO usando relación morph
             $center->documents()->create([
                 'name'        => $file->getClientOriginalName(),
-                'type'        => $validated['type'] ?? $file->getMimeType(),
-                'description' => $validated['description'] ?? null,
                 'path'        => $path,
                 'user'        => auth()->id(),
             ]);

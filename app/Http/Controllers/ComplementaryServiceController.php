@@ -179,7 +179,6 @@ class ComplementaryServiceController extends Controller
     
                 $complementaryService->documents()->create([
                     "name" => $modifiedFileName,
-                    "type" => $validated['type'] ?? $file->getMimeType(),
                     "description" => $validated["description"] ?? null,
                     "path" => $path,
                     "user" => auth()->user()->id
