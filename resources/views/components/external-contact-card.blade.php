@@ -9,7 +9,7 @@
                         </svg>
                     </div>
                     <div class="flex flex-col items-start">
-                        <p class="text-[#AFAFAF] text-xs md:text-sm font-semibold">{{ $externalContact->category ? strtoupper($externalContact->category) : ""}}</p>
+                        <p class="text-[#AFAFAF] text-xs md:text-sm font-semibold">{{ $externalContact->category ? Str::upper($externalContact->category) : ""}}</p>
                         <a href="{{ route("external-contacts.show", $externalContact) }}" class="text-[#012F4A] font-bold text-[20px] dark:text-white main-link">{{ $externalContact->contact_person }}</a>
                     </div>
                 </div>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Center;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
@@ -12,7 +14,7 @@ class DocumentController extends Controller
     {
         $query = Document::query();
 
-        $documents = $query->orderBy("created_at", "desc")->get();
+        $documents = Document::where("documentstable_id", Session::get("active_center_id"))->orderBy("created_at", "desc")->get();
         $viewType = $_COOKIE["view_type"] ?? "card";
         return view("documents.index", compact("documents", "viewType"));
     }
@@ -25,7 +27,7 @@ class DocumentController extends Controller
         $status = $request->status;
 
         $query = Document::query();
-
+        $query->where("documentstable_id", Session::get("active_center_id"));
         if ($searchValue) {
             $query->where("name", "like", "%$searchValue%");
         }
@@ -78,13 +80,12 @@ class DocumentController extends Controller
 
     public function store(Request $request)
     {
+        $activeCenter = Center::find(Session::get("active_center_id"));
         $validated = $request->validate([
             "name" => "required|string|max:255",
-            "type" => "nullable|string|max:255",
+            "type" => "required|in:Organitzacio_del_Centre,Documents_del_Departament,Memories_i_Seguiment_anual,PRL,Comite_d_Empresa,Informes_professionals,Informes_persones_usuaries,Qualitat_i_ISO,Projectes,Comissions,Families,Comunicacio_i_Reunions,Altres",
             "description" => "nullable|string",
             "path" => "required|file|max:20480",
-            "documentstable_id" => "nullable|integer",
-            "documentstable_type" => "nullable|string",
         ]);
 
         if ($request->hasFile("path")) {
@@ -95,25 +96,9 @@ class DocumentController extends Controller
 
         $validated["user"] = auth()->id();
 
-        if ($request->filled("documentstable_id") && $request->filled("documentstable_type")) {
-            $documentableType = $validated["documentstable_type"];
-            $documentableId = $validated["documentstable_id"];
-
-            if (class_exists($documentableType)) {
-                $documentable = $documentableType::findOrFail($documentableId);
-                $documentable->documents()->create($validated);
-            } else {
-                return redirect()->back()->with("error", "El tipus de documentable no es vàlid.");
-            }
-        } else {
-            Document::create($validated);
-        }
+        $activeCenter->documents()->create($validated);
         
-        if ($request->filled("documentstable_id")) {
-            return redirect()->back()->with("success", "Document creat correctament.");
-        } else {
-            return redirect()->route("documents.index")->with("success", "Document creat correctament.");
-        }
+        return redirect()->route("documents.index")->with("success", "Document creat correctament" );
     }
 
     public function show(Document $document)
@@ -130,36 +115,21 @@ class DocumentController extends Controller
     {
         $validated = $request->validate([
             "name" => "required|string|max:255",
-            "type" => "nullable|string|max:255",
+            "type" => "required|in:Organitzacio_del_Centre,Documents_del_Departament,Memories_i_Seguiment_anual,PRL,Comite_d_Empresa,Informes_professionals,Informes_persones_usuaries,Qualitat_i_ISO,Projectes,Comissions,Families,Comunicacio_i_Reunions,Altres",
             "description" => "nullable|string",
             "path" => "nullable|file|max:20480",
         ]);
 
-        if ($request->hasFile("path")) {
-            Storage::disk("public")->delete($document->path);
-            $file = $request->file("path");
-            $path = $file->store("documents", "public");
-            $validated["path"] = $path;
-        }
 
         $document->update($validated);
-
-        if ($document->documentstable_id) {
-            return redirect()->back()->with("success", "Document actualitzat correctament.");
-        } else {
-            return redirect()->route("documents.index")->with("success", "Document actualitzat correctament.");
-        }
+        return redirect()->route("documents.index")->with("success", "Document actualitzat correctament");
     }
 
     public function destroy(Document $document)
     {
         Storage::disk("public")->delete($document->path);
         $document->delete();
-        if ($document->documentstable_id) {
-            return redirect()->back()->with("success", "Document eliminat correctament.");
-        } else {
-            return redirect()->route("documents.index")->with("success", "Document eliminat correctament.");
-        }
+        return redirect()->route("documents.index")->with("success", "Document eliminat correctament.");
     }
 
     public function download($path)

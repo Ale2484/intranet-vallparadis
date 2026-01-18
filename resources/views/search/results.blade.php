@@ -2,7 +2,7 @@
 @section("title", "Resultats de la cerca")
 @section('main')
 @php
-    $searchGroups = [$searchUsers, $searchCenters, $searchProjects, $searchCourses, $searchGeneralServices, $searchComplementaryServices, $searchExternalContacts, $searchMaintenances, $searchRrhhs];
+    $searchGroups = [$searchUsers, $searchCenters, $searchProjects, $searchCourses, $searchDocuments, $searchGeneralServices, $searchComplementaryServices, $searchExternalContacts, $searchMaintenances, $searchRrhhs];
 @endphp
 <a href="{{ route("dashboard") }}" class="flex gap-3 text-[#AFAFAF] mb-5">
     <svg class="w-6 h-6">
@@ -47,6 +47,16 @@
     <div class="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         @foreach($searchCourses as $course)
             <x-course-card :course="$course"/>
+        @endforeach
+    </div>
+@endif
+
+{{-- Documents --}}
+@if ($searchDocuments->isNotEmpty())
+    <h1 class="w-full mt-7 text-3xl font-bold text-[#011020] dark:text-white">Documents:</h1>
+    <div class="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        @foreach($searchDocuments as $document)
+            <x-document-card :document="$document"/>
         @endforeach
     </div>
 @endif

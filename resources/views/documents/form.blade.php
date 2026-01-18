@@ -29,7 +29,22 @@
                     Tipus de document
                 </label>
             </div>
-            <input type="text" name="type" id="type" placeholder="Tipus de document" value="{{ old('type', $document->type) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('type') border-red-500 @enderror">
+            <select name="type" id="type" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:border-neutral-600 focus:outline-none dark:bg-neutral-800 focus:ring-2 focus:ring-orange-500 @error('type') border-red-500 @enderror">
+                <option value="">Selecciona un tipus de document</option>
+                <option value="Organitzacio_del_Centre" {{ old('type', $document->type) == 'Organitzacio_del_Centre' ? 'selected' : '' }}>Organització del Centre</option>
+                <option value="Documents_del_Departament" {{ old('type', $document->type) == 'Documents_del_Departament' ? 'selected' : '' }}>Documents del Departament</option>
+                <option value="Memories_i_Seguiment_anual" {{ old('type', $document->type) == 'Memories_i_Seguiment_anual' ? 'selected' : '' }}>Memòries i Seguiment anual</option>
+                <option value="PRL" {{ old('type', $document->type) == 'PRL' ? 'selected' : '' }}>PRL</option>
+                <option value="Comite_d_Empresa" {{ old('type', $document->type) == 'Comite_d_Empresa' ? 'selected' : '' }}>Comitè d’Empresa</option>
+                <option value="Informes_professionals" {{ old('type', $document->type) == 'Informes_professionals' ? 'selected' : '' }}>Informes professionals</option>
+                <option value="Informes_persones_usuaries" {{ old('type', $document->type) == 'Informes_persones_usuaries' ? 'selected' : '' }}>Informes persones usuàries</option>
+                <option value="Qualitat_i_ISO" {{ old('type', $document->type) == 'Qualitat_i_ISO' ? 'selected' : '' }}>Qualitat i ISO</option>
+                <option value="Projectes" {{ old('type', $document->type) == 'Projectes' ? 'selected' : '' }}>Projectes</option>
+                <option value="Comissions" {{ old('type', $document->type) == 'Comissions' ? 'selected' : '' }}>Comissions</option>
+                <option value="Families" {{ old('type', $document->type) == 'Families' ? 'selected' : '' }}>Famílies</option>
+                <option value="Comunicacio_i_Reunions" {{ old('type', $document->type) == 'Comunicacio_i_Reunions' ? 'selected' : '' }}>Comunicació i Reunions</option>
+                <option value="Altres" {{ old('type', $document->type) == 'Altres' ? 'selected' : '' }}>Altres</option>
+            </select>
             @error('type')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -50,20 +65,22 @@
             @enderror
         </div>
 
-        <div class="md:col-span-2">
-            <div class="flex items-center gap-2 mb-2">
-                <svg class="w-6 h-6 dark:text-neutral-400">
-                    <use xlink:href="#icon-upload"></use>
-                </svg>
-                <label for="path" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
-                    Fitxer *
-                </label>
+        @if ($method == "POST")
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-2 mb-2">
+                    <svg class="w-6 h-6 dark:text-neutral-400">
+                        <use xlink:href="#icon-upload"></use>
+                    </svg>
+                    <label for="path" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
+                        Fitxer *
+                    </label>
+                </div>
+                <input type="file" name="path" id="path" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('path') border-red-500 @enderror" @if($document->path == null) required @endif>
+                @error('path')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
-            <input type="file" name="path" id="path" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('path') border-red-500 @enderror" @if($document->path == null) required @endif>
-            @error('path')
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-            @enderror
-        </div>
+        @endif
     </div>
 
     <!-- Botones -->

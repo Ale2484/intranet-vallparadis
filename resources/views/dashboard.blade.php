@@ -408,29 +408,13 @@
             </div>
     
             <p class="text-[20px] font-bold text-[#011020] dark:text-white">Documents</p>
-            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels contactes externs del centre</p>
+            <p class="text-[#013148] text-sm dark:text-gray-400" >Control i seguiment dels documents del centre</p>
     
             <!-- Opciones -->
             <ul class="my-5 w-full">
                 <li>
-                    <a href="{{ route("external-contacts.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Nou contacte extern
-                    <svg class="w-6 h-6">
-                        <use xlink:href="#icon-no-line-arrow"></use>
-                    </svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route("external-contacts.index", ["status" => "active"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Contactes actius
-                    <svg class="w-6 h-6">
-                        <use xlink:href="#icon-no-line-arrow"></use>
-                    </svg>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route("external-contacts.index", ["status" => "inactive"]) }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
-                        Contactes inactius
+                    <a href="{{ route("documents.create") }}" class="p-2 rounded-lg mb-2 text-[#012F4A] flex flex-row items-center justify-between w-full cursor-pointer hover:bg-[#fef5eb] hover:text-[#FF7E13] dark:text-slate-300 dark:hover:bg-neutral-700 transition-all">
+                        Nou document
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-no-line-arrow"></use>
                     </svg>
@@ -438,7 +422,7 @@
                 </li>
             </ul>
         </div>
-        <a href="{{ route("external-contacts.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
+        <a href="{{ route("documents.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>
     </div>
 </div>
 @endsection
