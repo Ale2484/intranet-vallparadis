@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
-    public function download(Document $document)
+    public function download($baseName)
     {
-        if (Storage::disk("local")->exists($document->file_path)) {
-            return Storage::disk("local")->download($document->file_path);
-        } else{
-            return back()->with("error", "El fitxer no existeix");
+        $document = Document::where("path", "like", "%$baseName")->firstOrFail();
+        $filePath = storage_path("app/private/" . $document->path);
+        if (file_exists($filePath)) {
+            return response()->download($filePath, $document->name);
+        } else {
+            return redirect()->back()->with("error", "El fitxer no existeix.");
         }
     }
 }

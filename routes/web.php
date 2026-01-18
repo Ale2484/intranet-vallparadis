@@ -24,6 +24,7 @@ use App\Http\Controllers\MaintenanceTrackingController;
 use App\Http\Controllers\MaintenanceDocsController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\MaintenanceCommentController;
+use App\Http\Controllers\UserDocsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -187,6 +188,14 @@ Route::middleware("auth")->group(function () {
     });
 
 
+    
+    // documentos usuario
+    Route::get("users/{user}/docs", [UserDocsController::class, "index"])->name('user.docs');
+    Route::post("users/{user}/docs/store", [UserDocsController::class, "Store"])->name('user.docs.store');
+    
+    // accidentabilidad
+    
+    
     // documentos
-    Route::get("/*/{document}", [DocumentController::class, "download"])->name("doc.download");
+    Route::get('documents/download/{baseName}', [DocumentController::class, 'download'])->name('doc.download');
 });

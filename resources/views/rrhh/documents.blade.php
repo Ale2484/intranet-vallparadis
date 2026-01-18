@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="text-[#5E6468]">
-                        Afegeix un nou document per al centre: {{ $rrhh->name }}
+                        Afegeix un nou document per al Tema Pendent: {{ $rrhh->name }}
                     </div>
                 </div>
                 <form action="{{ route('rrhh.docs.store', $rrhh->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7" enctype="multipart/form-data" >
