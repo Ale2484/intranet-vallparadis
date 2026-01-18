@@ -217,17 +217,17 @@ class ProjectController extends Controller
     /**
      * Procesar y guardar documentos
      */
-    private function processDocuments(Project $project, $documents)
+    private function processDocuments(Project $project, $files)
     {
-        foreach ($documents as $document) {
+        foreach ($files as $document) {
             // Guardar el archivo
             $path = $document->store('project-documents', 'private');
             
             // Crear registro en la base de datos
-            ProjectDocument::create([
+            $project->documents()->create([
                 'name' => $document->getClientOriginalName(),
-                'project' => $project->id,
-                'path' => $path
+                'path' => $path,
+                'user' => auth()->id(),
             ]);
         }
     }

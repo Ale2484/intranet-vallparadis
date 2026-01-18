@@ -154,7 +154,7 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
-                        <a href=""  
+                        <a href="{{ route('doc.download', basename($document->path)) }}"  
                             class="text-sm py-2 px-4 flex items-center gap-2">
                             <svg class="w-8 h-8 dark:text-[#FF7033]">
                                 <use xlink:href="#icon-download"></use>

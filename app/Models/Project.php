@@ -49,10 +49,9 @@ class Project extends Model
 
 
 
-    // Relación con los documentos
-    public function documents()
-    {
-        return $this->hasMany(ProjectDocument::class, 'project');
+    // Relacion Documentos
+    public function documents() {
+        return $this->morphMany(Document::class, 'documentstable');
     }
 
     // // Scope para proyectos activos

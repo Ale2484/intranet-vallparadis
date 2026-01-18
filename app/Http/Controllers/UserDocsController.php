@@ -40,8 +40,6 @@ class UserDocsController extends Controller
             // Crear DOCUMENTO usando relación morph
             $user->documents()->create([
                 'name'        => $file->getClientOriginalName(),
-                'type'        => $validated['type'] ?? $file->getMimeType(),
-                'description' => $validated['description'] ?? null,
                 'path'        => $path,
                 'user'        => auth()->id(),
             ]);

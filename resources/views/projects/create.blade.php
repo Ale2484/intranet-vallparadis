@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("title", "Nou projecte/comissió")
 @section('main')
-<div class="max-w-4xl mx-auto">
+<div class="max-w-4xl mx-auto dark:text-white">
     <!-- Header -->
     <div class="w-full flex flex-row mb-8 justify-between items-center">
         <div class="w-fit flex flex-col gap-5 ">
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Form -->
-    <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+    <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 dark:bg-neutral-800 dark:border-neutral-600">
         @include('projects.form', [
             'action' => route('projects.store', $project),
             'method' => 'POST',
