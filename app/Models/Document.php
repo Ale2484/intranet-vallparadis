@@ -28,6 +28,15 @@ class Document extends Model
         return $this->belongsTo(User::class, 'user');
     }
 
+    public function getFormattedTypeAttribute()
+    {
+        return str_replace(
+            ['_', 'Organitzacio', 'Memories', 'Comite', 'usuaries', 'Families', 'Comunicacio'],
+            [' ', 'Organització', 'Memòries', 'Comitè', 'usuàries', 'Famílies', 'Comunicació'],
+            $this->type
+        );
+    }
+
     // Método para obtener el tamaño del archivo
     public function getFileSize()
     {
