@@ -12,11 +12,11 @@ class CenterDocumentsController extends Controller
      */
     public function index(Center $center)
     {
-
+        $types = ['Organitzacio_del_Centre', 'Documents_del_Departament', 'Memories_i_Seguiment_anual', 'PRL', 'Comite_d_Empresa', 'Informes_professionals', 'Informes_persones_usuaries', 'Qualitat_i_ISO', 'Projectes', 'Comissions', 'Families', 'Comunicacio_i_Reunions', 'Altres'];
         $documents = $center->documents()
             ->orderBy('created_at', 'desc')
             ->get();
-        return view("centers.documents", compact("center", "documents"));
+        return view("centers.documents", compact("center", "documents", "types"));
     }
 
     /**

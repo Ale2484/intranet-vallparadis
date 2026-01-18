@@ -97,7 +97,11 @@
                         <div class="flex flex-col gap-3">
                             <div class="flex flex-col gap-1">
                                 <label for="type">Tipus</label>
-                                <input type="text" id="type" name="type" class="border border-[#AFAFAF] bg-white rounded-lg p-2 dark:bg-neutral-800 dark:border-neutral-600">
+                                <select type="text" id="type" name="type" class="border border-[#AFAFAF] bg-white rounded-lg p-2 dark:bg-neutral-800 dark:border-neutral-600">
+                                    @foreach ($types as $type)
+                                        <option value="{{ $type }}">{{ $type }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="flex flex-col gap-1">
                                 <label for="description">Descripció</label>
