@@ -1,7 +1,7 @@
 @extends("layouts.app")
 @section("title", "Documents")
 @section("main")
-<div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10">
+<div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10 dark:text-white">
     <div class="w-full flex flex-row justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
             <a href="{{ route('maintenance.show', $maintenance->id) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
@@ -10,7 +10,7 @@
                 </svg>
                 Tornar a la gestió del manteniment
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Documents de {{ $maintenance->topic }}</h1>
+            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Documents de {{ $maintenance->topic }}</h1>
             <p class="text-[#AFAFAF]" >Documents del manteniment seleccionat</p>
         </div>
     </div>
@@ -22,18 +22,18 @@
             @else
                 
             @foreach ($documents as $document)
-                <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full">
+                <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full dark:bg-neutral-800 dark:border-neutral-600">
                     <div class="flex flex-row items-center justify-between">
                         <div class="flex items-center gap-4">
                             <div class="flex items-center justify-center w-12 h-12 rounded-lg">
-                                <svg class="w-6 h-6 text-gray-600">
+                                <svg class="w-6 h-6 text-gray-600 dark:text-white">
                                     <use xlink:href="#icon-document"></use>
                                 </svg>
                             </div>
                             <div class="flex gap-5 w-full justify-start">
                                 <div class="flex flex-col w-fit">
-                                    <p class="font-medium text-[#011020] text-lg">{{ $document->name }}</p>
-                                    <p class="text-sm text-[#AFAFAF]">
+                                    <p class="font-medium text-[#011020] text-lg dark:text-white">{{ $document->name }}</p>
+                                    <p class="text-sm text-[#AFAFAF] dark:text-white">
                                         {{ $document->formatted_size }} • 
                                         Pujat el {{ $document->created_at->format('j/n/Y') }}
                                     </p>
@@ -55,7 +55,7 @@
         </div>
         <div class="w-1/4 min-w-min">
             {{-- formulario --}}
-            <div class="flex flex-col justify-center h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+            <div class="flex flex-col justify-center h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5 dark:bg-neutral-800 dark:border-neutral-600">
                 <div class="pb-3 border-b-1 border-[#AFAFAF] flex flex-col gap-2">
                     <div class="flex flex-row gap-3">
                         <svg class="w-6 h-6 text-[#FF7E13]">
@@ -65,11 +65,11 @@
                             Nou document 
                         </div>
                     </div>
-                    <div class="text-[#5E6468]">
+                    <div class="text-[#5E6468] dark:text-white">
                         Afegeix un nou document per al centre: {{ $maintenance->name }}
                     </div>
                 </div>
-                <form action="{{ route('maintenance.docs.store', $maintenance->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7" enctype="multipart/form-data" >
+                <form action="{{ route('maintenance.docs.store', $maintenance->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7 dark:text-white" enctype="multipart/form-data" >
                         @csrf
                         @method("POST")
                         <div class="flex flex-col gap-3">

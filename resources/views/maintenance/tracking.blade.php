@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("title", "Veure els seguiments")
 @section('main')
-<div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10">
+<div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10 dark:text-white">
     <!-- Header -->
     <div class="w-full flex flex-row justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
@@ -11,14 +11,14 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Seguiment de: {{ $maintenance->topic }}</h1>
+            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Seguiment de: {{ $maintenance->topic }}</h1>
             <p class="text-[#AFAFAF]" >Comentaris del manteniment</p>
         </div>
     </div>
     
     <div class="flex flex-col gap-5">
         <div class="flex flex-row justify-between items-center w-5/8">
-            <div class="text-2xl font-bold text-[#011020]">
+            <div class="text-2xl font-bold text-[#011020] dark:text-white">
                 Historial de seguiments
             </div>
             <div class="text-[#FF7E13] text-1xl font-bold">
@@ -30,7 +30,7 @@
             <!-- Historial -->
             <div class="flex flex-col justify-start w-5/8 gap-5 overflow-y-scroll h-[443px]">
                 @foreach($trackings as $tracking)
-                    <div class="border-1 border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-4">
+                    <div class="border-1 border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-4 dark:bg-neutral-800 dark:border-neutral-600">
                         <div class="border-b-1 border-[#AFAFAF] pb-5">
                             <div class="flex flex-row gap-5">
                                 <div>
@@ -81,7 +81,7 @@
                 @endforeach
             </div>
             <!-- Formulario -->
-            <div class="flex flex-col justify-center w-1/4 h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+            <div class="flex flex-col justify-center w-1/4 h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5 dark:bg-neutral-800 dark:border-neutral-600">
                 <div class="pb-3 border-b-1 border-[#AFAFAF] flex flex-col gap-2">
                     <div class="flex flex-row gap-3">
                         <svg class="w-6 h-6 text-[#FF7E13]">
@@ -91,17 +91,17 @@
                             Nou seguiment 
                         </div>
                     </div>
-                    <div class="text-[#5E6468]">
+                    <div class="text-[#5E6468] dark:text-white">
                         Afegeix un nou seguiment per al professional: {{ $maintenance->topic }}
                     </div>
                 </div>
-                <form action="{{ route('maintenance.tracking.store', $maintenance->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7" >
+                <form action="{{ route('maintenance.tracking.store', $maintenance->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7 dark:text-white" >
                     @csrf
                     @method("POST")
                     <div class="flex flex-col gap-3">
                         <div class="flex flex-col gap-1">
                             <label for="topic">Tema</label>
-                            <input type="text" id="topic" name="topic" class="border border-[#AFAFAF] bg-white rounded-lg p-2">
+                            <input type="text" id="topic" name="topic" class="border border-[#AFAFAF] bg-white rounded-lg p-2 dark:bg-neutral-800 dark:border-neutral-600">
                         </div>
                     </div>
                     <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">

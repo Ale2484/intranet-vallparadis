@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section("title", "Veure els seguiments")
 @section('main')
-<div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10">
+<div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10 dark:text-white">
     <!-- Header -->
     <div class="w-full flex flex-row justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
@@ -11,12 +11,12 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020]">Seguiment de {{ $user->name }}</h1>
+            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Seguiment de {{ $user->name }}</h1>
             <p class="text-[#AFAFAF]" >Seguiment del professional seleccionat</p>
         </div>
     </div>
     <!-- Info Usuario -->
-    <div class="w-full border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-row gap-5 items-center">
+    <div class="w-full border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-row gap-5 items-center dark:bg-neutral-800 dark:border-neutral-600">
         <div class="bg-gray-200 w-20 h-20 rounded-full aspect-square">
             @if (!$user->profile_photo_path)
                 <minidenticon-svg username="{{ md5($user->id) }}" class="w-20 h-20 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
@@ -40,7 +40,7 @@
     </div>
     <div class="flex flex-col gap-5">
         <div class="flex flex-row justify-between items-center w-5/8">
-            <div class="text-2xl font-bold text-[#011020]">
+            <div class="text-2xl font-bold text-[#011020] dark:text-white">
                 Historial de seguiments
             </div>
             <div class="text-[#FF7E13] text-1xl font-bold">
@@ -52,7 +52,7 @@
             <!-- Historial -->
             <div class="flex flex-col justify-start w-5/8 gap-5 overflow-y-scroll h-[443px]">
                 @foreach($trackings as $tracking)
-                    <div class="border-2 border-{{ $tracking->end_link ? 'red' : 'blue'}}-300 bg-white rounded-[15px] p-5 flex flex-col gap-4">
+                    <div class="border-2 border-gray-300 bg-white rounded-[15px] p-5 flex flex-col gap-4 dark:bg-neutral-800 dark:border-neutral-600">
                         <div class="border-b-1 border-[#AFAFAF] pb-5">
                             <div class="flex flex-row gap-5">
                                 <div>
@@ -68,8 +68,8 @@
                                 </div>
                                 <div class="w-full">
                                     <div class="flex flex-row justify-between w-full h-min">
-                                        <div class="flex flex-col gap-1">
-                                            <a href="{{ route("trackings.show", ['user' => $user->id, 'tracking' => $tracking->id]) }}" class="text-2xl font-bold">
+                                        <div class="flex flex-col gap-1 ">
+                                            <a href="{{ route("trackings.show", ['user' => $user->id, 'tracking' => $tracking->id]) }}" class="text-2xl font-bold dark:text-white text-black">
                                                 {{ Str::limit($tracking->topic, 20) }}
                                             </a>
                                             <div class="flex flex-row gap-2 items-center" >
@@ -109,7 +109,7 @@
                 @endforeach
             </div>
             <!-- Formulario -->
-            <div class="flex flex-col justify-center w-1/4 h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5">
+            <div class="flex flex-col justify-center w-1/4 h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5 dark:bg-neutral-800 dark:border-neutral-600">
                 <div class="pb-3 border-b-1 border-[#AFAFAF] flex flex-col gap-2">
                     <div class="flex flex-row gap-3">
                         <svg class="w-6 h-6 text-[#FF7E13]">
@@ -119,22 +119,22 @@
                             Nou seguiment
                         </div>
                     </div>
-                    <div class="text-[#5E6468]">
+                    <div class="text-[#5E6468] dark:text-white">
                         Afegeix un nou seguiment per al professional: {{ $user->name }}
                     </div>
                 </div>
-                <form action="{{ route('trackings.store', $user->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7" >
+                <form action="{{ route('trackings.store', $user->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7 dark:text-white" >
                     @csrf
                     @method("POST")
                     <div class="flex flex-col gap-3">
                         <div class="flex flex-col gap-1">
                             <label for="topic">Tema</label>
-                            <input type="text" id="topic" name="topic" class="border border-[#AFAFAF] bg-white rounded-lg p-2">
+                            <input type="text" id="topic" name="topic" class="border border-[#AFAFAF] bg-white rounded-lg p-2 dark:bg-neutral-950 dark:border-neutral-600">
                         </div>
                         @if(auth()->user()->role === "equip_directiu")
                         <div class="flex flex-col gap-1">
                             <label for="open">Tipus de seguiment</label>
-                            <select name="open" id="open" class="border border-[#AFAFAF] bg-white rounded-lg p-2" >
+                            <select name="open" id="open" class="border border-[#AFAFAF] bg-white rounded-lg p-2 dark:bg-neutral-950 dark:border-neutral-600" >
                                 <option value="0">Restringit</option>
                                 <option value="1" selected>Públic</option>
                             </select>
