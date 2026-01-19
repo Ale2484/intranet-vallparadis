@@ -11,7 +11,7 @@
                 </svg>
                 Tornar a la gestió de projectes/comissions
             </a>
-            <h1 class="text-3xl font-bold text-[#011020] ">Nou projecte/comissió</h1>
+            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Nou projecte/comissió</h1>
             <p class="text-[#AFAFAF]" >Afegeix un nou projecte/comissió al sistema</p>
         </div>
     </div>

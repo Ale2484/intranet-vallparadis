@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\ProjectDocument;
 use App\Models\UserProject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -109,7 +110,8 @@ class ProjectController extends Controller
             'documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png,gif,txt,zip,rar|max:10240', // 10MB max
         ]);
 
-        $validated["center"]=1;
+        $validated["center"]= Center::find(Session::get("active_center_id"));
+
 
         $validated['is_active'] = true;
 
@@ -164,7 +166,6 @@ class ProjectController extends Controller
             'documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png,gif,txt,zip,rar|max:10240', // 10MB max
         ]);
 
-        $validated["center"]=1;
 
         $project->update($validated);
 

@@ -29,9 +29,9 @@ class MaintenanceSeeder extends Seeder
 
         $data = [];
 
-        for ($i = 1; $i <= 22; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             $data[] = [
-                'center' => ($i % 2) + 1,
+                'center' => $i,
                 'responsible' => $responsibles[array_rand($responsibles)],
                 'description' => "Mantenimiento programado número {$i}",
                 'topic' => $topics[array_rand($topics)],

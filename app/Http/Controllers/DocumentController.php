@@ -101,7 +101,7 @@ class DocumentController extends Controller
 
         if ($request->hasFile("path")) {
             $file = $request->file("path");
-            $path = $file->store("documents", "public");
+            $path = $file->store("documents", "private");
             $validated["path"] = $path;
         }
 

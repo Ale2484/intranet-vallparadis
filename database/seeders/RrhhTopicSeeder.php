@@ -28,13 +28,13 @@ class RrhhTopicSeeder extends Seeder
 
         $data = [];
 
-        for ($i = 1; $i <= 22; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
             $data[] = [
-                'center' => ($i % 2) + 1,
+                'center' => $i,
                 'opening' => rand(0, 1) ? Carbon::now()->subDays(rand(1, 30)) : null,
-                'user_affected' => rand(1, 5),
+                'user_affected' => $i,
                 'description' => "Incidencia RRHH número {$i}",
-                'user_register' => rand(1, 5),
+                'user_register' => $i+9,
                 'derivative' => $derivatives[array_rand($derivatives)],
                 'topic' => $topics[array_rand($topics)],
                 'is_active' => $i % 5 !== 0,

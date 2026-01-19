@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\BelongsToCenter;
 
 class Maintenance extends Model
 {
+    use BelongsToCenter;
     protected $fillable = [
         "center",
         "responsible",
