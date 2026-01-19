@@ -75,7 +75,18 @@
                         Fitxer *
                     </label>
                 </div>
-                <input type="file" name="path" id="path" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('path') border-red-500 @enderror" @if($document->path == null) required @endif>
+                <button type="button" data-file-input-id="files[]" data-show-uploaded-files-id="uploadedFiles" class="upload-file-button w-full flex flex-col items-center justify-center border-2 border-[#AFAFAF] border-dashed rounded-lg cursor-pointer p-2 gap-2 mb-3 hover:bg-[#f6f6f6] dark:hover:bg-neutral-700 transition-all">
+                    <div class="bg-[#E9E9E9] rounded-full p-2">
+                        <svg class="w-8 h-8 text-[#011020]">
+                            <use xlink:href="#icon-upload"></use>
+                        </svg>
+                    </div>
+                    <p class="text-[#FF7E13] font-bold text-sm">Fes click per pujar un fitxer <span class="text-[#AFAFAF]"> o arrossega i deixa anar</span></p>
+                    <p class="text-[#AFAFAF] text-sm">(PDF, CSV, XLSX, DOC, DOCX)</p>
+                </button>
+                <div id="uploadedFiles" class="mb-5">
+                </div>
+                <input type="file" name="path" id="files[]" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
                 @error('path')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
