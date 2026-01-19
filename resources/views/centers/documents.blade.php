@@ -41,7 +41,7 @@
                                 <div class="flex flex-col border-l-[#AFAFAF] border-l-2 h-full pl-4 w-fit">
                                     <p class="font-medium text-[#011020] dark:text-white text-lg">Tipus</p>
                                     <p class="text-sm text-[#AFAFAF] dark:text-white">
-                                        {{ $document->type }}
+                                        {{ $document->getFormattedTypeAttribute() }}
                                     </p>
                                 </div>
                                 <div class="flex flex-col border-l-[#AFAFAF] border-l-2 h-full pl-4 w-max">
@@ -98,8 +98,8 @@
                             <div class="flex flex-col gap-1">
                                 <label for="type">Tipus</label>
                                 <select type="text" id="type" name="type" class="border border-[#AFAFAF] bg-white rounded-lg p-2 dark:bg-neutral-800 dark:border-neutral-600">
-                                    @foreach ($types as $type)
-                                        <option value="{{ $type }}">{{ $type }}</option>
+                                    @foreach ($types as $key => $type)
+                                        <option value="{{ $type }}">{{ $formated_types[$key] }}</option>
                                     @endforeach
                                 </select>
                             </div>

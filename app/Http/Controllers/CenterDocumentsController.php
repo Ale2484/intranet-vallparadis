@@ -13,10 +13,11 @@ class CenterDocumentsController extends Controller
     public function index(Center $center)
     {
         $types = ['Organitzacio_del_Centre', 'Documents_del_Departament', 'Memories_i_Seguiment_anual', 'PRL', 'Comite_d_Empresa', 'Informes_professionals', 'Informes_persones_usuaries', 'Qualitat_i_ISO', 'Projectes', 'Comissions', 'Families', 'Comunicacio_i_Reunions', 'Altres'];
+        $formated_types = ['Organitzacio del Centre', 'Documents del Departament', 'Memories i Seguiment_anual', 'PRL', "Comite d'Empresa",'Informes professionals', 'Informes persones usuaries', 'Qualitat i ISO', 'Projectes', 'Comissions', 'Families', 'Comunicacio i Reunions', 'Altres'];
         $documents = $center->documents()
             ->orderBy('created_at', 'desc')
             ->get();
-        return view("centers.documents", compact("center", "documents", "types"));
+        return view("centers.documents", compact("center", "documents", "types", "formated_types"));
     }
 
     /**
@@ -42,6 +43,8 @@ class CenterDocumentsController extends Controller
             // Crear DOCUMENTO usando relación morph
             $center->documents()->create([
                 'name'        => $file->getClientOriginalName(),
+                'type'        => $validated['type'] ?? $file->getMimeType(),
+                'description' => $validated['description'] ?? null,
                 'path'        => $path,
                 'user'        => auth()->id(),
             ]);
