@@ -75,4 +75,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Course::class, "course_users");
     }
+
+    // Relacion Documentos
+    public function documents() {
+        return $this->morphMany(Document::class, 'documentstable');
+    }
 }

@@ -174,7 +174,7 @@ class UserController extends Controller
             } elseif ($file->getSize() > 5120 * 1024) {
                 $error = "La imatge no pot pesar més de 5MB.";
             } else {
-                $path = $file->store("profile_photos", "public");
+                $path = $file->store("profile_photos", "private");
             }
 
         // Caso de base64
@@ -189,7 +189,7 @@ class UserController extends Controller
 
                 $fileName = "profile_" . $user->id . "_" . time() . ".png";
                 $path = "profile_photos/" . $fileName;
-                Storage::disk("public")->put($path, base64_decode($data));
+                Storage::disk("private")->put($path, base64_decode($data));
             }
 
         } else {
@@ -203,7 +203,7 @@ class UserController extends Controller
 
         // Se elimina la foto antigua si existe
         if ($user->profile_photo_path) {
-            Storage::disk('public')->delete($user->profile_photo_path);
+            Storage::disk('private')->delete($user->profile_photo_path);
         }
 
         $user->update(["profile_photo_path" => $path]);

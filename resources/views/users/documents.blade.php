@@ -1,16 +1,17 @@
-@extends("layouts.app")
-@section("title", "Documents")
-@section("main")
+@extends('layouts.app')
+@section("title", "Edita l'usuari")
+
+@section('main')
 <div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10 dark:text-white">
     <div class="w-full flex flex-row justify-between items-center">
         <div class="w-fit flex flex-col gap-5">
-            <a href="{{ route('rrhh.show', $rrhh->id) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
+            <a href="{{ route('users.show', $user->id) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
                 Tornar a la gestió del tema pendent
             </a>
-            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Documents de {{ $rrhh->topic }}</h1>
+            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Documents de {{ $user->name }}</h1>
             <p class="text-[#AFAFAF]" >Documents del tema pendent seleccionat</p>
         </div>
     </div>
@@ -33,7 +34,7 @@
                             <div class="flex gap-5 w-full justify-start">
                                 <div class="flex flex-col w-fit">
                                     <p class="font-medium text-[#011020] text-lg dark:text-white">{{ $document->name }}</p>
-                                    <p class="text-sm text-[#AFAFAF] dark:text-white">
+                                    <p class="text-sm text-[#AFAFAF]">
                                         {{ $document->formatted_size }} • 
                                         Pujat el {{ $document->created_at->format('j/n/Y') }}
                                     </p>
@@ -41,7 +42,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            <a href="{{ route('doc.download', basename($document->path)) }}"  
+                            <a href="{{ route('doc.download', basename($document->path)) }}"
                                 class="text-sm py-2 px-4 flex items-center gap-2">
                                 <svg class="w-8 h-8">
                                     <use xlink:href="#icon-download"></use>
@@ -56,7 +57,7 @@
         <div class="w-1/4 min-w-min">
             {{-- formulario --}}
             <div class="flex flex-col justify-center h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5 dark:bg-neutral-800 dark:border-neutral-600">
-                <div class="pb-3 border-b-1 border-[#AFAFAF] flex flex-col gap-2">
+                <div class="pb-3 border-b-1 border-[#AFAFAF] flex flex-col gap-2 dark:text-white">
                     <div class="flex flex-row gap-3">
                         <svg class="w-6 h-6 text-[#FF7E13]">
                             <use xlink:href="#icon-plus"></use>
@@ -66,30 +67,30 @@
                         </div>
                     </div>
                     <div class="text-[#5E6468] dark:text-white">
-                        Afegeix un nou document per al Tema Pendent: {{ $rrhh->name }}
+                        Afegeix un nou document per al professional: {{ $user->name }}
                     </div>
                 </div>
-                <form action="{{ route('rrhh.docs.store', $rrhh->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col dark:text-white" enctype="multipart/form-data" >
-                        @csrf
-                        @method("POST")
-                        <div class="flex flex-col gap-3">
-                            <label for="documents">Document</label>
-                            <button type="button" data-file-input-id="files[]" data-show-uploaded-files-id="uploadedFiles" class="upload-file-button w-full flex flex-col items-center justify-center border-2 border-[#AFAFAF] border-dashed rounded-lg cursor-pointer p-2 gap-2 mb-3 hover:bg-[#f6f6f6] dark:hover:bg-neutral-700 transition-all">
-                            <div class="bg-[#E9E9E9] rounded-full p-2">
-                                <svg class="w-8 h-8 text-[#011020]">
-                                    <use xlink:href="#icon-upload"></use>
-                                </svg>
-                            </div>
-                            <p class="text-[#FF7E13] font-bold text-sm">Fes click per pujar un fitxer <span class="text-[#AFAFAF]"> o arrossega i deixa anar</span></p>
-                            <p class="text-[#AFAFAF] text-sm">(PDF, CSV, XLSX, DOC, DOCX)</p>
-                        </button>
-                        <div id="uploadedFiles" class="mb-5">
+                <form action="{{ route('user.docs.store', $user->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col dark:text-white" enctype="multipart/form-data" >
+                    @csrf
+                    @method("POST")
+                    <button type="button" data-file-input-id="files[]" data-show-uploaded-files-id="uploadedFiles" class="upload-file-button w-full flex flex-col items-center justify-center border-2 border-[#AFAFAF] border-dashed rounded-lg cursor-pointer p-2 gap-2 mb-3 hover:bg-[#f6f6f6] dark:hover:bg-neutral-700 transition-all">
+                        <div class="bg-[#E9E9E9] rounded-full p-2">
+                            <svg class="w-8 h-8 text-[#011020]">
+                                <use xlink:href="#icon-upload"></use>
+                            </svg>
                         </div>
-                        <input type="file" name="documents[]" id="files[]" class="hidden" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
-                        </div>
-                        <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
-                            Afegir Document
-                        </button>
+                        <p class="text-[#FF7E13] font-bold text-sm">Fes click per pujar un fitxer <span class="text-[#AFAFAF]"> o arrossega i deixa anar</span></p>
+                        <p class="text-[#AFAFAF] text-sm">(PDF, CSV, XLSX, DOC, DOCX)</p>
+                    </button>
+                    <div id="uploadedFiles" class="mb-5">
+                    </div>
+                    <input type="file" name="files[]" id="files[]" class="hidden" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
+                    <button type="submit" class="bg-[#FF7E13] w-full text-white rounded-lg p-[10px] font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
+                        <svg class="w-6 h-6">
+                            <use xlink:href="#icon-plus"></use>
+                        </svg>
+                        Afegir fitxer
+                    </button>
                 </form>
             </div>
         </div>

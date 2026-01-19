@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\BelongsToCenter;
 use Illuminate\Database\Eloquent\Model;
 
 class RRHHTopic extends Model
 {
+    use BelongsToCenter;
+
     protected $fillable = [
         "center",
         "opening",

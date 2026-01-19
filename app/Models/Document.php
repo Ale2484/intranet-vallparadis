@@ -40,8 +40,8 @@ class Document extends Model
     // Método para obtener el tamaño del archivo
     public function getFileSize()
     {
-        if (Storage::disk('public')->exists($this->path)) {
-            $bytes = Storage::disk('public')->size($this->path);   
+        if (Storage::disk('private')->exists($this->path)) {
+            $bytes = Storage::disk('private')->size($this->path);   
         } else {
             $bytes = 0;
         }

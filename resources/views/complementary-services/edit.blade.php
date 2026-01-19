@@ -11,7 +11,7 @@
             Tornar a la gestió de serveis complementaris
         </a>
 
-        <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Edita el servei complementari</h1>
+        <h1 class="text-3xl font-bold text-[#011020] dark:text-white dark:text-white">Edita el servei complementari</h1>
 
         <p class="text-[#AFAFAF] mb-7">Edita el servei del sistema</p>
     </div>

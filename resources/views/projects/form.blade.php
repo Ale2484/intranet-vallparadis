@@ -1,4 +1,4 @@
-<form action="{{ $action }}" method="POST" enctype="multipart/form-data">
+<form action="{{ $action }}" method="POST" enctype="multipart/form-data" class="dark:text-white">
     @csrf
     @isset($method)
         @method($method)
@@ -12,7 +12,7 @@
 
         <!-- Nombre -->
         <div>
-            <label for="name" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2">
+            <label for="name" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-user"></use>
                 </svg>
@@ -28,14 +28,14 @@
 
         <!-- Fecha de inicio -->
         <div>
-            <label for="start" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2">
+            <label for="start" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-calendar"></use>
                 </svg>
                 Data d'inici
             </label>
             <input type="date" name="start" id="start" value="{{ old('start', $project->start ? $project->start->format('Y-m-d') : '') }}"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('start') border-red-500 @enderror">
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('start') border-red-500 @enderror dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
             @error('start')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -43,14 +43,14 @@
 
         <!-- Usuario Responsable -->
         <div>
-            <label for="user" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2">
+            <label for="user" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-user"></use>
                 </svg>
                 Professional responsable *
             </label>
             <select name="user" id="user" 
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('user') border-red-500 @enderror"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('user') border-red-500 @enderror dark:bg-neutral-800 dark:border-neutral-600"
             required>
                 @foreach($users as $user)
                     <option value="{{ $user->id }}" {{ old('user', $project->user) == $user->id ? 'selected' : '' }}>
@@ -65,14 +65,14 @@
     
     <!-- Tipo -->
     <div>
-        <label for="type" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2">
+        <label for="type" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2 dark:text-white">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-key"></use>
             </svg>
             Tipus *
         </label>
         <select name="type" id="type" 
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('type') border-red-500 @enderror"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('type') border-red-500 @enderror dark:bg-neutral-800 dark:border-neutral-600"
                 required>
             <option value="">Selecciona un tipus</option>
             <option value="project" {{ old('type', $project->type) == 'project' ? 'selected' : '' }}>Projecte</option>
@@ -85,14 +85,14 @@
 
         <!-- Descripción -->
         <div class="md:col-span-2">
-            <label for="description" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2">
+            <label for="description" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-desc"></use>
                 </svg>
                 Descripció *
             </label>
             <textarea name="description" id="description" rows="3" placeholder="Descripció del projecte/comissió"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('description') border-red-500 @enderror"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('description') border-red-500 @enderror dark:bg-neutral-800 dark:border-neutral-600"
                         required>{{ old('description', $project->description) }}</textarea>
             @error('description')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -101,14 +101,14 @@
 
         <!-- Observaciones -->
         <div class="md:col-span-2">
-            <label for="observations" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2">
+            <label for="observations" class="flex text-sm font-medium text-gray-700 mb-2 items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-eye"></use>
                 </svg>
                 Observacions *
             </label>
             <textarea name="observations" id="observations" rows="3" placeholder="Observacions del projecte/comissió"
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('observations') border-red-500 @enderror"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('observations') border-red-500 @enderror dark:bg-neutral-800 dark:border-neutral-600"
                         required>{{ old('observations', $project->observations) }}</textarea>
             @error('observations')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -117,8 +117,8 @@
 
         {{-- Asignacion de usuarios --}}
         <div class="md:col-span-2">
-            <p class="text-xl font-semibold text-[#012F4A] mb-4 flex items-center gap-2">Usuaris inscrits:</p>
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 w-full h-56 overflow-y-auto">
+            <p class="text-xl font-semibold text-[#012F4A] mb-4 flex items-center gap-2 dark:text-white">Usuaris inscrits:</p>
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] px-5 block pt-5 pb-5 w-full h-56 overflow-y-auto dark:bg-neutral-800 dark:border-neutral-600">
                 @foreach ($users as $user)
                     <div class="flex items-center flex-row gap-2 border-1 mb-4 rounded-lg p-2 border-[#AFAFAF]">
                         <input type="checkbox" name="users[]" value="{{ $user->id }}" id="user_{{ $user->id }}"  @if(in_array($user->id, $assignedUsers->pluck('id')->toArray())) checked @endif>
@@ -129,7 +129,7 @@
                                 <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="{{ $user->name }}" class="w-12 h-12 bg-gray-200 rounded-full object-cover">
                             @endif
                         </div>
-                        <div class="flex flex-col text-[#5E6468]">
+                        <div class="flex flex-col text-[#5E6468] dark:text-white">
                             <label for="user_{{ $user->id }}">
                                 {{ $user->name }}
                                 <p>{{ $user->email }}</p>
@@ -143,7 +143,7 @@
 
     <!-- Nuevos Documentos -->
     <div class="md:col-span-2 mt-4 document-upload-container">
-        <div class="text-xl font-semibold text-[#012F4A] mb-4 flex items-center gap-2">
+        <div class="text-xl font-semibold text-[#012F4A] mb-4 flex items-center gap-2 dark:text-white">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-document"></use>
             </svg>
@@ -154,33 +154,22 @@
             @endif
         </div>
         
-        <!-- <div class="document-drop-zone border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-colors cursor-pointer">
-            <svg class="w-16 h-16 text-gray-400 mx-auto mb-4">
-                <use xlink:href="#icon-upload"></use>
-            </svg>
-            <div class="flex items-center text-lg justify-center">
-                <button type="button" 
-                        class="text-[#FE7E13] flex items-center">
-                    Fes click per pujar
-                </button>
-                <span class="text-gray-600 ml-2"> o Arrossega els documents aquí</span>
+        <button type="button" data-file-input-id="files[]" data-show-uploaded-files-id="uploadedFiles" class="upload-file-button w-full flex flex-col items-center justify-center border-2 border-[#AFAFAF] border-dashed rounded-lg cursor-pointer p-2 gap-2 mb-3 hover:bg-[#f6f6f6] dark:hover:bg-neutral-700 transition-all">
+            <div class="bg-[#E9E9E9] rounded-full p-2">
+                <svg class="w-8 h-8 text-[#011020]">
+                    <use xlink:href="#icon-upload"></use>
+                </svg>
             </div>
-            
-            <p class="text-sm text-gray-500 mt-4">
-                (PDF, DOC, DOCX, XLS, XLSX)<br>
-                Mida màxima: 10MB per document
-            </p>
-        </div> -->
-
-        <input type="file" 
-                name="documents[]" 
-                id="documents" 
-                multiple 
-                accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
+            <p class="text-[#FF7E13] font-bold text-sm">Fes click per pujar un fitxer <span class="text-[#AFAFAF]"> o arrossega i deixa anar</span></p>
+            <p class="text-[#AFAFAF] text-sm">(PDF, CSV, XLSX, DOC, DOCX)</p>
+        </button>
+        <div id="uploadedFiles" class="mb-5">
+        </div>
+        <input type="file" name="documents[]" id="files[]" class="hidden" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
         
         <!-- Lista de documentos seleccionados -->
         <div id="selectedDocuments" class="mt-6 space-y-3 hidden">
-            <h3 class="text-lg font-medium text-gray-700 mb-3">
+            <h3 class="text-lg font-medium text-gray-700 mb-3 dark:text-white">
                 @if($project->documents->count() > 0)
                 Nous documents seleccionats:
                 @else
@@ -197,7 +186,7 @@
 
     <!-- Botones -->
     <div class="flex flex-row gap-4 justify-end mt-8 pt-6 border-t border-gray-200">
-        <a href="{{ route('projects.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+        <a href="{{ route('projects.index') }}" class="bg-white text-[#011020] dark:text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-600">
             Cancel·lar
         </a>
         <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">

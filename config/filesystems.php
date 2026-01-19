@@ -60,6 +60,12 @@ return [
             'report' => false,
         ],
 
+        'private' => [
+            'driver' => 'local',
+            'root' => storage_path('app/private'),
+            'visibility' => 'private',
+        ],
+
     ],
 
     /*
@@ -73,8 +79,12 @@ return [
     |
     */
 
+    // 'links' => [
+    //     public_path('storage') => storage_path('app/public'),
+    // ],
+
     'links' => [
-        public_path('storage') => storage_path('app/public'),
+        public_path('storage') => storage_path('app/private'),
     ],
 
 ];

@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                 "name" => "Carlos Martínez",
                 "email" => "carlos.martinez@gmail.com",
                 "phone" => "623456789",
-                "role" => "responsable_equip_tecnic",
+                "role" => "equip_directiu",
                 "center" => "2",
                 "status" => "active",
                 "password" => Hash::make("123456"),

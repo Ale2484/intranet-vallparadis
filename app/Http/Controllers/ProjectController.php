@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\ProjectDocument;
 use App\Models\UserProject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -109,7 +110,8 @@ class ProjectController extends Controller
             'documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png,gif,txt,zip,rar|max:10240', // 10MB max
         ]);
 
-        $validated["center"]=1;
+        $validated["center"]= Center::find(Session::get("active_center_id"));
+
 
         $validated['is_active'] = true;
 
@@ -164,7 +166,6 @@ class ProjectController extends Controller
             'documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png,gif,txt,zip,rar|max:10240', // 10MB max
         ]);
 
-        $validated["center"]=1;
 
         $project->update($validated);
 
@@ -194,7 +195,7 @@ class ProjectController extends Controller
     {
         // Eliminar documentos asociados
         foreach ($project->documents as $document) {
-            Storage::delete('public/' . $document->path);
+            Storage::delete('private/' . $document->path);
             $document->delete();
         }
 
@@ -217,17 +218,17 @@ class ProjectController extends Controller
     /**
      * Procesar y guardar documentos
      */
-    private function processDocuments(Project $project, $documents)
+    private function processDocuments(Project $project, $files)
     {
-        foreach ($documents as $document) {
+        foreach ($files as $document) {
             // Guardar el archivo
-            $path = $document->store('project-documents', 'public');
+            $path = $document->store('project-documents', 'private');
             
             // Crear registro en la base de datos
-            ProjectDocument::create([
+            $project->documents()->create([
                 'name' => $document->getClientOriginalName(),
-                'project' => $project->id,
-                'path' => $path
+                'path' => $path,
+                'user' => auth()->id(),
             ]);
         }
     }
@@ -237,7 +238,7 @@ class ProjectController extends Controller
      */
     public function deleteDocument(ProjectDocument $document)
     {
-        Storage::delete('public/' . $document->path);
+        Storage::delete('private/' . $document->path);
         $document->delete();
         
         return back()->with('success', 'Document eliminat correctament.');

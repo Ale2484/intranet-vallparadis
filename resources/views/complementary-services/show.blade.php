@@ -162,7 +162,7 @@
                                         <p class="font-semibold text-[#011020] dark:text-white">{{ $file->name }}</p>
                                         <p class="text-[#AFAFAF]">{{ $file->formatted_size }}</p>
                                     </div>
-                                    <a href="{{ route('complementary-services.documents.download', basename($file->path)) }}">
+                                    <a href="{{ route('doc.download', basename($file->path)) }}">
                                         <svg class="w-7 h-7 text-[#011020] dark:text-white cursor-pointer ml-2 hover:text-[#FF7E13] transition-all">
                                             <use xlink:href="#icon-download"></use>
                                         </svg>

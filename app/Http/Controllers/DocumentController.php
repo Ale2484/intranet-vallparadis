@@ -10,6 +10,17 @@ use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
+    public function download($baseName)
+    {
+        $document = Document::where("path", "like", "%$baseName")->firstOrFail();
+        $filePath = storage_path("app/private/" . $document->path);
+        if (file_exists($filePath)) {
+            return response()->download($filePath, $document->name);
+        } else {
+            return redirect()->back()->with("error", "El fitxer no existeix.");
+        }
+    }
+
     public function index(Request $request)
     {
         $query = Document::query();
@@ -90,7 +101,7 @@ class DocumentController extends Controller
 
         if ($request->hasFile("path")) {
             $file = $request->file("path");
-            $path = $file->store("documents", "public");
+            $path = $file->store("documents", "private");
             $validated["path"] = $path;
         }
 
@@ -127,19 +138,8 @@ class DocumentController extends Controller
 
     public function destroy(Document $document)
     {
-        Storage::disk("public")->delete($document->path);
+        Storage::disk("private")->delete($document->path);
         $document->delete();
         return redirect()->route("documents.index")->with("success", "Document eliminat correctament.");
-    }
-
-    public function download($path)
-    {
-        $document = Document::where("path", "like", "%$path")->firstOrFail();
-        $filePath = storage_path("app/public/" . $document->path);
-        if (file_exists($filePath)) {
-            return response()->download($filePath, $document->name);
-        } else {
-            return redirect()->back()->with("error", "El fitxer no existeix.");
-        }
     }
 }

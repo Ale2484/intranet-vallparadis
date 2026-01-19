@@ -15,16 +15,16 @@ document.addEventListener("DOMContentLoaded", () => {
                         let content = "";
                         Array.from(files).forEach(file => {
                             content += `
-                            <div class="mt-2 border border-[#AFAFAF] rounded-lg p-2 flex items-center gap-4">
-                                <svg class="w-7 h-7 text-[#011020]">
+                            <div class="mt-2 border border-[#AFAFAF] rounded-lg p-2 flex items-center gap-4 dark:border-neutral-600">
+                                <svg class="w-7 h-7 text-[#011020] dark:text-white">
                                     <use xlink:href="#icon-document"></use>
                                 </svg>
                                 <div class="w-full flex justify-between items-center">
                                     <div>
-                                        <p class="font-semibold text-[#011020]">${file.name}</p>
+                                        <p class="font-semibold text-[#011020] dark:text-white">${file.name}</p>
                                         <p class="text-[#AFAFAF]">${(file.size / (1024 * 1024)).toFixed(2)}MB</p>
                                     </div>
-                                    <svg class="w-7 h-7 text-[#011020] cursor-pointer hover:text-red-600 transition-all">
+                                    <svg class="w-7 h-7 text-[#011020] cursor-pointer hover:text-red-600 transition-all dark:text-white">
                                         <use xlink:href="#icon-cross"></use>
                                     </svg>
                                 </div>

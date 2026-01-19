@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-2">
-                            <a href=""  
+                            <a href="{{ route('doc.download', basename($document->path)) }}"  
                                 class="text-sm py-2 px-4 flex items-center gap-2">
                                 <svg class="w-8 h-8">
                                     <use xlink:href="#icon-download"></use>
@@ -69,16 +69,23 @@
                         Afegeix un nou document per al centre: {{ $maintenance->name }}
                     </div>
                 </div>
-                <form action="{{ route('maintenance.docs.store', $maintenance->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col gap-7 dark:text-white" enctype="multipart/form-data" >
+                <form action="{{ route('maintenance.docs.store', $maintenance->id) }}" method="POST" class="text-[#5E6468] pt-5 flex flex-col dark:text-white" enctype="multipart/form-data" >
                         @csrf
                         @method("POST")
                         <div class="flex flex-col gap-3">
                             <label for="documents">Document</label>
-                            <input type="file" 
-                                name="documents[]" 
-                                id="documents" 
-                                multiple 
-                                accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
+                            <button type="button" data-file-input-id="files[]" data-show-uploaded-files-id="uploadedFiles" class="upload-file-button w-full flex flex-col items-center justify-center border-2 border-[#AFAFAF] border-dashed rounded-lg cursor-pointer p-2 gap-2 mb-3 hover:bg-[#f6f6f6] dark:hover:bg-neutral-700 transition-all">
+                            <div class="bg-[#E9E9E9] rounded-full p-2">
+                                <svg class="w-8 h-8 text-[#011020]">
+                                    <use xlink:href="#icon-upload"></use>
+                                </svg>
+                            </div>
+                            <p class="text-[#FF7E13] font-bold text-sm">Fes click per pujar un fitxer <span class="text-[#AFAFAF]"> o arrossega i deixa anar</span></p>
+                            <p class="text-[#AFAFAF] text-sm">(PDF, CSV, XLSX, DOC, DOCX)</p>
+                        </button>
+                        <div id="uploadedFiles" class="mb-5">
+                        </div>
+                        <input type="file" name="documents[]" id="files[]" class="hidden" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif,.txt,.zip,.rar">
                         </div>
                         <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
                             Afegir Document

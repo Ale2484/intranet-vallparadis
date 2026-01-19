@@ -24,6 +24,7 @@ use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\MaintenanceTrackingController;
 use App\Http\Controllers\MaintenanceDocsController;
 use App\Http\Controllers\MaintenanceCommentController;
+use App\Http\Controllers\UserDocsController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -166,33 +167,46 @@ Route::middleware("auth")->group(function () {
 
 
     // Temas RRHH
-    Route::middleware("checkMagnament")->group(function () {
-        Route::resource("rrhh", RRHHTopicController::class)->except(["destroy","update","edit"]);
-        Route::get("rrhh/{rrhh}/tracking", [RRHHTrackingController::class, "index"])->name('rrhh.tracking');
-        Route::post("rrhh/{rrhh}/tracking/store", [RRHHTrackingController::class, "store"])->name('rrhh.tracking.store');
-        Route::get("rrhh/{rrhh}/docs", [RRHHDocsController::class, "index"])->name('rrhh.docs');
-        Route::post("rrhh/{rrhh}/docs/store", [RRHHDocsController::class, "Store"])->name('rrhh.docs.store');
-        Route::post("/rrhh/search", [RRHHTopicController::class, "search"])->name("rrhh.search");
-        Route::patch("/rrhh/{rrhh}/deactivate", [RRHHTopicController::class, "deactivate"])->name("rrhh.deactivate");
-        Route::patch("/rrhh/{rrhh}/activate", [RRHHTopicController::class, "activate"])->name("rrhh.activate");
+    Route::middleware("setCenterContext")->group(function () {
+        Route::middleware("checkMagnament")->group(function () {
+            Route::resource("rrhh", RRHHTopicController::class)->except(["destroy","update","edit"]);
+            Route::get("rrhh/{rrhh}/tracking", [RRHHTrackingController::class, "index"])->name('rrhh.tracking');
+            Route::post("rrhh/{rrhh}/tracking/store", [RRHHTrackingController::class, "store"])->name('rrhh.tracking.store');
+            Route::get("rrhh/{rrhh}/docs", [RRHHDocsController::class, "index"])->name('rrhh.docs');
+            Route::post("rrhh/{rrhh}/docs/store", [RRHHDocsController::class, "Store"])->name('rrhh.docs.store');
+            Route::post("/rrhh/search", [RRHHTopicController::class, "search"])->name("rrhh.search");
+            Route::patch("/rrhh/{rrhh}/deactivate", [RRHHTopicController::class, "deactivate"])->name("rrhh.deactivate");
+            Route::patch("/rrhh/{rrhh}/activate", [RRHHTopicController::class, "activate"])->name("rrhh.activate");
+        });
     });
 
     // mantenimiento
-    Route::middleware("checkMagnamentOrAdministration")->group(function () {
-        Route::resource("maintenance", MaintenanceController::class)->except(["destroy","update","edit"]);
-        Route::get("maintenance/{maintenance}/tracking", [MaintenanceTrackingController::class, "index"])->name('maintenance.tracking');
-        Route::post("maintenance/{maintenance}/tracking/store", [MaintenanceTrackingController::class, "store"])->name('maintenance.tracking.store');
-    
-        Route::get("maintenance/{maintenance}/tracking/{tracking}", [MaintenanceTrackingController::class, "show"])->name('maintenance.tracking.show');
-        Route::post("maintenance/{maintenance}/tracking/{tracking}/store", [MaintenanceCommentController::class, "store"])->name('maintenance.comment.store');
-    
-        Route::get("maintenance/{maintenance}/docs", [MaintenanceDocsController::class, "index"])->name('maintenance.docs');
-        Route::post("maintenance/{maintenance}/docs/store", [MaintenanceDocsController::class, "Store"])->name('maintenance.docs.store');
-        Route::post("/maintenance/search", [MaintenanceController::class, "search"])->name("maintenance.search");
-        Route::patch("/maintenance/{maintenance}/deactivate", [MaintenanceController::class, "deactivate"])->name("maintenance.deactivate");
-        Route::patch("/maintenance/{maintenance}/activate", [MaintenanceController::class, "activate"])->name("maintenance.activate");
+    Route::middleware("setCenterContext")->group(function () {
+        Route::middleware("checkMagnamentOrAdministration")->group(function () {
+            Route::resource("maintenance", MaintenanceController::class)->except(["destroy","update","edit"]);
+            Route::get("maintenance/{maintenance}/tracking", [MaintenanceTrackingController::class, "index"])->name('maintenance.tracking');
+            Route::post("maintenance/{maintenance}/tracking/store", [MaintenanceTrackingController::class, "store"])->name('maintenance.tracking.store');
+        
+            Route::get("maintenance/{maintenance}/tracking/{tracking}", [MaintenanceTrackingController::class, "show"])->name('maintenance.tracking.show');
+            Route::post("maintenance/{maintenance}/tracking/{tracking}/store", [MaintenanceCommentController::class, "store"])->name('maintenance.comment.store');
+        
+            Route::get("maintenance/{maintenance}/docs", [MaintenanceDocsController::class, "index"])->name('maintenance.docs');
+            Route::post("maintenance/{maintenance}/docs/store", [MaintenanceDocsController::class, "Store"])->name('maintenance.docs.store');
+            Route::post("/maintenance/search", [MaintenanceController::class, "search"])->name("maintenance.search");
+            Route::patch("/maintenance/{maintenance}/deactivate", [MaintenanceController::class, "deactivate"])->name("maintenance.deactivate");
+            Route::patch("/maintenance/{maintenance}/activate", [MaintenanceController::class, "activate"])->name("maintenance.activate");
+        });
     });
 
 
-
+    
+    // documentos usuario
+    Route::get("users/{user}/docs", [UserDocsController::class, "index"])->name('user.docs');
+    Route::post("users/{user}/docs/store", [UserDocsController::class, "Store"])->name('user.docs.store');
+    
+    // accidentabilidad
+    
+    
+    // documentos
+    Route::get('documents/download/{baseName}', [DocumentController::class, 'download'])->name('doc.download');
 });
