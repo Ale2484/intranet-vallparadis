@@ -87,14 +87,16 @@
                 </a>
             </li>
         @endif
-        <li>
-            <a href="{{ route("maintenance.index") }}" class="{{ request()->is('maintenance*') ? "menu-option-selected" : "menu-option" }}">
-            <svg class="w-7 h-7">
-                <use xlink:href="#icon-wrench-screwdriver"></use>
-            </svg>
-                <span class="menu-text hidden text-nowrap">Manteniments</span>
-            </a>
-        </li>
+        @if (auth()->user()->role == "equip_directiu" || auth()->user()->role == "administracio")
+            <li>
+                <a href="{{ route("maintenance.index") }}" class="{{ request()->is('maintenance*') ? "menu-option-selected" : "menu-option" }}">
+                <svg class="w-7 h-7">
+                    <use xlink:href="#icon-wrench-screwdriver"></use>
+                </svg>
+                    <span class="menu-text hidden text-nowrap">Manteniments</span>
+                </a>
+            </li>
+        @endif
         <li>
             <a href="{{ route("documents.index") }}" class="{{ request()->is('documents*') ? "menu-option-selected" : "menu-option" }}">
             <svg class="w-7 h-7">

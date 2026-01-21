@@ -21,15 +21,15 @@ class GeneralSearchController extends Controller
     {
         $request->validate(["search" => "required"]);
         // Se obtienen los datos de todos los modelos
-        $searchUsers = User::where("name", "like" , "%$request->search%")->get();
-        $searchCenters = Center::where("name", "like" , "%$request->search%")->get();
-        $searchProjects = Project::where("name", "like" , "%$request->search%")->get();
-        $searchCourses = Course::where("name", "like" , "%$request->search%")->get();
-        $searchGeneralServices = GeneralService::where("name", "like" , "%$request->search%")->get();
-        $searchExternalContacts = ExternalContact::where("contact_person", "like" , "%$request->search%")->get();
-        $searchComplementaryServices = ComplementaryService::where("name", "like" , "%$request->search%")->get();
-        $searchRrhhs = RRHHTopic::where("topic", "like" , "%$request->search%")->get();
-        $searchMaintenances = Maintenance::where("topic", "like" , "%$request->search%")->get();
+        $searchUsers = User::where("name", "like" , "%$request->search%")->where("center", Session::get("active_center_id"))->get();
+        $searchCenters = auth()->user()->role == "administracio" || auth()->user()->role == "equip_directiu" ? Center::where("name", "like" , "%$request->search%")->get() : collect();
+        $searchProjects = Project::where("name", "like" , "%$request->search%")->where("center", Session::get("active_center_id"))->get();
+        $searchCourses = Course::where("name", "like" , "%$request->search%")->where("center_id", Session::get("active_center_id"))->get();
+        $searchGeneralServices = auth()->user()->role == "administracio" || auth()->user()->role == "equip_directiu" ? GeneralService::where("name", "like" , "%$request->search%")->where("center_id", Session::get("active_center_id"))->get() : collect();
+        $searchExternalContacts = ExternalContact::where("contact_person", "like" , "%$request->search%")->where("center_id", Session::get("active_center_id"))->get();
+        $searchComplementaryServices = ComplementaryService::where("name", "like" , "%$request->search%")->where("center_id", Session::get("active_center_id"))->get();
+        $searchRrhhs = auth()->user()->role == "equip_directiu" ? RRHHTopic::where("topic", "like" , "%$request->search%")->where("center", Session::get("active_center_id"))->get() : collect();
+        $searchMaintenances = auth()->user()->role == "administracio" || auth()->user()->role == "equip_directiu" ? Maintenance::where("topic", "like" , "%$request->search%")->where("center", Session::get("active_center_id"))->get() : collect();
         $searchDocuments = Document::where("name", "like", "%$request->search%")->where("documentstable_id", Session::get("active_center_id"))->get();
 
         if ($request->expectsJson()) {

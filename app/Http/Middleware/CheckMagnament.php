@@ -18,7 +18,7 @@ class CheckMagnament
         if ($request->user() && ($request->user()->role == "equip_directiu")) {
             return $next($request);
         } else {
-            abort(403, "No tens permisos per accedir a aquest apartat");
+            return back()->with("error", "No tens permisos per accedir a aquest apartat");
         }
     }
 }

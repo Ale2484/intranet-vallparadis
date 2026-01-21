@@ -2,12 +2,12 @@
 @section("title", "Mostra el centre")
 @section("main")
 <div class="w-full flex flex-col items-center justify-center">
-    
+
     <!-- Apartado superior -->
     <div class="md:w-[80%] w-full flex justify-between items-center">
 
         <div class="flex flex-col gap-3">
-    
+
             <a href="{{ route("centers.index") }}" class="flex gap-3 text-[#AFAFAF]">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-arrow-left"></use>
@@ -15,7 +15,7 @@
                 Tornar a la gestió de centres
             </a>
             <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Detalls del centre</h1>
-    
+
             <p class="text-[#AFAFAF] mb-7">Informació completa del centre</p>
         </div>
         <div class="flex flex-row gap-2">

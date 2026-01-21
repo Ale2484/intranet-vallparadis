@@ -20,7 +20,6 @@ return new class extends Migration
             $table->unsignedBigInteger("center");
             $table->enum("status", ["active", "inactive", "substitute"]);
             //$table->string("cv", 255);
-            
             $table->string("locker");
             $table->string("locker_password");
             $table->string("profile_photo_path")->nullable();
