@@ -156,7 +156,7 @@
     </div>
     <!-- Botones -->
     <div class="flex flex-row gap-4 justify-end mt-8 pt-6 border-t border-gray-200">
-        <a href="{{ route('users.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+        <a href="{{ route('users.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
             Cancel·lar
         </a>
         <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
