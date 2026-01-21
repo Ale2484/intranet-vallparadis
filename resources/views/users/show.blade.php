@@ -44,6 +44,12 @@
                     </svg>
                     Avaluacions
                 </a>
+                <a href="{{ route("user.docs", $user->id) }}" class="text-[#FF7E13] rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 hover:bg-[#FE712B]/17 transition-all">
+                    <svg class="w-5 h-5">
+                        <use xlink:href="#icon-desc"></use>
+                    </svg>
+                    Documents
+                </a>
                 <div class="w-full">
                     {{-- Boton para abrir las opciones de exportar a excel --}}
                     <button data-dropdown-content-id="exportOptions" class="text-green-600 rounded-lg p-2 font-semibold flex w-full items-center justify-between cursor-pointer hover:bg-green-700/16 transition-all">
