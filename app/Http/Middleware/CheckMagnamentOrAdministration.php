@@ -18,7 +18,7 @@ class CheckMagnamentOrAdministration
         if ($request->user() && ($request->user()->role == "equip_directiu" || $request->user()->role == "administracio")) {
             return $next($request);
         } else {
-            abort(403, "No tens permisos per accedir a aquest apartat");
+            return back()->with("error", "No tens permisos per accedir a aquest apartat");
         }
     }
 }

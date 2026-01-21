@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign("user")->references("id")->on("users");
-            $table->foreign("center")->references("id")->on("centers");            
+            $table->foreign("center")->references("id")->on("centers");
         });
     }
 
