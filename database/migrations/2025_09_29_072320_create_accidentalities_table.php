@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('accidentabilites', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("low");
+            $table->unsignedBigInteger("sick");
             $table->timestamp("start")->nullable();
             $table->timestamp("end")->nullable();
             $table->string("context", 255);
@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->foreign("low")->references("id")->on("users");
+            $table->foreign("sick")->references("id")->on("users");
             $table->foreign("evaluate")->references("id")->on("users");
         });
     }
