@@ -172,7 +172,7 @@ class UserController extends Controller
             if (!$file->isValid() || !in_array($file->extension(), ["jpg","jpeg","png","gif","bmp","webp"])) {
                 $error = "El fitxer ha de ser una imatge vàlida";
             } elseif ($file->getSize() > 5120 * 1024) {
-                $error = "La imatge no pot pesar més de 5MB.";
+                $error = "La imatge no pot pesar més de 2MB.";
             } else {
                 $path = $file->store("profile_photos", "private");
             }
@@ -193,7 +193,7 @@ class UserController extends Controller
             }
 
         } else {
-            $error = "La imatge no pot pesar més de 5MB";
+            $error = "La imatge no pot pesar més de 2MB";
         }
 
         // Si hubo error, redirigir con mensaje

@@ -28,28 +28,32 @@ class CenterDocumentsController extends Controller
         $validated = $request->validate([
             'type' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:255',
-            'documents.*' => 'required|file|max:20480',
         ]);
-
         if (!$request->hasFile('documents')) {
-            return back()->with('error', 'No has pujat cap fitxer');
+            return back()->with('error', 'No has pujat cap fitxer / El fitxer no pot pesar més de 2MB');
+        } else {
+            foreach ($request->file('documents') as $file) {
+                if (!$file->isValid() || !in_array($file->extension(), ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'jpg', 'jpeg', 'png', 'gif', 'txt', 'zip', 'rar'])) {
+                    return back()->with('error', 'El fitxer ha de ser un document vàlid.');
+                }
+                if ($file->getSize() > 2048 * 1024) {
+                    return back()->with('error', 'El fitxer no pot pesar més de 2MB.');
+                }
+                // Guardar archivo en storage/app/public/center-documents
+                $path = $file->store('center-documents', 'private');
+                // Crear DOCUMENTO usando relación morph
+                $center->documents()->create([
+                    'name'        => $file->getClientOriginalName(),
+                    'type'        => $validated['type'] ?? $file->getMimeType(),
+                    'description' => $validated['description'] ?? null,
+                    'path'        => $path,
+                    'user'        => auth()->id(),
+                ]);
+            }
+
+            return back()->with('success', 'Documents pujats correctament');
+
         }
 
-        foreach ($request->file('documents') as $file) {
-
-            // Guardar archivo en storage/app/public/center-documents
-            $path = $file->store('center-documents', 'private');
-
-            // Crear DOCUMENTO usando relación morph
-            $center->documents()->create([
-                'name'        => $file->getClientOriginalName(),
-                'type'        => $validated['type'] ?? $file->getMimeType(),
-                'description' => $validated['description'] ?? null,
-                'path'        => $path,
-                'user'        => auth()->id(),
-            ]);
-        }
-
-        return back()->with('success', 'Documents pujats correctament');
     }
 }
