@@ -225,11 +225,10 @@
                         </div>
                     </div>
                 </div>
-    
             </div>
     
             <!-- Información de contacto -->
-            <h3 class="text-xl font-semibold text-[#012F4A] mb-6 dark:text-white">Informació de contacte</h3>
+            <h3 class="text-xl font-semibold text-[#012F4A] mb-2 dark:text-white">Informació de contacte</h3>
             
             <div class="space-y-4">
                 <!-- Email -->
@@ -317,15 +316,15 @@
                 </div>
                 {{-- Contenedor de las tallas --}}
                 <div class="mt-3 flex flex-col gap-3">
-                    <div class="w-full p-5 bg-[#fef5eb] border border-[#fed6aa] rounded-lg">
+                    <div class="w-full p-5 bg-[#fef5eb] dark:bg-[#FF7033]/17 border border-[#fed6aa] dark:border-[#FF7033]/17 rounded-lg">
                         <p class="text-[#FF7033] font-semibold text-[16px]">JERSEI</p>
                         <p class="font-bold text-3xl text-[#FF7033]">{{ optional($user->uniformity)->shirt ?? "—" }}</p>
                     </div>
-                    <div class="w-full p-5 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div class="w-full p-5 bg-blue-50 dark:bg-blue-600/17 border border-blue-200 dark:border-blue-200/17 rounded-lg">
                         <p class="text-blue-600 font-semibold text-[16px]">PANTALONS</p>
                         <p class="font-bold text-3xl text-blue-900">{{ optional($user->uniformity)->pants ?? "—" }}</p>
                     </div>
-                    <div class="w-full p-5 bg-green-50 border border-green-200 rounded-lg">
+                    <div class="w-full p-5 bg-green-50 dark:bg-green-600/17 border border-green-200 dark:border-green-200/17 rounded-lg">
                         <p class="text-green-600 font-semibold text-[16px]">SABATES</p>
                         <p class="font-bold text-3xl text-green-900">{{ optional($user->uniformity)->shoes ?? "—" }}</p>
                     </div>
@@ -334,7 +333,7 @@
             {{-- Taquilla --}}
             <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3 dark:bg-neutral-800 dark:border-neutral-600">
                 <p class="text-xl font-semibold text-[#012F4A] dark:text-white">Número de taquilla</p>
-                <div class="bg-[#fef5eb] p-5 border border-[#fed6aa] rounded-lg">
+                <div class="bg-[#fef5eb] dark:bg-[#FF7033]/17 p-5 border border-[#fed6aa] dark:border-[#FF7033]/17 rounded-lg">
                     <p class="text-2xl font-bold text-[#FF7033]">{{ $user->locker}}</p>
                 </div>
             </div>

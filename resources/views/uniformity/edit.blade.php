@@ -6,7 +6,7 @@
 <div class="w-full flex flex-col items-center justify-center dark:text-white">
     
     <!-- Apartado superior -->
-    <div class="w-[60%] flex flex-col gap-5">
+    <div class="w-full md:w-[80%] lg:w-[60%] flex flex-col gap-5">
 
         <a href="{{ route("users.show", $userEdit) }}" class="flex gap-3 text-[#AFAFAF]">
             <svg class="w-6 h-6 ">
@@ -20,7 +20,7 @@
         <p class="text-[#AFAFAF] mb-7">Edita l'uniforme de l'usuari {{ $userEdit->name}}</p>
     </div>
     <!-- Formulario -->
-    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-[60%] text-[#0F172A] dark:text-white dark:bg-neutral-800 dark:border-neutral-600">
+    <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full md:w-[80%] lg:w-[60%] text-[#0F172A] dark:text-white dark:bg-neutral-800 dark:border-neutral-600">
         <form action="{{ route("user.uniformity.update", $userEdit ) }}" method="POST">
             @csrf
             @method("PATCH")

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section("title", "Veure els seguiments")
 @section('main')
-<div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10 dark:text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col mb-7 gap-10 dark:text-white">
     <!-- Header -->
-    <div class="w-full flex flex-row justify-between items-center">
+    <div class="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div class="w-fit flex flex-col gap-5">
             <a href="{{ route('maintenance.show', $maintenance->id) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
                 <svg class="w-6 h-6">
@@ -11,13 +11,13 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Seguiment de: {{ $maintenance->topic }}</h1>
+            <h1 class="text-2xl md:text-3xl font-bold text-[#011020] dark:text-white">Seguiment de: {{ $maintenance->topic }}</h1>
             <p class="text-[#AFAFAF]" >Comentaris del manteniment</p>
         </div>
     </div>
     
     <div class="flex flex-col gap-5">
-        <div class="flex flex-row justify-between items-center w-5/8">
+        <div class="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <div class="text-2xl font-bold text-[#011020] dark:text-white">
                 Historial de seguiments
             </div>
@@ -26,15 +26,15 @@
             </div>
         </div>
         {{ $total<1 ? "No hi ha seguiments" : "" }}
-        <div class="flex flex-row justify-between gap-5">
+        <div class="flex flex-col-reverse md:flex-row justify-between gap-5">
             <!-- Historial -->
-            <div class="flex flex-col justify-start w-5/8 gap-5 overflow-y-scroll h-[443px]">
+            <div class="flex flex-col justify-start w-full md:w-5/8 gap-5 overflow-y-scroll max-h-screen-lg">
                 @foreach($trackings as $tracking)
                     <div class="border-1 border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-4 dark:bg-neutral-800 dark:border-neutral-600">
                         <div class="border-b-1 border-[#AFAFAF] pb-5">
                             <div class="flex flex-row gap-5">
                                 <div>
-                                    <div class="bg-gray-200 w-12 h-12 rounded-full">
+                                    <div class="bg-gray-200 w-12 h-12 rounded-full flex-shrink-0">
                                         @if (!$tracking->userRelation->profile_photo_path)
                                             <minidenticon-svg username="{{ md5($tracking->userRelation->id) }}" class="w-12 h-12 aspect-square bg-gray-200 rounded-full"></minidenticon-svg>
                                         @else
@@ -45,9 +45,9 @@
                                     </div>
                                 </div>
                                 <div class="w-full">
-                                    <div class="flex flex-row justify-between w-full h-min">
+                                    <div class="flex flex-col sm:flex-row justify-between w-full h-min">
                                         <div class="flex flex-col gap-1">
-                                            <a href="{{ route("maintenance.tracking.show", ['maintenance' => $maintenance->id, 'tracking' => $tracking->id]) }}" class="text-2xl font-bold">
+                                            <a href="{{ route("maintenance.tracking.show", ['maintenance' => $maintenance->id, 'tracking' => $tracking->id]) }}" class="text-xl md:text-2xl font-bold">
                                                 {{ Str::limit($tracking->topic, 20) }}
                                             </a>
                                             <div class="flex flex-row gap-2 items-center" >
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-rog gap-3 items-center">
+                        <div class="flex flex-row gap-3 items-center">
                             <svg class="w-6 h-6">
                                 <use xlink:href="#icon-chat-text"></use>
                             </svg>
@@ -81,7 +81,7 @@
                 @endforeach
             </div>
             <!-- Formulario -->
-            <div class="flex flex-col justify-center w-1/4 h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5 dark:bg-neutral-800 dark:border-neutral-600">
+            <div class="flex flex-col justify-center w-full md:w-2/6 h-fit border border-[#AFAFAF] bg-white rounded-[15px] p-5 dark:bg-neutral-800 dark:border-neutral-600">
                 <div class="pb-3 border-b-1 border-[#AFAFAF] flex flex-col gap-2">
                     <div class="flex flex-row gap-3">
                         <svg class="w-6 h-6 text-[#FF7E13]">
