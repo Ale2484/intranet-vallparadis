@@ -25,6 +25,8 @@ use App\Http\Controllers\MaintenanceTrackingController;
 use App\Http\Controllers\MaintenanceDocsController;
 use App\Http\Controllers\MaintenanceCommentController;
 use App\Http\Controllers\UserDocsController;
+use App\Http\Controllers\AccidentabiliteController;
+use App\Http\Controllers\AccidentabiliteCommentController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -109,6 +111,14 @@ Route::middleware("auth")->group(function () {
     Route::get("/users/{user}/trackings/{tracking}", [TrackingController::class, "show"])->name("trackings.show");
     Route::post("/users/{user}/trackings/store", [TrackingController::class, "store"])->name("trackings.store");
     Route::patch('/users/{user}/trackings/{tracking}/deactivate', [TrackingController::class, 'deactivate'])->name('trackings.deactivate');
+
+    // acidentabilidad
+    Route::get("/users/{user}/accidentabilites", [AccidentabiliteController::class, "index"])->name("accidentabilites.index");
+    Route::get("/users/{user}/accidentabilites/{tracking}", [AccidentabiliteController::class, "show"])->name("accidentabilites.show");
+    Route::post("/users/{user}/accidentabilites/store", [AccidentabiliteController::class, "store"])->name("accidentabilites.store");
+
+    // Comentarios accidentabilidad profesionales
+    Route::post("/users/{user}/accidentabilites/{tracking}/store", [AccidentabiliteCommentController::class, "store"])->name("accidentabilites.comments.store");
 
     // Comentarios seguimiento profesionales
     Route::post("/users/{user}/trackings/{tracking}/store", [CommentsTrackingController::class, "store"])->name("trackings.comments.store");
