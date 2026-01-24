@@ -128,6 +128,9 @@ Route::middleware("auth")->group(function () {
     Route::get("/users/{user}/evaluations/create", [EvaluationController::class, "create"])->name("evaluations.create");
     Route::post("/users/{user}/evaluations/store", [EvaluationController::class, "store"])->name("evaluations.store");
 
+    // exportar evaluaciones
+    Route::get("/exportEvaluations/{id}", [EvaluationController::class, "export"])->name("exportEvaluation");
+
     // Servicios generales
     Route::middleware("setCenterContext")->group(function () {
         Route::middleware("checkMagnamentOrAdministration")->group(function () {
