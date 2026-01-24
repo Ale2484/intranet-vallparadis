@@ -127,25 +127,47 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $centers = Center::all(); // Obtener todos los centros
+        if (Auth::user()->role === "responsable_equip_tecnic") {
+            return redirect()->back()->with('error', 'No tens permisos per editar usuaris.');
+        }
+        $centers = Center::all();
         return view('users.edit', compact('user', 'centers'));
     }
 
     public function update(Request $request, User $user)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'phone' => 'nullable|string|max:9',
-            'role' => 'required|in:responsable_equip_tecnic,equip_directiu,administracio',
-            'status' => 'required|in:active,inactive,substitute',
-            'locker' => 'required|integer',
-            'locker_password' => 'required|string',
-            'password' => 'required|min:8',
-        ]);
-        $user->update($validated);
+        $currentUser = Auth::user();
+        $error = null;
+        if ($currentUser->role == "responsable_equip_tecnic") {
+            $error = "No tens permisos per editar usuaris.";
+        }
 
-        return redirect()->route('users.index')->with('success', 'Professional actualitzat correctament.');
+        if ($currentUser->role == "administracio" && $request->input("role") == "equip_directiu") {
+            $error = "No pots assignar el rol d'equip directiu.";
+        }
+        
+        if ($currentUser->role === 'administracio' && $currentUser->id === $user->id) {
+            $error = "No pots canviar el teu propi rol";
+        }
+
+         if ($error != null) {
+             return redirect()->back()->with('error', $error);
+         } else {
+
+             $validated = $request->validate([
+                 'name' => 'required|string|max:255',
+                 'email' => 'required|email|unique:users,email,' . $user->id,
+                 'phone' => 'nullable|string|max:9',
+                 'role' => 'required|in:responsable_equip_tecnic,equip_directiu,administracio',
+                 'status' => 'required|in:active,inactive,substitute',
+                 'locker' => 'required|integer',
+                 'locker_password' => 'required|string',
+                 'password' => 'required|min:8',
+             ]);
+             $user->update($validated);
+     
+             return redirect()->route('users.index')->with('success', 'Professional actualitzat correctament.');
+         }
     }
 
     public function deactivate(User $user)

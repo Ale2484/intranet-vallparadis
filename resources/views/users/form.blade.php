@@ -88,14 +88,20 @@
                 </svg>
                 Rol *
             </label>
-            <select name="role" id="role"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('role') border-red-500 @enderror"
-                    required>
-                <option value="">Selecciona un rol</option>
-                <option value="responsable_equip_tecnic" {{ old('role', $user->role) == 'responsable_equip_tecnic' ? 'selected' : '' }}>Equip Tècnic</option>
-                <option value="equip_directiu" {{ old('role', $user->role) == 'equip_directiu' ? 'selected' : '' }}>Equip Directiu</option>
-                <option value="administracio" {{ old('role', $user->role) == 'administracio' ? 'selected' : '' }}>Administració</option>
-            </select>
+            @if (Auth::id() == $user->id || ($user->role == "equip_directiu"))
+                <input type="text" value="@if($user->role == 'responsable_equip_tecnic') Equip Tècnic @elseif($user->role == 'equip_directiu') Equip Directiu @elseif($user->role == 'administracio') Administració @endif" class="w-full dark:bg-neutral-800 px-3 py-2 border border-gray-300 rounded-md bg-gray-100 dark:bg-neutral-700 dark:text-white" readonly>
+            @else
+                <select name="role" id="role"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('role') border-red-500 @enderror"
+                        required>
+                    <option value="">Selecciona un rol</option>
+                    <option value="responsable_equip_tecnic" {{ old('role', $user->role) == 'responsable_equip_tecnic' ? 'selected' : '' }}>Equip Tècnic</option>
+                    @if (Auth::user()->role == "equip_directiu")
+                        <option value="equip_directiu" {{ old('role', $user->role) == 'equip_directiu' ? 'selected' : '' }}>Equip Directiu</option>
+                    @endif
+                    <option value="administracio" {{ old('role', $user->role) == 'administracio' ? 'selected' : '' }}>Administració</option>
+                </select>
+            @endif
             @error('role')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -109,8 +115,8 @@
                 </svg>
                 Estat *
             </label>
-            <select name="status" id="status" 
-                    class="w-full px-3 py-2 border border-gray-300 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('status') border-red-500 @enderror"
+            <select name="status" id="status"
+                    class="w-full px-3 py-2 border border-gray-300 dark:text-white dark:bg-neutral-800 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('status') border-red-500 @enderror"
                     required>
                 <option value="">Selecciona un estat</option>
                 <option value="active" {{ old('status', $user->status) == 'active' ? 'selected' : '' }}>Actiu</option>

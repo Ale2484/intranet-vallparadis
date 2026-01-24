@@ -19,13 +19,15 @@
                     <p>Opcions</p>
             </button>
             <div id="userLinks" class="absolute top-12 right-0 min-w-60 bg-white shadow-lg border border-[#AFAFAF] p-2 rounded-lg dark:bg-neutral-800 z-1 hidden">
-                <a href="{{ route("users.edit", $user) }}"
-                    class="text-[#FF7E13] hover:bg-[#FE712B]/17 rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 transition-all w-full">
-                    <svg class="w-5 h-5">
-                        <use xlink:href="#icon-square-pen"></use>
-                    </svg>
-                    Editar
-                </a>
+                @if (auth()->user()->role != "responsable_equip_tecnic")
+                    <a href="{{ route("users.edit", $user) }}"
+                        class="text-[#FF7E13] hover:bg-[#FE712B]/17 rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 transition-all w-full">
+                        <svg class="w-5 h-5">
+                            <use xlink:href="#icon-square-pen"></use>
+                        </svg>
+                        Editar
+                    </a>
+                @endif
                 <a href="{{ route("trackings.index", $user->id) }}" class="text-[#FF7E13] rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 hover:bg-[#FE712B]/17 transition-all w-full">
                     <svg class="w-5 h-5">
                         <use xlink:href="#icon-link"></use>
