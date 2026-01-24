@@ -90,8 +90,8 @@ class UniformityController extends Controller
                         "shirt" => $validated["shirt"],
                         "shoes" => $validated["shoes"]
                     ]);
-                    UniformityRenovation::create($renovation);
-                }
+                    }
+                UniformityRenovation::create($renovation);
     
             }
             return redirect()->route("users.show", $user)->with("success", "Uniforme renovat correctament");
