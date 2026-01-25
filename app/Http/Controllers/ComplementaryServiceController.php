@@ -166,28 +166,33 @@ class ComplementaryServiceController extends Controller
         return redirect()->route("complementary-services.index")->with("success", "Servei complementari habilitat correctament");
     }
 
-    public function uploadFile(Request $request, ComplementaryService $complementaryService) {
+    public function uploadFile(Request $request, ComplementaryService $complementaryService)
+    {
+        if (!$request->hasFile("files")) {
+            return back()->with("error", "No has pujat cap fitxer / El fitxer no pot pesar més de 2MB");
+        }
         $validated = $request->validate([
             "type" => "nullable|string|max:255",
             "description" => "nullable|string|max:255",
-            "files*" => "required|file|max:20480",
         ]);
-        if ($request->hasFile("files")) {
-            foreach ($request->file("files") as $file) {
-                $modifiedFileName = now()->format('y_m_d') . "_" . $file->getClientOriginalName();
-                $path = $file->store("complementary-service-documents", "private");
-    
-                $complementaryService->documents()->create([
-                    "name" => $modifiedFileName,
-                    "description" => $validated["description"] ?? null,
-                    "path" => $path,
-                    "user" => auth()->user()->id
-                ]);
+
+        foreach ($request->file("files") as $file) {
+            if (!$file->isValid() || !in_array($file->extension(), ["pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "jpg", "jpeg", "png", "gif", "txt", "zip", "rar"])) {
+                return back()->with("error", "El fitxer ha de ser un document vàlid.");
             }
-            return redirect()->route("complementary-services.show", $complementaryService)->with("success", "Fitxers pujats correctament");
-        } else{
-            return redirect()->route("complementary-services.show", $complementaryService)->with("error", "Has de pujar un fitxer vàlid");
+            if ($file->getSize() > 2048 * 1024) { // 2MB limit
+                return back()->with("error", "El fitxer no pot pesar més de 2MB.");
+            }
+            $modifiedFileName = now()->format('y_m_d') . "_" . $file->getClientOriginalName();
+            $path = $file->store("complementary-service-documents", "private");
+            $complementaryService->documents()->create([
+                "name" => $modifiedFileName,
+                "description" => $validated["description"] ?? null,
+                "path" => $path,
+                "user" => auth()->user()->id,
+            ]);
         }
+        return redirect()->route("complementary-services.show", $complementaryService)->with("success", "Fitxers pujats correctament");
     }
     public function downloadFile($baseName)
     {

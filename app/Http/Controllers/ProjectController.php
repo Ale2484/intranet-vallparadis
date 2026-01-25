@@ -107,7 +107,7 @@ class ProjectController extends Controller
             'description' => 'required|string|max:255',
             'observations' => 'required|string|max:255',
             'documents' => 'nullable|array',
-            'documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png,gif,txt,zip,rar|max:10240', // 10MB max
+            'documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png,gif,txt,zip,rar|max:2048',
         ]);
 
         $validated["center"]= Center::find(Session::get("active_center_id"));
@@ -162,9 +162,18 @@ class ProjectController extends Controller
             'start' => 'nullable|date',
             'description' => 'required|string|max:255',
             'observations' => 'required|string|max:255',
-            'documents' => 'nullable|array',
-            'documents.*' => 'file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,jpg,jpeg,png,gif,txt,zip,rar|max:10240', // 10MB max
         ]);
+
+        if ($request->hasFile('documents')) {
+            foreach ($request->file('documents') as $file) {
+                if (!$file->isValid() || !in_array($file->extension(), ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'jpg', 'jpeg', 'png', 'gif', 'txt', 'zip', 'rar'])) {
+                    return back()->with('error', 'El fitxer ha de ser un document vàlid.');
+                }
+                if ($file->getSize() > 2048 * 1024) {
+                    return back()->with('error', 'El fitxer no pot pesar més de 2MB.');
+                }
+            }
+        }
 
 
         $project->update($validated);

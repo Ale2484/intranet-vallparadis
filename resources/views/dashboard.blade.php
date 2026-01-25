@@ -420,6 +420,8 @@
                     </svg>
                     </a>
                 </li>
+                <li class="p-3">&nbsp;</li>
+                <li class="p-3">&nbsp;</li>
             </ul>
         </div>
         <a href="{{ route("documents.index") }}" class="bg-[#FF7E13] text-white rounded-lg flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all w-full p-2 font-bold">Accedir a l'apartat</a>

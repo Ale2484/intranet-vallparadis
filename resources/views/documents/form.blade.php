@@ -14,7 +14,7 @@
                     Nom del document *
                 </label>
             </div>
-            <input type="text" name="name" id="name" placeholder="Nom del document" value="{{ old('name', $document->name) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('name') border-red-500 @enderror" required>
+            <input type="text" name="name" id="name" placeholder="Nom del document" value="{{ old('name', $document->name) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500  @error('name') border-red-500 @enderror" required>
             @error('name')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -29,7 +29,7 @@
                     Tipus de document
                 </label>
             </div>
-            <select name="type" id="type" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:border-neutral-600 focus:outline-none dark:bg-neutral-800 focus:ring-2 focus:ring-orange-500 @error('type') border-red-500 @enderror">
+            <select name="type" id="type" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:border-neutral-600 dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('type') border-red-500 @enderror">
                 <option value="">Selecciona un tipus de document</option>
                 <option value="Organitzacio_del_Centre" {{ old('type', $document->type) == 'Organitzacio_del_Centre' ? 'selected' : '' }}>Organització del Centre</option>
                 <option value="Documents_del_Departament" {{ old('type', $document->type) == 'Documents_del_Departament' ? 'selected' : '' }}>Documents del Departament</option>
@@ -59,7 +59,7 @@
                     Descripció
                 </label>
             </div>
-            <textarea name="description" id="description" rows="4" placeholder="Descripció del document" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('description') border-red-500 @enderror">{{ old('description', $document->description) }}</textarea>
+            <textarea name="description" id="description" rows="4" placeholder="Descripció del document" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white dark:border-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500  @error('description') border-red-500 @enderror">{{ old('description', $document->description) }}</textarea>
             @error('description')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -75,7 +75,7 @@
                         Fitxer *
                     </label>
                 </div>
-                <button type="button" data-file-input-id="files[]" data-show-uploaded-files-id="uploadedFiles" class="upload-file-button w-full flex flex-col items-center justify-center border-2 border-[#AFAFAF] border-dashed rounded-lg cursor-pointer p-2 gap-2 mb-3 hover:bg-[#f6f6f6] dark:hover:bg-neutral-700 transition-all">
+                <button type="button" data-file-input-id="files[]" data-show-uploaded-files-id="uploadedFiles" class="upload-file-button w-full flex flex-col items-center justify-center border-2 border-[#AFAFAF] border-dashed rounded-lg cursor-pointer p-2 gap-2 mb-3 hover:bg-[#f6f6f6] dark:hover:bg-neutral-700 transition-all focus:outline-none focus:ring-2 focus:ring-orange-500">
                     <div class="bg-[#E9E9E9] rounded-full p-2">
                         <svg class="w-8 h-8 text-[#011020]">
                             <use xlink:href="#icon-upload"></use>

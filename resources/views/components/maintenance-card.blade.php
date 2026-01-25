@@ -1,6 +1,6 @@
 <!-- Contenedor -->
 <div data-clickable-element="true" class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 min-w-[220px] mb-5 flex flex-col gap-5 dark:bg-neutral-800 dark:border-neutral-600 cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700">
-    <div class="flex justify-between items-center border-b-1 border-b-[#AFAFAF] pb-5">
+    <div class="flex justify-between items-center">
         <div class="flex flex-row items-center gap-5">
             <div class="bg-[#ffe7de] rounded-lg p-2">
             <svg class="w-8 h-8 text-[#FF7E13]">
@@ -15,19 +15,22 @@
     <!-- Especificaciones -->
     <div class="flex flex-col gap-3 text-[#0F172A] dark:text-neutral-400 border-b-1 border-b-[#AFAFAF] pb-5">
         <div class="flex items-center">
-            <svg class="w-6 h-6">
+            <svg class="w-6 h-6 dark:text-neutral-400">
                 <use xlink:href="#icon-worker"></use>
             </svg>
-            <span class="ml-2">Responsable</span>
+            <span class="ml-2 break-words whitespace-normal break-all dark:text-white">{{ Str::limit($maintenance->responsible, 500) }}</span>
         </div>
-        <div class="overflow-hidden break-words whitespace-normal break-all dark:text-white">
-            {{ Str::limit($maintenance->responsible, 500) }}
+        <div class="flex items-center">
+            <svg class="w-6 h-6 dark:text-neutral-400">
+                <use xlink:href="#icon-desc"></use>
+            </svg>
+            <span class="ml-2 break-words whitespace-normal break-all dark:text-white">{{ Str::limit($maintenance->description, 500) }}</span>
         </div>
     </div>
     
     <!-- Activar/Desactivar -->
     <div class="flex flex-row gap-5 justify-end dark:text-white">
-        <div class="w-full items-center flex gap-5 justify-between flex-col md:flex-row">            
+        <div class="w-full items-center flex gap-5 justify-between flex-col md:flex-row">
             
             <p class="text-sm">Creat: {{ $maintenance->created_at->format("d/m/Y") }} | Actualitzat: {{ $maintenance->updated_at->format("d/m/Y") }}</p>
             <form action="{{ $maintenance->is_active ? route("maintenance.deactivate", $maintenance) : route("maintenance.activate", $maintenance) }}" method="post">

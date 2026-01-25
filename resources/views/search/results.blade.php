@@ -112,7 +112,7 @@
 @endif
 
 @else
-<p class="w-full text-center text-2xl text-[#AFAFAF] mt-5">No hi ha resultats</p>
+<p class="w-full text-center text-[18px] text-[#AFAFAF] dark:text-white mt-5">No hi ha resultats</p>
 @endif
 
 

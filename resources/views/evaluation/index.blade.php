@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section("title", "Veure els seguiments")
 @section('main')
-<div class="min-w-fit w-9/10 mx-auto flex flex-col mb-7 gap-10 dark:text-white">
+<div class="w-full lg:w-11/12 xl:w-10/12 mx-auto flex flex-col mb-7 gap-10 dark:text-white px-4">
     <!-- Header -->
-    <div class="w-full flex flex-row justify-between items-center">
+    <div class="w-full flex flex-col md:flex-row justify-between items-start gap-5">
         <div class="w-fit flex flex-col gap-5">
             <a href="{{ route('users.show', $user->id) }}" class="text-[#AFAFAF] flex flex-row gap-4 items-center">
                 <svg class="w-6 h-6">
@@ -11,50 +11,50 @@
                 </svg>
                 Tornar a la gestió de professionals
             </a>
-            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Evaluacios de {{ $user->name }}</h1>
+            <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Evaluacions de {{ $user->name }}</h1>
             <p class="text-[#AFAFAF]" >Avaluacions del professional seleccionat</p>
         </div>
     </div>
     
-    <div class="w-full border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-row items-center justify-between dark:bg-neutral-800 dark:border-neutral-600">
-        <div class="flex flex-row gap-3">
+    <div class="w-full border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col md:flex-row items-center justify-between gap-5 md:gap-3 dark:bg-neutral-800 dark:border-neutral-600">
+        <div class="flex flex-col items-center md:items-start md:flex-row gap-3">
             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg h-fit w-fit">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-chart-bar"></use>
                 </svg>
             </div>
-            <div class="flex flex-col gap-2 font-bold text-xl">
+            <div class="flex flex-col gap-2 font-bold text-xl items-center md:items-start">
                 <p>Avaluacions totals</p>
                 <p>{{ $total }}</p>
             </div>
         </div>
 
-        <div class="flex flex-row gap-3">
+        <div class="flex flex-col md:flex-row gap-3 items-center md:items-start">
             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg h-fit w-fit">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-star"></use>
                 </svg>
             </div>
-            <div class="flex flex-col gap-2 font-bold text-xl">
-                <p>Puntuacio mitjana</p>
+            <div class="flex flex-col gap-2 font-bold text-xl items-center md:items-start">
+                <p>Puntuació mitjana</p>
                 <p>{{ number_format($averageScore*(100/3), 2, '.', '') }}</p>
             </div>
         </div>
 
-        <div class="flex flex-row gap-3">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-3">
             <div class="text-[#FF7033] bg-[#FF7033]/17 p-2 rounded-lg h-fit w-fit">
                 <svg class="w-6 h-6">
                     <use xlink:href="#icon-calendar"></use>
                 </svg>
             </div>
-            <div class="flex flex-col gap-2 font-bold text-xl">
+            <div class="flex flex-col gap-2 font-bold text-xl items-center md:items-start">
                 <p>Ultima avaluació</p>
                 <p>{{ number_format($lastScore*(100/3), 2, '.', '') }}</p>
             </div>
         </div>
 
         <a href="{{ route('evaluations.create', $user->id) }}"
-            class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">
+            class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold w-full md:w-auto flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-plus"></use>
             </svg>
@@ -64,13 +64,15 @@
     <div class="font-bold text-xl">
         Avaluacions del professional
     </div>
-    {{ $total<1 ? "No hi ha avaluacions" : "" }}
+    @if ($evaluations->isEmpty())
+        <p class="text-gray-600 text-center mt-5">No hi ha cap avaluació.</p>
+    @endif
     <div class="flex flex-row flex-wrap justify-between">
         @foreach ($evaluations as $evaluation)
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] w-49/99 mb-5 dark:bg-neutral-800 dark:border-neutral-600">
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] w-full lg:w-[49%] mb-5 dark:bg-neutral-800 dark:border-neutral-600">
                 <div class="border-b-1 border-[#AFAFAF] flex flex-col gap-4 p-5 h-45">
                     <div class="flex flex-row gap-3">
-                        <div>
+                        <div class="">
                             <div class="bg-gray-200 w-12 h-12 rounded-full">
                                 @if (!$evaluation->evaluatorRelation->profile_photo_path)
                                     <minidenticon-svg username="{{ md5($evaluation->evaluatorRelation->id) }}"></minidenticon-svg>
@@ -91,7 +93,7 @@
                             <div>
                                 {{ number_format($evaluation->average_score*(100/3), 2, '.', '') }}/100
                             </div>
-                            <div class="w-1/2 h-2 flex justify-between">
+                            <div class="w-2/3 h-2 flex justify-between">
                                 <div class="w-full h-2 bg-[#D9D9D9] rounded-full">
                                     <p style="width:{{ ($evaluation->average_score/3)*100 }}%;" class="h-2 bg-[#FF7033] rounded-full">&nbsp;</p>
                                 </div>
@@ -129,11 +131,11 @@
     </div>
     <div class="flex flex-col gap-5 h-100 overflow-y-scroll">
         @for ($i = 1; $i <= count($questionAverage); $i++)
-            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-row justify-between dark:bg-neutral-800 dark:border-neutral-600">
-                <div>
+            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-col lg:flex-row justify-between gap-3 lg:gap-0 dark:bg-neutral-800 dark:border-neutral-600">
+                <div class="lg:w-2/3">
                     {{ $questions[$i-1] }}
                 </div>
-                <div class="flex flex-row gap-5 w-1/3 items-center">
+                <div class="flex flex-row gap-5 w-full lg:w-1/3 items-center">
                     <div class="w-full h-2 bg-[#D9D9D9] rounded-full">
                         <p style="width:{{ ($questionAverage["p".$i]/3)*100 }}%;" class="h-2 bg-[#FF7033] rounded-full">&nbsp;</p>
                     </div>
@@ -144,8 +146,8 @@
     </div>
 </div>
 @foreach ( $evaluations as $evaluation )
-    <div class="w-1/1 h-1/1 bg-[#000000]/40 fixed top-0 left-0 z-100 hidden flex items-center justify-center dark:text-white" id="eval-{{ $evaluation->id }}">
-        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col w-3/5 gap-5 dark:bg-neutral-800 dark:border-neutral-600">
+    <div class="w-full h-full bg-[#000000]/40 fixed top-0 left-0 z-50 hidden flex items-center justify-center dark:text-white" id="eval-{{ $evaluation->id }}">
+        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col w-11/12 md:w-4/5 lg:w-3/5 gap-5 dark:bg-neutral-800 dark:border-neutral-600 max-h-[90vh]">
             <div class="flex flex-row justify-between items-start">
                 <div class="flex flex-col gap-2">
                     <div class="text-2xl font-bold">Detalls de l'avaluació</div>
@@ -162,80 +164,82 @@
                     </svg>
                 </div>
             </div>
-            <div class="flex flex-row justify-between items-center">
-                <div class="flex flex-col gap-3 font-bold">
-                    <div class="text-xl">Puntuació general</div>
-                    <div class="text-2xl text-green-600">{{ number_format($evaluation->average_score*(100/3), 2, '.', '') }}/100</div>
-                </div>
-                <div class="flex items-center justify-center">
-                    @php
-                        $percent=($evaluation->average_score / 3 )*100
-                    @endphp
-                    <svg class="transform -rotate-90 w-40 h-40">
-                        <!-- anillo sin -->
-                        <circle
-                            cx="80" cy="80" r="70"
-                            class="text-gray-300"
-                            stroke="currentColor"
-                            stroke-width="20"
-                            fill="none"
-                        />
-                        <!-- anillo con -->
-                        <circle
-                            id="progress-ring"
-                            cx="80" cy="80" r="70"
-                            class="text-green-600 transition-all duration-700 ease-out"
-                            stroke="currentColor"
-                            stroke-width="20"
-                            fill="none"
-                            style="stroke-dasharray: 440; stroke-dashoffset: {{ 440 - ($percent / 100) * 440 }};"
-                        />
-                    </svg>
-        
-                    <!-- porcentaje -->
-                    <div id="percent-text"
-                        class="absolute text-2xl font-semibold text-[#011020] dark:text-white">
-                        {{ number_format($percent, 2, '.', '' ) }}%
+            <div class="overflow-y-auto flex flex-col gap-5">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-5 md:gap-0">
+                    <div class="flex flex-col gap-3 font-bold">
+                        <div class="text-xl">Puntuació general</div>
+                        <div class="text-2xl text-green-600 hidden md:block">{{ number_format($evaluation->average_score*(100/3), 2, '.', '') }}/100</div>
+                    </div>
+                    <div class="relative flex items-center justify-center w-32 h-32 md:w-40 md:h-40">
+                        @php
+                            $percent=($evaluation->average_score / 3 )*100
+                        @endphp
+                        <svg class="transform -rotate-90 w-full h-full" viewBox="0 0 160 160">
+                            <!-- anillo sin -->
+                            <circle
+                                cx="80" cy="80" r="70"
+                                class="text-gray-300"
+                                stroke="currentColor"
+                                stroke-width="20"
+                                fill="none"
+                            />
+                            <!-- anillo con -->
+                            <circle
+                                id="progress-ring"
+                                cx="80" cy="80" r="70"
+                                class="text-green-600 transition-all duration-700 ease-out"
+                                stroke="currentColor"
+                                stroke-width="20"
+                                fill="none"
+                                style="stroke-dasharray: 440; stroke-dashoffset: {{ 440 - ($percent / 100) * 440 }};"
+                            />
+                        </svg>
+            
+                        <!-- porcentaje -->
+                        <div id="percent-text"
+                            class="absolute text-2xl font-semibold text-[#011020] dark:text-white">
+                            {{ number_format($percent, 2, '.', '' ) }}%
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="flex flex-col gap-3">
-                <div class="text-xl font-bold">Respostes</div>
-                <div class="flex flex-col gap-5 h-64 overflow-y-scroll">
-                    @for ($i = 1; $i <= count($questionAverage); $i++)
-                        <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-row justify-between dark:bg-neutral-800 dark:border-neutral-600">
-                            <div class="w-2/3">
-                                {{ $questions[$i-1] }}
-                            </div>
-                            <div class="flex flex-col-reverse gap-5 w-1/3 justify-center items-end">
-                                <div class="flex flex-row items-center justify-end gap-3 w-full">
-                                    <div class="w-full h-2 bg-[#D9D9D9] rounded-full ">
-                                        <p style="width:{{ ($evaluation->{"p".$i}/3)*100 }}%;" class="h-2 bg-[#FF7033] rounded-full">&nbsp;</p>
-                                    </div>
-                                    <div>
-                                        {{ number_format($evaluation->{"p".$i}*(5/3), 2, '.', '') }}/5
-                                    </div>
+                <div class="flex flex-col gap-3">
+                    <div class="text-xl font-bold">Respostes</div>
+                    <div class="flex flex-col gap-5">
+                        @for ($i = 1; $i <= count($questionAverage); $i++)
+                            <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 w-full font-bold text-xl flex flex-col lg:flex-row justify-between gap-3 lg:gap-0 dark:bg-neutral-800 dark:border-neutral-600">
+                                <div class="lg:w-2/3">
+                                    {{ $questions[$i-1] }}
                                 </div>
-                                {{ $answers[$evaluation->{"p".$i}] }}
+                                <div class="flex flex-col-reverse gap-5 w-full lg:w-1/3 justify-center items-end">
+                                    <div class="flex flex-row items-center justify-end gap-3 w-full">
+                                        <div class="w-full h-2 bg-[#D9D9D9] rounded-full ">
+                                            <p style="width:{{ ($evaluation->{"p".$i}/3)*100 }}%;" class="h-2 bg-[#FF7033] rounded-full">&nbsp;</p>
+                                        </div>
+                                        <div>
+                                            {{ number_format($evaluation->{"p".$i}*(5/3), 2, '.', '') }}/5
+                                        </div>
+                                    </div>
+                                    {{ $answers[$evaluation->{"p".$i}] }}
+                                </div>
                             </div>
-                        </div>
-                    @endfor
-                </div>
-            </div>
-            <div>
-                <div class="text-xl font-bold">
-                    Observacions
-                </div>
-                <div class="overflow-hidden break-words whitespace-normal break-all">
-                    {{ $evaluation->comment ?? "Aquesta evaluació no té comentari" }}
-                </div>
-            </div>
-            <div class="text-xl">
-                <div class="font-bold">
-                    Avaluador
+                        @endfor
+                    </div>
                 </div>
                 <div>
-                    {{ $evaluation->evaluatorRelation->name }}
+                    <div class="text-xl font-bold">
+                        Observacions
+                    </div>
+                    <div class="overflow-hidden break-words whitespace-normal break-all">
+                        {{ $evaluation->comment ?? "Aquesta evaluació no té comentari" }}
+                    </div>
+                </div>
+                <div class="text-xl">
+                    <div class="font-bold">
+                        Avaluador
+                    </div>
+                    <div>
+                        {{ $evaluation->evaluatorRelation->name }}
+                    </div>
                 </div>
             </div>
             <div class="flex items-center justify-end">

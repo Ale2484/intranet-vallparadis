@@ -19,13 +19,15 @@
                     <p>Opcions</p>
             </button>
             <div id="userLinks" class="absolute top-12 right-0 min-w-60 bg-white shadow-lg border border-[#AFAFAF] p-2 rounded-lg dark:bg-neutral-800 z-1 hidden">
-                <a href="{{ route("users.edit", $user) }}"
-                    class="text-[#FF7E13] hover:bg-[#FE712B]/17 rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 transition-all w-full">
-                    <svg class="w-5 h-5">
-                        <use xlink:href="#icon-square-pen"></use>
-                    </svg>
-                    Editar
-                </a>
+                @if (auth()->user()->role != "responsable_equip_tecnic")
+                    <a href="{{ route("users.edit", $user) }}"
+                        class="text-[#FF7E13] hover:bg-[#FE712B]/17 rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 transition-all w-full">
+                        <svg class="w-5 h-5">
+                            <use xlink:href="#icon-square-pen"></use>
+                        </svg>
+                        Editar
+                    </a>
+                @endif
                 <a href="{{ route("trackings.index", $user->id) }}" class="text-[#FF7E13] rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4 hover:bg-[#FE712B]/17 transition-all w-full">
                     <svg class="w-5 h-5">
                         <use xlink:href="#icon-link"></use>
@@ -231,11 +233,10 @@
                         </div>
                     </div>
                 </div>
-    
             </div>
     
             <!-- Información de contacto -->
-            <h3 class="text-xl font-semibold text-[#012F4A] mb-6 dark:text-white">Informació de contacte</h3>
+            <h3 class="text-xl font-semibold text-[#012F4A] mb-2 dark:text-white">Informació de contacte</h3>
             
             <div class="space-y-4">
                 <!-- Email -->
@@ -323,15 +324,15 @@
                 </div>
                 {{-- Contenedor de las tallas --}}
                 <div class="mt-3 flex flex-col gap-3">
-                    <div class="w-full p-5 bg-[#fef5eb] border border-[#fed6aa] rounded-lg">
+                    <div class="w-full p-5 bg-[#fef5eb] dark:bg-[#FF7033]/17 border border-[#fed6aa] dark:border-[#FF7033]/17 rounded-lg">
                         <p class="text-[#FF7033] font-semibold text-[16px]">JERSEI</p>
                         <p class="font-bold text-3xl text-[#FF7033]">{{ optional($user->uniformity)->shirt ?? "—" }}</p>
                     </div>
-                    <div class="w-full p-5 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div class="w-full p-5 bg-blue-50 dark:bg-blue-600/17 border border-blue-200 dark:border-blue-200/17 rounded-lg">
                         <p class="text-blue-600 font-semibold text-[16px]">PANTALONS</p>
                         <p class="font-bold text-3xl text-blue-900">{{ optional($user->uniformity)->pants ?? "—" }}</p>
                     </div>
-                    <div class="w-full p-5 bg-green-50 border border-green-200 rounded-lg">
+                    <div class="w-full p-5 bg-green-50 dark:bg-green-600/17 border border-green-200 dark:border-green-200/17 rounded-lg">
                         <p class="text-green-600 font-semibold text-[16px]">SABATES</p>
                         <p class="font-bold text-3xl text-green-900">{{ optional($user->uniformity)->shoes ?? "—" }}</p>
                     </div>
@@ -340,7 +341,7 @@
             {{-- Taquilla --}}
             <div class="shadow-md border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col gap-3 dark:bg-neutral-800 dark:border-neutral-600">
                 <p class="text-xl font-semibold text-[#012F4A] dark:text-white">Número de taquilla</p>
-                <div class="bg-[#fef5eb] p-5 border border-[#fed6aa] rounded-lg">
+                <div class="bg-[#fef5eb] dark:bg-[#FF7033]/17 p-5 border border-[#fed6aa] dark:border-[#FF7033]/17 rounded-lg">
                     <p class="text-2xl font-bold text-[#FF7033]">{{ $user->locker}}</p>
                 </div>
             </div>

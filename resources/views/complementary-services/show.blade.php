@@ -2,7 +2,7 @@
 @section("title", "Mostra el servei complementari")
 @section("main")
 <div class="w-full flex items-center justify-center">
-    <div class="w-[90%] flex flex-col items-center justify-center">
+    <div class="md:w-[90%] w-full flex flex-col items-center justify-center">
         <!-- Apartado superior -->
         <div class="w-full flex items-center justify-between">
             <div class="flex flex-col gap-3">
@@ -26,15 +26,15 @@
         <!-- Contenedor principal -->
         <div class="w-full flex flex-wrap flex-row justify-between gap-5 text-[#011020]">
             
-            <div class="w-[55%] flex flex-col gap-3">
+            <div class="md:w-[55%] w-full flex flex-col gap-3">
                 {{-- Contenedor secundario --}}
-                <div class="border border-[#AFAFAF] dark:text-white bg-white rounded-[15px] p-5 flex flex-col min-w-[350px] dark:bg-neutral-800 dark:border-neutral-600">
+                <div class="border border-[#AFAFAF] dark:text-white bg-white rounded-[15px] p-5 flex flex-col w-full md:min-w-[350px] dark:bg-neutral-800 dark:border-neutral-600">
                     <p class="text-[20px] font-bold text-[#011020] dark:text-white mb-5">Dades del responsable:</p>
 
                     {{-- Contenedor 2 elementos --}}
-                    <div class="w-full flex items-center mb-5">
+                    <div class="w-full flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-2 mb-5">
                         {{-- Elemento --}}
-                        <div class="flex w-1/2 flex-row items-center gap-2">
+                        <div class="flex w-full md:w-1/2 flex-row items-center gap-2">
                             <div class="p-2 rounded-lg mb-2 flex flex-row items-center justify-center bg-[#ffe7de] text-[#FF7E13] w-12 h-12">
                                 <svg class="w-8 h-8">
                                     <use xlink:href="#icon-user"></use>
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         {{-- Elemento --}}
-                        <div class="flex w-1/2 flex-row items-center gap-2">
+                        <div class="flex w-full md:w-1/2 flex-row items-center gap-2">
                             <div class="p-2 rounded-lg mb-2 flex flex-row items-center justify-center bg-[#ffe7de] text-[#FF7E13] w-12 h-12">
                                 <svg class="w-8 h-8">
                                     <use xlink:href="#icon-mail"></use>
@@ -58,6 +58,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     {{-- Contenedor 2 elementos --}}
                     <div class="w-full flex items-center">
@@ -77,13 +78,13 @@
                 </div>
 
                 {{-- Contenedor secundario --}}
-                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col min-w-[350px] dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
+                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col w-full md:min-w-[350px] dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
                     <p class="text-[20px] font-bold text-[#011020] dark:text-white mb-5">Detalls del servei:</p>
 
                     {{-- Contenedor 2 elementos --}}
-                    <div class="w-full flex items-center mb-5">
+                    <div class="w-full flex flex-col md:flex-row md:items-center mb-5 gap-5 md:gap-0">
                         {{-- Elemento --}}
-                        <div class="flex w-1/2 flex-row items-center gap-2">
+                        <div class="flex md:w-1/2 w-full flex-row items-center gap-2">
                             <div class="p-2 rounded-lg mb-2 flex flex-row items-center justify-center bg-[#ffe7de] text-[#FF7E13] w-12 h-12">
                                 <svg class="w-8 h-8">
                                     <use xlink:href="#icon-services"></use>
@@ -95,7 +96,7 @@
                             </div>
                         </div>
                         {{-- Elemento --}}
-                        <div class="flex w-1/2 flex-row items-center gap-2">
+                        <div class="flex md:w-1/2 w-full flex-row items-center gap-2">
                             <div class="p-2 rounded-lg mb-2 flex flex-row items-center justify-center bg-[#ffe7de] text-[#FF7E13] w-12 h-12">
                                 <svg class="w-8 h-8">
                                     <use xlink:href="#icon-center"></use>
@@ -126,7 +127,7 @@
                 </div>
 
                 {{-- Contenedor secundario --}}
-                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col min-w-[350px] dark:bg-neutral-800 dark:border-neutral-600">
+                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col w-full md:min-w-[350px] dark:bg-neutral-800 dark:border-neutral-600">
                     <div class="flex items-center gap-2 mb-5">
                         <div class="p-2 rounded-lg flex flex-row items-center justify-center bg-[#ffe7de] text-[#FF7E13] w-12 h-12">
                             <svg class="w-8 h-8">
@@ -144,8 +145,8 @@
             </div>
             
             {{-- Contenedor lateral --}}
-            <div class="w-[40%] flex flex-col gap-5">
-                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-flex-col min-w-[300px] dark:bg-neutral-800 dark:border-neutral-600">
+            <div class="md:w-[40%] w-full flex flex-col gap-5">
+                <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex-flex-col w-full md:min-w-[300px] dark:bg-neutral-800 dark:border-neutral-600">
                     <div class="flex justify-between">
                         <p class="text-[20px] font-bold text-[#011020] dark:text-white mb-5">Fitxers:</p>
                         <p class="bg-[#ffe7de] text-[#FF7E13] w-7 h-7 flex items-center justify-center rounded-full font-semibold">{{ count($complementaryServiceDocuments) }}</p>
