@@ -160,6 +160,17 @@
                                 <use xlink:href="#icon-download"></use>
                             </svg>
                         </a>
+                        <form action="{{ route('documents.destroy', $document) }}" method="post" class="w-full">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit"
+                                class="confirmable text-red-500 rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4"
+                                data-confirm-message="Estàs segur que vols eliminar aquest document?">
+                                <svg class="w-6 h-6">
+                                    <use xlink:href="#icon-trash"></use>
+                                </svg>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 @endforeach
