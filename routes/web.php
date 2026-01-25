@@ -158,7 +158,8 @@ Route::middleware("auth")->group(function () {
         Route::patch("/external-contacts/{externalContact}/activate", [ExternalContactController::class, "activate"])->name("external-contacts.activate");
         Route::post("/external-contacts/search", [ExternalContactController::class, "search"])->name("external-contacts.search");
 
-        
+        Route::get("/exportExternal-contacts", [ExternalContactController::class, "exportContacts"])->name("exportContacts");
+
     });
 
     // Documents
