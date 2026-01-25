@@ -157,6 +157,8 @@ Route::middleware("auth")->group(function () {
         Route::patch("/external-contacts/{externalContact}/deactivate", [ExternalContactController::class, "deactivate"])->name("external-contacts.deactivate");
         Route::patch("/external-contacts/{externalContact}/activate", [ExternalContactController::class, "activate"])->name("external-contacts.activate");
         Route::post("/external-contacts/search", [ExternalContactController::class, "search"])->name("external-contacts.search");
+
+        
     });
 
     // Documents

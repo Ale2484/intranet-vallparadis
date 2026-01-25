@@ -14,12 +14,12 @@
             <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Accidentabilitat: {{ $tracking->context }}</h1>
             <p class="text-[#AFAFAF]" >Comentaris de la accidentabilitat seleccionada</p>
         </div>
-        <button type="submit" class="bg-green-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-green-500 transition-all w-fit">
+        <a href="{{ route('exportAccidentabilites', $tracking->id) }}" class="bg-green-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-green-500 transition-all w-fit">
             <svg class="w-6 h-6">
                 <use xlink:href="#icon-excel"></use>
             </svg>
             Exportar a excel
-        </button>
+        </a>
     </div>
     <div class="flex flex-row justify-between">
         <!-- Info Usuario -->

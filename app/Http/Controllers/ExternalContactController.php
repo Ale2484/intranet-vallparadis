@@ -95,7 +95,7 @@ class ExternalContactController extends Controller
             "category" => 'required|in:assistencial,"serveis generals"',
             "company_or_department" => "required|string|max:255",
             "contact_person" => "required|string|max:255",
-            "phone" => "nullable|regex:/^\+\d{2,3}\s?\d{9}$/",
+            "phone" => "nullable|digits:9",
             "email" => "required|email|max:255",
             "observations" => "nullable|string",
             "is_active" => "boolean"
@@ -133,7 +133,7 @@ class ExternalContactController extends Controller
             "category" => 'required|in:assistencial,"serveis generals"',
             "company_or_department" => "required|string|max:255",
             "contact_person" => "required|string|max:255",
-            "phone" => "nullable|regex:/^\+\d{2,3}\s\d{9}$/",
+            "phone" => "nullable|digits:9",
             "email" => "required|email|max:255",
             "observations" => "nullable|string",
             "is_active" => "boolean"

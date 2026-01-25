@@ -59,7 +59,7 @@
                     Telèfon
                 </label>
             </div>
-            <input type="text" name="phone" id="phone" placeholder="Telèfon del contacte" value="{{ old('phone', $externalContact->phone) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('phone') border-red-500 @enderror" pattern="^\+\d{2,3}\s\d{9}$"  title="El número de telèfon ha de tenir el format +00 000000000 o +000 000000000">
+            <input type="text" name="phone" id="phone" placeholder="Telèfon del contacte" value="{{ old('phone', $externalContact->phone) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('phone') border-red-500 @enderror" pattern="^\d{9}$" title="El número de telèfon ha de tenir 9 dígits (ex: 612345678)">
             @error('phone')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
