@@ -112,6 +112,9 @@ Route::middleware("auth")->group(function () {
     Route::post("/users/{user}/trackings/store", [TrackingController::class, "store"])->name("trackings.store");
     Route::patch('/users/{user}/trackings/{tracking}/deactivate', [TrackingController::class, 'deactivate'])->name('trackings.deactivate');
 
+    // Comentarios seguimiento profesionales
+    Route::post("/users/{user}/trackings/{tracking}/store", [CommentsTrackingController::class, "store"])->name("trackings.comments.store");
+
     // acidentabilidad
     Route::get("/users/{user}/accidentabilites", [AccidentabiliteController::class, "index"])->name("accidentabilites.index");
     Route::get("/users/{user}/accidentabilites/{tracking}", [AccidentabiliteController::class, "show"])->name("accidentabilites.show");
@@ -120,8 +123,10 @@ Route::middleware("auth")->group(function () {
     // Comentarios accidentabilidad profesionales
     Route::post("/users/{user}/accidentabilites/{tracking}/store", [AccidentabiliteCommentController::class, "store"])->name("accidentabilites.comments.store");
 
-    // Comentarios seguimiento profesionales
-    Route::post("/users/{user}/trackings/{tracking}/store", [CommentsTrackingController::class, "store"])->name("trackings.comments.store");
+    // exportacion accdentabilidad
+
+    Route::get("/exportAccidentabilites/{id}", [AccidentabiliteCommentController::class, "export"])->name("exportAccidentabilites");
+
 
     // Evaluacion de profesionales
     Route::get("/users/{user}/evaluations", [EvaluationController::class, "index"])->name("evaluations.index");
