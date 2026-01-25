@@ -231,4 +231,6 @@ Route::middleware("auth")->group(function () {
 
     // documentos
     Route::get('documents/download/{baseName}', [DocumentController::class, 'download'])->name('doc.download');
+    Route::delete("documents/download/{document}", [DocumentController::class, "delete"])->name('doc.delete');
+
 });

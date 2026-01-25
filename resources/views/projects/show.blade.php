@@ -160,7 +160,7 @@
                                 <use xlink:href="#icon-download"></use>
                             </svg>
                         </a>
-                        <form action="{{ route('documents.destroy', $document) }}" method="post" class="w-full">
+                        <form action="{{ route('doc.delete', $document) }}" method="post" class="w-full">
                             @csrf
                             @method("DELETE")
                             <button type="submit"
