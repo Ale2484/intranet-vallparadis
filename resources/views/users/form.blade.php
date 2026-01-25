@@ -12,13 +12,13 @@
 
         <!-- Nombre -->
         <div>
-            <label for="name" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
+            <label for="name" class="font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-user"></use>
                 </svg>
                 Nom complet *
             </label>
-            <input type="text" name="name" id="name" placeholder="Nom complet de l'usuari" value="{{ old('name', $user->name) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 @error('name') border-red-500 @enderror" required>
+            <input type="text" name="name" id="name" placeholder="Nom complet de l'usuari" value="{{ old('name', $user->name) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('name') border-red-500 @enderror" required>
             @error('name')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -26,13 +26,13 @@
 
         <!-- Email -->
         <div>
-            <label for="email" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
+            <label for="email" class="font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-mail"></use>
                 </svg>
                 Email *
             </label>
-            <input type="email" name="email" id="email" placeholder="Email de l'usuari" value="{{ old('email', $user->email) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 @error('email') border-red-500 @enderror" required>
+            <input type="email" name="email" id="email" placeholder="Email de l'usuari" value="{{ old('email', $user->email) }}" class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('email') border-red-500 @enderror" required>
             @error('email')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -40,13 +40,13 @@
 
         <!-- Teléfono -->
         <div>
-            <label for="phone" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
+            <label for="phone" class="font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-phone"></use>
                 </svg>
                 Telèfon
             </label>
-            <input type="text" name="phone" id="phone" placeholder="Telèfon de l'usuari" value="{{ old('phone', $user->phone) }}"  class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 @error('phone') border-red-500 @enderror" maxlength="9">
+            <input type="text" name="phone" id="phone" placeholder="Telèfon de l'usuari" value="{{ old('phone', $user->phone) }}"  class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('phone') border-red-500 @enderror" maxlength="9">
             @error('phone')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -54,7 +54,7 @@
 
         <!-- Contraseña -->
         <div>
-            <label for="password" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
+            <label for="password" class="font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-key"></use>
                 </svg>
@@ -62,7 +62,7 @@
             </label>
             <div class="relative">
                 <input type="password" name="password" id="password" placeholder="Contrasenya de l'usuari"
-                        class="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 @error('password') border-red-500 @enderror"
+                        class="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('password') border-red-500 @enderror"
                         required minlength="8">
                 <button type="button" data-id-input="password" class="absolute top-2 right-3 togglePassword">
                     <svg class=" w-6 h-6 text-gray-700 dark:text-white cursor-pointer hover:text-[#FF7E13] transition-all">
@@ -82,20 +82,26 @@
 
         <!-- Rol -->
         <div>
-            <label for="role" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
+            <label for="role" class="font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-role"></use>
                 </svg>
                 Rol *
             </label>
-            <select name="role" id="role"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 @error('role') border-red-500 @enderror"
-                    required>
-                <option value="">Selecciona un rol</option>
-                <option value="responsable_equip_tecnic" {{ old('role', $user->role) == 'responsable_equip_tecnic' ? 'selected' : '' }}>Equip Tècnic</option>
-                <option value="equip_directiu" {{ old('role', $user->role) == 'equip_directiu' ? 'selected' : '' }}>Equip Directiu</option>
-                <option value="administracio" {{ old('role', $user->role) == 'administracio' ? 'selected' : '' }}>Administració</option>
-            </select>
+            @if (Auth::id() == $user->id || ($user->role == "equip_directiu"))
+                <input type="text" value="@if($user->role == 'responsable_equip_tecnic') Equip Tècnic @elseif($user->role == 'equip_directiu') Equip Directiu @elseif($user->role == 'administracio') Administració @endif" class="w-full dark:bg-neutral-800 px-3 py-2 border border-gray-300 rounded-md bg-gray-100 dark:bg-neutral-700 dark:text-white" readonly>
+            @else
+                <select name="role" id="role"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md dark:text-white dark:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-orange-500 @error('role') border-red-500 @enderror"
+                        required>
+                    <option value="">Selecciona un rol</option>
+                    <option value="responsable_equip_tecnic" {{ old('role', $user->role) == 'responsable_equip_tecnic' ? 'selected' : '' }}>Equip Tècnic</option>
+                    @if (Auth::user()->role == "equip_directiu")
+                        <option value="equip_directiu" {{ old('role', $user->role) == 'equip_directiu' ? 'selected' : '' }}>Equip Directiu</option>
+                    @endif
+                    <option value="administracio" {{ old('role', $user->role) == 'administracio' ? 'selected' : '' }}>Administració</option>
+                </select>
+            @endif
             @error('role')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -103,14 +109,14 @@
 
         <!-- Estado -->
         <div>
-            <label for="status" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
+            <label for="status" class="font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-block"></use>
                 </svg>
                 Estat *
             </label>
-            <select name="status" id="status" 
-                    class="w-full px-3 py-2 border border-gray-300 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('status') border-red-500 @enderror"
+            <select name="status" id="status"
+                    class="w-full px-3 py-2 border border-gray-300 dark:text-white dark:bg-neutral-800 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('status') border-red-500 @enderror"
                     required>
                 <option value="">Selecciona un estat</option>
                 <option value="active" {{ old('status', $user->status) == 'active' ? 'selected' : '' }}>Actiu</option>
@@ -124,14 +130,14 @@
 
         <!-- Taquilla -->
         <div>
-            <label for="locker" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
+            <label for="locker" class="font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-wallet"></use>
                 </svg>
                 Taquilla *
             </label>
             <input type="text" name="locker" id="locker" value="{{ old('locker', $user->locker) }}" placeholder="Número de taquilla"
-                    class="w-full px-3 py-2 border border-gray-300 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('locker') border-red-500 @enderror"
+                    class="w-full px-3 py-2 border border-gray-300 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('locker') border-red-500 @enderror"
                     required>
             @error('locker')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -140,14 +146,14 @@
 
         <!-- Contraseña de taquilla -->
         <div>
-            <label for="locker_password" class="text-sm font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
+            <label for="locker_password" class="font-medium text-gray-700 mb-2 flex items-center gap-2 dark:text-white">
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-key"></use>
                 </svg>
                 Contrasenya taquilla *
             </label>
             <input type="text" name="locker_password" id="locker_password" value="{{ old('locker_password', $user->locker_password) }}" placeholder="Contrasenya taquilla"
-                    class="w-full px-3 py-2 border border-gray-300 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('locker_password') border-red-500 @enderror"
+                    class="w-full px-3 py-2 border border-gray-300 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 @error('locker_password') border-red-500 @enderror"
                     required>
             @error('locker_password')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

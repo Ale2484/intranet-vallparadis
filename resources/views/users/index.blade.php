@@ -108,7 +108,9 @@
                     <th>Correu</th>
                     <th>Creat</th>
                     <th>Estat</th>
-                    <th>Accions</th>
+                    @if (auth()->user()->role != "responsable_equip_tecnic")
+                        <th>Accions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody class="resultContainer">

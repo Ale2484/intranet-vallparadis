@@ -71,7 +71,7 @@
                 <svg class="w-6 h-6 dark:text-neutral-400">
                     <use xlink:href="#icon-desc"></use>
                 </svg>
-                <label for="reason" class="text-sm font-medium text-gray-700 flex items-center gap-2 dark:text-white">
+                <label for="reason" class="font-medium text-gray-700 flex items-center gap-2 dark:text-white">
                     Motiu *
                 </label>
             </div>

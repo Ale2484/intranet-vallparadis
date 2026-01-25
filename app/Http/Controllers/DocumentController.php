@@ -91,24 +91,31 @@ class DocumentController extends Controller
 
     public function store(Request $request)
     {
-        $activeCenter = Center::find(Session::get("active_center_id"));
         $validated = $request->validate([
             "name" => "required|string|max:255",
             "type" => "required|in:Organitzacio_del_Centre,Documents_del_Departament,Memories_i_Seguiment_anual,PRL,Comite_d_Empresa,Informes_professionals,Informes_persones_usuaries,Qualitat_i_ISO,Projectes,Comissions,Families,Comunicacio_i_Reunions,Altres",
             "description" => "nullable|string",
-            "path" => "required|file|max:20480",
         ]);
 
         if ($request->hasFile("path")) {
             $file = $request->file("path");
+            if (!$file->isValid() || !in_array($file->extension(), ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'jpg', 'jpeg', 'png', 'gif', 'txt', 'zip', 'rar'])) {
+                return back()->with('error', 'El fitxer ha de ser un document vàlid.');
+            }
+            if ($file->getSize() > 2048 * 1024) {
+                return back()->with('error', 'El fitxer no pot pesar més de 2MB.');
+            }
             $path = $file->store("documents", "private");
             $validated["path"] = $path;
+        } else {
+            return back()->with('error', "No has pujat cap fitxer / El fitxer no pot pesar més de 2MB");
         }
 
+        $activeCenter = Center::find(Session::get("active_center_id"));
         $validated["user"] = auth()->id();
 
         $activeCenter->documents()->create($validated);
-        
+
         return redirect()->route("documents.index")->with("success", "Document creat correctament" );
     }
 
@@ -128,8 +135,19 @@ class DocumentController extends Controller
             "name" => "required|string|max:255",
             "type" => "required|in:Organitzacio_del_Centre,Documents_del_Departament,Memories_i_Seguiment_anual,PRL,Comite_d_Empresa,Informes_professionals,Informes_persones_usuaries,Qualitat_i_ISO,Projectes,Comissions,Families,Comunicacio_i_Reunions,Altres",
             "description" => "nullable|string",
-            "path" => "nullable|file|max:20480",
         ]);
+
+        if ($request->hasFile("path")) {
+            $file = $request->file("path");
+            if (!$file->isValid() || !in_array($file->extension(), ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'jpg', 'jpeg', 'png', 'gif', 'txt', 'zip', 'rar'])) {
+                return back()->with('error', 'El fitxer ha de ser un document vàlid.');
+            }
+            if ($file->getSize() > 2048 * 1024) {
+                return back()->with('error', 'El fitxer no pot pesar més de 2MB.');
+            }
+            $path = $file->store("documents", "private");
+            $validated["path"] = $path;
+        }
 
 
         $document->update($validated);

@@ -3,8 +3,6 @@
             <div class="flex justify-between items-center mb-5">
                 <div class="flex flex-row justify-between gap-2">
                     <div class="bg-gray-200 rounded-full h-16 w-16 aspect-square">
-                        {{-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=monsterid" alt="{{ $user->name }}" class="rounded-full"> --}}
-                        <!-- <img src="https://www.gravatar.com/avatar/{{ md5(strtolower($user->id)) }}?d=robohash" alt="{{ $user->name }}" class="rounded-full"> -->
                         @if (!$user->profile_photo_path)
                             <minidenticon-svg username="{{ md5($user->id) }}"></minidenticon-svg>
                         @else
@@ -67,41 +65,43 @@
         </div>
         
         <div class="w-full flex gap-5 flex-col sm:flex-col justify-center md:flex-row">
-            <a href="{{ route('users.edit', $user) }}" 
-                class="w-full sm:w-full md:w-[50%] flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF] transition-all dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
-                <svg class="w-6 h-6">
-                    <use xlink:href="#icon-square-pen"></use>
-                </svg>
-                Editar
-            </a>
-            @if($user->is_active)
-                <form action="{{ route('users.deactivate', $user) }}" method="POST" class="w-full sm:w-full md:w-[50%] lg:w-[50%]">
-                    @csrf
-                    @method('PATCH')
-                    <button type="submit"
-                            class="confirmable w-full text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all flex justify-center gap-3"
-                            data-confirm-message="Estàs segur que vols desactivar aquest usuari?">
-                            <div class="aspect-square">
-                                <svg class="w-6 h-6">
-                                    <use xlink:href="#icon-power"></use>
-                                </svg>
-                            </div>
-                        <p>Desactivar</p>
-                    </button>
-                </form>
-            @else
-                <form action="{{ route('users.activate', $user) }}" method="POST" class="w-full sm:w-full md:w-[50%] lg:w-[50%]">
-                    @csrf
-                    @method('PATCH')
-                    <button type="submit" 
-                            class="confirmable w-full text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all flex justify-center gap-3"
-                            data-confirm-message="Estàs segur que vols activar aquest usuari?">
-                        <svg class="w-6 h-6">
-                            <use xlink:href="#icon-power"></use>
-                        </svg>
-                        Activar
-                    </button>
-                </form>
+            @if (auth()->user()->role != "responsable_equip_tecnic")
+                <a href="{{ route('users.edit', $user) }}"
+                    class="w-full sm:w-full md:w-[50%] flex gap-3 bg-white text-[#011020] rounded-lg p-2 font-semibold items-center justify-center cursor-pointer border-1 border-[#AFAFAF] transition-all dark:bg-neutral-800 dark:border-neutral-500 dark:text-white dark:hover:bg-neutral-600">
+                    <svg class="w-6 h-6">
+                        <use xlink:href="#icon-square-pen"></use>
+                    </svg>
+                    Editar
+                </a>
+                @if($user->is_active)
+                    <form action="{{ route('users.deactivate', $user) }}" method="POST" class="w-full sm:w-full md:w-[50%] lg:w-[50%]">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit"
+                                class="confirmable w-full text-white bg-red-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-red-800 hover:transition-all flex justify-center gap-3"
+                                data-confirm-message="Estàs segur que vols desactivar aquest usuari?">
+                                <div class="aspect-square">
+                                    <svg class="w-6 h-6">
+                                        <use xlink:href="#icon-power"></use>
+                                    </svg>
+                                </div>
+                            <p>Desactivar</p>
+                        </button>
+                    </form>
+                @else
+                    <form action="{{ route('users.activate', $user) }}" method="POST" class="w-full sm:w-full md:w-[50%] lg:w-[50%]">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit"
+                                class="confirmable w-full text-white bg-green-600 rounded-lg p-2 font-semibold cursor-pointer hover:bg-green-700 hover:transition-all flex justify-center gap-3"
+                                data-confirm-message="Estàs segur que vols activar aquest usuari?">
+                            <svg class="w-6 h-6">
+                                <use xlink:href="#icon-power"></use>
+                            </svg>
+                            Activar
+                        </button>
+                    </form>
+                @endif
             @endif
         </div>
 </div>
