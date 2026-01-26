@@ -103,7 +103,7 @@ class ProjectController extends Controller
             'name' => 'required|string|max:255',
             'type' => 'required|in:project,commission',
             'user' => 'required|exists:users,id',
-            'start' => 'nullable|date',
+            'start' => 'required|date',
             'description' => 'required|string|max:255',
             'observations' => 'required|string|max:255',
             'documents' => 'nullable|array',

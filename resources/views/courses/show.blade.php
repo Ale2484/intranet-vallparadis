@@ -26,7 +26,7 @@
             </a>
         </div>
         <!-- Contenedor principal -->
-        <div class="w-full flex sm:flex-col lg:flex-row flex-wrap justify-between gap-5 text-[#011020]">
+        <div class="w-full flex sm:flex-col lg:flex-row flex-wrap justify-between gap-5 text-[#011020] dark:text-white">
             <div class="lg:w-[55%] w-full flex flex-col gap-3">
                 {{-- Contenedor secundario --}}
                 <div class="border border-[#AFAFAF] bg-white rounded-[15px] p-5 flex flex-col dark:bg-neutral-800 dark:border-neutral-600">

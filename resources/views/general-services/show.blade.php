@@ -193,7 +193,7 @@
                         <p class="my-2 text-sm dark:text-white">Afegeix una nova observació per al servei de {{ $generalService->name  }}</p>
                         <hr class="text-[#AFAFAF] my-4">
                         <label for="observation" class="font-semibold dark:text-white">Afegir nova observació:</label>
-                        <textarea name="observation" id="observation" placeholder="Introdueix una nova observació" class="resize-none border-1 shadow-sm h-24 p-2 rounded-lg border-[#AFAFAF] w-full mb-4 mt-2 bg-white dark:bg-neutral-950 dark:border-neutral-600 dark:text-white @error('observation') border-red-600 @enderror"></textarea>
+                        <textarea name="observation" id="observation" placeholder="Introdueix una nova observació" class="resize-none border-1 shadow-sm h-24 p-2 rounded-lg border-[#AFAFAF] w-full mb-4 mt-2 bg-white dark:bg-neutral-950 dark:border-neutral-600 dark:text-white @error('observation') border-red-600 @enderror" required></textarea>
                         <button type="submit" class="bg-[#FF7E13] w-full text-white rounded-lg p-[10px] font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
                             <svg class="w-6 h-6">
                                 <use xlink:href="#icon-paper-airplane"></use>
