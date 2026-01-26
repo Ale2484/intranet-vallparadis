@@ -133,7 +133,7 @@
                 <use xlink:href="#icon-search"></use>
             </svg>
         </button>
-        <input type="search" name="search" id="search" placeholder="Cercar professionals, documents..." class="pl-2 w-full h-10 outline-0 dark:text-neutral-200">
+        <input type="search" name="search" id="search" placeholder="Cercar professionals, documents..." autocomplete="off" class="pl-2 w-full h-10 outline-0 dark:text-neutral-200">
         <div id="general-results" class="bg-white rounded-b-lg border-b border-t-none border-2 border-x border-[#E6E5DE] w-full absolute top-9 right-0 px-3 pb-3 max-h-90 overflow-y-auto dark:bg-neutral-800 dark:border-neutral-600 hidden">
         </div>
     </form>
