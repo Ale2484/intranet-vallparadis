@@ -88,7 +88,7 @@ class UserController extends Controller
                 }
             }
         }
-        
+
         return response()->json(["htmlContent" => $htmlContent]);
     }
 
@@ -145,7 +145,7 @@ class UserController extends Controller
         if ($currentUser->role == "administracio" && $request->input("role") == "equip_directiu") {
             $error = "No pots assignar el rol d'equip directiu.";
         }
-        
+
         if ($currentUser->role === 'administracio' && $currentUser->id === $user->id) {
             $error = "No pots canviar el teu propi rol";
         }
@@ -160,12 +160,12 @@ class UserController extends Controller
                  'phone' => 'nullable|string|max:9',
                  'role' => 'required|in:responsable_equip_tecnic,equip_directiu,administracio',
                  'status' => 'required|in:active,inactive,substitute',
-                 'locker' => 'required|integer',
+                 'locker' => 'required|string',
                  'locker_password' => 'required|string',
                  'password' => 'required|min:8',
              ]);
              $user->update($validated);
-     
+
              return redirect()->route('users.index')->with('success', 'Professional actualitzat correctament.');
          }
     }
@@ -245,8 +245,17 @@ class UserController extends Controller
             "email" => "required",
             "password" => "required"
         ]);
-        if(Auth::attempt(["email" => $request->email, "password" => $request->password])){
-            return redirect()->route("dashboard")->with('success', 'Sessió iniciada correctament');
+        $user = User::where("email", $request->email)->first();
+        if ($user) {
+            if ($user->is_active) {
+                if(Auth::attempt(["email" => $request->email, "password" => $request->password])){
+                    return redirect()->route("dashboard")->with('success', 'Sessió iniciada correctament');
+                } else{
+                    return back()->with("error", "Usuari o contrasenya incorrectes")->withInput();
+                }
+            } else{
+                return back()->with("error", "Usuari deshabilitat, contacteu amb l'administrador per activar el compte")->withInput();
+            }
         } else{
             return back()->with("error", "Usuari o contrasenya incorrectes")->withInput();
         }
