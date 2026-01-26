@@ -160,7 +160,7 @@
                         <div class="flex flex-col gap-3">
                             <div class="flex flex-col gap-1">
                                 <label for="comment">Afegir comentari</label>
-                                <textarea type="text" id="comment" name="comment" class="border border-[#AFAFAF] bg-white rounded-lg p-2 max-h-[200px] h-[200px] dark:bg-neutral-950 dark:border-neutral-600"></textarea>
+                                <textarea type="text" id="comment" name="comment" class="border border-gray-300 bg-white rounded-lg p-2 max-h-[200px] h-[200px] dark:bg-neutral-950  focus:outline-none focus:ring-2 focus:ring-orange-500 " required></textarea>
                             </div>
                         </div>
                         <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">

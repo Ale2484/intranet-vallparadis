@@ -9,7 +9,6 @@ import "./togglePassword"
 import "./filterElements"
 import "./changeView"
 //import "./toggleStatus"
-import { minidenticonSvg } from 'https://cdn.jsdelivr.net/npm/minidenticons@4.2.1/minidenticons.min.js'
 import "./evaluationTable"
 import "./excel"
 import "./themeToggle"
@@ -21,3 +20,5 @@ import "./profilePhotoUpload"
 import "./generalSearch"
 import "./buttonDropdown"
 import "./clickableElements"
+
+import { minidenticonSvg } from 'https://cdn.jsdelivr.net/npm/minidenticons@4.2.1/minidenticons.min.js'
