@@ -330,11 +330,11 @@
                     </div>
                     <div class="w-full p-5 bg-blue-50 dark:bg-blue-600/17 border border-blue-200 dark:border-blue-200/17 rounded-lg">
                         <p class="text-blue-600 font-semibold text-[16px]">PANTALONS</p>
-                        <p class="font-bold text-3xl text-blue-900">{{ optional($user->uniformity)->pants ?? "—" }}</p>
+                        <p class="font-bold text-3xl text-blue-900 dark:text-blue-600">{{ optional($user->uniformity)->pants ?? "—" }}</p>
                     </div>
                     <div class="w-full p-5 bg-green-50 dark:bg-green-600/17 border border-green-200 dark:border-green-200/17 rounded-lg">
                         <p class="text-green-600 font-semibold text-[16px]">SABATES</p>
-                        <p class="font-bold text-3xl text-green-900">{{ optional($user->uniformity)->shoes ?? "—" }}</p>
+                        <p class="font-bold text-3xl text-green-900 dark:text-green-600">{{ optional($user->uniformity)->shoes ?? "—" }}</p>
                     </div>
                 </div>
             </div>

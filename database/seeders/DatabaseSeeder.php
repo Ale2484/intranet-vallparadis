@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             CenterSeeder::class,
             ExternalContactSeeder::class,
             UserSeeder::class,
-            EvaluationSeeder::class,
+            // EvaluationSeeder::class,
             UniformitySeeder::class,
             ProjectSeeder::class,
             UniformityRenovationSeeder::class,
