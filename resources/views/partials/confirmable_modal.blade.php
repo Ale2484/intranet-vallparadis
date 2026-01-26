@@ -12,7 +12,7 @@
             <p id="confirmable-message-container" class="ml-15 text-[#011020] dark:text-white"></p>
 
             <div class="mt-3 w-full flex items-center justify-end gap-3">
-                <button id="close-confirmable-modal" class="w-24 bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+                <button id="close-confirmable-modal" class="w-24 bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
                     Cancel·lar
                 </button>
                 <button id="send-confirmable-modal" class="w-24 bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">

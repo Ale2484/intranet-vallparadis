@@ -25,6 +25,8 @@ use App\Http\Controllers\MaintenanceTrackingController;
 use App\Http\Controllers\MaintenanceDocsController;
 use App\Http\Controllers\MaintenanceCommentController;
 use App\Http\Controllers\UserDocsController;
+use App\Http\Controllers\AccidentabiliteController;
+use App\Http\Controllers\AccidentabiliteCommentController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -113,10 +115,26 @@ Route::middleware("auth")->group(function () {
     // Comentarios seguimiento profesionales
     Route::post("/users/{user}/trackings/{tracking}/store", [CommentsTrackingController::class, "store"])->name("trackings.comments.store");
 
+    // acidentabilidad
+    Route::get("/users/{user}/accidentabilites", [AccidentabiliteController::class, "index"])->name("accidentabilites.index");
+    Route::get("/users/{user}/accidentabilites/{tracking}", [AccidentabiliteController::class, "show"])->name("accidentabilites.show");
+    Route::post("/users/{user}/accidentabilites/store", [AccidentabiliteController::class, "store"])->name("accidentabilites.store");
+
+    // Comentarios accidentabilidad profesionales
+    Route::post("/users/{user}/accidentabilites/{tracking}/store", [AccidentabiliteCommentController::class, "store"])->name("accidentabilites.comments.store");
+
+    // exportacion accdentabilidad
+
+    Route::get("/exportAccidentabilites/{id}", [AccidentabiliteCommentController::class, "export"])->name("exportAccidentabilites");
+
+
     // Evaluacion de profesionales
     Route::get("/users/{user}/evaluations", [EvaluationController::class, "index"])->name("evaluations.index");
     Route::get("/users/{user}/evaluations/create", [EvaluationController::class, "create"])->name("evaluations.create");
     Route::post("/users/{user}/evaluations/store", [EvaluationController::class, "store"])->name("evaluations.store");
+
+    // exportar evaluaciones
+    Route::get("/exportEvaluations/{id}", [EvaluationController::class, "export"])->name("exportEvaluation");
 
     // Servicios generales
     Route::middleware("setCenterContext")->group(function () {
@@ -139,6 +157,9 @@ Route::middleware("auth")->group(function () {
         Route::patch("/external-contacts/{externalContact}/deactivate", [ExternalContactController::class, "deactivate"])->name("external-contacts.deactivate");
         Route::patch("/external-contacts/{externalContact}/activate", [ExternalContactController::class, "activate"])->name("external-contacts.activate");
         Route::post("/external-contacts/search", [ExternalContactController::class, "search"])->name("external-contacts.search");
+
+        Route::get("/exportExternal-contacts", [ExternalContactController::class, "exportContacts"])->name("exportContacts");
+
     });
 
     // Documents
@@ -210,4 +231,6 @@ Route::middleware("auth")->group(function () {
 
     // documentos
     Route::get('documents/download/{baseName}', [DocumentController::class, 'download'])->name('doc.download');
+    Route::delete("documents/download/{document}", [DocumentController::class, "delete"])->name('doc.delete');
+
 });

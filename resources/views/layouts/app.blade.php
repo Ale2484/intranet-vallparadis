@@ -8,21 +8,8 @@
     {{-- Rich text --}}
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-    <script>
-        (function() {
-            const html = document.documentElement;
-            const savedTheme = localStorage.getItem("theme");
-            if (!savedTheme) {
-                if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-                    html.classList.add("dark");
-                }
-            } else if (savedTheme === "dark") {
-            html.classList.add("dark");
-            } else if (savedTheme === "light") {
-            html.classList.remove("dark");
-            }
-        })();
-    </script>
+    
+    <script src="{{ asset('js/theme-init.js') }}"></script>
     @vite('resources/css/app.css')
     <title>@yield("title")</title>
 </head>
@@ -48,3 +35,19 @@
 @vite("resources/js/app.js")
 
 </html>
+
+<!-- <script>
+        (function() {
+            const html = document.documentElement;
+            const savedTheme = localStorage.getItem("theme");
+            if (!savedTheme) {
+                if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    html.classList.add("dark");
+                }
+            } else if (savedTheme === "dark") {
+            html.classList.add("dark");
+            } else if (savedTheme === "light") {
+            html.classList.remove("dark");
+            }
+        })();
+    </script> -->

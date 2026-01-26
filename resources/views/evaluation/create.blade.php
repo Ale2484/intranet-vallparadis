@@ -37,7 +37,7 @@
                         @for ($j = 0; $j < 4; $j++)
                         <div class="flex-1 lg:border-1 border-[#AFAFAF] dark:border-neutral-600 h-16 lg:h-20 flex items-center justify-between lg:justify-center cursor-pointer px-5 py-2 lg:px-0">
                             <span class="lg:hidden font-medium">{{ $option_labels[$j] }}</span>
-                            <input type="radio" name="p{{ $i }}" value="{{ $j }}" class="hidden">
+                            <input required type="radio" name="p{{ $i }}" value="{{ $j }}" class="hidden">
                             {{-- Version movil  --}}
                             <div class="w-8 h-8 rounded-full border-2 border-gray-300 dark:border-gray-500 flex items-center justify-center lg:hidden" data-question="p{{ $i }}" data-value="{{ $j }}">
                             </div>

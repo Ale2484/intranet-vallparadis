@@ -59,6 +59,17 @@
                                     <use xlink:href="#icon-download"></use>
                                 </svg>
                             </a>
+                            <form action="{{ route('doc.delete', $document) }}" method="post" class="w-full">
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit"
+                                    class="confirmable text-red-500 rounded-lg p-2 font-semibold flex items-center cursor-pointer gap-4"
+                                    data-confirm-message="Estàs segur que vols eliminar aquest document?">
+                                    <svg class="w-6 h-6">
+                                        <use xlink:href="#icon-trash"></use>
+                                    </svg>
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <div class="flex gap-4 items-center">
@@ -105,7 +116,7 @@
                             </div>
                             <div class="flex flex-col gap-1">
                                 <label for="description">Descripció</label>
-                                <textarea name="description" id="description" cols="30" rows="3" class="border border-[#AFAFAF] bg-white rounded-[15px] p-3 min-h-13 max-h-55 dark:bg-neutral-800 dark:border-neutral-600" placeholder="Afegir una descripció"></textarea>
+                                <textarea name="description" id="description" cols="30" rows="3" class="border border-[#AFAFAF] bg-white rounded-[15px] p-3 min-h-13 max-h-55 dark:bg-neutral-800 dark:border-neutral-600" placeholder="Afegir una descripció" required></textarea>
                             </div>
                             <label for="documents">Document</label>
                             <button type="button" data-file-input-id="files[]" data-show-uploaded-files-id="uploadedFiles" class="upload-file-button w-full flex flex-col items-center justify-center border-2 border-[#AFAFAF] border-dashed rounded-lg cursor-pointer p-2 gap-2 mb-3 hover:bg-[#f6f6f6] dark:hover:bg-neutral-700 transition-all">

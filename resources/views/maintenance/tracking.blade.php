@@ -101,7 +101,7 @@
                     <div class="flex flex-col gap-3">
                         <div class="flex flex-col gap-1">
                             <label for="topic">Tema</label>
-                            <input type="text" id="topic" name="topic" class="border border-[#AFAFAF] bg-white rounded-lg p-2 dark:bg-neutral-800 dark:border-neutral-600">
+                            <input type="text" id="topic" name="topic" class="border border-[#AFAFAF] bg-white rounded-lg p-2 dark:bg-neutral-800 dark:border-neutral-600" required>
                         </div>
                     </div>
                     <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">

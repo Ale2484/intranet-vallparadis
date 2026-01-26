@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <div class="p-5 flex flex-row justify-between">
-                    <a href="{{ route('evaluations.index', $user->id) }}"
+                    <a href="{{ route('exportEvaluation', $evaluation->id) }}"
                         class="bg-green-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-green-700 transition-all h-fit">
                         <svg class="w-6 h-6">
                             <use xlink:href="#icon-clip"></use>
@@ -243,7 +243,7 @@
                 </div>
             </div>
             <div class="flex items-center justify-end">
-                <a href="{{ route('evaluations.index', $user->id) }}" 
+                <a href="{{ route('exportEvaluation', $evaluation->id) }}" 
                     class="bg-green-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-green-700 transition-all h-fit w-fit">
                     <svg class="w-6 h-6">
                         <use xlink:href="#icon-clip"></use>

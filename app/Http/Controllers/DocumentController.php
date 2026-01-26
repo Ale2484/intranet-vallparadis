@@ -160,4 +160,10 @@ class DocumentController extends Controller
         $document->delete();
         return redirect()->route("documents.index")->with("success", "Document eliminat correctament.");
     }
+    public function delete(Document $document)
+    {
+        Storage::disk("private")->delete($document->path);
+        $document->delete();
+        return back()->with("success", "Document eliminat correctament.");
+    }
 }

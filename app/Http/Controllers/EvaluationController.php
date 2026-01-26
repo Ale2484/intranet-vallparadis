@@ -6,6 +6,8 @@ use App\Models\Evaluation;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use App\Exports\EvaluationExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EvaluationController extends Controller
 {
@@ -151,5 +153,12 @@ class EvaluationController extends Controller
             "user",
             "questions"
         ));
+    }
+
+    public function export($id)
+    {
+        $eval = Evaluation::where("id", $id)->get();
+
+        return Excel::download(new EvaluationExport($eval), 'evaluacion.xlsx');
     }
 }

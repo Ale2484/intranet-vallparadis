@@ -6,6 +6,8 @@ use App\Models\ExternalContact;
 use App\Models\Center;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExternalContactsExport;
 
 class ExternalContactController extends Controller
 {
@@ -95,7 +97,7 @@ class ExternalContactController extends Controller
             "category" => 'required|in:assistencial,"serveis generals"',
             "company_or_department" => "required|string|max:255",
             "contact_person" => "required|string|max:255",
-            "phone" => "nullable|regex:/^\+\d{2,3}\s?\d{9}$/",
+            "phone" => "nullable|digits:9",
             "email" => "required|email|max:255",
             "observations" => "nullable|string",
             "is_active" => "boolean"
@@ -133,7 +135,7 @@ class ExternalContactController extends Controller
             "category" => 'required|in:assistencial,"serveis generals"',
             "company_or_department" => "required|string|max:255",
             "contact_person" => "required|string|max:255",
-            "phone" => "nullable|regex:/^\+\d{2,3}\s\d{9}$/",
+            "phone" => "nullable|digits:9",
             "email" => "required|email|max:255",
             "observations" => "nullable|string",
             "is_active" => "boolean"
@@ -162,5 +164,16 @@ class ExternalContactController extends Controller
     {
         $externalContact->update(["is_active" => true]);
         return redirect()->route("external-contacts.index")->with("success", "Contacte habilitat correctament");
+    }
+
+    public function exportContacts()
+    {
+        $centerId = session()->get('active_center_id');
+
+        $contacts = ExternalContact::where('center_id', $centerId)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return Excel::download(new ExternalContactsExport($contacts), 'contactos_centro.xlsx');
     }
 }

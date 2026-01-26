@@ -7,6 +7,13 @@
     <div class="w-full flex flex-row mb-7 items-center justify-between">
         <h1 class="text-3xl font-bold text-[#011020] dark:text-white">Gestió de contactes externs:</h1>
         <div class="flex gap-3">
+            <a href="{{ route('exportContacts') }}" 
+                class="bg-green-600 text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-green-500 transition-all w-fit">
+                <svg class="w-6 h-6">
+                    <use xlink:href="#icon-excel"></use>
+                </svg>
+                Exportar a excel
+            </a>
             <a href="{{ route('external-contacts.create') }}" 
                 class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all h-fit">
                 <svg class="w-6 h-6">

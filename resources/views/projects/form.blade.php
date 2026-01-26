@@ -35,7 +35,7 @@
                 Data d'inici
             </label>
             <input type="date" name="start" id="start" value="{{ old('start', $project->start ? $project->start->format('Y-m-d') : '') }}"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500  @error('start') border-red-500 @enderror dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500  @error('start') border-red-500 @enderror dark:bg-neutral-800 dark:border-neutral-600 dark:text-white" required>
             @error('start')
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror

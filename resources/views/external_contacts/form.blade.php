@@ -59,7 +59,7 @@
                     Telèfon
                 </label>
             </div>
-            <input type="text" name="phone" id="phone" placeholder="Telèfon del contacte" value="{{ old('phone', $externalContact->phone) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('phone') border-red-500 @enderror" pattern="^\+\d{2,3}\s\d{9}$"  title="El número de telèfon ha de tenir el format +00 000000000 o +000 000000000">
+            <input type="text" name="phone" id="phone" placeholder="Telèfon del contacte" value="{{ old('phone', $externalContact->phone) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('phone') border-red-500 @enderror" pattern="^\d{9}$" title="El número de telèfon ha de tenir 9 dígits (ex: 612345678)">
             @error('phone')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -75,7 +75,7 @@
                     Motiu *
                 </label>
             </div>
-            <input type="text" name="reason" id="reason" placeholder="Motiu del contacte" value="{{ old('reason', $externalContact->reason) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('reason') border-red-500 @enderror">
+            <input type="text" name="reason" id="reason" placeholder="Motiu del contacte" value="{{ old('reason', $externalContact->reason) }}" class="border shadow-sm p-2 w-full border-[#AFAFAF] rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-orange-500 @error('reason') border-red-500 @enderror" required>
             @error('reason')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
@@ -136,7 +136,7 @@
 
     <!-- Botones -->
     <div class="flex flex-row gap-4 justify-end mt-8 pt-6 border-t border-gray-200">
-        <a href="{{ route('external-contacts.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF]">
+        <a href="{{ route('external-contacts.index') }}" class="bg-white text-[#011020] rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 border-1 border-[#AFAFAF] dark:bg-neutral-800 dark:border-neutral-600 dark:text-white">
             Cancel·lar
         </a>
         <button type="submit" class="bg-[#FF7E13] text-white rounded-lg p-2 font-semibold flex items-center justify-center cursor-pointer gap-2 hover:bg-[#FE712B] transition-all">
