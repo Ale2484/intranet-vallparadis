@@ -25,7 +25,7 @@ class Document extends Model
 
     public function userData()
     {
-        return $this->belongsTo(User::class, 'user');
+        return $this->belongsTo(User::class, 'user')->withoutGlobalScope("center_filter");
     }
 
     public function getFormattedTypeAttribute()
