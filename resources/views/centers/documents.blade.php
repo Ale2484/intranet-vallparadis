@@ -47,13 +47,13 @@
                                 <div class="flex flex-col md:border-l-[#AFAFAF] md:border-l-2 border-t-2 border-b-2 border-t-[#AFAFAF] md:border-t-0 md:border-b-0 border-b-[#AFAFAF] pt-4 md:pt-0 h-full md:pl-4 w-full pb-4">
                                     <p class="font-medium text-[#011020] dark:text-white text-lg">Usuari</p>
                                     <p class="text-sm text-[#AFAFAF] dark:text-white">
-                                        {{ $document->userData->name }}
+                                        {{ $document->userData ? $document->userData->name : "No hi ha usuari establert" }}
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="flex items-center gap-2 self-end">
-                            <a href="{{ route('doc.download', basename($document->path)) }}" 
+                            <a href="{{ route('doc.download', basename($document->path)) }}"
                                 class="text-sm py-2 px-4 flex items-center gap-2">
                                 <svg class="w-8 h-8">
                                     <use xlink:href="#icon-download"></use>
