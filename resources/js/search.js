@@ -1,18 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-    
-    
-    
-
-    
-                
-            
-            
-        
-        
-        
-        
-});
-
 class SearchWithFilters {
     constructor() {
         // Formulario de busqueda
@@ -58,7 +43,7 @@ class SearchWithFilters {
     }
 
     initSearchForm() {
-        if (searchForm) {
+        if (this.searchForm) {
             // Input de busqueda
             this.searchInput = this.searchForm.querySelector("input[type='search']");
             this.elementType = this.searchForm.dataset.type;
@@ -92,13 +77,13 @@ class SearchWithFilters {
     initFilters() {
         this.orderFilters.forEach(filter => {
             filter.addEventListener("change", () => {
-                this.fetchSearch(searchInput.value)
+                this.fetchSearch(this.searchInput.value)
             });
         });
     
         this.statusFilters.forEach(filter => {
             filter.addEventListener("change", () => {
-                this.fetchSearch(searchInput.value)
+                this.fetchSearch(this.searchInput.value)
             });
         })
     }
@@ -113,11 +98,13 @@ class SearchWithFilters {
         const meta = document.querySelector('meta[name="csrf-token"]');
         const token = meta ? meta.getAttribute('content') : '';
         const loader = document.getElementById("loader");
+
         try {
             if (loader) {
                 loader.classList.remove("hidden");
             }
-            const response = await fetch(`/${elementType}/search`, {
+
+            const response = await fetch(`/${this.elementType}/search`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -125,17 +112,21 @@ class SearchWithFilters {
                 },
                 body: JSON.stringify({searchValue, orderBy, status})
             });
+
             const data = await response.json();
+
             if (loader) {
                 loader.classList.add("hidden");
             }
+
             // Se guarda el valor que se acaba de buscar
-            lastSearchValue = searchValue;
+            this.lastSearchValue = searchValue;
             // Se dice que no hay filtro aplicado
-            applyRadioFilter = false;
+            this.applyRadioFilter = false;
+
             // Si es en formato card se pone una <p> si es en formato table se pone un tr
             if (visibleResultContainer.closest("table")) {
-                visibleResultContainer.innerHTML = data.htmlContent || `<tr> <td colspan="${document.querySelectorAll('table thead th').length}" class="text-center bg-white py-4">No hi ha resultats</td> </tr>`;
+                visibleResultContainer.innerHTML = data.htmlContent || `<tr> <td colspan="${document.querySelectorAll('table thead th').length}" class="text-center bg-white dark:bg-neutral-800 dark:text-white py-4">No hi ha resultats</td> </tr>`;
             } else{
                 visibleResultContainer.innerHTML = data.htmlContent || "<p class='dark:text-white'>No hi ha resultats</p>";
             }
@@ -145,3 +136,7 @@ class SearchWithFilters {
         }
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  new SearchWithFilters();
+});
