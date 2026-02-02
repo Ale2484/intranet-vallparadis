@@ -34,7 +34,7 @@
                                 <div class="flex flex-col w-fit">
                                     <p class="font-medium text-[#011020] dark:text-white text-lg">{{ $document->name }}</p>
                                     <p class="text-sm text-[#AFAFAF] dark:text-white">
-                                        {{ $document->formatted_size }} • 
+                                        {{ $document->formatted_size }} •
                                         Pujat el {{ $document->created_at->format('j/n/Y') }}
                                     </p>
                                 </div>
