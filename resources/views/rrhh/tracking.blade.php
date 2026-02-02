@@ -28,7 +28,7 @@
                         {{ $total }} comentaris
                     </div>
                 </div>
-                <div class="overflow-y-scroll flex flex-col h-full">
+                <div class="flex flex-col max-h-96 overflow-y-auto">
                     @foreach ($comments as $comment )
                         <div class="flex flex-row gap-5">
                             <div class="flex flex-col items-center">

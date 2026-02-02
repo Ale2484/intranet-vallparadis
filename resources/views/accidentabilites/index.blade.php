@@ -129,7 +129,7 @@
                             <label for="description">Descripcio</label>
                             <textarea type="text" id="description" name="description" class="border border-gray-300 bg-white rounded-lg p-2 dark:bg-neutral-950  focus:outline-none focus:ring-2 focus:ring-orange-500" required></textarea>
                         </div>
-                        <div class="flex gap-1">
+                        <div class="flex justify-between">
                             <div class="flex flex-col gap-1">
                                 <label for="start">Inici</label>
                                 <input type="date" id="start" name="start" class="border border-gray-300 bg-white rounded-lg p-2 dark:bg-neutral-950  focus:outline-none focus:ring-2 focus:ring-orange-500">
