@@ -15,7 +15,6 @@
             <p class="text-[#AFAFAF]" >Comentaris del manteniment</p>
         </div>
     </div>
-    
     <div class="flex flex-col gap-5">
         <div class="w-full flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <div class="text-2xl font-bold text-[#011020] dark:text-white">
@@ -26,7 +25,7 @@
             </div>
         </div>
         {{ $total<1 ? "No hi ha seguiments" : "" }}
-        <div class="flex flex-col-reverse md:flex-row justify-between gap-5">
+        <div class="flex flex-col-reverse md:flex-row justify-between gap-5 max-h-[550px] overflow-y-auto">
             <!-- Historial -->
             <div class="flex flex-col justify-start w-full md:w-5/8 gap-5 overflow-y-scroll max-h-screen-lg">
                 @foreach($trackings as $tracking)

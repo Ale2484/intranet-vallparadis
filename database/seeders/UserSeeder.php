@@ -87,7 +87,7 @@ class UserSeeder extends Seeder
                 "role" => "equip_directiu",
                 "center" => "2",
                 "status" => "active",
-                "password" => Hash::make('pC8011zUaYq'),
+                "password" => Hash::make('123456'),
                 "locker" => "T-123453",
                 "locker_password" => "1234",
                 "created_at" => now()->subDay(),
