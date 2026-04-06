@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Center;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
+/**
+ * Controlador encargado de gestionar los centros
+ *
+ * Permite crear, editar, actualizar, y modificar el estado (activo/inactivo)
+ * de los centros
+ */
 class CenterController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Se muestran todos los centros con opcion de filtrar por estado
+     * @param Request $request Filtro que se aplica en el estado de los centros, activos/inativos
+     * @return View
      */
     public function index(Request $request)
     {
@@ -27,6 +37,11 @@ class CenterController extends Controller
         return view("centers.index", compact("centers",  "viewType"));
     }
     
+    /**
+     * Se filtran y ordenan los centros para devolver el listado de componentes rendereizados
+     * @param Request $request Contiene el texto de busqueda, el orden y el estado de los centros
+     * @return JsonResponse
+     */
     public function search(Request $request)
     {
         $htmlContent = "";
@@ -82,8 +97,10 @@ class CenterController extends Controller
         }
         return response()->json(["htmlContent" => $htmlContent]);
     }
+
     /**
-     * Show the form for creating a new resource.
+     * Se muestra el formulario para crear un nuevo centro
+     * @return View
      */
     public function create()
     {
@@ -92,7 +109,9 @@ class CenterController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Se crea un nuevo centro a partir de los datos enviados en el formulario de creacion
+     * @param Request $request Datos enviados desde el formulario de creacion del centro
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -111,7 +130,9 @@ class CenterController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Se muestra en detalle un centro concreto
+     * @param Center $center Centro que se intenta mostrar
+     * @return View
      */
     public function show(Center $center)
     {
@@ -119,7 +140,9 @@ class CenterController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Se muestra el formulario para editar un centro existente
+     * @param Center $center Centro que se intenta editar
+     * @return View
      */
     public function edit(Center $center)
     {
@@ -127,7 +150,10 @@ class CenterController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Se actualizan los datos de un centro existente en el sistema
+     * @param Request $request Datos enviados desde el formulario de edicion del centro
+     * @param Center $center Centro que se intenta actualizar
+     * @return RedirectResponse
      */
     public function update(Request $request, Center $center)
     {
@@ -149,12 +175,22 @@ class CenterController extends Controller
 
     }
 
+    /**
+     * Se desactiva un centro dejandolo como is_active = false
+     * @param Center $center Centro que se intenta desactivar
+     * @return RedirectResponse
+     */
     public function deactivate(Center $center)
     {
         $center->update(["is_active" => false]);
         return redirect()->route("centers.index")->with("success", "Centre deshabilitat correctament");
     }
 
+    /**
+     * Se activa un centro dejandolo como is_active = true
+     * @param Center $center Centro que se intenta activar
+     * @return RedirectResponse
+     */
     public function activate(Center $center)
     {
         $center->update(["is_active" => true]);

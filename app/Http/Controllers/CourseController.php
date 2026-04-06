@@ -9,15 +9,27 @@ use App\Models\CourseSchedule;
 use App\Models\CourseUser;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 
 
+/**
+ * Controlador encargado de gestionar los cursos
+ *
+ * Permite listar, crear, editar, visualizar y cambiar el estado de los cursos,
+ * tambien gestionar sus usuarios, horarios y certificados de los usuarios inscritos
+ */
 class CourseController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Se muestran todos los cursos con opcion de filtrar por estado
+     * @param Request $request Filtro que se aplica en el estado de los cursos, activos/inativos
+     * @return View
      */
     public function index(Request $request)
     {
@@ -33,6 +45,11 @@ class CourseController extends Controller
         return view("courses.index", compact("courses", "viewType"));
     }
 
+    /**
+     * Se filtran y ordenan los cursos para devolver el listado de componentes rendereizados
+     * @param Request $request Contiene el texto de busqueda, el orden y el estado de los cursos
+     * @return JsonResponse
+     */
     public function search(Request $request)
     {
         $htmlContent = "";
@@ -95,7 +112,8 @@ class CourseController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Se muestra el formulario para crear un nuevo curso
+     * @return View
      */
     public function create()
     {
@@ -108,7 +126,9 @@ class CourseController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Se crea un nuevo curso con sus usuarios inscritos, horario y su asistente
+     * @param Request $request Datos enviados desde el formulario de creacion del curso
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -160,7 +180,9 @@ class CourseController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Se muestra en detalle un curso concreto con sus usuarios y horarios
+     * @param Course $course Curso que se intenta visualizar
+     * @return View
      */
     public function show(Course $course)
     {
@@ -178,7 +200,9 @@ class CourseController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Se muestra el formulario para editar un curso existente
+     * @param Course $course Curso que se intenta editar
+     * @return View
      */
     public function edit(Course $course)
     {
@@ -192,7 +216,10 @@ class CourseController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Se actualizan los datos de un curso existente, incluyendo sus usuarios inscritos, su horario y su asistente
+     * @param Request $request Datos enviados desde el formulario de edicion del curso
+     * @param Course $course Curso que se intenta actualizar
+     * @return RedirectResponse
      */
     public function update(Request $request, Course $course)
     {
@@ -255,14 +282,23 @@ class CourseController extends Controller
         return redirect()->route("courses.index")->with("success", "Curs modificat correctament");
     }
 
-    // Metodo que muestra todos los usuarios que pertenecen a un curso
+    /**
+     * Se muestran todos los usuarios inscritos en un curso y los certificados de cada usuario inscrito
+     * @param Course $course Curso del que se intenta visualizar sus usuarios inscritos
+     * @return View
+     */
     public function showCourseUsers(Course $course)
     {
         $courseUsers = $course->users()->withPivot("certificate")->get();
         return view("courses.users", compact("courseUsers", "course"));
     }
 
-
+    /**
+     * Se marca como entregado el certificado de un usuario en un curso
+     * @param Course $course Curso al que pertenece el certificado
+     * @param User $user Usuario al que se le entrega el certificado
+     * @return RedirectResponse
+     */
     public function giveCertificate(Course $course, User $user)
     {
         $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
@@ -273,6 +309,13 @@ class CourseController extends Controller
             return back()->with("error", "Error en intentar donar el certificat a l'usuari seleccionat");
         }
     }
+
+    /**
+     * Se quita el certificado entregado a un usuario en un curso
+     * @param Course $course Curso al que pertenece el certificado
+     * @param User $user Usuario al que se le intenta quitar el certificado
+     * @return RedirectResponse
+     */
     public function removeCertificate(Course $course, User $user)
     {
         $courseUser = CourseUser::where("course_id", $course->id)->where( "user_id", $user->id)->firstOrFail();
@@ -284,17 +327,31 @@ class CourseController extends Controller
         }
     }
 
+    /**
+     * Se exportan todos los cursos del sistema a un archivo Excel
+     * @return BinaryFileResponse
+     */
     public function exportAllCourses()
     {
         return Excel::download(new CoursesExport, "courses.xlsx");
     }
 
+    /**
+     * Se desactiva un curso dejandolo como is_active = false
+     * @param Course $course Curso que se intenta desactivar
+     * @return RedirectResponse
+     */
     public function deactivate(Course $course)
     {
         $course->update(["is_active" => false]);
         return redirect()->route("courses.index")->with("success", "Curs deshabilitat correctament");
     }
 
+    /**
+     * Se activa un curso dejandolo como is_active = true
+     * @param Course $course Curso que se intenta activar
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function activate(Course $course)
     {
         $course->update(["is_active" => true]);
