@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table("users")->insert([
+        $users = [
             [
                 "id" => 1,
                 "name" => "Laura Fernández",
@@ -404,6 +404,23 @@ class UserSeeder extends Seeder
                 "locker_password" => "1234",
                 "created_at" => now(),
             ]
-        ]);
+        ];
+
+        DB::table('users')->upsert(
+            $users,
+            ['id'],
+            [
+                'name',
+                'email',
+                'phone',
+                'role',
+                'center',
+                'status',
+                'password',
+                'locker',
+                'locker_password',
+                'created_at',
+            ]
+        );
     }
 }

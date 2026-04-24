@@ -1,61 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Vallparadis con Laravel 12, Docker y Docker Hub
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto incluye una configuración completa para ejecutar la aplicación Vallparadis con Laravel 12 y MySQL usando Docker. La solución está pensada para que cualquier usuario pueda levantar el proyecto sin instalar PHP, Composer, Node o MySQL en su máquina.
 
-## About Laravel
+## Requisitos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Docker
+- Docker Compose
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 1. Preparar el entorno
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Copiar el fichero de ejemplo:
 
-## Learning Laravel
+```bash
+cp .env.example .env
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Si quieres datos de prueba, cambia esta variable en `.env`:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```dotenv
+DOCKER_RUN_SEEDERS=true
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 2. Levantar el proyecto
 
-## Laravel Sponsors
+Arranque completo:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+docker compose up --build
+```
 
-### Premium Partners
+La aplicación quedará disponible en:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```text
+http://localhost:8080
+```
 
-## Contributing
+Qué hace el arranque automáticamente:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Inicia MySQL 8.4.
+- Espera a que la base de datos esté lista.
+- Genera `APP_KEY` si aún no existe.
+- Ejecuta `php artisan storage:link --force`.
+- Ejecuta `php artisan migrate --force` si `DOCKER_RUN_SEEDERS=false`.
+- Ejecuta `php artisan migrate:fresh --seed --force` si `DOCKER_RUN_SEEDERS=true`.
 
-## Code of Conduct
+## 3. Persistencia de datos
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+`compose.yaml` crea estos volúmenes:
 
-## Security Vulnerabilities
+- `mysql_data`: persiste la base de datos MySQL.
+- `storage_data`: persiste el directorio `storage` de Laravel.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 4. Comandos útiles
 
-## License
+Parar los contenedores:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+docker compose down
+```
+
+Parar y borrar contenedores, red y volúmenes:
+
+```bash
+docker compose down -v
+```
+
+Ver logs de la aplicación:
+
+```bash
+docker compose logs -f app
+```
+
+Entrar en el contenedor de Laravel:
+
+```bash
+docker compose exec app sh
+```
